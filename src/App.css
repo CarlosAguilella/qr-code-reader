@@ -36,3 +36,40 @@
     transform: rotate(360deg);
   }
 }
+
+.app-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.input-container {
+  margin-bottom: 20px;
+}
+
+.file-label {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.result-container {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+}
+
+h2 {
+  color: #333;
+}
+
+p {
+  font-size: 18px;
+  margin: 10px 0;
+}
