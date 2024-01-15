@@ -44,6 +44,13 @@ function App() {
         </label>
       </div>
 
+      <div className="input-container">
+        <h2>Abre la camara</h2>
+        <label className="file-label">
+          <input type="file" accept="image/*" capture="user" onChange={handleFileChange} />
+        </label>
+      </div>
+
       {result && (
         <div className="result-container">
           <h2>Su resultado:</h2>
