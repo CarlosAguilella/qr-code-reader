@@ -5,9 +5,11 @@ import './App.css';
 
 function App() {
   const [result, setResult] = useState(null);
+  const [log, setLog] = useState(null);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
+    setLog(`Se ha seleccionado el archivo ${file.name} de tipo ${file.type} y tamaño ${file.size} bytes.`);
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
@@ -36,7 +38,7 @@ function App() {
 
   return (
     <div className="app-container">
-
+      <p>{log}</p>
       <div className="input-container">
         <h2>Aquí debes introducir el QR</h2>
         <label className="file-label">
