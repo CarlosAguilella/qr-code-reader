@@ -1,17 +1,21 @@
+// Importa las librerías y componentes necesarios
 import React, { useState, useRef, useEffect } from 'react';
-import QRCode from 'qrcode.react';
-import jsQR from 'jsqr';
-import './App.css';
+import QRCode from 'qrcode.react'; // Componente para mostrar códigos QR
+import jsQR from 'jsqr'; // Librería para decodificar códigos QR
+import './App.css'; // Estilos de la aplicación
 
 function App() {
+  // Estados para manejar el resultado del escaneo, la información del archivo seleccionado y la referencia al elemento de video
   const [resultado, setResultado] = useState(null);
   const [archivo, setArchivo] = useState(null);
   const videoRef = useRef(null);
 
-  const handleVideoStream = (stream) => {
-    videoRef.current.srcObject = stream;
+  // Función para manejar la transmisión en vivo de la cámara
+  const handleVideoEnDirecto = (enDirecto) => {
+    videoRef.current.srcObject = enDirecto;
   };
 
+  // Función para manejar el cambio de archivo seleccionado
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setArchivo(`Se ha seleccionado el archivo ${file.name} de tipo ${file.type} y tamaño ${file.size} bytes.`);
@@ -20,6 +24,7 @@ function App() {
       reader.onload = (event) => {
         const imageData = new Image();
         imageData.onload = () => {
+          // Crear un lienzo, dibujar la imagen y decodificar el código QR
           const canvas = document.createElement('canvas');
           canvas.width = imageData.width;
           canvas.height = imageData.height;
@@ -33,32 +38,26 @@ function App() {
             setResultado("No se encontró ningún código QR en la imagen.");
           }
         };
-        imageData.src = event.target.resultado;
+        imageData.src = event.target.result;
       };
       reader.readAsDataURL(file);
     }
   };
 
+  // Efecto secundario para inicializar y limpiar la transmisión en vivo de la cámara
   useEffect(() => {
-    const initializeCamera = async () => {
+    const grabar = async () => {
       try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-        handleVideoStream(stream);
+        const enDirecto = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+        handleVideoEnDirecto(enDirecto);
       } catch (error) {
-        console.error('Error accessing camera:', error);
+        console.error('No se pudo acceder a la cámara:', error);
       }
     };
-
-    initializeCamera();
-
-    return () => {
-      if (videoRef.current.srcObject) {
-        const tracks = videoRef.current.srcObject.getTracks();
-        tracks.forEach((track) => track.stop());
-      }
-    };
+    grabar();
   }, []);
 
+  // Función para manejar el escaneo de la cámara
   const handleCameraScan = () => {
     const video = videoRef.current;
     const canvas = document.createElement('canvas');
@@ -79,6 +78,7 @@ function App() {
     <div className="app-container">
       <p>{archivo}</p>
 
+      {/* Sección para cargar archivos */}
       <div className="input-container">
         <h2>Aquí debes introducir el QR</h2>
         <label className="file-label">
@@ -86,11 +86,13 @@ function App() {
         </label>
       </div>
 
+      {/* Sección para la transmisión en vivo de la cámara */}
       <div className="input-container">
         <h2>Abre la cámara trasera</h2>
         <video ref={videoRef} autoPlay playsInline style={{ maxWidth: '100%' }} onClick={handleCameraScan} />
       </div>
 
+      {/* Sección para mostrar el resultado y el código QR */}
       {resultado && (
         <div className="resultado-container">
           <h2>Tu resultado:</h2>
