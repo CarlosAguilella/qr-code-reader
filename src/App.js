@@ -6,7 +6,6 @@ import './App.css';
 function App() {
   const [result, setResult] = useState(null);
   const [log, setLog] = useState(null);
-
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setLog(`Se ha seleccionado el archivo ${file.name} de tipo ${file.type} y tamaño ${file.size} bytes.`);
@@ -22,7 +21,6 @@ function App() {
           context.drawImage(imageData, 0, 0, imageData.width, imageData.height);
           const imageDataArray = context.getImageData(0, 0, imageData.width, imageData.height);
           const code = jsQR(imageDataArray.data, imageData.width, imageData.height);
-
           if (code) {
             setResult(code.data);
           } else {
@@ -36,9 +34,7 @@ function App() {
   };
 
   return (
-
     <div className="app-container">
-
       <p>{log}</p>
       <div className="input-container">
         <h2>Aquí debes introducir el QR</h2>
