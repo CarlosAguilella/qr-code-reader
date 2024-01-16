@@ -21,7 +21,6 @@ function App() {
           const context = canvas.getContext('2d');
           context.drawImage(imageData, 0, 0, imageData.width, imageData.height);
           const imageDataArray = context.getImageData(0, 0, imageData.width, imageData.height);
-
           const code = jsQR(imageDataArray.data, imageData.width, imageData.height);
 
           if (code) {
@@ -37,27 +36,40 @@ function App() {
   };
 
   return (
+
     <div className="app-container">
+
       <p>{log}</p>
       <div className="input-container">
         <h2>Aquí debes introducir el QR</h2>
         <label className="file-label">
-          <input type="file" accept=".png" onChange={handleFileChange} />
+          <input type="file" accept="image/*" onChange={handleFileChange} />
         </label>
       </div>
 
       <div className="input-container">
-        <h2>Abre la camara</h2>
+        <h2>Abre la cámara trasera</h2>
         <label className="file-label">
           <input type="file" accept="image/*" capture="environment" onChange={handleFileChange} />
         </label>
       </div>
 
+      {/* 
+
+      <div className="input-container">
+        <h2>Abre la cámara frontal</h2>
+        <label className="file-label">
+          <input type="file" accept="image/*" capture="user" onChange={handleFileChange} />
+        </label>
+      </div> 
+      
+      */}
+
       {result && (
         <div className="result-container">
-          <h2>Su resultado:</h2>
+          <h2>Tu resultado:</h2>
           <p>{result}</p>
-          <h2>Y su QR:</h2>
+          <h2>Y tu QR:</h2>
           <QRCode value={result} />
         </div>
       )}
