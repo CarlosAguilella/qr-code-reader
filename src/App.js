@@ -50,8 +50,6 @@ function App() {
         </label>
       </div>
 
-      {/* 
-
       <div className="input-container">
         <h2>Abre la cámara frontal</h2>
         <label className="file-label">
@@ -59,8 +57,6 @@ function App() {
         </label>
       </div> 
       
-      */}
-
       {result && (
         <div className="result-container">
           <h2>Tu resultado:</h2>
