@@ -88,7 +88,8 @@ function App() {
 
       <div className="input-container">
         <h2>Abre la cámara trasera</h2>
-        <video ref={videoRef} autoPlay playsInline style={{ maxWidth: '100%' }} onChange={handleCameraScan} />
+        <video ref={videoRef} autoPlay playsInline style={{ maxWidth: '100%' }} />
+        <button onClick={handleCameraScan}>Escanear desde la cámara</button>
       </div>
 
       {resultado && (
