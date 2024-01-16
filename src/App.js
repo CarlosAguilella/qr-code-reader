@@ -1,6 +1,5 @@
 // Importa las librerías y componentes necesarios
 import React, { useState, useRef, useEffect } from 'react';
-import QRCode from 'qrcode.react'; // Componente para mostrar códigos QR
 import jsQR from 'jsqr'; // Librería para decodificar códigos QR
 import './App.css'; // Estilos de la aplicación
 
