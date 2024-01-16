@@ -93,12 +93,13 @@ function App() {
       </div>
 
       {/* Sección para mostrar el resultado y el código QR */}
+
       {resultado && (
         <div className="resultado-container">
           <h2>Tu resultado:</h2>
           <p>{resultado}</p>
-          <h2>Y tu QR:</h2>
-          <QRCode value={resultado} />
+          {/* <h2>Y tu QR:</h2>
+          <QRCode value={resultado} /> */}
         </div>
       )}
     </div>
