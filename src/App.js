@@ -4,8 +4,8 @@ import jsQR from 'jsqr';
 import './App.css';
 
 function App() {
-  const [result, setResult] = useState(null);
-  const [log, setLog] = useState(null);
+  const [resultado, setResultado] = useState(null);
+  const [archivo, setArchivo] = useState(null);
   const videoRef = useRef(null);
 
   const handleVideoStream = (stream) => {
@@ -14,7 +14,7 @@ function App() {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setLog(`Se ha seleccionado el archivo ${file.name} de tipo ${file.type} y tamaño ${file.size} bytes.`);
+    setArchivo(`Se ha seleccionado el archivo ${file.name} de tipo ${file.type} y tamaño ${file.size} bytes.`);
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
@@ -28,12 +28,12 @@ function App() {
           const imageDataArray = context.getImageData(0, 0, imageData.width, imageData.height);
           const code = jsQR(imageDataArray.data, imageData.width, imageData.height);
           if (code) {
-            setResult(code.data);
+            setResultado(code.data);
           } else {
-            setResult("No se encontró ningún código QR en la imagen.");
+            setResultado("No se encontró ningún código QR en la imagen.");
           }
         };
-        imageData.src = event.target.result;
+        imageData.src = event.target.resultado;
       };
       reader.readAsDataURL(file);
     }
@@ -69,15 +69,15 @@ function App() {
     const imageDataArray = context.getImageData(0, 0, canvas.width, canvas.height);
     const code = jsQR(imageDataArray.data, canvas.width, canvas.height);
     if (code) {
-      setResult(code.data);
+      setResultado(code.data);
     } else {
-      setResult("No se encontró ningún código QR en la imagen de la cámara.");
+      setResultado("No se encontró ningún código QR en la imagen de la cámara.");
     }
   };
 
   return (
     <div className="app-container">
-      <p>{log}</p>
+      <p>{archivo}</p>
 
       <div className="input-container">
         <h2>Aquí debes introducir el QR</h2>
@@ -92,12 +92,12 @@ function App() {
         <button onClick={handleCameraScan}>Escanear desde la cámara</button>
       </div>
 
-      {result && (
-        <div className="result-container">
+      {resultado && (
+        <div className="resultado-container">
           <h2>Tu resultado:</h2>
-          <p>{result}</p>
+          <p>{resultado}</p>
           <h2>Y tu QR:</h2>
-          <QRCode value={result} />
+          <QRCode value={resultado} />
         </div>
       )}
     </div>
