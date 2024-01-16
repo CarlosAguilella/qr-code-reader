@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import QRCode from 'qrcode.react';
 import jsQR from 'jsqr';
 import './App.css';
@@ -6,6 +6,12 @@ import './App.css';
 function App() {
   const [result, setResult] = useState(null);
   const [log, setLog] = useState(null);
+  const videoRef = useRef(null);
+
+  const handleVideoStream = (stream) => {
+    videoRef.current.srcObject = stream;
+  };
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setLog(`Se ha seleccionado el archivo ${file.name} de tipo ${file.type} y tamaño ${file.size} bytes.`);
@@ -33,9 +39,47 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const initializeCamera = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+        handleVideoStream(stream);
+      } catch (error) {
+        console.error('Error accessing camera:', error);
+      }
+    };
+
+    initializeCamera();
+
+    return () => {
+      // Cleanup: Stop the camera stream when the component is unmounted
+      if (videoRef.current.srcObject) {
+        const tracks = videoRef.current.srcObject.getTracks();
+        tracks.forEach((track) => track.stop());
+      }
+    };
+  }, []);
+
+  const handleCameraScan = () => {
+    const video = videoRef.current;
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const imageDataArray = context.getImageData(0, 0, canvas.width, canvas.height);
+    const code = jsQR(imageDataArray.data, canvas.width, canvas.height);
+    if (code) {
+      setResult(code.data);
+    } else {
+      setResult("No se encontró ningún código QR en la imagen de la cámara.");
+    }
+  };
+
   return (
     <div className="app-container">
       <p>{log}</p>
+
       <div className="input-container">
         <h2>Aquí debes introducir el QR</h2>
         <label className="file-label">
@@ -45,18 +89,10 @@ function App() {
 
       <div className="input-container">
         <h2>Abre la cámara trasera</h2>
-        <label className="file-label">
-          <input type="file" accept="image/*" capture="environment" onChange={handleFileChange} />
-        </label>
+        <video ref={videoRef} autoPlay playsInline style={{ maxWidth: '100%' }} />
+        <button onClick={handleCameraScan}>Escanear desde la cámara</button>
       </div>
 
-      <div className="input-container">
-        <h2>Abre la cámara frontal</h2>
-        <label className="file-label">
-          <input type="file" accept="image/*" capture="user" onChange={handleFileChange} />
-        </label>
-      </div> 
-      
       {result && (
         <div className="result-container">
           <h2>Tu resultado:</h2>
