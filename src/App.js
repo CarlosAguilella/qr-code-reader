@@ -1,7 +1,6 @@
-// Importa las librerías y componentes necesarios
 import React, { useState, useRef, useEffect } from 'react';
 import jsQR from 'jsqr'; // Librería para decodificar códigos QR
-import './App.css'; // Estilos de la aplicación
+import './App.css';
 
 function App() {
   // Estados para manejar el resultado del escaneo, la información del archivo seleccionado y la referencia al elemento de video
@@ -91,14 +90,12 @@ function App() {
         <video ref={videoRef} autoPlay playsInline style={{ maxWidth: '100%' }} onClick={handleCameraScan} />
       </div>
 
-      {/* Sección para mostrar el resultado y el código QR */}
+      {/* Sección para mostrar el resultado */}
 
       {resultado && (
         <div className="resultado-container">
           <h2>Tu resultado:</h2>
           <p>{resultado}</p>
-          {/* <h2>Y tu QR:</h2>
-          <QRCode value={resultado} /> */}
         </div>
       )}
     </div>
