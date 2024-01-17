@@ -6,6 +6,7 @@ function App() {
   const [resultado, setResultado] = useState(null);
   const [archivo, setArchivo] = useState(null);
   const videoRef = useRef(null);
+  const [grabando, setGrabando] = useState(true);
 
   const handleVideoEnDirecto = (enDirecto) => {
     videoRef.current.srcObject = enDirecto;
@@ -39,7 +40,8 @@ function App() {
   };
 
   useEffect(() => {
-    const grabar = async () => {
+    if (setGrabando){
+      const grabar = async () => {
       try {
         const enDirecto = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
         handleVideoEnDirecto(enDirecto);
@@ -48,6 +50,7 @@ function App() {
       }
     };
     grabar();
+    }
   }, []);
 
   const handleCameraScan = () => {
@@ -59,8 +62,10 @@ function App() {
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
     const imageDataArray = context.getImageData(0, 0, canvas.width, canvas.height);
     const code = jsQR(imageDataArray.data, canvas.width, canvas.height);
+    setGrabando(false);
     if (code) {
       setResultado(code.data);
+
     } else {
       setResultado("No se encontró ningún código QR en la imagen de la cámara.");
     }
