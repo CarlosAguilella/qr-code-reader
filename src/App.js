@@ -78,6 +78,8 @@ function App() {
 
   const volverAEmpezar = () => {
     setGrabando(true);
+    setArchivo(null);
+    setResultado(null);
   }
 
   return (
