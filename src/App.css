@@ -85,3 +85,7 @@ button:hover {
 .resultado-container p {
   margin: 10px 0;
 }
+
+.caja-video {
+  display: none;
+}
