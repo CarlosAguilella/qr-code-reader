@@ -86,6 +86,7 @@ button:hover {
   margin: 10px 0;
 }
 
+/* Esto es para esconder la caja que deja el video */
 .caja-video {
   display: none;
 }

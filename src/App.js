@@ -86,9 +86,9 @@ function App() {
         </label>
       </div>
 
-      <div className="input-container">
+      <div className={ grabando ? 'input-container' : 'caja-video input-container'}>
         <h2>Abre la cámara trasera</h2>
-        <video ref={videoRef} className={ grabando ? '' : 'caja-video'} autoPlay playsInline style={{ maxWidth: '100%' }} onClick={handleCameraScan} />
+        <video ref={videoRef} autoPlay playsInline style={{ maxWidth: '100%' }} onClick={handleCameraScan} />
       </div>
 
       {resultado && (
