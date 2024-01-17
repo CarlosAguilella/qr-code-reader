@@ -86,14 +86,14 @@ function App() {
     <div className="app-container">
       <p>{archivo}</p>
 
-      <div className={ grabando ? 'input-container' : 'caja-video input-container'}>
+      <div className={ grabando ? 'input-container' : 'desaparecer input-container'}>
         <h2>Aquí debes introducir el QR</h2>
         <label className="file-label">
           <input type="file" accept="image/*" onChange={handleFileChange} />
         </label>
       </div>
 
-      <div className={ grabando ? 'input-container' : 'caja-video input-container'}>
+      <div className={ grabando ? 'input-container' : 'desaparecer input-container'}>
         <h2>Abre la cámara trasera</h2>
         <video ref={videoRef} autoPlay playsInline style={{ maxWidth: '100%' }} onClick={handleCameraScan} />
       </div>
@@ -105,7 +105,7 @@ function App() {
         </div>
       )}
 
-      <button onClick={volverAEmpezar}>Volver al inicio</button>
+      <button className={ grabando ? 'desaparecer input-container' : 'input-container'} onClick={volverAEmpezar}>Volver al inicio</button>
     </div>
   );
 }
