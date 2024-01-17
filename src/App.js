@@ -55,7 +55,7 @@ function App() {
     }
   }, [grabando]);
 
-  const handleCameraScan = () => {
+  const processVideoFrame = () => {
     const video = videoRef.current;
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
@@ -65,16 +65,22 @@ function App() {
     const imageDataArray = context.getImageData(0, 0, canvas.width, canvas.height);
     const code = jsQR(imageDataArray.data, canvas.width, canvas.height);
 
-    // Cierra el stream al dejar de grabar
-    videoStream.getTracks().forEach((track) => track.stop());
-    setGrabando(false);
-
     if (code) {
       setResultado(code.data);
     } else {
       setResultado("No se encontró ningún código QR en la imagen de la cámara.");
     }
+
+    // Continúa el bucle
+    requestAnimationFrame(processVideoFrame);
   };
+
+  useEffect(() => {
+    if (grabando) {
+      // Comienza el bucle de procesamiento del video
+      requestAnimationFrame(processVideoFrame);
+    }
+  }, [grabando]);
 
   return (
     <div className="app-container">
@@ -89,7 +95,7 @@ function App() {
 
       <div className="input-container">
         <h2>Abre la cámara trasera</h2>
-        <video ref={videoRef} autoPlay playsInline style={{ maxWidth: '100%' }} onClick={handleCameraScan} />
+        <video ref={videoRef} autoPlay playsInline style={{ maxWidth: '100%' }} />
       </div>
 
       {resultado && (
