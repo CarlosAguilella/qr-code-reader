@@ -82,7 +82,6 @@ function App() {
         <video ref={videoRef} autoPlay playsInline style={{ maxWidth: '100%' }} onClick={handleCameraScan} />
       </div>
 
-
       {resultado && (
         <div className="resultado-container">
           <h2>Tu resultado:</h2>
