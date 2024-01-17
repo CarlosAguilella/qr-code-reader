@@ -6,12 +6,18 @@ function App() {
   const [resultado, setResultado] = useState(null);
   const [archivo, setArchivo] = useState(null);
   const videoRef = useRef(null);
+  const mediaStreamRef = useRef(null);
 
   const handleVideoEnDirecto = (enDirecto) => {
     videoRef.current.srcObject = enDirecto;
+    mediaStreamRef.current = enDirecto;
   };
 
   const handleFileChange = (e) => {
+    if (mediaStreamRef.current) {
+      mediaStreamRef.current.getTracks().forEach((track) => track.enabled = true);
+    }
+
     const file = e.target.files[0];
     setArchivo(`Se ha seleccionado el archivo ${file.name} de tipo ${file.type} y tamaño ${file.size} bytes.`);
     if (file) {
@@ -28,6 +34,9 @@ function App() {
           const code = jsQR(imageDataArray.data, imageData.width, imageData.height);
           if (code) {
             setResultado(code.data);
+            if (mediaStreamRef.current) {
+              mediaStreamRef.current.getTracks().forEach((track) => track.enabled = false);
+            }
           } else {
             setResultado("No se encontró ningún código QR en la imagen.");
           }
@@ -68,6 +77,9 @@ function App() {
       const code = jsQR(imageDataArray.data, canvas.width, canvas.height);
       if (code) {
         setResultado(code.data);
+        if (mediaStreamRef.current) {
+          mediaStreamRef.current.getTracks().forEach((track) => track.enabled = false);
+        }
       } else {
         setResultado("No se encontró ningún código QR en la imagen de la cámara.");
       }
