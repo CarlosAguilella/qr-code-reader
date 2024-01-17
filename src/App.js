@@ -75,6 +75,10 @@ function App() {
     }
   };
 
+  const volverAEmpezar = () => {
+    setGrabando(true);
+  }
+
   return (
     <div className="app-container">
       <p>{archivo}</p>
@@ -97,6 +101,8 @@ function App() {
           <p>{resultado}</p>
         </div>
       )}
+
+      <button onClick={volverAEmpezar}>Volver al inicio</button>
     </div>
   );
 }
