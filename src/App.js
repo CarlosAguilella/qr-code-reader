@@ -22,6 +22,7 @@ function App() {
       reader.onload = (event) => {
         const imageData = new Image();
         imageData.onload = () => {
+          setGrabando(false);
           const canvas = document.createElement('canvas');
           canvas.width = imageData.width;
           canvas.height = imageData.height;
