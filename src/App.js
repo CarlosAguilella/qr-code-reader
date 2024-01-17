@@ -16,7 +16,6 @@ function App() {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setArchivo(`Se ha seleccionado el archivo ${file.name} de tipo ${file.type} y tamaño ${file.size} bytes.`);
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
@@ -84,16 +83,14 @@ function App() {
 
   return (
     <div className="app-container">
-      <p>{archivo}</p>
-
-      <div className={ grabando ? 'input-container' : 'desaparecer input-container'}>
+      <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
         <h2>Aquí debes introducir el QR</h2>
         <label className="file-label">
           <input type="file" accept="image/*" onChange={handleFileChange} />
         </label>
       </div>
 
-      <div className={ grabando ? 'input-container' : 'desaparecer input-container'}>
+      <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
         <h2>Abre la cámara trasera</h2>
         <video ref={videoRef} autoPlay playsInline style={{ maxWidth: '100%' }} onClick={handleCameraScan} />
       </div>
@@ -105,7 +102,7 @@ function App() {
         </div>
       )}
 
-      <button className={ grabando ? 'desaparecer input-container' : 'input-container'} onClick={volverAEmpezar}>Volver al inicio</button>
+      <button className={grabando ? 'desaparecer input-container' : 'input-container'} onClick={volverAEmpezar}>Volver al inicio</button>
     </div>
   );
 }
