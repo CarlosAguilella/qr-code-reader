@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import jsQR from 'jsqr'; 
+import jsQR from 'jsqr';
 import './App.css';
 
 function App() {
@@ -7,9 +7,11 @@ function App() {
   const [archivo, setArchivo] = useState(null);
   const videoRef = useRef(null);
   const [grabando, setGrabando] = useState(true);
+  const [videoStream, setVideoStream] = useState(null);
 
   const handleVideoEnDirecto = (enDirecto) => {
     videoRef.current.srcObject = enDirecto;
+    setVideoStream(enDirecto);
   };
 
   const handleFileChange = (e) => {
@@ -40,18 +42,18 @@ function App() {
   };
 
   useEffect(() => {
-    if (setGrabando){
+    if (grabando) {
       const grabar = async () => {
-      try {
-        const enDirecto = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-        handleVideoEnDirecto(enDirecto);
-      } catch (error) {
-        console.error('No se pudo acceder a la cámara:', error);
-      }
-    };
-    grabar();
+        try {
+          const enDirecto = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+          handleVideoEnDirecto(enDirecto);
+        } catch (error) {
+          console.error('No se pudo acceder a la cámara:', error);
+        }
+      };
+      grabar();
     }
-  }, []);
+  }, [grabando]);
 
   const handleCameraScan = () => {
     const video = videoRef.current;
@@ -62,10 +64,13 @@ function App() {
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
     const imageDataArray = context.getImageData(0, 0, canvas.width, canvas.height);
     const code = jsQR(imageDataArray.data, canvas.width, canvas.height);
+
+    // Cierra el stream al dejar de grabar
+    videoStream.getTracks().forEach((track) => track.stop());
     setGrabando(false);
+
     if (code) {
       setResultado(code.data);
-
     } else {
       setResultado("No se encontró ningún código QR en la imagen de la cámara.");
     }
