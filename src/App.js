@@ -7,11 +7,11 @@ function App() {
   const [archivo, setArchivo] = useState(null);
   const videoRef = useRef(null);
   const [grabando, setGrabando] = useState(true);
-  const [videoStream, setVideoStream] = useState(null);
+  const [videoEnDirecto, setVideoEnDirecto] = useState(null);
 
   const handleVideoEnDirecto = (enDirecto) => {
     videoRef.current.srcObject = enDirecto;
-    setVideoStream(enDirecto);
+    setVideoEnDirecto(enDirecto);
   };
 
   const handleFileChange = (e) => {
@@ -25,9 +25,9 @@ function App() {
           const canvas = document.createElement('canvas');
           canvas.width = imageData.width;
           canvas.height = imageData.height;
-          const context = canvas.getContext('2d');
-          context.drawImage(imageData, 0, 0, imageData.width, imageData.height);
-          const imageDataArray = context.getImageData(0, 0, imageData.width, imageData.height);
+          const contexto = canvas.getContexto('2d');
+          contexto.drawImage(imageData, 0, 0, imageData.width, imageData.height);
+          const imageDataArray = contexto.getImageData(0, 0, imageData.width, imageData.height);
           const code = jsQR(imageDataArray.data, imageData.width, imageData.height);
           if (code) {
             setResultado(code.data);
@@ -58,14 +58,14 @@ function App() {
   const handleCameraScan = () => {
     const video = videoRef.current;
     const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
+    const contexto = canvas.getContexto('2d');
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    const imageDataArray = context.getImageData(0, 0, canvas.width, canvas.height);
+    contexto.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const imageDataArray = contexto.getImageData(0, 0, canvas.width, canvas.height);
     const code = jsQR(imageDataArray.data, canvas.width, canvas.height);
 
-    videoStream.getTracks().forEach((track) => track.stop());
+    videoEnDirecto.getTracks().forEach((track) => track.stop());
     setGrabando(false);
 
     if (code) {

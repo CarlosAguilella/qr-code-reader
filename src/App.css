@@ -12,7 +12,6 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-/* App.css */
 
 body {
   font-family: 'Arial', sans-serif;
@@ -74,17 +73,15 @@ button:hover {
   background-color: #0056b3;
 }
 
-.result-container {
+.resultado-container {
   margin-top: 20px;
   text-align: center;
 }
 
-.result-container h2 {
+.resultado-container h2 {
   font-size: 20px;
 }
 
-.result-container p {
+.resultado-container p {
   margin: 10px 0;
 }
-
-/* Add more styles as needed */
