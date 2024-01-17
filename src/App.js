@@ -79,7 +79,7 @@ function App() {
     <div className="app-container">
       <p>{archivo}</p>
 
-      <div className="input-container">
+      <div className={ grabando ? 'input-container' : 'caja-video input-container'}>
         <h2>Aquí debes introducir el QR</h2>
         <label className="file-label">
           <input type="file" accept="image/*" onChange={handleFileChange} />
