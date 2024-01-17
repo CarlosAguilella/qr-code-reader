@@ -1,23 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
-import jsQR from 'jsqr';
+import jsQR from 'jsqr'; // Librería para decodificar códigos QR
 import './App.css';
 
 function App() {
+  // Estados para manejar el resultado del escaneo, la información del archivo seleccionado y la referencia al elemento de video
   const [resultado, setResultado] = useState(null);
   const [archivo, setArchivo] = useState(null);
   const videoRef = useRef(null);
-  const mediaStreamRef = useRef(null);
 
+  // Función para manejar la transmisión en vivo de la cámara
   const handleVideoEnDirecto = (enDirecto) => {
     videoRef.current.srcObject = enDirecto;
-    mediaStreamRef.current = enDirecto;
   };
 
+  // Función para manejar el cambio de archivo seleccionado
   const handleFileChange = (e) => {
-    if (mediaStreamRef.current) {
-      mediaStreamRef.current.getTracks().forEach((track) => track.enabled = true);
-    }
-
     const file = e.target.files[0];
     setArchivo(`Se ha seleccionado el archivo ${file.name} de tipo ${file.type} y tamaño ${file.size} bytes.`);
     if (file) {
@@ -25,6 +22,7 @@ function App() {
       reader.onload = (event) => {
         const imageData = new Image();
         imageData.onload = () => {
+          // Crear un lienzo, dibujar la imagen y decodificar el código QR
           const canvas = document.createElement('canvas');
           canvas.width = imageData.width;
           canvas.height = imageData.height;
@@ -34,13 +32,8 @@ function App() {
           const code = jsQR(imageDataArray.data, imageData.width, imageData.height);
           if (code) {
             setResultado(code.data);
-            if (mediaStreamRef.current) {
-              mediaStreamRef.current.getTracks().forEach((track) => track.enabled = false);
-            }
           } else {
-            if (resultado !== "No se encontró ningún código QR en la imagen.") {
-              setResultado("No se encontró ningún código QR en la imagen.");
-            }
+            setResultado("No se encontró ningún código QR en la imagen.");
           }
         };
         imageData.src = event.target.result;
@@ -49,6 +42,7 @@ function App() {
     }
   };
 
+  // Efecto secundario para inicializar y limpiar la transmisión en vivo de la cámara
   useEffect(() => {
     const grabar = async () => {
       try {
@@ -61,43 +55,28 @@ function App() {
     grabar();
   }, []);
 
-  const handleLoadedMetadata = () => {
-    videoRef.current.play();
-    scanQRCode();
-  };
-
-  const scanQRCode = () => {
+  // Función para manejar el escaneo de la cámara
+  const handleCameraScan = () => {
     const video = videoRef.current;
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
-
-    const scanFrame = () => {
-      context.drawImage(video, 0, 0, canvas.width, canvas.height);
-      const imageDataArray = context.getImageData(0, 0, canvas.width, canvas.height);
-      const code = jsQR(imageDataArray.data, canvas.width, canvas.height);
-      if (code) {
-        setResultado(code.data);
-        if (mediaStreamRef.current) {
-          mediaStreamRef.current.getTracks().forEach((track) => track.enabled = false);
-        }
-      } else {
-        if (resultado !== "No se encontró ningún código QR en la imagen.") {
-          setResultado("No se encontró ningún código QR en la imagen.");
-        }
-      }
-
-      requestAnimationFrame(scanFrame);
-    };
-
-    scanFrame();
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const imageDataArray = context.getImageData(0, 0, canvas.width, canvas.height);
+    const code = jsQR(imageDataArray.data, canvas.width, canvas.height);
+    if (code) {
+      setResultado(code.data);
+    } else {
+      setResultado("No se encontró ningún código QR en la imagen de la cámara.");
+    }
   };
 
   return (
     <div className="app-container">
       <p>{archivo}</p>
 
+      {/* Sección para cargar archivos */}
       <div className="input-container">
         <h2>Aquí debes introducir el QR</h2>
         <label className="file-label">
@@ -105,16 +84,13 @@ function App() {
         </label>
       </div>
 
+      {/* Sección para la transmisión en vivo de la cámara */}
       <div className="input-container">
         <h2>Abre la cámara trasera</h2>
-        <video
-          ref={videoRef}
-          autoPlay
-          playsInline
-          style={{ maxWidth: '100%' }}
-          onLoadedMetadata={handleLoadedMetadata}
-        />
+        <video ref={videoRef} autoPlay playsInline style={{ maxWidth: '100%' }} onClick={handleCameraScan} />
       </div>
+
+      {/* Sección para mostrar el resultado */}
 
       {resultado && (
         <div className="resultado-container">
