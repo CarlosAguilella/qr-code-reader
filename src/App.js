@@ -4,7 +4,6 @@ import './App.css';
 
 function App() {
   const [resultado, setResultado] = useState(null);
-  const [archivo, setArchivo] = useState(null);
   const videoRef = useRef(null);
   const [grabando, setGrabando] = useState(true);
   const [videoStream, setVideoStream] = useState(null);
@@ -77,7 +76,6 @@ function App() {
 
   const volverAEmpezar = () => {
     setGrabando(true);
-    setArchivo(null);
     setResultado(null);
   }
 
