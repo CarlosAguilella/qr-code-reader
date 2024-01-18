@@ -25,7 +25,6 @@ function App() {
   return (
     <div className="app-container">
       <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
-        <button onClick={abrir}>Abre la cámara trasera</button>
         <QrReader
           scanDelay={300}
           containerStyle={{ height: '100%', width: '100%' }}
@@ -42,8 +41,8 @@ function App() {
         </div>
       )}
 
-      <button className={grabando ? 'desaparecer input-container' : 'input-container'} onClick={volverAEmpezar}>
-        Volver al inicio.
+      <button onClick={abrir} className={grabando ? 'desaparecer input-container' : 'input-container'} onClick={volverAEmpezar}>
+        Abre la cámara trasera
       </button>
     </div>
   );
