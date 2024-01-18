@@ -26,7 +26,7 @@ function App() {
           delay={300}
           style={{ height: '100%', width: '100%' }}
           onError={(err) => console.error(err)}
-          onScan={handleCameraScan}
+          onResult={handleCameraScan}
           constraints={{
             audio: true,
             video: { facingMode: "environment" }
