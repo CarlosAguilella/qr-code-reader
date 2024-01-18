@@ -3,7 +3,7 @@ import QrReader from 'react-qr-reader';
 import './App.css';
 
 function App() {
-  const [resultado, setResultado] = useState('no hay nada');
+  const [resultado, setResultado] = useState(null);
   const [grabando, setGrabando] = useState(true);
 
   const handleCameraScan = (data) => {
@@ -15,7 +15,7 @@ function App() {
 
   const volverAEmpezar = () => {
     setGrabando(true);
-    setResultado('no hay nada');
+    setResultado(null);
   };
 
   return (
@@ -23,17 +23,14 @@ function App() {
       <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
         <h2>Abre la cámara trasera</h2>
         <QrReader
-        onResult={(resultado, error) => {
-          if (!!resultado) {
-            setResultado(resultado?.text);
-          }
-
-          if (!!error) {
-            console.info(error);
-          }
-        }}
-        style={{ width: '100%' }}
-      />
+          scanDelay={300}
+          containerStyle={{ height: '100%', width: '100%' }}
+          onResult={handleCameraScan}
+          constraints={{
+            audio: true,
+            video: { facingMode: "environment" }
+          }}
+        />
       </div>
 
       {resultado && (
