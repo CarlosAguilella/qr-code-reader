@@ -40,7 +40,8 @@ function App() {
 
       <button
         onClick={abrir}
-        className={grabando ? 'desaparecer input-container' : 'input-container'}>
+        className={grabando ? 'desaparecer input-container' : 'input-container'}
+      >
         Abre la cámara trasera
       </button>
     </div>
