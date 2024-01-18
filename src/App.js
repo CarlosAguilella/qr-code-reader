@@ -4,7 +4,7 @@ import './App.css';
 
 function App() {
   const [resultado, setResultado] = useState(null);
-  const [grabando, setGrabando] = useState(true);
+  const [grabando, setGrabando] = useState(false);
 
   const handleCameraScan = (data) => {
     if (data) {
@@ -18,10 +18,14 @@ function App() {
     setResultado(null);
   };
 
+  const abrir = () => {
+    setGrabando(true);
+  }
+
   return (
     <div className="app-container">
       <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
-        <h2>Abre la cámara trasera</h2>
+        <button onClick={abrir}>Abre la cámara trasera</button>
         <QrReader
           scanDelay={300}
           containerStyle={{ height: '100%', width: '100%' }}
