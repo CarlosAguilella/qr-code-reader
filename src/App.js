@@ -1,26 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
+import QrReader from 'react-qr-scanner';
 import jsQR from 'jsqr';
 import './App.css';
 
 function App() {
   const [resultado, setResultado] = useState(null);
-  const videoRef = useRef(null);
   const [grabando, setGrabando] = useState(true);
-  const [videoStream, setVideoStream] = useState(null);
-
-  const handleVideoEnDirecto = (enDirecto) => {
-    videoRef.current.srcObject = enDirecto;
-    setVideoStream(enDirecto);
-  };
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
+        setGrabando(false);
         const imageData = new Image();
         imageData.onload = () => {
-          setGrabando(false);
           const canvas = document.createElement('canvas');
           canvas.width = imageData.width;
           canvas.height = imageData.height;
@@ -40,44 +34,15 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    if (grabando) {
-      const grabar = async () => {
-        try {
-          const enDirecto = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-          handleVideoEnDirecto(enDirecto);
-        } catch (error) {
-          console.error('No se pudo acceder a la cámara:', error);
-        }
-      };
-      grabar();
-    }
-  }, [grabando]);
-
-  const handleCameraScan = () => {
-    const video = videoRef.current;
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    const imageDataArray = context.getImageData(0, 0, canvas.width, canvas.height);
-    const code = jsQR(imageDataArray.data, canvas.width, canvas.height);
-
-    videoStream.getTracks().forEach((track) => track.stop());
+  const handleCameraScan = (data) => {
+    setResultado(data);
     setGrabando(false);
-
-    if (code) {
-      setResultado(code.data);
-    } else {
-      setResultado("No se encontró ningún código QR en la imagen de la cámara.");
-    }
   };
 
   const volverAEmpezar = () => {
     setGrabando(true);
     setResultado(null);
-  }
+  };
 
   return (
     <div className="app-container">
@@ -90,7 +55,12 @@ function App() {
 
       <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
         <h2>Abre la cámara trasera</h2>
-        <video ref={videoRef} autoPlay playsInline style={{ maxWidth: '100%' }} onClick={handleCameraScan} />
+        <QrReader
+          delay={100}
+          style={{ height: 240, width: 320, maxWidth: '100%' }}
+          onError={(err) => console.error(err)}
+          onScan={handleCameraScan}
+        />
       </div>
 
       {resultado && (
@@ -100,7 +70,9 @@ function App() {
         </div>
       )}
 
-      <button className={grabando ? 'desaparecer input-container' : 'input-container'} onClick={volverAEmpezar}>Volver al inicio</button>
+      <button className={grabando ? 'desaparecer input-container' : 'input-container'} onClick={volverAEmpezar}>
+        Volver al inicio
+      </button>
     </div>
   );
 }
