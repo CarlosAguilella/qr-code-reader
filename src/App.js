@@ -8,7 +8,7 @@ function App() {
 
   const handleCameraScan = (data) => {
     if (data) {
-      setResultado(data.text);
+      setResultado(data);
       setGrabando(false);
     }
   };
@@ -45,5 +45,3 @@ function App() {
 }
 
 export default App;
-
-// html5-qrcode
