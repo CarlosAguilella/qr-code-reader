@@ -26,10 +26,7 @@ function App() {
           scanDelay={300}
           containerStyle={{ height: '100%', width: '100%' }}
           onResult={handleCameraScan}
-          constraints={{
-            audio: true,
-            video: { facingMode: "environment" }
-          }}
+          constraints={{ facingMode: 'environment' }}
         />
       </div>
 
