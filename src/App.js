@@ -3,7 +3,7 @@ import QrReader from 'react-qr-reader';
 import './App.css';
 
 function App() {
-  const [resultado, setResultado] = useState(null);
+  const [resultado, setResultado] = useState('no hay nada');
   const [grabando, setGrabando] = useState(true);
 
   const handleCameraScan = (data) => {
@@ -15,7 +15,7 @@ function App() {
 
   const volverAEmpezar = () => {
     setGrabando(true);
-    setResultado(null);
+    setResultado('no hay nada');
   };
 
   return (
