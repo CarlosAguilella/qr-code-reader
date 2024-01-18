@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { QrReader } from 'react-qr-reader';
+import QrReader from 'react-qr-reader';
 import './App.css';
 
 function App() {
@@ -25,8 +25,9 @@ function App() {
         <QrReader
           scanDelay={300}
           containerStyle={{ height: '100%', width: '100%' }}
-          onResult={handleCameraScan}
-          constraints={{ facingMode: 'environment' }}
+          onScan={handleCameraScan}
+          onError={(err) => console.error(err)}
+          constraints={{ facingMode: 'user' }}
         />
       </div>
 
