@@ -23,9 +23,9 @@ function App() {
       <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
         <h2>Abre la cámara trasera</h2>
         <QrReader
-        onResult={(result, error) => {
-          if (!!result) {
-            setData(result?.text);
+        onResult={(resultado, error) => {
+          if (!!resultado) {
+            setResultado(resultado?.text);
           }
 
           if (!!error) {
