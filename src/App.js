@@ -25,6 +25,7 @@ function App() {
   return (
     <div className="app-container">
       <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
+        <h2>HAZ QUE EL QR APAREZCA EN LA PANTALLA</h2>
         <QrReader
           scanDelay={300}
           containerStyle={{ height: '100%', width: '100%' }}
