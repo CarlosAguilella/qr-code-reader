@@ -27,7 +27,7 @@ function App() {
           containerStyle={{ height: '100%', width: '100%' }}
           onScan={handleCameraScan}
           onError={(err) => console.error(err)}
-          constraints={{ facingMode: 'user' }}
+          constraints={{ facingMode: 'environment' }}
         />
       </div>
 
