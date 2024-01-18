@@ -13,13 +13,9 @@ function App() {
     }
   };
 
-  const volverAEmpezar = () => {
-    setGrabando(true);
-    setResultado(null);
-  };
-
   const abrir = () => {
     setGrabando(true);
+    setResultado(null);
   }
 
   return (
@@ -42,7 +38,7 @@ function App() {
         </div>
       )}
 
-      <button onClick={abrir} className={grabando ? 'desaparecer input-container' : 'input-container'} onClick={volverAEmpezar}>
+      <button onClick={abrir} className={grabando ? 'desaparecer input-container' : 'input-container'}>
         Abre la cámara trasera
       </button>
     </div>
