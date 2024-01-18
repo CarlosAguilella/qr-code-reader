@@ -56,7 +56,7 @@ function App() {
       <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
         <h2>Abre la cámara trasera</h2>
         <QrReader
-          delay={100}
+          delay={300}
           style={{ height: 240, width: 320, maxWidth: '100%' }}
           onError={(err) => console.error(err)}
           onScan={handleCameraScan}
