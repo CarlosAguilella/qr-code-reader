@@ -27,8 +27,10 @@ function App() {
           style={{ height: '100%', width: '100%' }}
           onError={(err) => console.error(err)}
           onScan={handleCameraScan}
-          facingMode={'user'}
-        />
+          constraints={{
+            audio: true,
+            video: { facingMode: "environment" }
+          }}        />
       </div>
 
       {resultado && (
