@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import QrReader from 'react-qr-scanner';
 import './App.css';
 
@@ -8,7 +8,7 @@ function App() {
 
   const handleCameraScan = (data) => {
     if (data) {
-      setResultado(data);
+      setResultado(data.text);  // Usamos data.text para obtener el texto del QR
       setGrabando(false);
     }
   };
@@ -24,9 +24,10 @@ function App() {
         <h2>Abre la cámara trasera</h2>
         <QrReader
           delay={300}
-          style={{ height: 240, width: 320, maxWidth: '100%' }}
+          style={{ height: '100%', width: '100%' }}
           onError={(err) => console.error(err)}
           onScan={handleCameraScan}
+          facingMode={'environment'}  // Esto debería limitar la cámara a la trasera
         />
       </div>
 
