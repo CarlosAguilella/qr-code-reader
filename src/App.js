@@ -42,7 +42,7 @@ function App() {
       )}
 
       <button className={grabando ? 'desaparecer input-container' : 'input-container'} onClick={volverAEmpezar}>
-        Volver al inicio
+        Volver al inicio.
       </button>
     </div>
   );
