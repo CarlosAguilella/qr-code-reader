@@ -1,12 +1,28 @@
 import React, { useState } from 'react';
-import { QrReader } from 'react-qr-reader';
+import QrReader from 'react-qr-reader';
+import './App.css';
 
-const Test = (props) => {
-  const [data, setData] = useState('No result');
+function App() {
+  const [resultado, setResultado] = useState(null);
+  const [grabando, setGrabando] = useState(true);
+
+  const handleCameraScan = (data) => {
+    if (data) {
+      setResultado(data.text);
+      setGrabando(false);
+    }
+  };
+
+  const volverAEmpezar = () => {
+    setGrabando(true);
+    setResultado(null);
+  };
 
   return (
-    <>
-      <QrReader
+    <div className="app-container">
+      <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
+        <h2>Abre la cámara trasera</h2>
+        <QrReader
         onResult={(result, error) => {
           if (!!result) {
             setData(result?.text);
@@ -18,7 +34,22 @@ const Test = (props) => {
         }}
         style={{ width: '100%' }}
       />
-      <p>{data}</p>
-    </>
+      </div>
+
+      {resultado && (
+        <div className="resultado-container">
+          <h2>Tu resultado:</h2>
+          <p>{resultado}</p>
+        </div>
+      )}
+
+      <button className={grabando ? 'desaparecer input-container' : 'input-container'} onClick={volverAEmpezar}>
+        Volver al inicio.
+      </button>
+    </div>
   );
-};
+}
+
+export default App;
+
+// html5-qrcode
