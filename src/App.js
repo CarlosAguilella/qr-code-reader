@@ -8,27 +8,19 @@ function App() {
 
   const handleCameraScan = (data) => {
     if (data) {
-      setResultado(data);
-      setGrabando(false);
+      setResultado(data), setGrabando(false);
     }
   };
 
   const abrir = () => {
-    setGrabando(true);
-    setResultado(null);
+    setGrabando(true), setResultado(null);
   }
 
   return (
     <div className="app-container">
       <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
         <h2>HAZ QUE EL QR APAREZCA EN LA PANTALLA</h2>
-        <QrReader
-          scanDelay={300}
-          containerStyle={{ height: '100%', width: '100%' }}
-          onScan={handleCameraScan}
-          onError={(err) => console.error(err)}
-          constraints={{ facingMode: 'environment' }}
-        />
+        <QrReader scanDelay={300} containerStyle={{ height: '100%', width: '100%' }} onScan={handleCameraScan} onError={(err) => console.error(err)} constraints={{ facingMode: 'environment' }} />
       </div>
 
       {resultado && (
