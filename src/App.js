@@ -14,6 +14,9 @@ function App() {
 
   const camara = {
     facingMode: 'environment',
+    aspectRatio: { ideal: 1 },
+    width: { min: 240, ideal: 320, max: 640 },
+    height: { min: 240, ideal: 320, max: 640 },
   };
 
   const handleCameraScan = (data) => {
