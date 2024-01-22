@@ -6,18 +6,9 @@ function App() {
   const [resultado, setResultado] = useState(null);
   const [grabando, setGrabando] = useState(false);
 
-  const previewStyle = {
-    height: 240, width: 320,
-  };
-
+  const previewStyle = {height: 240, width: 320,};
   const delay = 300;
-
-  const camara = {
-    facingMode: 'environment',
-    aspectRatio: { ideal: 1 },
-    width: { min: 240, ideal: 320, max: 640 },
-    height: { min: 240, ideal: 320, max: 640 },
-  };
+  const camara = {facingMode: 'environment'};
 
   const handleCameraScan = (data) => {
     if (data) {
@@ -35,13 +26,7 @@ function App() {
     <div className="app-container">
       <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
         <h2>HAZ QUE EL QR APAREZCA</h2>
-        <QrReader
-          scanDelay={delay}
-          containerStyle={previewStyle}
-          onScan={handleCameraScan}
-          onError={(err) => console.error(err)}
-          constraints={camara}
-        />
+        <QrReader scanDelay={delay} containerStyle={previewStyle} onScan={handleCameraScan} onError={(err) => console.error(err)} constraints={camara} />
       </div>
 
       {resultado && (
@@ -51,10 +36,7 @@ function App() {
         </div>
       )}
 
-      <button
-        onClick={abrir}
-        className={grabando ? 'desaparecer input-container' : 'input-container'}
-      >
+      <button onClick={abrir} className={grabando ? 'desaparecer input-container' : 'input-container'}>
         Abre la cámara para escanear
       </button>
     </div>
