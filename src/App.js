@@ -12,6 +12,10 @@ function App() {
 
   const delay = 300;
 
+  const camara = {
+    facingMode: 'environment',
+  };
+
   const handleCameraScan = (data) => {
     if (data) {
       setResultado(data);
@@ -33,7 +37,7 @@ function App() {
           containerStyle={previewStyle}
           onScan={handleCameraScan}
           onError={(err) => console.error(err)}
-          constraints={{ facingMode: 'environment' }}
+          constraints={camara}
         />
       </div>
 
