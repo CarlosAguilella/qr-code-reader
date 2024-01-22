@@ -25,7 +25,7 @@ function App() {
   return (
     <div className="app-container">
       <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
-        <h2>HAZ QUE EL QR APAREZCA</h2>
+        <h2>Buscando QR</h2>
         <QrReader scanDelay={delay} containerStyle={previewStyle} onScan={handleCameraScan} onError={(err) => console.error(err)} constraints={camara} />
       </div>
 
