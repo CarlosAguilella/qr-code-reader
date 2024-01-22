@@ -5,7 +5,6 @@ import './App.css';
 function App() {
   const [resultado, setResultado] = useState(null);
   const [grabando, setGrabando] = useState(false);
-  const [selected, setSelected] = useState("environment");
 
   const previewStyle = {
     height: 240, width: 320,
@@ -37,11 +36,6 @@ function App() {
           constraints={{ facingMode: 'environment' }}
         />
       </div>
-
-      <select onChange={(e) => setSelected(e.target.value)}>
-        <option value={"environment"}>Back Camera</option>
-        <option value={"user"}>Front Camera</option>
-      </select>
 
       {resultado && (
         <div className="resultado-container">
