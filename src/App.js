@@ -7,8 +7,7 @@ function App() {
   const [grabando, setGrabando] = useState(false);
 
   const previewStyle = {
-    height: 240,
-    width: 320,
+    height: 240, width: 320,
   };
 
   const delay = 300;
@@ -28,7 +27,7 @@ function App() {
   return (
     <div className="app-container">
       <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
-        <h2>HAZ QUE EL QR APAREZCA EN LA PANTALLA</h2>
+        <h2>HAZ QUE EL QR APAREZCA</h2>
         <QrReader
           scanDelay={delay}
           containerStyle={previewStyle}
