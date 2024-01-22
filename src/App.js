@@ -5,7 +5,6 @@ import './App.css';
 function App() {
   const [resultado, setResultado] = useState(null);
   const [grabando, setGrabando] = useState(false);
-
   const previewStyle = {height: 240, width: 320,};
   const delay = 300;
   const camara = {facingMode: 'environment'};
@@ -28,14 +27,12 @@ function App() {
         <h2>Buscando QR</h2>
         <QrReader scanDelay={delay} containerStyle={previewStyle} onScan={handleCameraScan} onError={(err) => console.error(err)} constraints={camara} />
       </div>
-
       {resultado && (
         <div className="resultado-container">
           <h2>Tu resultado:</h2>
           <p>{resultado}</p>
         </div>
       )}
-
       <button onClick={abrir} className={grabando ? 'desaparecer input-container' : 'input-container'}>
         Abre la cámara para escanear
       </button>
