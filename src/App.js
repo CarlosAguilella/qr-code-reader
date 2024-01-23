@@ -33,14 +33,12 @@ function App() {
           constraints={camara}
         />
       </div>
-
       {resultado && (
         <div className="resultado-container">
           <h2>Tu resultado:</h2>
           <p>{resultado}</p>
         </div>
       )}
-
       <button onClick={abrir} className={grabando ? 'desaparecer input-container' : 'input-container'}>
         Abre la cámara para escanear
       </button>
