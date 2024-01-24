@@ -3,34 +3,22 @@ import QrReader from 'react-qr-reader';
 import './App.css';
 
 function App() {
-  const [resultadoCamara, setResultadoCamara] = useState(null);
-  const [resultadoArchivo, setResultadoArchivo] = useState(null);
+  const [resultado, setResultado] = useState(null);
   const [grabando, setGrabando] = useState(false);
-  const previewStyle = { height: 240, width: 320 };
+  const previewStyle = { height: 240, width: 320, };
   const delay = 50;
   const camara = { facingMode: 'environment' };
 
   const handleCameraScan = (data) => {
     if (data) {
-      setResultadoCamara(data);
+      setResultado(data);
       setGrabando(false);
     }
   };
 
-  const handleArchivoChange = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      setResultadoArchivo(reader.result);
-      setGrabando(false);
-    };
-  };
-
   const abrir = () => {
     setGrabando(true);
-    setResultadoCamara(null);
-    setResultadoArchivo(null);
+    setResultado(null);
   };
 
   return (
@@ -45,23 +33,15 @@ function App() {
           constraints={camara}
         />
       </div>
-      {resultadoCamara && (
+      {resultado && (
         <div className="resultado-container">
-          <h2>Tu resultado del QR de la cámara es:</h2>
-          <p>{resultadoCamara}</p>
+          <h2>Tu resultado:</h2>
+          <p>{resultado}</p>
         </div>
       )}
       <button onClick={abrir} className={grabando ? 'desaparecer input-container' : 'input-container'}>
         Abre la cámara para escanear
       </button>
-      <h2>Leer archivos</h2>
-      <input type="file" accept="image/*" onChange={handleArchivoChange} />
-      {resultadoArchivo && (
-        <div className="resultado-container">
-          <h2>Tu resultado del archivo es:</h2>
-          <p>{resultadoArchivo}</p>
-        </div>
-      )}
     </div>
   );
 }
