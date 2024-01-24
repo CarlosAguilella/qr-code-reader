@@ -3,22 +3,34 @@ import QrReader from 'react-qr-reader';
 import './App.css';
 
 function App() {
-  const [resultado, setResultado] = useState(null);
+  const [resultadoCamara, setResultadoCamara] = useState(null);
+  const [resultadoArchivo, setResultadoArchivo] = useState(null);
   const [grabando, setGrabando] = useState(false);
-  const previewStyle = { height: 240, width: 320, };
+  const previewStyle = { height: 240, width: 320 };
   const delay = 50;
   const camara = { facingMode: 'environment' };
 
   const handleCameraScan = (data) => {
     if (data) {
-      setResultado(data);
+      setResultadoCamara(data);
       setGrabando(false);
     }
   };
 
+  const handleArchivoChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setResultadoArchivo(reader.result);
+      setGrabando(false);
+    };
+  };
+
   const abrir = () => {
     setGrabando(true);
-    setResultado(null);
+    setResultadoCamara(null);
+    setResultadoArchivo(null);
   };
 
   return (
@@ -32,32 +44,24 @@ function App() {
           onError={(err) => console.error(err)}
           constraints={camara}
         />
-        <h2>Leer archivos</h2>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => {
-            const file = e.target.files[0];
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => {
-              setResultado(reader.resultado);
-              setGrabando(false);
-            };
-          }}
-        />
       </div>
-      {resultado && (
+      {resultadoCamara && (
         <div className="resultado-container">
-          <h2>Tu resultado del qr es:</h2>
-          <p>{resultado}</p>
-          <h2>Tu resultado del archivo es:</h2>
-          <img src={resultado} alt="qr" />
+          <h2>Tu resultado del QR de la cámara es:</h2>
+          <p>{resultadoCamara}</p>
         </div>
       )}
       <button onClick={abrir} className={grabando ? 'desaparecer input-container' : 'input-container'}>
         Abre la cámara para escanear
       </button>
+      <h2>Leer archivos</h2>
+      <input type="file" accept="image/*" onChange={handleArchivoChange} />
+      {resultadoArchivo && (
+        <div className="resultado-container">
+          <h2>Tu resultado del archivo es:</h2>
+          <img src={resultadoArchivo} alt="qr" />
+        </div>
+      )}
     </div>
   );
 }
