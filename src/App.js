@@ -49,8 +49,10 @@ function App() {
       </div>
       {resultado && (
         <div className="resultado-container">
-          <h2>Tu resultado:</h2>
+          <h2>Tu resultado del qr es:</h2>
           <p>{resultado}</p>
+          <h2>Tu resultado del archivo es:</h2>
+          <img src={resultado} alt="qr" />
         </div>
       )}
       <button onClick={abrir} className={grabando ? 'desaparecer input-container' : 'input-container'}>
