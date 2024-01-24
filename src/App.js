@@ -40,7 +40,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className='app-container'>
       <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
         <h2>Buscando QR</h2>
         <QrReader
@@ -53,12 +53,16 @@ function App() {
       </div>
       <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
         <h2>Sube una imagen</h2>
+        <br />
+        {file && <img src={imageSrc} width="100" />}
+        <br />
         <button
           type="button"
           onClick={() => fileInputRef.current.click()}
         >
           Select Image
         </button>
+        <br />
         <input
           type="file"
           accept="image/*"
@@ -66,7 +70,6 @@ function App() {
           onChange={(event) => handleFileChange(event)}
           hidden
         />
-        {file && <img src={imageSrc} width="100" />}
       </div>
       {resultado && (
         <div className="resultado-container">
