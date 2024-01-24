@@ -4,7 +4,6 @@ import './App.css';
 
 function App() {
   const [resultado, setResultado] = useState(null);
-  const [resultadoArchivo, setResultadoArchivo] = useState(null);
   const [grabando, setGrabando] = useState(false);
   const [file, setFile] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
