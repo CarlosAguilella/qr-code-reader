@@ -45,18 +45,15 @@ function App() {
           constraints={camara}
         />
       </div>
-
       {resultadoCamara && (
         <div className="resultado-container">
           <h2>Tu resultado del QR de la cámara es:</h2>
           <p>{resultadoCamara}</p>
         </div>
       )}
-
       <button onClick={abrir} className={grabando ? 'desaparecer input-container' : 'input-container'}>
         Abre la cámara para escanear
       </button>
-      
       <h2>Leer archivos</h2>
       <input type="file" accept="image/*" onChange={handleArchivoChange} />
       {resultadoArchivo && (
