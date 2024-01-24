@@ -32,6 +32,20 @@ function App() {
           onError={(err) => console.error(err)}
           constraints={camara}
         />
+        <h2>Leer archivos</h2>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+              setResultado(reader.resultado);
+              setGrabando(false);
+            };
+          }}
+        />
       </div>
       {resultado && (
         <div className="resultado-container">
