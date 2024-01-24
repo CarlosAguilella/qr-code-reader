@@ -48,7 +48,6 @@ function App() {
             reader.readAsDataURL(file);
           }}
         />
-        
       </div>
       {resultado && (
         <div className="resultado-container">
@@ -57,7 +56,7 @@ function App() {
         </div>
       )}
       {resultadoArchivo && (
-          <img src={resultadoArchivo} alt="Imagen" />
+          <p>{resultadoArchivo}</p>
         )}
       <button onClick={abrir} className={grabando ? 'desaparecer input-container' : 'input-container'}>
         Abre la cámara para escanear
