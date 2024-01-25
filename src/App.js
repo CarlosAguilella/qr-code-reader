@@ -43,7 +43,8 @@ function App() {
 
   return (
     <div className='app-container'>
-      <button onClick={openCamera} className={grabando ? 'desaparecer input-container' : 'input-container'}>
+      <button onClick={openCamera} 
+      className={grabando ? 'desaparecer input-container' : 'input-container'}>
         Abre la cámara para escanear
       </button>
       <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
