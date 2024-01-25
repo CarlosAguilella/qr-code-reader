@@ -81,7 +81,6 @@ function App() {
           hidden
         />
       </div>
-      
       <h2>Generador de QR</h2>
       <input
         onChange={(e) => {
@@ -89,7 +88,14 @@ function App() {
         }}
       />
       <div>
-        <QRcode className={qrData.length === 0 ? 'desaparecer' : 'qr-generator'} value={qrData} />
+        <QRcode
+          className={qrData.length === 0 ? 'desaparecer' : ''}
+          value={qrData}
+          size={200}
+          style={{ marginTop: "2em" }}
+          bgColor='#FFFFFF'
+          fgColor='#000000'
+        />
       </div>
     </div>
   );
