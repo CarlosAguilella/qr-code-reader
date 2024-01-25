@@ -10,7 +10,6 @@ function App() {
   const [imageSrc, setImageSrc] = useState(null);
   const [qrData, setQrData] = useState("");
 
-
   const previewStyle = { height: 240, width: 320 };
   const delay = 50;
   const camara = { facingMode: 'environment' };
