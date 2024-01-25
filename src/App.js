@@ -57,6 +57,12 @@ function App() {
           constraints={camara}
         />
       </div>
+      {resultado && (
+        <div className="resultado-container">
+          <h2>Tu resultado:</h2>
+          <p>{resultado}</p>
+        </div>
+      )}
       <div style={{ marginBottom: '2em' }}>
         <h2>Sube una imagen</h2>
         {file && <img src={imageSrc} width="100" />}
@@ -75,12 +81,7 @@ function App() {
           hidden
         />
       </div>
-      {resultado && (
-        <div className="resultado-container">
-          <h2>Tu resultado:</h2>
-          <p>{resultado}</p>
-        </div>
-      )}
+      
       <h2>Generador de QR</h2>
       <input
         onChange={(e) => {
