@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import QrReader from 'react-qr-reader';
+import QRcode from "react-qr-code";
 import './App.css';
 
 function App() {
@@ -7,11 +8,13 @@ function App() {
   const [grabando, setGrabando] = useState(false);
   const [file, setFile] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
+  const [qrData, setQrData] = useState("");
+
 
   const previewStyle = { height: 240, width: 320 };
   const delay = 50;
   const camara = { facingMode: 'environment' };
-  
+
   const fileInputRef = useRef();
 
   const handleCameraScan = (data) => {
@@ -41,6 +44,9 @@ function App() {
 
   return (
     <div className='app-container'>
+      <button onClick={openCamera} className={grabando ? 'desaparecer input-container' : 'input-container'}>
+        Abre la cámara para escanear
+      </button>
       <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
         <h2>Buscando QR</h2>
         <QrReader
@@ -51,11 +57,9 @@ function App() {
           constraints={camara}
         />
       </div>
-      <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
+      <div style={{ marginBottom: '2em' }}>
         <h2>Sube una imagen</h2>
-        <br />
         {file && <img src={imageSrc} width="100" />}
-        <br />
         <button
           type="button"
           onClick={() => fileInputRef.current.click()}
@@ -77,9 +81,15 @@ function App() {
           <p>{resultado}</p>
         </div>
       )}
-      <button onClick={openCamera} className={grabando ? 'desaparecer input-container' : 'input-container'}>
-        Abre la cámara para escanear
-      </button>
+      <h2>Generador de QR</h2>
+      <input
+        onChange={(e) => {
+          setQrData(e.target.value);
+        }}
+      />
+      <div>
+        <QRcode className={qrData.length === 0 ? 'desaparecer' : 'qr-generator'} value={qrData} />
+      </div>
     </div>
   );
 }
