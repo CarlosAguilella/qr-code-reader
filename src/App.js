@@ -17,7 +17,7 @@ function App() {
   const colorTexto = "#000000";
   const qrSize = 256;
   const fileInputRef = useRef();
-  
+
   const errorQr = (err) => { console.error(err); }
 
   const handleCameraScan = (data) => {
