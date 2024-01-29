@@ -14,6 +14,7 @@ function App() {
   const camara = { facingMode: 'environment' };
   const colorFondo = "#ffffff";
   const colorTexto = "#000000";
+  const qrSize = 256;
   const errorQr = (err) => { console.error(err); }
   const fileInputRef = useRef();
 
@@ -95,7 +96,7 @@ function App() {
           <QRcode
             className={qrData.length === 0 ? 'desaparecer' : ''}
             value={qrData}
-            size={200}
+            size={qrSize}
             onError={errorQr}
             style={{ marginTop: "2em" }}
             bgColor={colorFondo}
