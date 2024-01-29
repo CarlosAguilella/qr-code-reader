@@ -9,14 +9,16 @@ function App() {
   const [file, setFile] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
   const [qrData, setQrData] = useState("");
+
   const previewStyle = { height: 240, width: 320 };
   const delay = 50;
   const camara = { facingMode: 'environment' };
   const colorFondo = "#ffffff";
   const colorTexto = "#000000";
   const qrSize = 256;
-  const errorQr = (err) => { console.error(err); }
   const fileInputRef = useRef();
+  
+  const errorQr = (err) => { console.error(err); }
 
   const handleCameraScan = (data) => {
     if (data) {
