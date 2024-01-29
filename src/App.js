@@ -9,11 +9,12 @@ function App() {
   const [file, setFile] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
   const [qrData, setQrData] = useState("");
-
   const previewStyle = { height: 240, width: 320 };
   const delay = 50;
   const camara = { facingMode: 'environment' };
-
+  const colorFondo = "#ffffff";
+  const colorTexto = "#000000";
+  const errorQr = (err) => { console.error(err); }
   const fileInputRef = useRef();
 
   const handleCameraScan = (data) => {
@@ -25,11 +26,8 @@ function App() {
 
   const handleFileChange = (event) => {
     event.preventDefault();
-
     setFile(event.target.files[0]);
-
     let imageFile = event.target.files[0];
-
     if (imageFile) {
       const localImageUrl = URL.createObjectURL(imageFile);
       setImageSrc(localImageUrl);
@@ -43,34 +41,38 @@ function App() {
 
   return (
     <div className='app-container'>
-      <button onClick={openCamera} 
-      className={grabando ? 'desaparecer input-container' : 'input-container'}>
+      <button onClick={openCamera}
+        className={grabando ? 'desaparecer input-container' : 'input-container'}>
         Abre la cámara para escanear
       </button>
+
       <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
         <h2>Buscando QR</h2>
         <QrReader
           scanDelay={delay}
           containerStyle={previewStyle}
           onScan={handleCameraScan}
-          onError={(err) => console.error(err)}
+          onError={errorQr}
           constraints={camara}
         />
       </div>
+
       {resultado && (
         <div className="resultado-container">
           <h2>Tu resultado:</h2>
           <p>{resultado}</p>
         </div>
       )}
+
       <div style={{ marginBottom: '2em' }}>
         <h2>Sube una imagen</h2>
-        {file && <img src={imageSrc} width="100" />}
+        {file && <img src={imageSrc} width="350" />}
+        <br />
         <button
           type="button"
           onClick={() => fileInputRef.current.click()}
         >
-          Select Image
+          Subir imagen
         </button>
         <br />
         <input
@@ -81,21 +83,25 @@ function App() {
           hidden
         />
       </div>
-      <h2>Generador de QR</h2>
-      <input
-        onChange={(e) => {
-          setQrData(e.target.value);
-        }}
-      />
-      <div>
-        <QRcode
-          className={qrData.length === 0 ? 'desaparecer' : ''}
-          value={qrData}
-          size={200}
-          style={{ marginTop: "2em" }}
-          bgColor='#FFFFFF'
-          fgColor='#000000'
+
+      <div style={{ marginBottom: '2em' }}>
+        <h2>Generador de QR</h2>
+        <input
+          onChange={(e) => {
+            setQrData(e.target.value);
+          }}
         />
+        <div>
+          <QRcode
+            className={qrData.length === 0 ? 'desaparecer' : ''}
+            value={qrData}
+            size={200}
+            onError={errorQr}
+            style={{ marginTop: "2em" }}
+            bgColor={colorFondo}
+            fgColor={colorTexto}
+          />
+        </div>
       </div>
     </div>
   );
