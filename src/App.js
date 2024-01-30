@@ -10,6 +10,9 @@ function App() {
   const [imageSrc, setImageSrc] = useState(null);
   const [qrData, setQrData] = useState("");
   const qrCodeRef = useRef();
+  const fileInputRef = useRef();
+
+  const errorQr = (err) => { console.error(err); }
 
   const previewStyle = { height: 240, width: 320 };
   const delay = 50;
@@ -17,9 +20,6 @@ function App() {
   const colorFondo = "#ffffff";
   const colorTexto = "#000000";
   const qrSize = 256;
-  const fileInputRef = useRef();
-
-  const errorQr = (err) => { console.error(err); }
 
   const handleCameraScan = (data) => {
     if (data) {
@@ -100,7 +100,7 @@ function App() {
 
       <div style={{ marginBottom: '2em' }}>
         <h2>Sube una imagen</h2>
-        {file && <img src={imageSrc} width="350" />}
+        {file && <img src={imageSrc} width="256" />}
         <br />
         <button
           type="button"
