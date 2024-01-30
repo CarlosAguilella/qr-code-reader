@@ -11,9 +11,7 @@ function App() {
   const [qrData, setQrData] = useState("");
   const qrCodeRef = useRef();
   const fileInputRef = useRef();
-
   const errorQr = (err) => { console.error(err); }
-
   const previewStyle = { height: 240, width: 320 };
   const delay = 50;
   const camara = { facingMode: 'environment' };
