@@ -60,7 +60,6 @@ function App() {
       canvas.height = qrCodeSvg.getAttribute("height");
       context.drawImage(img, 0, 0);
       DOMURL.revokeObjectURL(url);
-
       const pngUrl = canvas.toDataURL("image/png");
       let downloadLink = document.createElement("a");
       downloadLink.href = pngUrl;
@@ -138,7 +137,7 @@ function App() {
           </div>
         </div>
       </div>
-      
+
       <div>
         <input
           type='button'
