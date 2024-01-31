@@ -20,6 +20,10 @@ function CameraQr() {
         }
     };
 
+    const closeCamera = () => {
+        setGrabando(false);
+    }
+
     const errorQr = (err) => { console.error(err); }
 
     return (
@@ -47,8 +51,11 @@ function CameraQr() {
                 </div>
             )}
 
+            <button onClick={closeCamera}
+                className={grabando ? 'input-container' : 'desaparecer input-container'}>
+                Cerrar cámara
+            </button>
         </>
-
     );
 }
 

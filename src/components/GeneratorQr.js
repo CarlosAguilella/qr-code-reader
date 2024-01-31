@@ -57,6 +57,7 @@ function GeneratorQr() {
                             onError={errorQr}
                             bgColor={colorFondo}
                             fgColor={colorTexto}
+                            style={ {marginTop: '1em'} }
                         />
                     </div>
                 </div>
@@ -70,6 +71,8 @@ function GeneratorQr() {
                     onClick={downloadQRCode}
                 />
             </div>
+            <h6>QR de ejemplo</h6>
+            <QRCode value="QR de ejemplo, ¿que esperabas?" style={{marginTop: '-1.5em'}} size={40} />
         </>
     );
 }

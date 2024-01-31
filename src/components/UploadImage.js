@@ -17,25 +17,30 @@ function UploadImage() {
 
     return (
         <>
-            <div style={{ marginBottom: '2em' }}>
-                <h2>Sube una imagen</h2>
-                {file && <img src={imageSrc} width="256" />}
-                <br />
+            <h2>Sube una imagen</h2>
+            {file && <img src={imageSrc} width="256" />}
+            <br />
+            {!file && (
                 <button
                     type="button"
                     onClick={() => fileInputRef.current.click()}
                 >
                     Subir imagen
                 </button>
-                <br />
-                <input
-                    type="file"
-                    accept="image/*"
-                    ref={fileInputRef}
-                    onChange={(event) => handleFileChange(event)}
-                    hidden
-                />
-            </div>
+            )}
+            <br />
+            <input
+                type="file"
+                accept="image/*"
+                ref={fileInputRef}
+                onChange={(event) => handleFileChange(event)}
+                hidden
+            />
+            {file && (
+                <button type="button" onClick={() => setFile(null)}>
+                    Limpiar
+                </button>
+            )}
         </>
     );
 }
