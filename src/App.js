@@ -1,30 +1,23 @@
 import React, { useState, useRef } from 'react';
-import QrReader from 'react-qr-reader';
 import QRCode from "react-qr-code";
 import './App.css';
 
+import CameraQr from './cameraQr';
+
 function App() {
-  const [resultado, setResultado] = useState(null);
-  const [grabando, setGrabando] = useState(false);
+  
   const [file, setFile] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
   const [qrData, setQrData] = useState("");
   const qrCodeRef = useRef();
   const fileInputRef = useRef();
   const errorQr = (err) => { console.error(err); }
-  const previewStyle = { height: 240, width: 320 };
-  const delay = 50;
-  const camara = { facingMode: 'environment' };
+  
   const colorFondo = "#ffffff";
   const colorTexto = "#000000";
   const qrSize = 256;
 
-  const handleCameraScan = (data) => {
-    if (data) {
-      setResultado(data);
-      setGrabando(false);
-    }
-  };
+  
 
   const handleFileChange = (event) => {
     event.preventDefault();
@@ -36,10 +29,7 @@ function App() {
     }
   };
 
-  const openCamera = () => {
-    setGrabando(true);
-    setResultado(null);
-  };
+
 
   const downloadQRCode = () => {
     const canvas = document.createElement("canvas");
@@ -72,28 +62,7 @@ function App() {
 
   return (
     <div className='app-container'>
-      <button onClick={openCamera}
-        className={grabando ? 'desaparecer input-container' : 'input-container'}>
-        Abre la cámara para escanear
-      </button>
-
-      <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
-        <h2>Buscando QR</h2>
-        <QrReader
-          scanDelay={delay}
-          containerStyle={previewStyle}
-          onScan={handleCameraScan}
-          onError={errorQr}
-          constraints={camara}
-        />
-      </div>
-
-      {resultado && (
-        <div className="resultado-container">
-          <h2>Tu resultado:</h2>
-          <p>{resultado}</p>
-        </div>
-      )}
+      <CameraQr />
 
       <div style={{ marginBottom: '2em' }}>
         <h2>Sube una imagen</h2>
