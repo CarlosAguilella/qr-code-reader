@@ -16,7 +16,7 @@ function App() {
       <UploadImage />
       <GeneratorQr />
       {/* <CanvasDrawing /> */}
-      <WhiteBoard />
+      {/* <WhiteBoard /> */}
     </div>
   );
 }
