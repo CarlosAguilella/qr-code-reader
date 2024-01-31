@@ -7,19 +7,16 @@ const WhiteBoard = () => {
   const [canvasx, setCanvasX] = useState(0);
   const [canvasy, setCanvasY] = useState(0);
 
-  const [mouseCoordinates, setMouseCoordinates] = useState({ x: 0, y: 0 });
-  const [mouseDown, setMouseDown] = useState(false);
+  const [touchCoordinates, setTouchCoordinates] = useState({ x: 0, y: 0 });
+  const [touchDown, setTouchDown] = useState(false);
 
   const [toolType, setToolType] = useState('draw');
-
   const [brushSize, setBrushSize] = useState(10);
-  
   const [strokeColor, setStrokeColor] = useState('#000000');
   const [backgroundColor, setBackgroundColor] = useState('#ffffff');
 
   const [drawLines, setDrawLines] = useState([]);
   const [eraseLines, setEraseLines] = useState([]);
-
   const [prueba, setPrueba] = useState([]);
 
   const handleUseTool = useCallback((tool) => {
@@ -38,15 +35,16 @@ const WhiteBoard = () => {
     setBackgroundColor(color);
   }, []);
 
-  const handleMouseDown = useCallback((e) => {
-    const x = parseFloat(e.clientX - canvasx);
-    const y = parseFloat(e.clientY - canvasy);
-    setMouseCoordinates({ x, y });
-    setMouseDown(true);
+  const handleTouchStart = useCallback((e) => {
+    const touch = e.touches[0];
+    const x = parseFloat(touch.clientX - canvasx);
+    const y = parseFloat(touch.clientY - canvasy);
+    setTouchCoordinates({ x, y });
+    setTouchDown(true);
   }, [canvasx, canvasy]);
 
-  const handleMouseUp = useCallback(() => {
-    setMouseDown(false);
+  const handleTouchEnd = useCallback(() => {
+    setTouchDown(false);
     if (drawLines.length > 0 || eraseLines.length > 0) {
       let updatedArray = [...prueba];
       const newLineSet = {
@@ -59,10 +57,12 @@ const WhiteBoard = () => {
     }
   }, [drawLines, eraseLines, toolType, brushSize, strokeColor, prueba]);
 
-  const handleMouseMove = useCallback((e) => {
-    const x = parseFloat(e.clientX - canvasx);
-    const y = parseFloat(e.clientY - canvasy);
-    if (mouseDown) {
+  const handleTouchMove = useCallback((e) => {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const x = parseFloat(touch.clientX - canvasx);
+    const y = parseFloat(touch.clientY - canvasy);
+    if (touchDown) {
       const ctx = ctxRef.current;
       if (ctx) {
         ctx.beginPath();
@@ -74,19 +74,19 @@ const WhiteBoard = () => {
           ctx.globalCompositeOperation = 'destination-out';
           ctx.lineWidth = brushSize;
         }
-        ctx.moveTo(mouseCoordinates.x, mouseCoordinates.y);
+        ctx.moveTo(touchCoordinates.x, touchCoordinates.y);
         ctx.lineTo(x, y);
         ctx.lineJoin = ctx.lineCap = 'round';
         ctx.stroke();
       }
-      setMouseCoordinates({ x, y });
+      setTouchCoordinates({ x, y });
       if (toolType === 'draw') {
         setDrawLines((prevLines) => [...prevLines, { x, y }]);
       } else if (toolType === 'erase') {
         setEraseLines((prevLines) => [...prevLines, { x, y }]);
       }
     }
-  }, [canvasx, canvasy, mouseDown, toolType, brushSize, strokeColor, mouseCoordinates]);
+  }, [canvasx, canvasy, touchDown, toolType, brushSize, strokeColor, touchCoordinates]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -95,27 +95,27 @@ const WhiteBoard = () => {
     const { left, top } = canvas.getBoundingClientRect();
     setCanvasX(left);
     setCanvasY(top);
-    canvas.addEventListener('mousedown', handleMouseDown);
-    canvas.addEventListener('mouseup', handleMouseUp);
-    canvas.addEventListener('mousemove', handleMouseMove);
+    canvas.addEventListener('touchstart', handleTouchStart, { passive: false });
+    canvas.addEventListener('touchend', handleTouchEnd);
+    canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
     return () => {
-      canvas.removeEventListener('mousedown', handleMouseDown);
-      canvas.removeEventListener('mouseup', handleMouseUp);
-      canvas.removeEventListener('mousemove', handleMouseMove);
+      canvas.removeEventListener('touchstart', handleTouchStart);
+      canvas.removeEventListener('touchend', handleTouchEnd);
+      canvas.removeEventListener('touchmove', handleTouchMove);
     };
-  }, [canvasRef, handleMouseDown, handleMouseUp, handleMouseMove]);
+  }, [canvasRef, handleTouchStart, handleTouchEnd, handleTouchMove]);
 
   useEffect(() => {
-    if (!mouseDown && drawLines.length > 0) {
+    if (!touchDown && drawLines.length > 0) {
       setDrawLines([]);
     }
-  }, [mouseDown, drawLines]);
+  }, [touchDown, drawLines]);
 
   useEffect(() => {
-    if (!mouseDown && eraseLines.length > 0) {
+    if (!touchDown && eraseLines.length > 0) {
       setEraseLines([]);
     }
-  }, [mouseDown, eraseLines]);
+  }, [touchDown, eraseLines]);
 
   const handleClear = useCallback(() => {
     const ctx = ctxRef.current;
