@@ -52,3 +52,4 @@ function CameraQr() {
     );
 }
 
+export default CameraQr;
