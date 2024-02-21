@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import QrReader from 'react-qr-reader';
 import { Button, Grid } from '@mui/material';
 
-
 import './cameraQr.css';
 
 function CameraQr() {
