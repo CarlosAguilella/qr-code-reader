@@ -4,30 +4,31 @@ import QrReader from 'react-qr-reader';
 import './cameraQr.css';
 
 function CameraQr() {
+    
     // Utils
-    const [resultado, setResultado] = useState(null);
-    const [grabando, setGrabando] = useState(false);
+    const [result, setresult] = useState(null);
+    const [recording, setRecording] = useState(false);
     const previewStyle = { height: 240, width: 320 };
     const delay = 50;
-    const camara = { facingMode: 'environment' };
+    const camera = { facingMode: 'environment' };
 
     // open camera and reset result
     const openCamera = () => {
-        setGrabando(true);
-        setResultado(null);
+        setRecording(true);
+        setresult(null);
     };
 
     // if the camera detects a QR code, it will be saved in the state
     const handleCameraScan = (data) => {
         if (data) {
-            setResultado(data);
-            setGrabando(false);
+            setresult(data);
+            setRecording(false);
         }
     };
 
     // close camera if you press the button
     const closeCamera = () => {
-        setGrabando(false);
+        setRecording(false);
     }
 
     // if there is an error, it will be printed in the console
@@ -36,32 +37,32 @@ function CameraQr() {
     return (
         <>
             <button onClick={openCamera}
-                className={grabando ? 'desaparecer input-container' : 'input-container'}>
-                Abre la cámara para escanear
+                className={recording ? 'disappear' : ''}>
+                Open the camera to scan QR
             </button>
 
-            <div className={grabando ? 'input-container' : 'desaparecer input-container'}>
-                <h2>Buscando QR</h2>
+            <div className={recording ? '' : 'disappear'}>
+                <h2>Looking for QR</h2>
                 <QrReader
                     scanDelay={delay}
                     containerStyle={previewStyle}
                     onScan={handleCameraScan}
                     onError={errorQr}
-                    constraints={camara}
+                    constraints={camera}
                     videoContainerStyle={{ width: '10px' }}
                 />
             </div>
 
-            {resultado && (
-                <div className="resultado-container">
-                    <h2>Tu resultado:</h2>
-                    <p>{resultado}</p>
+            {result && (
+                <div>
+                    <h2>Your result:</h2>
+                    <p>{result}</p>
                 </div>
             )}
 
             <button onClick={closeCamera}
-                className={grabando ? 'input-container' : 'desaparecer input-container'}>
-                Cerrar cámara
+                className={recording ? '' : 'disappear'}>
+                Close camera
             </button>
         </>
     );
