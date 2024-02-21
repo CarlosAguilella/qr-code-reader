@@ -1,18 +1,23 @@
 import React, { useState, useRef } from 'react';
 import QrReader from 'react-qr-reader';
 
+import './cameraQr.css';
+
 function CameraQr() {
+    // Utils
     const [resultado, setResultado] = useState(null);
     const [grabando, setGrabando] = useState(false);
     const previewStyle = { height: 240, width: 320 };
     const delay = 50;
     const camara = { facingMode: 'environment' };
 
+    // open camera and reset result
     const openCamera = () => {
         setGrabando(true);
         setResultado(null);
     };
 
+    // if the camera detects a QR code, it will be saved in the state
     const handleCameraScan = (data) => {
         if (data) {
             setResultado(data);
@@ -20,10 +25,12 @@ function CameraQr() {
         }
     };
 
+    // close camera if you press the button
     const closeCamera = () => {
         setGrabando(false);
     }
 
+    // if there is an error, it will be printed in the console
     const errorQr = (err) => { console.error(err); }
 
     return (
@@ -41,6 +48,7 @@ function CameraQr() {
                     onScan={handleCameraScan}
                     onError={errorQr}
                     constraints={camara}
+                    videoContainerStyle={{ width: '10px' }}
                 />
             </div>
 
