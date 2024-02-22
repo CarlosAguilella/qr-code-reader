@@ -9,8 +9,8 @@ function CameraQr() {
     // Utils
     const [result, setResult] = useState(null);
     const [recording, setRecording] = useState(false);
-    const previewStyle = { height: 240, width: 320 };
     const delay = 50;
+    const previewStyle = { height: 240, width: 320 };
     const camera = { facingMode: 'environment' };
 
     // open camera and reset result
