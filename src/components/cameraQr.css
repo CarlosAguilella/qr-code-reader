@@ -1,41 +1,36 @@
 /* Camera QR CSS */
 .camera-qr {
-    max-width: 1000px;
-    width: 100%;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 7.5px;
     text-align: center;
+    background-color: #fff;
 }
 
-.camera-qr .camera-qr-button {
-    padding: 10px 20px;
+.camera-qr.button {
+    padding: 1em;
     border: none;
-    border-radius: 4px;
-    color: #fff;
+    border-radius: 7.5px;
     cursor: pointer;
+    color: #000000;
     transition: background-color 0.3s;
-    margin: 2em 0;
 }
 
-.camera-qr .camera-qr-disappear {
+.camera-qr.disappear {
     display: none;
 }
 
-.camera-qr .camera-qr-video {
+.camera-qr.video {
     width: 100%;
     height: auto;
-    border-radius: 4px;
+    border-radius: 7.5px;
     margin: 2em 0;
 }
 
-.camera-qr .camera-qr-video .camera-qr-tittle {
+.camera-qr.video.tittle {
     margin: 1em 0;
     font-family: 'Roboto', sans-serif;
 }
 
-.camera-qr .camera-qr-result {
+.camera-qr.result {
     margin: 2em 0;
     font-family: 'Roboto', sans-serif;
 }

@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import QrReader from 'react-qr-reader';
-import { Button, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 
 import './cameraQr.css';
 
@@ -39,14 +39,12 @@ function CameraQr() {
         <div className='camera-qr'>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <div className={recording ? 'camera-qr-button camera-qr-disappear' : 'camera-qr-button'}>
-                        <Button variant="contained" onClick={openCamera}>
-                            Open the camera to scan QR
-                        </Button>
+                    <div className={`camera-qr ${recording ? 'button disappear' : 'button'}`} onClick={openCamera}>
+                        Open the camera to scan QR
                     </div>
                 </Grid>
                 <Grid item xs={12}>
-                    <div className={recording ? 'camera-qr-video' : 'camera-qr-video camera-qr-disappear'}>
+                    <div className={`camera-qr ${recording ? 'video' : 'video disappear'}`}>
                         <h2 className='camera-qr-tittle'>Looking for QR</h2>
                         <QrReader
                             scanDelay={delay}
@@ -54,14 +52,11 @@ function CameraQr() {
                             onScan={handleCameraScan}
                             onError={errorQr}
                             constraints={camera}
-                            whiteBalanceMode='continuous'
-                            exposiceMode='continuous'
-                            focusMode='continuous'
                         />
                     </div>
                 </Grid>
                 <Grid item xs={12}>
-                    <div className='camera-qr-result'>
+                    <div className={`camera-qr ${'result'}`}>
                         {result && (
                             <div>
                                 <h2>Your result:</h2>
@@ -71,10 +66,8 @@ function CameraQr() {
                     </div>
                 </Grid>
                 <Grid item xs={12}>
-                    <div className={recording ? 'camera-qr-button' : 'camera-qr-button camera-qr-disappear'}>
-                        <Button variant="contained" onClick={closeCamera}>
-                            Close camera
-                        </Button>
+                    <div className={`camera-qr ${recording ? 'button' : 'button disappear'}`} onClick={closeCamera}>
+                        Close camera
                     </div>
                 </Grid>
             </Grid>
