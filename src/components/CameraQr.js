@@ -37,7 +37,11 @@ function CameraQr() {
 
     return (
         <div className='camera-qr'>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} alignContent={'center'}>
+                <Grid item xs={12}>
+                    <h1>This website is responsible for reading QR codes</h1>
+                    <h2>To do this, you can open your device's camera</h2>
+                </Grid>
                 <Grid item xs={12}>
                     <div className={`camera-qr ${recording ? 'button disappear' : 'button'}`} onClick={openCamera}>
                         Open the camera to scan QR
@@ -56,6 +60,17 @@ function CameraQr() {
                     </div>
                 </Grid>
                 <Grid item xs={12}>
+                    <div className={`camera-qr ${recording ? 'button' : 'button disappear'}`} onClick={closeCamera}>
+                        Close camera
+                    </div>
+                </Grid>
+                <Grid item xs={12}>
+                    <h2>Or you can upload an image with a QR code</h2>
+                    <div type="file" className={`camera-qr ${'button'}`}>
+                        <input type="file" accept="image/*" capture="camera" />
+                    </div>
+                </Grid>
+                <Grid item xs={12}>
                     <div className={`camera-qr ${'result'}`}>
                         {result && (
                             <div>
@@ -63,11 +78,6 @@ function CameraQr() {
                                 <p>{result}</p>
                             </div>
                         )}
-                    </div>
-                </Grid>
-                <Grid item xs={12}>
-                    <div className={`camera-qr ${recording ? 'button' : 'button disappear'}`} onClick={closeCamera}>
-                        Close camera
                     </div>
                 </Grid>
             </Grid>
