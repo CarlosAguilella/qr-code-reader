@@ -54,6 +54,9 @@ function CameraQr() {
                             onScan={handleCameraScan}
                             onError={errorQr}
                             constraints={camera}
+                            whiteBalanceMode='continuous'
+                            exposiceMode='continuous'
+                            focusMode='continuous'
                         />
                     </div>
                 </Grid>
