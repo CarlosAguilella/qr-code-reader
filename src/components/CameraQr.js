@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import QrReader from 'react-qr-reader';
 import { Grid } from '@mui/material';
 
@@ -35,6 +35,22 @@ function CameraQr() {
     // if there is an error, it will be printed in the console
     const errorQr = (err) => { console.error(err); }
 
+    // this is only for upload an image
+    const [file, setFile] = useState(null);
+    const [imageSrc, setImageSrc] = useState(null);
+    const fileInputRef = useRef();
+
+    const handleFileChange = (event) => {
+        event.preventDefault();
+        setFile(event.target.files[0]);
+        let imageFile = event.target.files[0];
+        if (imageFile) {
+            const localImageUrl = URL.createObjectURL(imageFile);
+            setImageSrc(localImageUrl);
+        }
+    };
+
+
     return (
         <div className='camera-qr'>
             <Grid container spacing={2} alignContent={'center'}>
@@ -65,23 +81,33 @@ function CameraQr() {
                     </div>
                 </Grid>
                 <Grid item xs={12}>
-                    <h2>Or you can upload an image with a QR code</h2>
-                    <div type="file" className={`camera-qr ${'button'}`}>
-                        <input type="file" accept="image/*" capture="camera" />
-                    </div>
-                </Grid>
-                <Grid item xs={12}>
-                    <div className={`camera-qr ${'result'}`}>
-                        {result && (
-                            <div>
-                                <h2>Your result:</h2>
-                                <p>{result}</p>
+                    <div>
+                        <h2>Or you can upload an image with a QR code</h2>
+                        {file && <img src={imageSrc} width="256" />}
+                        {!file && (
+                            <div className={`camera-qr ${'button'}`}
+                                onClick={() => fileInputRef.current.click()}
+                            >
+                                Upload an image
                             </div>
+                        )}
+                        <br />
+                        <input
+                            type="file"
+                            accept="image/*"
+                            ref={fileInputRef}
+                            onChange={(event) => handleFileChange(event)}
+                            hidden
+                        />
+                        {file && (
+                            <button type="button" onClick={() => setFile(null)}>
+                                Erase
+                            </button>
                         )}
                     </div>
                 </Grid>
             </Grid>
-        </div>
+        </div >
     );
 }
 
