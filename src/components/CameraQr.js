@@ -39,14 +39,14 @@ function CameraQr() {
         <div className='camera-qr'>
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <div className={recording ? 'camera-qr-button disappear' : 'camera-qr-button'}>
+                    <div className={recording ? 'camera-qr-button camera-qr-disappear' : 'camera-qr-button'}>
                         <Button variant="contained" onClick={openCamera}>
                             Open the camera to scan QR
                         </Button>
                     </div>
                 </Grid>
                 <Grid item xs={12}>
-                    <div className={recording ? '' : 'disappear'}>
+                    <div className={recording ? '' : 'camera-qr-disappear'}>
                         <h2>Looking for QR</h2>
                         <QrReader
                             scanDelay={delay}
@@ -68,7 +68,7 @@ function CameraQr() {
                     </div>
                 </Grid>
                 <Grid item xs={12}>
-                    <div className={recording ? 'camera-qr-button' : 'camera-qr-button disappear'}>
+                    <div className={recording ? 'camera-qr-button' : 'camera-qr-button camera-qr-disappear'}>
                         <Button variant="contained" onClick={closeCamera}>
                             Close camera
                         </Button>
