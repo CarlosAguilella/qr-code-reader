@@ -10,7 +10,7 @@ function CameraQr() {
     const [result, setResult] = useState(null);
     const [recording, setRecording] = useState(false);
     const delay = 50;
-    const previewStyle = { height: 240, width: 320 };
+    const previewStyle = { height: 240, width: 320, border: 'none' };
     const camera = { facingMode: 'environment' };
 
     // open camera and reset result
@@ -66,6 +66,7 @@ function CameraQr() {
                     <div className={`camera-qr ${recording ? 'video' : 'video disappear'}`}>
                         <h2 className={`camera-qr ${'tittle'}`}>Looking for QR</h2>
                         <QrReader
+                            className={`camera-qr ${'qr-reader'}`}
                             scanDelay={delay}
                             containerStyle={previewStyle}
                             onScan={handleCameraScan}

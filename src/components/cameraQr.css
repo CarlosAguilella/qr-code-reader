@@ -25,14 +25,21 @@
 }
 
 .camera-qr.video {
-    width: 50%;
+    width: 30%;
     height: auto;
     margin: auto;
+    box-shadow: none;
+    border: none;
 }
 
 .camera-qr.video.tittle {
     margin: 1em 0;
     font-family: 'Roboto', sans-serif;
+}
+
+.camera-qr.video.tittle.qr-reader {
+    box-shadow: none;
+    border: none;
 }
 
 .camera-qr.result {
