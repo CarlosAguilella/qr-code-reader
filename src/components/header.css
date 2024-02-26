@@ -3,22 +3,22 @@
     padding: 0;
 }
 
-.header-xl {
+.header.xl {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.header-xs {
+.header.xs {
     display: none;
 }
 
 @media (max-width: 768px) {
-    .header-xl {
+    .header.xl {
         display: none;
     }
 
-    .header-xs {
+    .header.xs {
         display: flex;
         align-items: center;
         justify-content: center;

@@ -16,7 +16,8 @@
 
 .camera-qr.button {
     padding: 1em;
-    margin: auto 2em;
+    margin: auto;
+    width: 250px;
     border: none;
     border-radius: 7.5px;
     cursor: pointer;

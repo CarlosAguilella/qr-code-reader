@@ -11,7 +11,9 @@ function CameraQr() {
     const [recording, setRecording] = useState(false);
     const delay = 50;
     const camera = { facingMode: 'environment' };
-    const resultado_de_prueba = 'lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
+
+    // Test
+    const resultado_de_prueba = 'Esto es simplemente para hacer pruebas de la cámara QR.';
 
     // open camera and reset result
     const openCamera = () => {
@@ -70,7 +72,7 @@ function CameraQr() {
                                 </div>
                             ) : (
                                 <div className={`camera-qr ${'button'}`} onClick={openCamera}>
-                                    PULSA PARA ESCANEAR ENTRADA <br />Y/O CARNET DE SOCIO
+                                    PULSA PARA ESCANEAR ENTRADA Y/O CARNET DE SOCIO
                                 </div>
                             )}
                         </Grid>
