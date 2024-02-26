@@ -14,7 +14,6 @@ const Header = () => {
                 </Grid>
                 <Grid item xs={12}>
                     <div className='header-xs'>
-
                         <h1>Ajuntament de <br /> les Alqueries</h1>
                     </div>
                 </Grid>

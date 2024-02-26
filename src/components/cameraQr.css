@@ -9,10 +9,9 @@
 }
 
 .camera-qr.result {
-    width: 90%;
+    width: 80%;
     height: auto;
-    margin: auto;
-    padding: 1em;
+    margin: auto 2em;
 }
 
 .camera-qr.button {
