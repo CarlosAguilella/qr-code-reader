@@ -1,9 +1,9 @@
 import React from "react";
-
-import './header.css';
 import { Grid } from "@mui/material";
 
-const Header = () => {
+import './header.css';
+
+function Header() {
     return (
         <div className="header">
             <Grid container display={'flex'}>

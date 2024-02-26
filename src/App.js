@@ -10,6 +10,9 @@ function App() {
   return (
     <div className='app-container'>
       <Header />
+      <br />
+      <br />
+      <br />
       <CameraQr />
     </div>
   );

@@ -12,9 +12,6 @@ function CameraQr() {
     const delay = 50;
     const camera = { facingMode: 'environment' };
 
-    // Test
-    const resultado_de_prueba = 'Esto es simplemente para hacer pruebas de la cámara QR.';
-
     // open camera and reset result
     const openCamera = () => {
         setRecording(true);
