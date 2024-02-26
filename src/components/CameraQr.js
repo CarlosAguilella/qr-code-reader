@@ -36,7 +36,7 @@ function CameraQr() {
 
     return (
         <div className='camera-qr'>
-            <Grid container spacing={2} alignContent={'center'}>
+            <Grid container spacing={2}>
                 <Grid item xs={12}>
                     {recording ? (
                         <div className={`camera-qr ${'video'}`}>
@@ -49,7 +49,7 @@ function CameraQr() {
                             />
                         </div>
                     ) : (
-                        <div className={`camera-qr ${'tittle'}`}>
+                        <div className={`camera-qr ${'photo'}`}>
                             <img src="qr-example.png" alt="qr-example" />
                         </div>
                     )}
@@ -57,12 +57,12 @@ function CameraQr() {
                 <Grid item xs={12}>
                     {recording ? (
                         <div className={`camera-qr ${'button'}`} onClick={closeCamera}>
-                            Close camera
+                            PARAR DE ESCANEAR
                         </div>
                     )
                         : (
                             <div className={`camera-qr ${'button'}`} onClick={openCamera}>
-                                Open the camera to scan QR
+                                PULSA PARA ESCANEAR ENTRADA Y/O CARNET SOCIO
                             </div>
                         )}
                 </Grid>

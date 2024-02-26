@@ -1,12 +1,12 @@
 /* Camera QR CSS */
 .camera-qr {
+    width: 90%;
+    min-width: 300px;
     border-radius: 7.5px;
     text-align: center;
     margin: auto;
-    padding: 1em;
-    background-color: #c6c6c6;
-    scrollbar-width: thin;
-    scrollbar-color: #000000 #c6c6c6;
+    padding: auto;
+    background-color: #ffffff;
 }
 
 .camera-qr.button {
@@ -17,7 +17,7 @@
     border-radius: 7.5px;
     cursor: pointer;
     color: #000000;
-    background-color: #939393;
+    background-color: #ffcd29;
 }
 
 .camera-qr.video {
@@ -31,6 +31,12 @@
     font-family: 'Roboto', sans-serif;
 }
 
+.camera-qr.photo {
+    width: 100%;
+    height: auto;
+    margin: auto;
+}
+
 .camera-qr.video.qr-reader {
     box-shadow: none;
     border: 1px solid #000000;
@@ -39,31 +45,4 @@
 .camera-qr.result {
     margin: 2em 0;
     font-family: 'Roboto', sans-serif;
-}
-
-@media (max-width: 768px) {
-    .camera-qr {
-        width: 50%;
-        margin: auto;
-    }
-
-    .camera-qr.button {
-        width: 80%;
-    }
-
-    .camera-qr.video {
-        width: 80%;
-    }
-
-    .camera-qr.video.tittle {
-        width: 80%;
-    }
-
-    .camera-qr.video.qr-reader {
-        width: 80%;
-    }
-
-    .camera-qr.result {
-        width: 80%;
-    }
 }
