@@ -11,7 +11,6 @@ function CameraQr() {
     const [recording, setRecording] = useState(false);
     const delay = 50;
     const camera = { facingMode: 'environment' };
-    const result2 = '    Nombre  Introduce ContenidoIntroducIntroduce Contenidoe Contenido  Apellido    Organización    PuestoIntroduce ContenidoIntroducIntroduce Contenidoe Contenido (trabajo)    Teléfono (trabajo)    Teléfono (privado)    Phone (Mobile)    Fax (trabajo)    Fax (privado)    Correo ElectrónicoIntroduce ContenidoIntroducIntroduce Contenidoe Contenido    Dirección URL    Callele    Código postal    Ciudadcle    Código postal    Ciudadc    Código postal    Ciudadc    Estado    País';
     
     // open camera and reset result
     const openCamera = () => {
