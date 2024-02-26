@@ -31,11 +31,6 @@
     border: 1px solid #000000;
 }
 
-.camera-qr.video.tittle {
-    margin:auto;
-    font-family: 'Roboto', sans-serif;
-}
-
 .camera-qr.photo {
     width: 90%;
     height: auto;
