@@ -2,6 +2,8 @@
 .camera-qr {
     border-radius: 7.5px;
     text-align: center;
+    margin: auto;
+    padding: 2em;
     background-color: #c6c6c6;
 }
 
@@ -43,6 +45,7 @@
 @media (max-width: 768px) {
     .camera-qr {
         width: 80%;
+        margin: auto;
     }
 
     .camera-qr.button {
