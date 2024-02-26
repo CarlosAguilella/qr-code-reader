@@ -27,9 +27,9 @@
 
 .camera-qr.video {
     height: auto;
-    max-height: 300px;
+    max-height: 250px;
     width: auto;
-    max-width: 300px;
+    max-width: 250px;
     margin: auto;
     padding: 1em;
 }
