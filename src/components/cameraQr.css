@@ -31,7 +31,7 @@
     padding: 1em;
 }
 
-.camera-qr.video.qr-reader {
+.camera-qr.qr-reader {
     box-shadow: none;
     border: none;
 }
