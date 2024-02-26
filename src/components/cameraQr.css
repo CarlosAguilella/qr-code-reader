@@ -41,10 +41,19 @@
 }
 
 @media (max-width: 768px) {
+    .camera-qr {
+        width: 80%;
+    }
+
+    .camera-qr.button {
+        width: 80%;
+    }
+
     .camera-qr.video {
         width: 80%;
     }
-    .camera-qr.button {
+
+    .camera-qr.video.tittle {
         width: 80%;
     }
 
