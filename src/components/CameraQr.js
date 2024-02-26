@@ -38,10 +38,10 @@ function CameraQr() {
     return (
         <div className='camera-qr'>
             <Grid container>
-                {resultado_de_prueba ? (
+                {result ? (
                     <Grid item xs={12}>
                         <div className={`camera-qr ${'result'}`}>
-                            {resultado_de_prueba}
+                            {result}
                         </div>
                     </Grid>
                 ) : (
