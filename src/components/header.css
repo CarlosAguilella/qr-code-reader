@@ -1,0 +1,20 @@
+.header {
+    margin: 0;
+    padding: 0;
+}
+
+.header-xs {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .header-xl {
+        display: none;
+    }
+
+    .header-xs {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

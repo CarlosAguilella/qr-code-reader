@@ -11,7 +11,7 @@ function CameraQr() {
     const [recording, setRecording] = useState(false);
     const delay = 50;
     const camera = { facingMode: 'environment' };
-    
+
     // open camera and reset result
     const openCamera = () => {
         setRecording(true);
@@ -67,12 +67,11 @@ function CameraQr() {
                                 <div className={`camera-qr ${'button'}`} onClick={closeCamera}>
                                     PARAR DE ESCANEAR
                                 </div>
-                            )
-                                : (
-                                    <div className={`camera-qr ${'button'}`} onClick={openCamera}>
-                                        PULSA PARA ESCANEAR ENTRADA <br />Y/O CARNET DE SOCIO
-                                    </div>
-                                )}
+                            ) : (
+                                <div className={`camera-qr ${'button'}`} onClick={openCamera}>
+                                    PULSA PARA ESCANEAR ENTRADA <br />Y/O CARNET DE SOCIO
+                                </div>
+                            )}
                         </Grid>
                     </>
                 )}
