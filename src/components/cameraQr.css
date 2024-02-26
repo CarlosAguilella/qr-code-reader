@@ -43,6 +43,11 @@
 }
 
 .camera-qr.result {
-    margin: 2em 0;
-    font-family: 'Roboto', sans-serif;
+    width: 90%;
+    height: auto;
+    margin: auto;
+    padding: 1em;
+    border: 1px solid #000000;
+    border-radius: 7.5px;
+    background-color: #ffcd29;
 }
