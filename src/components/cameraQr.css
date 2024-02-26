@@ -1,7 +1,6 @@
 /* Camera QR CSS */
 .camera-qr {
-    width: 80%;
-    min-width: 280px;
+    min-width: 250px;
     height: auto;
     text-align: center;
     margin: auto;
@@ -17,9 +16,8 @@
 }
 
 .camera-qr.button {
-    width: 35%;
     padding: 1em;
-    margin: auto;
+    margin: auto 1em;
     border: none;
     border-radius: 7.5px;
     cursor: pointer;
@@ -28,9 +26,9 @@
 }
 
 .camera-qr.video {
-    width: 30%;
     height: auto;
     margin: auto;
+    padding: 1em;
 }
 
 .camera-qr.video.qr-reader {
@@ -39,7 +37,7 @@
 }
 
 .camera-qr.photo {
-    width: 90%;
+    width: 100%;
     height: auto;
     margin: auto;
 }
