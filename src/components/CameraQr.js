@@ -50,7 +50,6 @@ function CameraQr() {
         }
     };
 
-
     return (
         <div className='camera-qr'>
             <Grid container spacing={2} alignContent={'center'}>
@@ -78,6 +77,11 @@ function CameraQr() {
                 <Grid item xs={12}>
                     <div className={`camera-qr ${recording ? 'button' : 'button disappear'}`} onClick={closeCamera}>
                         Close camera
+                    </div>
+                </Grid>
+                <Grid item xs={12}>
+                    <div>
+                        <h2>{result}</h2>
                     </div>
                 </Grid>
                 <Grid item xs={12}>
