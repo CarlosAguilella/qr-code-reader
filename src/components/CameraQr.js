@@ -37,40 +37,47 @@ function CameraQr() {
     return (
         <div className='camera-qr'>
             <Grid container spacing={2}>
-                <Grid item xs={12}>
-                    {recording ? (
-                        <div className={`camera-qr ${'video'}`}>
-                            <QrReader
-                                className={`camera-qr ${'qr-reader'}`}
-                                scanDelay={delay}
-                                onScan={handleCameraScan}
-                                onError={errorQr}
-                                constraints={camera}
-                            />
+                {result ? (
+                    <Grid item xs={12}>
+                        <div className={`qr-camera ${'result'}`}>
+                            <h2>{result}</h2>
                         </div>
-                    ) : (
-                        <div className={`camera-qr ${'photo'}`}>
-                            <img src="qr-example.png" alt="qr-example" />
-                        </div>
-                    )}
-                </Grid>
-                <Grid item xs={12}>
-                    {recording ? (
-                        <div className={`camera-qr ${'button'}`} onClick={closeCamera}>
-                            PARAR DE ESCANEAR
-                        </div>
-                    )
-                        : (
-                            <div className={`camera-qr ${'button'}`} onClick={openCamera}>
-                                PULSA PARA ESCANEAR ENTRADA <br/>Y/O CARNET SOCIO
-                            </div>
-                        )}
-                </Grid>
-                <Grid item xs={12}>
-                    <div className={`qr-camera ${'result'}`}>
-                        <h2>{result}</h2>
-                    </div>
-                </Grid>
+                    </Grid>
+                ) : (
+                    <>
+                        <Grid item xs={12}>
+                            {recording ? (
+                                <div className={`camera-qr ${'video'}`}>
+                                    <QrReader
+                                        className={`camera-qr ${'qr-reader'}`}
+                                        scanDelay={delay}
+                                        onScan={handleCameraScan}
+                                        onError={errorQr}
+                                        constraints={camera}
+                                    />
+                                </div>
+                            ) : (
+                                <div className={`camera-qr ${'photo'}`}>
+                                    <img src="qr-example.png" alt="qr-example" />
+                                </div>
+                            )}
+                        </Grid>
+                        <Grid item xs={12}>
+                            {recording ? (
+                                <div className={`camera-qr ${'button'}`} onClick={closeCamera}>
+                                    PARAR DE ESCANEAR
+                                </div>
+                            )
+                                : (
+                                    <div className={`camera-qr ${'button'}`} onClick={openCamera}>
+                                        PULSA PARA ESCANEAR ENTRADA <br />Y/O CARNET SOCIO
+                                    </div>
+                                )}
+                        </Grid>
+                    </>
+                )}
+
+
             </Grid>
         </div >
     );
