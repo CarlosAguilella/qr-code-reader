@@ -99,13 +99,10 @@ function CameraQr() {
                             onChange={(event) => handleFileChange(event)}
                             hidden
                         />
-
-                            AQUI FALTA CAMBIAR EL BUTTON POR UN DIV Y DARLE ESTILOS
-
                         {file && (
-                            <button type="button" onClick={() => setFile(null)}>
+                            <div className={`camera-qr ${'button'}`} onClick={() => setFile(null)}>
                                 Erase
-                            </button>
+                            </div>
                         )}
                     </div>
                 </Grid>

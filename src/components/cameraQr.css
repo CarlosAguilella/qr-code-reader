@@ -2,18 +2,18 @@
 .camera-qr {
     border-radius: 7.5px;
     text-align: center;
-    background-color: #fff;
+    background-color: #c6c6c6;
 }
 
 .camera-qr.button {
-    width: 80%;
+    width: 40%;
     padding: 1em;
     margin: auto;
     border: none;
     border-radius: 7.5px;
     cursor: pointer;
     color: #000000;
-    background-color: #e9e9ed;
+    background-color: #939393;
 }
 
 .camera-qr.disappear {
