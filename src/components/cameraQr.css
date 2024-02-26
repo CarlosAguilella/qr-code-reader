@@ -9,6 +9,16 @@
     background-color: #ffffff;
 }
 
+.camera-qr.result {
+    width: 90%;
+    height: auto;
+    margin: auto;
+    padding: 1em;
+    border: 1px solid #000000;
+    border-radius: 7.5px;
+    background-color: #ffcd29;
+}
+
 .camera-qr.button {
     width: 35%;
     padding: 1em;
@@ -35,14 +45,4 @@
     width: 90%;
     height: auto;
     margin: auto;
-}
-
-.camera-qr.result {
-    width: 90%;
-    height: auto;
-    margin: auto;
-    padding: 1em;
-    border: 1px solid #000000;
-    border-radius: 7.5px;
-    background-color: #ffcd29;
 }
