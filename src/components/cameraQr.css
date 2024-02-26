@@ -35,4 +35,7 @@
 .camera-qr.result {
     margin: 2em 0;
     font-family: 'Roboto', sans-serif;
+    border-color: #000000;
+    border-radius: 7.5px;
+    border-width: 2px;
 }
