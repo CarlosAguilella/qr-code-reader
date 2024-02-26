@@ -12,6 +12,8 @@ function CameraQr() {
     const delay = 50;
     const camera = { facingMode: 'environment' };
     const videoContainerStyle = { boxShadow: 'none', borderRadius: 'none' };
+    const videoStyle = { boxShadow: 'none', borderRadius: 'none' };
+    const containerStyle = { boxShadow: 'none', borderRadius: 'none' };
 
     // Test
     const resultado_de_prueba = 'Esto es simplemente para hacer pruebas de la cámara QR.';
@@ -59,6 +61,8 @@ function CameraQr() {
                                         onError={errorQr}
                                         constraints={camera}
                                         videoContainerStyle={videoContainerStyle}
+                                        videoStyle={videoStyle}
+                                        containerStyle={containerStyle}
                                     />
                                 </div>
                             ) : (
