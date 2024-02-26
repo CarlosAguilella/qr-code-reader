@@ -63,6 +63,10 @@
         width: 80%;
     }
 
+    .camera-qr.video.qr-reader {
+        width: 80%;
+    }
+
     .camera-qr.result {
         width: 80%;
     }
