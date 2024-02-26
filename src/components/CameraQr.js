@@ -80,7 +80,7 @@ function CameraQr() {
                     </div>
                 </Grid>
                 <Grid item xs={12}>
-                    <div>
+                    <div className={`qr-camera ${'result'}`}>
                         <h2>{result}</h2>
                     </div>
                 </Grid>
