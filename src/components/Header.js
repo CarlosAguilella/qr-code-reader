@@ -20,7 +20,7 @@ const Header = () => {
                 </Grid>
                 <Grid item xs={12}>
                     <div className='header-xs'>
-                        <h2>Controller</h2>
+                        <h4>Usuario: <br/> Controller</h4>
                     </div>
                 </Grid>
             </Grid>
