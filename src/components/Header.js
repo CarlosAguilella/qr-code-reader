@@ -17,11 +17,6 @@ const Header = () => {
                         <h1>Ajuntament de <br /> les Alqueries</h1>
                     </div>
                 </Grid>
-                <Grid item xs={12}>
-                    <div className='header-xs'>
-                        <h4>Usuario: <br/> Controller</h4>
-                    </div>
-                </Grid>
             </Grid>
         </div>
 
