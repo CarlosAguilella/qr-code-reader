@@ -64,7 +64,7 @@ function CameraQr() {
                 </Grid>
                 <Grid item xs={12}>
                     <div className={`camera-qr ${recording ? 'video' : 'video disappear'}`}>
-                        <h2 className='camera-qr-tittle'>Looking for QR</h2>
+                        <h2 className={`camera-qr ${'tittle'}`}>Looking for QR</h2>
                         <QrReader
                             scanDelay={delay}
                             containerStyle={previewStyle}
