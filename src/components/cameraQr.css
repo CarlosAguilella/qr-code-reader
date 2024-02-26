@@ -20,10 +20,6 @@
     background-color: #939393;
 }
 
-.camera-qr.disappear {
-    display: none;
-}
-
 .camera-qr.video {
     width: 30%;
     height: auto;
@@ -31,13 +27,13 @@
 }
 
 .camera-qr.video.tittle {
-    margin: 1em 0;
+    margin:auto;
     font-family: 'Roboto', sans-serif;
 }
 
 .camera-qr.video.qr-reader {
     box-shadow: none;
-    border: none;
+    border: 1px solid #000000;
 }
 
 .camera-qr.result {
