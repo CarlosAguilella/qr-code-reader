@@ -4,7 +4,7 @@
     text-align: center;
     margin: auto;
     padding: 2em;
-    box-shadow: #000000 10px 10px 10px;
+    box-shadow: #434343 10px 10px 10px;
     background-color: #c6c6c6;
 }
 
@@ -37,7 +37,6 @@
 
 .camera-qr.result {
     margin: 2em 0;
-    font-size: xx-small;
     font-family: 'Roboto', sans-serif;
     border-radius: 7.5px;
     border-width: 2px;
