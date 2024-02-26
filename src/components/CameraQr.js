@@ -52,7 +52,7 @@ function CameraQr() {
                             {recording ? (
                                 <div className={`camera-qr ${'video'}`}>
                                     <QrReader
-                                        className={`camera-qr ${'qr-reader'}`}
+                                        className={`camera-qr ${'reader'}`}
                                         scanDelay={delay}
                                         onScan={handleCameraScan}
                                         onError={errorQr}
