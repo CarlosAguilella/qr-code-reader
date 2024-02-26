@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import QrReader from 'react-qr-reader';
 import { Grid } from '@mui/material';
 
