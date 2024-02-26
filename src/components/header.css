@@ -1,8 +1,3 @@
-.header {
-    margin: 0;
-    padding: 0;
-}
-
 .header.xl {
     display: flex;
     align-items: center;

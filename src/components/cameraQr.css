@@ -33,7 +33,7 @@
 
 .camera-qr.video.qr-reader {
     box-shadow: none;
-    border: 1px solid #000000;
+    border: none;
 }
 
 .camera-qr.photo {
