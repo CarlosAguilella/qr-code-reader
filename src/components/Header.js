@@ -27,7 +27,7 @@ function Header() {
                 </Grid>
                 <Grid item xs={width > 400 ? 5 : 6} sm={4} md={width > 1500 ? 3 : 4}>
                     <div className={`header ${'subtitle'}`}>
-                        <p>CONTROLLER &nbsp;&nbsp;&nbsp;&nbsp; 👤</p>
+                        <p>CONTROLLER &nbsp;&nbsp;👤</p>
                     </div>
                 </Grid>
             </Grid>
