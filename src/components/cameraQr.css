@@ -19,6 +19,57 @@
     max-width: 250px;
     margin: auto;
     padding: 1em;
+    position: relative;
+}
+
+.camera-qr.video div {
+    box-shadow: none !important; 
+    border: none !important;
+}
+
+.camera-qr.video p {
+    color: transparent !important;
+
+}
+
+.camera-qr.video p:nth-child(2) {
+    position: absolute !important;
+    top: 15px;
+    left: 15px;
+    width: 45px;
+    height: 45px;
+    border-top: 5px solid #000000;
+    border-left: 5px solid #000000;
+}
+
+.camera-qr.video p:nth-child(3) {
+    position: absolute !important;
+    top: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    border-top: 5px solid #000000;
+    border-right: 5px solid #000000;
+}
+
+.camera-qr.video p:nth-child(4) {
+    position: absolute !important;
+    bottom: 15px;
+    left: 15px;
+    width: 45px;
+    height: 45px;
+    border-bottom: 5px solid #000000;
+    border-left: 5px solid #000000;
+}
+
+.camera-qr.video p:nth-child(5) {
+    position: absolute !important;
+    bottom: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    border-bottom: 5px solid #000000;
+    border-right: 5px solid #000000;
 }
 
 .camera-qr.logo {

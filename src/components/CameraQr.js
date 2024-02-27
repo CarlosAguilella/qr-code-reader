@@ -37,10 +37,10 @@ function CameraQr() {
     return (
         <div className='camera-qr'>
             <Grid container>
-                {resultFake ? (
+                {result ? (
                     <Grid item xs={12}>
                         <div className='camera-qr result'>
-                            {resultFake}
+                            {result}
                         </div>
                     </Grid>
                 ) : (
@@ -54,7 +54,13 @@ function CameraQr() {
                                         onError={errorQr}
                                         constraints={camera}
                                     />
+                                    <p>11</p>
+                                    <p>22</p>
+                                    <p>33</p>
+                                    <p>44</p>
+
                                 </div>
+
                             ) : (
                                 <div className='camera-qr logo'>
                                     <img src="qr-logo.png" alt="qr-logo" />
