@@ -23,9 +23,8 @@ function Header() {
                         <p>AJUNTAMENT DE LES ALQUERIES</p>
                     </div>
                 </Grid>
-                <Grid item xs={width > 400 ? 7 : 6} sm={8} md={width > 1500 ? 9 : 8}>
-                </Grid>
-                <Grid item xs={width > 400 ? 5 : 6} sm={4} md={width > 1500 ? 3 : 4}>
+                
+                <Grid item xs={12}>
                     <div className={`header ${'subtitle'}`}>
                         <p>CONTROLLER &nbsp;&nbsp;👤</p>
                     </div>
