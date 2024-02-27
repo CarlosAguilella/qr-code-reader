@@ -5,15 +5,11 @@ import { Grid } from '@mui/material';
 import './cameraQr.css';
 
 function CameraQr() {
-
     // Utils
     const [result, setResult] = useState(null);
     const [recording, setRecording] = useState(false);
     const delay = 50;
     const camera = { facingMode: 'environment' };
-    const containerStyle = { border: 'none', shadow: 'none' };
-    const videoContainerStyle = { border: 'none', shadow: 'none' };
-    const videoStyle = { border: 'none', shadow: 'none' };
 
     // open camera and reset result
     const openCamera = () => {
@@ -42,7 +38,7 @@ function CameraQr() {
             <Grid container>
                 {result ? (
                     <Grid item xs={12}>
-                        <div className={`camera-qr ${'result'}`}>
+                        <div className={`camera-qr result`}>
                             {result}
                         </div>
                     </Grid>
@@ -50,31 +46,27 @@ function CameraQr() {
                     <>
                         <Grid item xs={12}>
                             {recording ? (
-                                <div className={`camera-qr ${'video'}`}>
+                                <div className={`camera-qr video`}>
                                     <QrReader
-                                        className={`camera-qr ${'reader'}`}
                                         scanDelay={delay}
                                         onScan={handleCameraScan}
                                         onError={errorQr}
                                         constraints={camera}
-                                        containerStyle={containerStyle}
-                                        videoContainerStyle={videoContainerStyle}
-                                        videoStyle={videoStyle}
                                     />
                                 </div>
                             ) : (
-                                <div className={`camera-qr ${'logo'}`}>
+                                <div className={`camera-qr logo`}>
                                     <img src="qr-logo.png" alt="qr-logo" />
                                 </div>
                             )}
                         </Grid>
                         <Grid item xs={12}>
                             {recording ? (
-                                <div className={`camera-qr ${'button'}`} onClick={closeCamera}>
+                                <div className={`camera-qr button`} onClick={closeCamera}>
                                     PARAR DE ESCANEAR
                                 </div>
                             ) : (
-                                <div className={`camera-qr ${'button'}`} onClick={openCamera}>
+                                <div className={`camera-qr button`} onClick={openCamera}>
                                     PULSA PARA ESCANEAR ENTRADA Y/O CARNET DE SOCIO
                                 </div>
                             )}
