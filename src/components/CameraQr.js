@@ -11,6 +11,9 @@ function CameraQr() {
     const [recording, setRecording] = useState(false);
     const delay = 50;
     const camera = { facingMode: 'environment' };
+    const containerStyle = { border: 'none', shadow: 'none' };
+    const videoContainerStyle = { border: 'none', shadow: 'none' };
+    const videoStyle = { border: 'none', shadow: 'none' };
 
     // open camera and reset result
     const openCamera = () => {
@@ -54,6 +57,9 @@ function CameraQr() {
                                         onScan={handleCameraScan}
                                         onError={errorQr}
                                         constraints={camera}
+                                        containerStyle={containerStyle}
+                                        videoContainerStyle={videoContainerStyle}
+                                        videoStyle={videoStyle}
                                     />
                                 </div>
                             ) : (

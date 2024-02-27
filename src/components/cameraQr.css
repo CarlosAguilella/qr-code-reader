@@ -24,8 +24,8 @@
 }
 
 .camera-qr.reader {
-    box-shadow: none;
-    border: none;
+    box-shadow: 0 0 10px 0 #000000;
+    border: 1px solid #000000;
 }
 
 .camera-qr.logo {
