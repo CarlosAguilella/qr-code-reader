@@ -37,10 +37,10 @@ function CameraQr() {
     return (
         <div className='camera-qr'>
             <Grid container>
-                {resultFake ? (
+                {result ? (
                     <Grid item xs={12}>
                         <div className='camera-qr result'>
-                            {resultFake}
+                            {result}
                         </div>
                     </Grid>
                 ) : (
