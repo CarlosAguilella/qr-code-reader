@@ -1,22 +1,24 @@
 /* HEADER CSS */
-.header.xl {
+.header.logo {
+    font-size: 3em;
+    align-items: end;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content:end;
 }
 
-.header.xs {
-    display: none;
+.header.title {
+    font-size: 1.5em;
+    margin-top: 2.5em;
 }
 
-@media (max-width: 768px) {
-    .header.xl {
-        display: none;
-    }
+.header.subtitle {
+    font-size: 0.8em;
+    margin-top: -2.5em;
+}
 
-    .header.xs {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+.header.subtitle p {
+    background-color: #cacaff;
+    width: 115px;
+    padding: 0.5em;
+    border-radius: 5px;
 }
