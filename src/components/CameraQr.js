@@ -57,8 +57,8 @@ function CameraQr() {
                                     />
                                 </div>
                             ) : (
-                                <div className={`camera-qr ${'photo'}`}>
-                                    <img src="qr-example.png" alt="qr-example" />
+                                <div className={`camera-qr ${'logo'}`}>
+                                    <img src="qr-logo.png" alt="qr-logo" />
                                 </div>
                             )}
                         </Grid>

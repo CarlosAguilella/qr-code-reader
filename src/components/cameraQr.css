@@ -14,17 +14,6 @@
     margin: auto;
 }
 
-.camera-qr.button {
-    padding: 1em;
-    margin: auto;
-    width: 250px;
-    border: none;
-    border-radius: 7.5px;
-    cursor: pointer;
-    color: #000000;
-    background-color: #ffcd29;
-}
-
 .camera-qr.video {
     height: auto;
     max-height: 250px;
@@ -39,8 +28,19 @@
     border: none;
 }
 
-.camera-qr.photo {
+.camera-qr.logo {
     width: 100%;
     height: auto;
     margin: auto;
+}
+
+.camera-qr.button {
+    padding: 1em;
+    margin: auto;
+    width: 250px;
+    border: none;
+    border-radius: 7.5px;
+    cursor: pointer;
+    color: #000000;
+    background-color: #ffcd29;
 }
