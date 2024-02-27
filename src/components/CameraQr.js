@@ -54,10 +54,10 @@ function CameraQr() {
                                         onError={errorQr}
                                         constraints={camera}
                                     />
-                                    <p>11</p>
-                                    <p>22</p>
-                                    <p>33</p>
-                                    <p>44</p>
+                                    <p></p>
+                                    <p></p>
+                                    <p></p>
+                                    <p></p>
 
                                 </div>
 
