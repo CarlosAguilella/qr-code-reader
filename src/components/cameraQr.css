@@ -35,7 +35,7 @@
 .camera-qr.video p:nth-child(2) {
     position: absolute !important;
     top: 0px;
-    left: 15px;
+    left: 16px;
     width: 45px;
     height: 45px;
     border-top: 5px solid #000000;
@@ -45,7 +45,7 @@
 .camera-qr.video p:nth-child(3) {
     position: absolute !important;
     top: 0px;
-    right: 15px;
+    right: 16px;
     width: 45px;
     height: 45px;
     border-top: 5px solid #000000;
@@ -55,7 +55,7 @@
 .camera-qr.video p:nth-child(4) {
     position: absolute !important;
     bottom: 0px;
-    left: 15px;
+    left: 16px;
     width: 45px;
     height: 45px;
     border-bottom: 5px solid #000000;
@@ -65,7 +65,7 @@
 .camera-qr.video p:nth-child(5) {
     position: absolute !important;
     bottom: 0px;
-    right: 15px;
+    right: 16px;
     width: 45px;
     height: 45px;
     border-bottom: 5px solid #000000;
