@@ -48,17 +48,14 @@ function CameraQr() {
                         <Grid item xs={12}>
                             {recording ? (
                                 <div className='camera-qr video'>
-                                    <QrReader
-                                        scanDelay={delay}
-                                        onScan={handleCameraScan}
-                                        onError={errorQr}
-                                        constraints={camera}
-                                    />
-                                    <p></p>
-                                    <p></p>
-                                    <p></p>
-                                    <p></p>
-
+                                    <p>
+                                        <QrReader
+                                            scanDelay={delay}
+                                            onScan={handleCameraScan}
+                                            onError={errorQr}
+                                            constraints={camera}
+                                        />
+                                    </p>
                                 </div>
 
                             ) : (
