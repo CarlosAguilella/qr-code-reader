@@ -12,10 +12,6 @@ function App() {
       <Header />
       <br />
       <br />
-      <br />
-      <br />
-      <br />
-      <br />
       <CameraQr />
     </div>
   );
