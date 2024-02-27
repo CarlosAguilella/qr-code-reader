@@ -13,18 +13,18 @@
 }
 
 .header.subtitle {
-    font-size: 2.5em;
+    font-size: 2em;
     margin-top: -2.5em;
 }
 
 .header.subtitle p {
     background-color: #cacaff;
-    width: 350px;
+    width: 280px;
     padding: 0.5em;
     border-radius: 5px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1500px) {
     .header.logo {
         font-size: 5em;
     }
