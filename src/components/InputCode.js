@@ -25,7 +25,7 @@ const InputCode = () => {
         <div className="input-code">
             <Grid container display={'flex'}>
                 <Grid item xs={12}>
-                    <div className='camera-qr logo'>
+                    <div className='input-code logo'>
                         <img src="mano.png" alt="qr-logo" />
                     </div>
                 </Grid>
@@ -33,10 +33,10 @@ const InputCode = () => {
                     <div className="input-code title">TAMBIÉN PUEDES INTRODUCIR EL CÓDIGO MANUALMENTE</div>
                 </Grid>
                 <Grid item xs={12}>
-                    <div className="input-code description">
-                        <input className="input-code description input" placeholder="Introduce el código" onChange={handleInput} />
-                        <div className="input-code description button" onClick={handleAlert}>ENVIAR</div>
-                    </div>
+                    <input className="input-code input" placeholder="Introduce el código" onChange={handleInput} type="number" />
+                </Grid>
+                <Grid item xs={12}>
+                    <div className="input-code button" onClick={handleAlert}>ENVIAR</div>
                 </Grid>
             </Grid>
         </div>

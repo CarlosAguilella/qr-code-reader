@@ -6,6 +6,13 @@
     margin: 2em auto;
 }
 
+.input-code.logo {
+    width: 100%;
+    height: auto;
+    margin: auto;
+    margin-bottom: 0.5em;
+}
+
 .input-code.title {
     padding: 1em;
     margin-top: 1em;
@@ -17,28 +24,19 @@
     background-color: #ffcd29;
 }
 
-.input-code.description {
-    margin-top: 1em;
-    display: flex;
-}
-
-.input-code.description.input {
-    margin-right: 0;
+.input-code.input {
     padding: 1.5em;
-    width: 168px;
+    margin-bottom: 0;
+    width: 240px;
+    border-radius: 7.5px;
     border: #000000 1px solid;
-    border-top-left-radius: 7.5px;
-    border-bottom-left-radius: 7.5px;
     color: #000000;
 }
 
-.input-code.description.button {
+.input-code.button {
     margin-top: 1.18em;
-    margin-left: 0;
-    padding: 1.15em;
+    padding: 1em 2em;
     width: 40px;
-    border-top-right-radius: 7.5px;
-    border-bottom-right-radius: 7.5px;
     cursor: pointer;
     color: #000000;
     background-color: #3a99ff;
