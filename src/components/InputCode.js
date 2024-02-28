@@ -30,6 +30,7 @@ const InputCode = () => {
                                     placeholder="Introduce el código"
                                     onChange={handleInput}
                                     fullWidth
+                                    required
                                 />
                             </div>
                         </Grid>
