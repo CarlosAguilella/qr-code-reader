@@ -4,6 +4,11 @@ import { Grid } from "@mui/material";
 import './inputCode.css';
 
 const InputCode = () => {
+
+    const handleAlert = () => {
+        alert("Código enviado, por favor espere...");
+    }
+
     return (
         <div className="input-code">
             <Grid container display={'flex'}>
@@ -18,7 +23,7 @@ const InputCode = () => {
                 <Grid item xs={12}>
                     <div className="input-code description">
                         <input className="input-code description input" type="text" placeholder="Introduce el código" />
-                        <div className="input-code description button">ENVIAR</div>
+                        <div className="input-code description button" onClick={handleAlert}>ENVIAR</div>
                     </div>
                 </Grid>
             </Grid>

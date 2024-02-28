@@ -19,13 +19,11 @@
 
 .input-code.description {
     margin-top: 1em;
-    align-items: center;
     display: flex;
-    justify-content: center;
 }
 
 .input-code.description.input {
-    margin-left: 14em;
+    margin-right: 0;
     padding: 1.5em;
     width: 168px;
     border: #000000 1px solid;
@@ -36,8 +34,8 @@
 }
 
 .input-code.description.button {
-    margin-top: 1.22em;
-    margin-right: 11.5em;
+    margin-top: 1.15em;
+    margin-left: 0;
     padding: 1.2em;
     width: 40px;
     border-top-right-radius: 7.5px;
