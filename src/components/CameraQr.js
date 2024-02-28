@@ -71,7 +71,7 @@ function CameraQr() {
                                 </div>
                             ) : (
                                 <div className='camera-qr button' onClick={openCamera}>
-                                    PULSA PARA ESCANEAR ENTRADA Y/O CARNET DE SOCIO
+                                    PULSA PARA ESCANEAR ENTRADA Y/O CARNET
                                 </div>
                             )}
                         </Grid>

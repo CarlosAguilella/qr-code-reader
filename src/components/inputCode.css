@@ -30,17 +30,17 @@
     border-top-left-radius: 7.5px;
     border-bottom-left-radius: 7.5px;
     color: #000000;
-    background-color: #ffffff;
 }
 
 .input-code.description.button {
-    margin-top: 1.15em;
+    margin-top: 1.18em;
     margin-left: 0;
-    padding: 1.2em;
+    padding: 1.15em;
     width: 40px;
     border-top-right-radius: 7.5px;
     border-bottom-right-radius: 7.5px;
     cursor: pointer;
     color: #000000;
-    background-color: #cacaff;
+    background-color: #3a99ff;
+    box-shadow: 0 0 1px #000000;
 }
