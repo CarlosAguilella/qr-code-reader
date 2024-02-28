@@ -1,15 +1,9 @@
 import React from "react";
 import { Grid } from "@mui/material";
 
-import { useWindowSize } from './hooks/useWindowsSize';
-
 import './header.css';
 
 function Header() {
-    
-    //Global Utils
-    const { width } = useWindowSize();
-
     return (
         <div className="header">
             <Grid container display={'flex'} spacing={2}>

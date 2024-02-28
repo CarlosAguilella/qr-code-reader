@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid } from "@mui/material";
 
 import './inputCode.css';
 
 const InputCode = () => {
+    // Utils
+    const [inputValue, setInputValue] = useState("");
 
+    // this function will handle the input value
+    const handleInput = (e) => {
+        setInputValue(e.target.value);
+    }
+
+    // this function will alert the user if the input is empty
     const handleAlert = () => {
-        alert("Código enviado, por favor espere...");
+        if (inputValue === "" || inputValue === null) {
+            return alert("Por favor, introduce un código");
+        } else {
+            alert("Código enviado, por favor espere...");
+        }
     }
 
     return (
@@ -22,7 +34,7 @@ const InputCode = () => {
                 </Grid>
                 <Grid item xs={12}>
                     <div className="input-code description">
-                        <input className="input-code description input" type="text" placeholder="Introduce el código" />
+                        <input className="input-code description input" placeholder="Introduce el código" onChange={handleInput} />
                         <div className="input-code description button" onClick={handleAlert}>ENVIAR</div>
                     </div>
                 </Grid>
