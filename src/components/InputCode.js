@@ -1,43 +1,54 @@
 import React, { useState } from "react";
-import { Grid } from "@mui/material";
+import { Grid, TextField } from "@mui/material";
 
 import './inputCode.css';
 
 const InputCode = () => {
     // Utils
     const [inputValue, setInputValue] = useState("");
+    const [open, setOpen] = useState(false);
 
     // this function will handle the input value
     const handleInput = (e) => {
         setInputValue(e.target.value);
     }
 
-    // this function will alert the user if the input is empty
-    const handleAlert = () => {
-        if (inputValue === "" || inputValue === null) {
-            return alert("Por favor, introduce un código");
-        } else {
-            alert("Código enviado, por favor espere...");
-        }
+    // this function changes between the input and the button
+    const openInput = () => {
+        setOpen(!open);
     }
 
     return (
-        <div className="input-code">
-            <Grid container display={'flex'}>
-                <Grid item xs={12}>
-                    <div className='input-code logo'>
-                        <img src="mano.png" alt="qr-logo" />
-                    </div>
-                </Grid>
-                <Grid item xs={12}>
-                    <div className="input-code title">TAMBIÉN PUEDES INTRODUCIR EL CÓDIGO MANUALMENTE</div>
-                </Grid>
-                <Grid item xs={12}>
-                    <input className="input-code input" placeholder="Introduce el código" onChange={handleInput} type="number" />
-                </Grid>
-                <Grid item xs={12}>
-                    <div className="input-code button" onClick={handleAlert}>ENVIAR</div>
-                </Grid>
+        <div className="qr-input-code">
+            <Grid container>
+                {open ? (
+                    <>
+                        <Grid item xs={12}>
+                            <div className="qr-input-code input">
+                                <TextField
+                                    className="qr-input-code input text"
+                                    placeholder="Introduce el código"
+                                    onChange={handleInput}
+                                    fullWidth
+                                />
+                            </div>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <div className="qr-input-code title" onClick={openInput}>ENVIAR</div>
+                        </Grid>
+                    </>
+                ) : (
+                    <>
+                        <Grid item xs={12}>
+                            <div className='qr-input-code logo'>
+                                <img src="mano.png" alt="qr-logo" />
+                            </div>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <div className="qr-input-code title" onClick={openInput}>TAMBIÉN PUEDES INTRODUCIR EL CÓDIGO PULSANDO AQUÍ</div>
+                        </Grid>
+                    </>
+                )}
             </Grid>
         </div>
     );

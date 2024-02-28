@@ -1,19 +1,19 @@
 /* INPUT CODE */
-.input-code {
+.qr-input-code {
     align-items: center;
     display: flex;
     justify-content: center;
     margin: 2em auto;
 }
 
-.input-code.logo {
+.qr-input-code.logo {
     width: 100%;
     height: auto;
     margin: auto;
     margin-bottom: 0.5em;
 }
 
-.input-code.title {
+.qr-input-code.title {
     padding: 1em;
     margin-top: 1em;
     margin: auto;
@@ -24,21 +24,14 @@
     background-color: #ffcd29;
 }
 
-.input-code.input {
-    padding: 1.5em;
-    margin-bottom: 0;
-    width: 240px;
-    border-radius: 7.5px;
-    border: #000000 1px solid;
-    color: #000000;
+.qr-input-code.input {
+    margin-bottom: 0.5em;
 }
 
-.input-code.button {
-    margin-top: 1.18em;
-    padding: 1em 2em;
-    width: 40px;
-    cursor: pointer;
+.qr-input-code.input.text {
+    border-radius: 7.5px;
+    width: 280px;
+    border: #000000 1px solid;
     color: #000000;
-    background-color: #3a99ff;
-    box-shadow: 0 0 1px #000000;
+    background-color: white;
 }
