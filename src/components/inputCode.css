@@ -6,6 +6,17 @@
     margin: 2em auto;
 }
 
+.qr-input-code.input {
+    margin-bottom: 0.5em;
+}
+
+.qr-input-code.input.text {
+    border-radius: 7.5px;
+    width: 280px;
+    color: #000000;
+    background-color: white;
+}
+
 .qr-input-code.logo {
     width: 100%;
     height: auto;
@@ -22,16 +33,4 @@
     border-radius: 7.5px;
     color: #000000;
     background-color: #ffcd29;
-}
-
-.qr-input-code.input {
-    margin-bottom: 0.5em;
-}
-
-.qr-input-code.input.text {
-    border-radius: 7.5px;
-    width: 280px;
-    border: #000000 1px solid;
-    color: #000000;
-    background-color: white;
 }
