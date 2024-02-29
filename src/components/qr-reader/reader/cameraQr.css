@@ -9,10 +9,10 @@
 }
 
 .camera-qr.video {
-    max-height: 250px;
-    max-width: 250px;
-    padding-left: 9em;
+    height: 250px;
+    width: 250px;
     position: relative;
+    margin-bottom: 2em;
 }
 
 .camera-qr.video div {

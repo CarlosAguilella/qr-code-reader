@@ -1,4 +1,8 @@
 /* INPUT CODE */
+.qr-input-code {
+    background-color: var(--qr-reader-blue);
+}
+
 .qr-input-code.input {
     margin-top: 2em;
     margin-bottom: 0.5em;
