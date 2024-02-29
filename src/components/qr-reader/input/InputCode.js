@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, TextField } from "@mui/material";
+import { Grid, InputBase } from "@mui/material";
 
 import './inputCode.css';
 
@@ -20,11 +20,10 @@ const InputCode = () => {
                     <>
                         <Grid item xs={12}>
                             <div className="qr-input-code input flex-center">
-                                <TextField
+                                <InputBase
                                     className="qr-input-code input text"
                                     placeholder="Introduce el código"
                                     onChange={handleInput}
-                                    fullWidth
                                 />
                             </div>
                         </Grid>

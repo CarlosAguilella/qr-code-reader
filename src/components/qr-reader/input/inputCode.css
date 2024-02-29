@@ -9,6 +9,7 @@
 }
 
 .qr-input-code.input.text {
+    padding: 1em;
     border-radius: 7.5px;
     width: 280px;
     color: var(--black);
