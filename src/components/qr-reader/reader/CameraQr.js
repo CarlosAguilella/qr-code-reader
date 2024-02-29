@@ -24,12 +24,7 @@ function CameraQr() {
             setRecording(false);
         }
     };
-
-    // close camera if you press the button
-    const closeCamera = () => {
-        setRecording(false);
-    }
-
+    
     // if there is an error, it will be printed in the console
     const errorQr = (err) => { console.error(err); }
 
