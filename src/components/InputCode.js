@@ -46,7 +46,7 @@ const InputCode = () => {
                             </div>
                         </Grid>
                         <Grid item xs={12}>
-                            <div className="qr-input-code title" onClick={openInput}>PULSA AQUÍ PARA HACERLO MANUALMENTE</div>
+                            <div className="qr-input-code title" onClick={openInput}>PULSA PARA HACERLO MANUALMENTE</div>
                         </Grid>
                     </>
                 )}
