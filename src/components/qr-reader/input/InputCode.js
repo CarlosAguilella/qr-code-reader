@@ -13,41 +13,38 @@ const InputCode = () => {
         setInputValue(e.target.value);
     }
 
-    // this function changes between the input and the button
-    const openInput = () => {
-        setOpen(!open);
-    }
-
     return (
-        <div className="qr-input-code">
+        <div className="qr-input-code roboto">
             <Grid container>
                 {open ? (
                     <>
                         <Grid item xs={12}>
-                            <div className="qr-input-code input">
+                            <div className="qr-input-code input flex-center">
                                 <TextField
                                     className="qr-input-code input text"
                                     placeholder="Introduce el código"
                                     onChange={handleInput}
                                     fullWidth
-                                    required
-                                    multiline
                                 />
                             </div>
                         </Grid>
                         <Grid item xs={12}>
-                            <div className="qr-input-code title" onClick={openInput}>ENVIAR</div>
+                            <div className="flex-center">
+                                <div className="qr-input-code button" onClick={() => setOpen(!open)}>ENVIAR</div>
+                            </div>
                         </Grid>
                     </>
                 ) : (
                     <>
                         <Grid item xs={12}>
-                            <div className='qr-input-code logo'>
+                            <div className='qr-input-code logo flex-center'>
                                 <img src="mano.png" alt="qr-logo" />
                             </div>
                         </Grid>
                         <Grid item xs={12}>
-                            <div className="qr-input-code title" onClick={openInput}>PULSA PARA HACERLO MANUALMENTE</div>
+                            <div className="flex-center">
+                                <div className="qr-input-code button" onClick={() => setOpen(!open)}>PULSA PARA HACERLO MANUALMENTE</div>
+                            </div>
                         </Grid>
                     </>
                 )}

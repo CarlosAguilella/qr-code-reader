@@ -1,16 +1,13 @@
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #c2ccf6;
+  background-color: var(--qr-reader-blue);
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 
 :root {
   --black: #000000;
+  --white: #ffffff;
+  --yellow: #ffcd29;
+  --header-blue: #3a99ff;
+  --qr-reader-blue: #cacaff;
   --letra: 'Roboto', sans-serif;
 }
 
@@ -29,9 +26,14 @@ code {
   align-items: center;
 }
 
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .flex-space-between {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-

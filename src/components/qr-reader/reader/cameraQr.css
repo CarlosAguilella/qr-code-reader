@@ -1,22 +1,17 @@
 /* Camera QR CSS */
 .camera-qr {
-    min-width: 250px;
     height: auto;
-    text-align: center;
-    margin: auto;    
 }
 
 .camera-qr.result {
     width: 80%;
     height: auto;
-    margin: auto;
 }
 
 .camera-qr.video {
     max-height: 250px;
     max-width: 250px;
-    margin: auto;
-    padding: 1em;
+    padding-left: 9em;
     position: relative;
 }
 
@@ -34,18 +29,16 @@
 
 .camera-qr.logo {
     width: 100%;
-    height: auto;
-    margin: auto;
 }
 
 .camera-qr.button {
     padding: 1em;
     margin-top: 1em;
-    margin: auto;
     width: 250px;
     border: none;
     border-radius: 7.5px;
     cursor: pointer;
-    color: #000000;
-    background-color: #ffcd29;
+    text-align: center;
+    color: var(--black);
+    background-color: var(--yellow);
 }

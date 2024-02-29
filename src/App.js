@@ -1,21 +1,16 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 
 import Header from './components/header/Header';
-import CameraQr from './components/qr-reader/reader/CameraQr';
-import InputCode from './components/qr-reader/input/InputCode';
+import QrReader from './components/qr-reader/QrReader';
 
 import './index.css';
-
-
-
 
 function App() {
   return (
     <div className='app-container'>
       <Header />
       <br />
-      <CameraQr />
-      <InputCode />
+      <QrReader />
     </div>
   );
 }

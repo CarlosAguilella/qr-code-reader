@@ -1,37 +1,31 @@
 /* INPUT CODE */
-.qr-input-code {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    margin: 1em auto;
-    text-align: center;
-}
-
 .qr-input-code.input {
+    margin-top: 2em;
     margin-bottom: 0.5em;
 }
 
 .qr-input-code.input.text {
     border-radius: 7.5px;
     width: 280px;
-    color: #000000;
-    background-color: white;
+    color: var(--black);
+    background-color: var(--white);
 }
 
 .qr-input-code.logo {
     width: 100%;
     height: auto;
-    margin: auto;
+    margin-top: 2em;
     margin-bottom: 0.5em;
 }
 
-.qr-input-code.title {
+.qr-input-code.button {
     padding: 1em;
-    margin: auto;
+    margin-top: 1em;
     width: 250px;
-    cursor: pointer;
     border: none;
     border-radius: 7.5px;
-    color: #000000;
-    background-color: #ffcd29;
+    cursor: pointer;
+    text-align: center;
+    color: var(--black);
+    background-color: var(--yellow);
 }

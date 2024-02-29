@@ -5,10 +5,10 @@ import './header.css';
 
 function Header() {
     return (
-        <div className="header">
-            <Grid container display={'flex'} spacing={2}>
+        <div className="header roboto">
+            <Grid container spacing={2}>
                 <Grid item xs={3} sm={2}>
-                    <div className={`header ${'logo'}`}>
+                    <div className={`header ${'logo'} flex-end`}>
                         <p>🛡️</p>
                     </div>
                 </Grid>
@@ -19,7 +19,7 @@ function Header() {
                 </Grid>
                 
                 <Grid item xs={12}>
-                    <div className={`header ${'subtitle'}`}>
+                    <div className={`header ${'subtitle'} flex-end`}>
                         <p>CONTROLLER &nbsp;&nbsp;👤</p>
                     </div>
                 </Grid>

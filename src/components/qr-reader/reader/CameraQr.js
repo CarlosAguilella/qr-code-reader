@@ -10,7 +10,6 @@ function CameraQr() {
     const [recording, setRecording] = useState(false);
     const delay = 50;
     const camera = { facingMode: 'environment' };
-    const resultFake = 'BEGIN:VCARD VERSION:3.0 N:EJEMPLO;EJEMPLO EJEMPLO EJEMPLO TITLE EJEMPLO ORG EJEMPLO URL EJEMPLO EMAIL;TYPE=INTERNE EJEMPLO TEL;TYPE=voice,work,pref EJEMPLO TEL;TYPE=voice,home,pref EJEMPLO TEL;TYPE=voice,cell,pref EJEMPLO TEL;TYPE=fax,work,pref EJEMPLO TEL;TYPE=fax,home,pref EJEMPLO ADR;;EJEMPLO;EJEMPLO;EJEMPLO;EJEMPLO;EJEMPLO END VCARD';
 
     // open camera and reset result
     const openCamera = () => {
@@ -35,7 +34,7 @@ function CameraQr() {
     const errorQr = (err) => { console.error(err); }
 
     return (
-        <div className='camera-qr'>
+        <div className='camera-qr roboto'>
             <Grid container>
                 {result ? (
                     <Grid item xs={12}>
@@ -47,7 +46,7 @@ function CameraQr() {
                     <>
                         <Grid item xs={12}>
                             {recording ? (
-                                <div className='camera-qr video flex-center'>
+                                <div className='camera-qr video'>
                                     <p>
                                         <QrReader
                                             scanDelay={delay}
@@ -57,21 +56,24 @@ function CameraQr() {
                                         />
                                     </p>
                                 </div>
-
                             ) : (
-                                <div className='camera-qr logo'>
+                                <div className='camera-qr logo flex-center'>
                                     <img src="qr-logo.png" alt="qr-logo" />
                                 </div>
                             )}
                         </Grid>
                         <Grid item xs={12}>
                             {recording ? (
-                                <div className='camera-qr button' onClick={closeCamera}>
-                                    PARAR DE ESCANEAR
+                                <div className='flex-center'>
+                                    <div className='camera-qr button' onClick={() => setRecording(false)}>
+                                        PARAR DE ESCANEAR
+                                    </div>
                                 </div>
                             ) : (
-                                <div className='camera-qr button' onClick={openCamera}>
-                                    PULSA PARA ESCANEAR ENTRADA Y/O CARNET
+                                <div className='flex-center'>
+                                    <div className='camera-qr button' onClick={openCamera}>
+                                        PULSA PARA ESCANEAR ENTRADA Y/O CARNET
+                                    </div>
                                 </div>
                             )}
                         </Grid>
