@@ -31,6 +31,7 @@ const InputCode = () => {
                                     onChange={handleInput}
                                     fullWidth
                                     required
+                                    multiline
                                 />
                             </div>
                         </Grid>
