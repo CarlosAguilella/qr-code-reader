@@ -25,7 +25,7 @@
     border-radius: 7.5px;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1600px) {
     .header.logo {
         font-size: 5em;
     }
