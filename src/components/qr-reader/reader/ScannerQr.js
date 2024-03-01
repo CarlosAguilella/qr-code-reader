@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import QrReader from 'react-qr-reader';
 import { Grid, Button } from '@mui/material';
-import { toast } from 'react-hot-toast';
+import { toast, Toaster } from 'react-hot-toast';
 
 import './scannerQr.css';
 
@@ -84,6 +84,7 @@ const ScannerQr = () => {
                     </>
                 )}
             </Grid>
+            <Toaster />
         </div>
     );
 }
