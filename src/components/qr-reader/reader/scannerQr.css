@@ -1,45 +1,31 @@
 /* CAMERA QR CSS */
-.camera-qr {
-    height: auto;
-}
-
-.camera-qr.result {
-    width: 80%;
-    height: auto;
-}
-
-.camera-qr.video {
+.camera-qr .scanner-video {
     height: 250px;
     width: 250px;
     position: relative;
     margin-bottom: 2em;
 }
 
-.camera-qr.video div {
+.camera-qr .scanner-video div {
     box-shadow: none !important;
-    border: none !important;
-}
-
-.camera-qr.video p {
     color: transparent !important;
     --s: 50px;
-    border: 7.5px solid var(--black);
+    border: 7.5px solid var(--black) !important;
     mask:
         conic-gradient(at var(--s) var(--s), #0000 75%, #000 0) 0 0/calc(100% - var(--s)) calc(100% - var(--s)),
         linear-gradient(#000 0 0) content-box;
 }
 
-.camera-qr.logo {
-    width: 100%;
-}
-
-.camera-qr.button {
+.camera-qr .scanner-button {
     padding: 1em;
-    margin-top: 1em;
-    width: 250px;
+    margin-bottom: 1em;
+    max-width: 250px;
+    min-width: 250px;
     border-radius: 7.5px;
-    cursor: pointer;
-    text-align: center;
     color: var(--black);
     background-color: var(--yellow);
+}
+
+.camera-qr .scanner-button:hover {
+    background-color: var(--yellow-hover);
 }

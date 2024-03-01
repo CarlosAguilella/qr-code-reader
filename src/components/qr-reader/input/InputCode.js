@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, InputBase } from "@mui/material";
+import { Grid, InputBase, Button, InputAdornment } from "@mui/material";
 
 import './inputCode.css';
 
@@ -8,41 +8,49 @@ const InputCode = () => {
     const [inputValue, setInputValue] = useState("");
     const [open, setOpen] = useState(false);
 
-    // this function will handle the input value
-    const handleInput = (e) => {
-        setInputValue(e.target.value);
-    }
-
     return (
-        <div className="qr-input-code roboto">
-            <Grid container>
+        <div className="form-code">
+            <Grid container spacing={2} alignItems={'center'}>
+                {/* Se debe usar siempre la misma estructura, esto ayuda a que el código sea más legible */}
                 {open ? (
                     <>
                         <Grid item xs={12}>
-                            <div className="qr-input-code input flex-center">
+                            <div className="flex-center">
                                 <InputBase
-                                    className="qr-input-code input text"
+                                    type="text"
+                                    value={inputValue}
+                                    onChange={(e) => setInputValue(e.target.value)}
                                     placeholder="Introduce el código"
-                                    onChange={handleInput}
+                                    fullWidth
+                                    className="input-code"
+                                    startAdornment={
+                                        <InputAdornment position="start">
+                                            <i>📥</i>
+                                        </InputAdornment>
+                                    }
                                 />
                             </div>
                         </Grid>
                         <Grid item xs={12}>
                             <div className="flex-center">
-                                <div className="qr-input-code button" onClick={() => setOpen(!open)}>ENVIAR</div>
+                                <Button className="send-button" variant="contained" onClick={() => setOpen(!open)}>
+                                    ENVIAR
+                                </Button>
                             </div>
                         </Grid>
                     </>
                 ) : (
                     <>
                         <Grid item xs={12}>
-                            <div className='qr-input-code logo flex-center'>
+                            <div className='flex-center'>
                                 <img src="mano.png" alt="qr-logo" />
                             </div>
                         </Grid>
                         <Grid item xs={12}>
                             <div className="flex-center">
-                                <div className="qr-input-code button" onClick={() => setOpen(!open)}>PULSA PARA HACERLO MANUALMENTE</div>
+                                <Button className='send-button' variant="contained" onClick={() => setOpen(!open)}>
+                                    PULSA PARA HACERLO MANUALMENTE
+                                </Button>
                             </div>
                         </Grid>
                     </>

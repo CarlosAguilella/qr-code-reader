@@ -1,34 +1,27 @@
 /* INPUT CODE */
-.qr-input-code {
+.form-code {
     background-color: var(--qr-reader-blue);
 }
 
-.qr-input-code.input {
-    margin-top: 1em;
-}
-
-.qr-input-code.input.text {
+.form-code .input-code {
     padding: 1em;
     border-radius: 7.5px;
-    width: 280px;
+    max-width: 250px;
+    min-width: 250px;
     color: var(--black);
     background-color: var(--white);
 }
 
-.qr-input-code.logo {
-    width: 100%;
-    height: auto;
-    margin-top: 2em;
-    margin-bottom: 0.5em;
-}
-
-.qr-input-code.button {
+.form-code .send-button {
     padding: 1em;
-    margin-top: 1em;
-    width: 250px;
+    margin-bottom: 1em;
+    max-width: 250px;
+    min-width: 250px;
     border-radius: 7.5px;
-    cursor: pointer;
-    text-align: center;
     color: var(--black);
     background-color: var(--yellow);
+}
+
+.form-code .send-button:hover {
+    background-color: var(--yellow-hover);
 }

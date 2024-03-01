@@ -3,22 +3,22 @@
     background-color: var(--header-blue);
 }
 
-.header.logo {
+.header .header-logo {
     font-size: 7em;
 }
 
-.header.title {
+.header .header-title {
     font-size: 5em;
     margin-top: 1.5em;
 }
 
-.header.subtitle {
+.header .header-subtitle {
     font-size: 1.8em;
     margin-top: -2.5em;
     margin-right: 2em;
 }
 
-.header.subtitle p {
+.header .header-subtitle p {
     background-color: var(--qr-reader-blue);
     width: 290px;
     padding: 0.5em;
@@ -26,58 +26,58 @@
 }
 
 @media (max-width: 1600px) {
-    .header.logo {
+    .header .header-logo {
         font-size: 5em;
     }
 
-    .header.title {
+    .header .header-title {
         font-size: 3em;
         margin-top: 2em;
     }
 
-    .header.subtitle {
+    .header .header-subtitle {
         font-size: 1.4em;
     }
 
-    .header.subtitle p {
+    .header .header-subtitle p {
         width: 220px;
     }
 }
 
 @media (max-width: 1200px) {
-    .header.logo {
+    .header .header-logo {
         font-size: 4em;
     }
 
-    .header.title {
+    .header .header-title {
         font-size: 2.5em;
         margin-top: 2.25em;
     }
 
-    .header.subtitle {
+    .header .header-subtitle {
         font-size: 1.2em;
     }
 
-    .header.subtitle p {
+    .header .header-subtitle p {
         width: 175px;
     }
 }
 
 @media (max-width: 900px) {
-    .header.logo {
+    .header .header-logo {
         font-size: 3em;
     }
 
-    .header.title {
+    .header .header-title {
         font-size: 1.5em;
         margin-top: 2.5em;
     }
 
-    .header.subtitle {
+    .header .header-subtitle {
         font-size: 0.8em;
     }
 
-    .header.subtitle p {
+    .header .header-subtitle p {
         width: 125px;
     }
 }

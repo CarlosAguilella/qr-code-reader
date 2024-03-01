@@ -1,16 +1,16 @@
 import React from 'react';
 
 import Header from './components/header/Header';
-import QrReader from './components/qr-reader/QrReader';
+import ScannerView from './components/qr-reader/ScannerView';
 
 import './index.css';
 
 function App() {
   return (
-    <div className='app-container'>
+    <div className='app-container montserrat'>
       <Header />
       <br />
-      <QrReader />
+      <ScannerView />
     </div>
   );
 }

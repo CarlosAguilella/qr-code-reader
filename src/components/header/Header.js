@@ -5,21 +5,21 @@ import './header.css';
 
 function Header() {
     return (
-        <div className="header roboto">
-            <Grid container spacing={2}>
+        <div className="header">
+            <Grid container alignItems={'center'} spacing={2}>
                 <Grid item xs={3} sm={2}>
-                    <div className={`header ${'logo'} flex-end`}>
+                    <div className='header-logo flex-end'>
                         <p>🛡️</p>
                     </div>
                 </Grid>
                 <Grid item xs={9} sm={10}>
-                    <div className={`header ${'title'}`}>
+                    <div className='header-title'>
                         <p>AJUNTAMENT DE LES ALQUERIES</p>
                     </div>
                 </Grid>
                 
                 <Grid item xs={12}>
-                    <div className={`header ${'subtitle'} flex-end`}>
+                    <div className='header-subtitle flex-end'>
                         <p>CONTROLLER &nbsp;&nbsp;👤</p>
                     </div>
                 </Grid>

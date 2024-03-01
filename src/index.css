@@ -1,19 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
 body {
   background-color: var(--qr-reader-blue);
   margin: 0;
 }
 
 :root {
-  --black: #000000;
-  --white: #ffffff;
-  --yellow: #ffcd29;
-  --header-blue: #3a99ff;
+  --black:          #000000;
+  --white:          #ffffff;
+  --yellow:         #ffcd29;
+  --yellow-hover:   #cda523;
+  --header-blue:    #3a99ff;
   --qr-reader-blue: #bed5fe;
-  --letra: 'Roboto', sans-serif;
-}
+  --montserrat:       'Montserrat', sans-serif;}
 
-.roboto {
-  font-family: var(--letra) !important;
+.montserrat {
+  font-family: var(--montserrat) !important;
 }
 
 .flex-start {
