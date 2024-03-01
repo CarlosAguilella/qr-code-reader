@@ -1,5 +1,6 @@
 body {
   background-color: var(--qr-reader-blue);
+  margin: 0;
 }
 
 :root {
