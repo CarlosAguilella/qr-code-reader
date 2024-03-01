@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import QrReader from 'react-qr-reader';
 import { Grid, Button } from '@mui/material';
-import { toast, Toaster } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 
 import './scannerQr.css';
 
@@ -11,6 +11,7 @@ const Camera = { facingMode: 'environment' };
 // ¡¡¡NO USAR FUNCTION!!!
 // function ScannerQr() {
     // Esto ya no se usa desde hace años
+
 const ScannerQr = () => {
     // Utils
     const [result, setResult] = useState(null);
@@ -35,6 +36,8 @@ const ScannerQr = () => {
         toast.error(err);
     }
     // tengo que instalar react-hot-toast
+    // y hacerlo funcionar cuando se detecte un error
+    // es una notificación que se muestra en pantalla y desaparece sola
 
     return (
         <div className='camera-qr'>
@@ -84,7 +87,6 @@ const ScannerQr = () => {
                     </>
                 )}
             </Grid>
-            <Toaster />
         </div>
     );
 }
