@@ -16,7 +16,7 @@ const ScannerQr = () => {
     const [result, setResult] = useState(null);
     const [recording, setRecording] = useState(false);
 
-    // open camera and reset result
+    // open camera  // and reset result
     const openCamera = () => {
         setRecording(true);
         // setResult(null);
