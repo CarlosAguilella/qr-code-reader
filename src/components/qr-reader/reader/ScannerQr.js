@@ -5,6 +5,8 @@ import { Toaster, toast } from 'react-hot-toast';
 
 import './scannerQr.css';
 
+// Aquí he agregado las constantes que tenía dentro
+// también he creado la constante de la foto.
 const Delay = 50;
 const Camera = { facingMode: 'environment' };
 const myImage = 'qr-logo.png';
