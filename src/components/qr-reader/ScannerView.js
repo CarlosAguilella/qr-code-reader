@@ -4,8 +4,26 @@ import InputCode from "./input/InputCode";
 const ScannerView = () => {
     return (
         <div className="scanner-view">
-            <ScannerQr />
-            <InputCode />
+            {recording ? (
+                <>
+                    <InputCode />
+                </>
+
+            ) : (
+                <>
+                    {open ? (
+                        <>
+                            <ScannerQr />
+                        </>
+                    ) : (
+                        <>
+                            <ScannerQr />
+                            <InputCode />
+                        </>
+                    )}
+
+                </>
+            )}
         </div>
     );
 }

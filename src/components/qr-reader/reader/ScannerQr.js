@@ -13,13 +13,13 @@ const ScannerQr = () => {
     // Utils
     const [result, setResult] = useState(null);
     const [recording, setRecording] = useState(false);
-
+    
     // open camera  // and reset result
     const openCamera = () => {
-        setRecording(true);
         setResult(null); // es necesario para que se vuelva a escanear, si no, no se vuelve a escanear, dependemos de la lógica de la aplicación
+        setRecording(true);
     };
-
+    
     // if the camera detects a QR code, it will be saved in the state, the camera will be closed and a message will be displayed
     const handleCameraScan = (data) => {
         if (data) {
