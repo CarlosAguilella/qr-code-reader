@@ -9,11 +9,11 @@ const DELAY = 50;
 const CAMERA = { facingMode: 'environment' };
 const MYIMAGE = 'qr-logo.png';
 
-const ScannerQr = ({setTypeView}) => {
+const ScannerQr = ({ setTypeView }) => {
     // Utils
     const [result, setResult] = useState(null);
     const [recording, setRecording] = useState(false);
-    
+
     // open camera and reset result
     const openCamera = () => {
         setResult(null);
@@ -26,7 +26,7 @@ const ScannerQr = ({setTypeView}) => {
         setRecording(false);
         setTypeView('both');
     }
-    
+
     // if the camera detects a QR code, it will be saved in the state
     // the camera will be closed and a message will be displayed
     const handleCameraScan = (data) => {
@@ -45,19 +45,7 @@ const ScannerQr = ({setTypeView}) => {
 
     return (
         <div className='scanner-qr'>
-            {result ? (
-                <>
-                    <div className='flex-center'>
-                        {result}
-                    </div>
-                    <div className='flex-center'>
-                        <Button className='scanner-button' variant="contained" onClick={openCamera}>
-                            PULSA PARA VOLVER A ESCANEAR
-                        </Button>
-                    </div>
-                </>
-
-            ) : recording ? (
+            {recording ? (
                 <>
                     <div className='flex-center'>
                         <div className='scanner-video'>
@@ -72,6 +60,17 @@ const ScannerQr = ({setTypeView}) => {
                     <div className='flex-center'>
                         <Button className='scanner-button' variant="contained" onClick={closeCamera}>
                             PARAR DE ESCANEAR
+                        </Button>
+                    </div>
+                </>
+            ) : result ? (
+                <>
+                    <div className='flex-center'>
+                        {result}
+                    </div>
+                    <div className='flex-center'>
+                        <Button className='scanner-button' variant="contained" onClick={openCamera}>
+                            PULSA PARA VOLVER A ESCANEAR
                         </Button>
                     </div>
                 </>
