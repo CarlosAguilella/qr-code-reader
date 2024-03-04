@@ -12,14 +12,13 @@ const InputCode = ({ setTypeView }) => {
 
     // open form to introduce the code
     const openForm = () => {
-        setInputValue('');
+        setInputValue(null);
         setOpen(true);
         setTypeView('form');
     }
 
     // send the code to the parent component
-    const handleSend = () => {
-        setInputValue('');
+    const closeForm = () => {
         setOpen(false);
         setTypeView('both');
     }
@@ -44,7 +43,7 @@ const InputCode = ({ setTypeView }) => {
                         />
                     </div>
                     <div className="flex-center">
-                        <Button className="send-button" variant="contained" onClick={handleSend}>
+                        <Button className="send-button" variant="contained" onClick={closeForm}>
                             ENVIAR
                         </Button>
                     </div>
@@ -60,7 +59,10 @@ const InputCode = ({ setTypeView }) => {
                         </Button>
                     </div>
                 </>
+
             )}
+
+
         </div>
     );
 }
