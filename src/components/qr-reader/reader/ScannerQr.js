@@ -37,9 +37,17 @@ const ScannerQr = () => {
     return (
         <div className='scanner-qr'>
             {result ? (
-                <div className='flex-center'>
-                    {result}
-                </div>
+                <>
+                    <div className='flex-center'>
+                        {result}
+                    </div>
+                    <div className='flex-center'>
+                        <Button className='scanner-button' variant="contained" onClick={openCamera}>
+                            PULSA PARA ESCANEAR ENTRADA Y/O CARNET
+                        </Button>
+                    </div>
+                </>
+
             ) : recording ? (
                 <>
                     <div className='flex-center'>
