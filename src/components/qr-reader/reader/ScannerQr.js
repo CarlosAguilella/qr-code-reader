@@ -48,7 +48,7 @@ const ScannerQr = () => {
                     */}
                     <div className='flex-center'>
                         <Button className='scanner-button' variant="contained" onClick={openCamera}>
-                            PULSA PARA ESCANEAR ENTRADA Y/O CARNET
+                            PULSA PARA VOLVER A ESCANEAR
                         </Button>
                     </div>
                 </>
