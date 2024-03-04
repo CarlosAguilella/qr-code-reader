@@ -43,12 +43,12 @@ const InputCode = ({ setTypeView }) => {
                         />
                     </div>
                     <div className="flex-center">
-                        <Button className="input-button" variant="contained">
+                        <Button className="input-button">
                             ENVIAR
                         </Button>
                     </div>
                     <div className="flex-center">
-                        <Button className="input-button" variant="contained" onClick={closeForm}>
+                        <Button className="input-button" onClick={closeForm}>
                             CANCELAR
                         </Button>
                     </div>
@@ -59,7 +59,7 @@ const InputCode = ({ setTypeView }) => {
                         <img src={MYIMAGE} alt="MYIMAGE" />
                     </div>
                     <div className="flex-center">
-                        <Button className='input-button' variant="contained" onClick={openForm}>
+                        <Button className='input-button' onClick={openForm}>
                             PULSA PARA HACERLO MANUALMENTE
                         </Button>
                     </div>

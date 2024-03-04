@@ -1,15 +1,16 @@
 /* HEADER CSS */
 .header {
     background-color: var(--header-blue);
+    margin-bottom: 3em;
 }
 
 .header .header-logo {
-    font-size: 7em;
+    font-size: 5em;
 }
 
 .header .header-title {
-    font-size: 5em;
-    margin-top: 1.5em;
+    font-size: 3.5em;
+    margin-top: 1em;
 }
 
 .header .header-subtitle {
@@ -27,7 +28,7 @@
 
 @media (max-width: 1600px) {
     .header .header-logo {
-        font-size: 5em;
+        font-size: 3.5em;
     }
 
     .header .header-title {

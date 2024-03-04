@@ -58,7 +58,7 @@ const ScannerQr = ({ setTypeView }) => {
                         </div>
                     </div>
                     <div className='flex-center'>
-                        <Button className='scanner-button' variant="contained" onClick={closeCamera}>
+                        <Button className='scanner-button' onClick={closeCamera}>
                             PARAR DE ESCANEAR
                         </Button>
                     </div>
@@ -69,7 +69,7 @@ const ScannerQr = ({ setTypeView }) => {
                         {result}
                     </div>
                     <div className='flex-center'>
-                        <Button className='scanner-button' variant="contained" onClick={openCamera}>
+                        <Button className='scanner-button' onClick={openCamera}>
                             PULSA PARA VOLVER A ESCANEAR
                         </Button>
                     </div>
@@ -80,7 +80,7 @@ const ScannerQr = ({ setTypeView }) => {
                         <img className='scanner-image' src={MYIMAGE} alt="MYIMAGE" />
                     </div>
                     <div className='flex-center'>
-                        <Button className='scanner-button' variant="contained" onClick={openCamera}>
+                        <Button className='scanner-button' onClick={openCamera}>
                             PULSA PARA ESCANEAR ENTRADA Y/O CARNET
                         </Button>
                     </div>
