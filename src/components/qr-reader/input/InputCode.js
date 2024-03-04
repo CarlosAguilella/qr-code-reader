@@ -5,10 +5,22 @@ import './inputCode.css';
 
 const MYIMAGE = 'mano.png';
 
-const InputCode = ({ setTypeValue }) => {
+const InputCode = ({ setTypeView }) => {
     // Utils
     const [inputValue, setInputValue] = useState("");
     const [open, setOpen] = useState(false);
+
+    // open form to introduce the code
+    const openForm = () => {
+        setTypeView('form');
+        setOpen(true);
+    }
+
+    // send the code to the parent component
+    const handleSend = () => {
+        setTypeView('both');
+        setOpen(false);
+    }
 
     return (
         <div className="form-code">
@@ -30,7 +42,7 @@ const InputCode = ({ setTypeValue }) => {
                         />
                     </div>
                     <div className="flex-center">
-                        <Button className="send-button" variant="contained" onClick={() => setOpen(!open)}>
+                        <Button className="send-button" variant="contained" onClick={handleSend}>
                             ENVIAR
                         </Button>
                     </div>
@@ -41,7 +53,7 @@ const InputCode = ({ setTypeValue }) => {
                         <img src={MYIMAGE} alt="MYIMAGE" />
                     </div>
                     <div className="flex-center">
-                        <Button className='send-button' variant="contained" onClick={() => setOpen(!open)}>
+                        <Button className='send-button' variant="contained" onClick={openForm}>
                             PULSA PARA HACERLO MANUALMENTE
                         </Button>
                     </div>

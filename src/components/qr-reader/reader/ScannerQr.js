@@ -9,26 +9,31 @@ const DELAY = 50;
 const CAMERA = { facingMode: 'environment' };
 const MYIMAGE = 'qr-logo.png';
 
-const ScannerQr = ({ setTypeView }) => {
+const ScannerQr = ({setTypeView}) => {
     // Utils
     const [result, setResult] = useState(null);
     const [recording, setRecording] = useState(false);
     
-    // open camera  // and reset result
-    const openCamera = (typeView) => {
-        setResult(null); // es necesario para que se vuelva a escanear, si no, no se vuelve a escanear, dependemos de la lógica de la aplicación
-        setTypeView(typeView);
+    // open camera and reset result
+    const openCamera = () => {
+        setResult(null);
         setRecording(true);
+        setTypeView('scan');
     };
+
+    const closeCamera = () => {
+        setRecording(false);
+        setTypeView('both');
+    }
     
-    // if the camera detects a QR code, it will be saved in the state, the camera will be closed and a message will be displayed
-    const handleCameraScan = (data, typeView) => {
+    // if the camera detects a QR code, it will be saved in the state
+    // the camera will be closed and a message will be displayed
+    const handleCameraScan = (data) => {
         if (data) {
             setResult(data);
             setRecording(false);
-            // esta alerta se muestra cuando se lee el código QR y es válido
             toast.success('Código QR leído correctamente.');
-            setTypeView(typeView);
+            setTypeView('both');
         }
     };
 
@@ -45,7 +50,7 @@ const ScannerQr = ({ setTypeView }) => {
                         {result}
                     </div>
                     <div className='flex-center'>
-                        <Button className='scanner-button' variant="contained" onClick={() => openCamera('both')}>
+                        <Button className='scanner-button' variant="contained" onClick={openCamera}>
                             PULSA PARA VOLVER A ESCANEAR
                         </Button>
                     </div>
@@ -57,14 +62,14 @@ const ScannerQr = ({ setTypeView }) => {
                         <div className='scanner-video'>
                             <QrReader
                                 scanDelay={DELAY}
-                                onScan={(data) => handleCameraScan(data, 'both')}
+                                onScan={handleCameraScan}
                                 onError={errorQr}
                                 constraints={CAMERA}
                             />
                         </div>
                     </div>
                     <div className='flex-center'>
-                        <Button className='scanner-button' variant="contained" onClick={() => setRecording(false)}>
+                        <Button className='scanner-button' variant="contained" onClick={closeCamera}>
                             PARAR DE ESCANEAR
                         </Button>
                     </div>
@@ -75,7 +80,7 @@ const ScannerQr = ({ setTypeView }) => {
                         <img className='scanner-image' src={MYIMAGE} alt="MYIMAGE" />
                     </div>
                     <div className='flex-center'>
-                        <Button className='scanner-button' variant="contained" onClick={() => openCamera('scan')}>
+                        <Button className='scanner-button' variant="contained" onClick={openCamera}>
                             PULSA PARA ESCANEAR ENTRADA Y/O CARNET
                         </Button>
                     </div>
