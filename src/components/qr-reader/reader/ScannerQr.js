@@ -20,7 +20,7 @@ const ScannerQr = () => {
         setResult(null);
     };
 
-    // if the camera detects a QR code, it will be saved in the state
+    // if the camera detects a QR code, it will be saved in the state, the camera will be closed and a message will be displayed
     const handleCameraScan = (data) => {
         if (data) {
             setResult(data);
