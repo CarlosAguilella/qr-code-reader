@@ -17,7 +17,7 @@ const ScannerQr = () => {
     // open camera  // and reset result
     const openCamera = () => {
         setRecording(true);
-        setResult(null); // es necesario para que se vuelva a escanear, si no, no se vuelve a escanear
+        setResult(null); // es necesario para que se vuelva a escanear, si no, no se vuelve a escanear, dependemos de la lógica de la aplicación
     };
 
     // if the camera detects a QR code, it will be saved in the state, the camera will be closed and a message will be displayed
@@ -43,8 +43,8 @@ const ScannerQr = () => {
                         {result}
                     </div>
                     {/* 
-                        he puesto un botón para que se pueda volver a escanear
-                        si no se pone, no se vuelve a escanear
+                        He puesto un botón para que se pueda volver a escanear, si no se pone, no se vuelve a escanear.
+                        Esto dependerá de la lógica de la aplicación, si se quiere volver a escanear o no
                     */}
                     <div className='flex-center'>
                         <Button className='scanner-button' variant="contained" onClick={openCamera}>
