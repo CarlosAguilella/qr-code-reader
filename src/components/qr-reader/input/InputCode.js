@@ -12,14 +12,16 @@ const InputCode = ({ setTypeView }) => {
 
     // open form to introduce the code
     const openForm = () => {
-        setTypeView('form');
+        setInputValue('');
         setOpen(true);
+        setTypeView('form');
     }
 
     // send the code to the parent component
     const handleSend = () => {
-        setTypeView('both');
+        setInputValue('');
         setOpen(false);
+        setTypeView('both');
     }
 
     return (
