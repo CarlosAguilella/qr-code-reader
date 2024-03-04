@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import QrReader from 'react-qr-reader';
 import { Grid, Button } from '@mui/material';
-import { toast } from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
 
 import './scannerQr.css';
 
 const Delay = 50;
 const Camera = { facingMode: 'environment' };
+const myImage = 'qr-logo.png';
 
 // ¡¡¡NO USAR FUNCTION!!!
 // function ScannerQr() {
@@ -32,12 +33,12 @@ const ScannerQr = () => {
     };
 
     // if there is an error, it will be printed in the console
-    const errorQr = (err) => {
-        toast.error(err);
+    const errorQr = () => {
+        toast.error('Ha ocurrido un error al intentar leer el código QR.');
     }
-    // tengo que instalar react-hot-toast
-    // y hacerlo funcionar cuando se detecte un error
-    // es una notificación que se muestra en pantalla y desaparece sola
+    // instalar react-hot-toast
+    // hacerlo funcionar cuando se detecte un error
+    // esto es una notificación que se muestra en pantalla y desaparece sola
 
     return (
         <div className='camera-qr'>
@@ -74,7 +75,7 @@ const ScannerQr = () => {
                     <>
                         <Grid item xs={12}>
                             <div className='flex-center'>
-                                <img src="qr-logo.png" alt="qr-logo" />
+                                <img src={myImage} alt="myImage" />
                             </div>
                         </Grid>
                         <Grid item xs={12}>
@@ -87,6 +88,7 @@ const ScannerQr = () => {
                     </>
                 )}
             </Grid>
+            <Toaster />
         </div>
     );
 }

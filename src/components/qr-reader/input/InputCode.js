@@ -3,6 +3,8 @@ import { Grid, InputBase, Button, InputAdornment } from "@mui/material";
 
 import './inputCode.css';
 
+const myImage = 'mano.png';
+
 const InputCode = () => {
     // Utils
     const [inputValue, setInputValue] = useState("");
@@ -43,7 +45,7 @@ const InputCode = () => {
                     <>
                         <Grid item xs={12}>
                             <div className='flex-center'>
-                                <img src="mano.png" alt="qr-logo" />
+                                <img src={myImage} alt="myImage" />
                             </div>
                         </Grid>
                         <Grid item xs={12}>
