@@ -1,12 +1,12 @@
 /* CAMERA QR CSS */
-.camera-qr .scanner-video {
+.scanner-qr .scanner-video {
     height: 250px;
     width: 250px;
     position: relative;
     margin-bottom: 2em;
 }
 
-.camera-qr .scanner-video div {
+.scanner-qr .scanner-video div {
     box-shadow: none !important;
     color: transparent !important;
     --s: 50px;
@@ -16,7 +16,7 @@
         linear-gradient(#000 0 0) content-box;
 }
 
-.camera-qr .scanner-button {
+.scanner-qr .scanner-button {
     padding: 1em;
     margin-bottom: 1em;
     max-width: 250px;
@@ -26,6 +26,6 @@
     background-color: var(--yellow);
 }
 
-.camera-qr .scanner-button:hover {
+.scanner-qr .scanner-button:hover {
     background-color: var(--yellow-hover);
 }
