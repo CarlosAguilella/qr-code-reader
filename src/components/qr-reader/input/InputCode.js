@@ -5,7 +5,7 @@ import './inputCode.css';
 
 const MYIMAGE = 'mano.png';
 
-const InputCode = ({setTypeView}) => {
+const InputCode = ({ setTypeView }) => {
     // Utils
     const [inputValue, setInputValue] = useState(null);
     const [open, setOpen] = useState(false);
@@ -43,8 +43,13 @@ const InputCode = ({setTypeView}) => {
                         />
                     </div>
                     <div className="flex-center">
-                        <Button className="send-button" variant="contained" onClick={closeForm}>
+                        <Button className="input-button" variant="contained">
                             ENVIAR
+                        </Button>
+                    </div>
+                    <div className="flex-center">
+                        <Button className="input-button" variant="contained" onClick={closeForm}>
+                            CANCELAR
                         </Button>
                     </div>
                 </>
@@ -54,7 +59,7 @@ const InputCode = ({setTypeView}) => {
                         <img src={MYIMAGE} alt="MYIMAGE" />
                     </div>
                     <div className="flex-center">
-                        <Button className='send-button' variant="contained" onClick={openForm}>
+                        <Button className='input-button' variant="contained" onClick={openForm}>
                             PULSA PARA HACERLO MANUALMENTE
                         </Button>
                     </div>

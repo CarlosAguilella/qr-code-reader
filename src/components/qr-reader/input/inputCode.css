@@ -4,6 +4,7 @@
 }
 
 .form-code .input-code {
+    margin-bottom: 1em;
     padding: 1em;
     border-radius: 7.5px;
     max-width: 250px;
@@ -12,7 +13,7 @@
     background-color: var(--white);
 }
 
-.form-code .send-button {
+.form-code .input-button {
     padding: 1em;
     margin-top: 1em;
     margin-bottom: 1em;
@@ -23,6 +24,6 @@
     background-color: var(--yellow);
 }
 
-.form-code .send-button:hover {
+.form-code .input-button:hover {
     background-color: var(--yellow-hover);
 }
