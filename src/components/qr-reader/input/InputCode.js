@@ -7,7 +7,7 @@ const MYIMAGE = 'mano.png';
 
 const InputCode = ({ setTypeView }) => {
     // Utils
-    const [inputValue, setInputValue] = useState("");
+    const [inputValue, setInputValue] = useState(null);
     const [open, setOpen] = useState(false);
 
     // open form to introduce the code
