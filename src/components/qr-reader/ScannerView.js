@@ -11,6 +11,3 @@ const ScannerView = () => {
 }
 
 export default ScannerView;
-
-// ScannerView, nombre nuevo
-// añadir className a div

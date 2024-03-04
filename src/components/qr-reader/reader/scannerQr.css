@@ -16,6 +16,10 @@
         linear-gradient(#000 0 0) content-box;
 }
 
+.scanner-qr .scanner-image {
+    margin-bottom: 1em;
+}
+
 .scanner-qr .scanner-button {
     padding: 1em;
     margin-bottom: 1em;
