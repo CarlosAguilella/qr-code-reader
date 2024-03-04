@@ -17,7 +17,7 @@ const ScannerQr = () => {
     // open camera  // and reset result
     const openCamera = () => {
         setRecording(true);
-        // setResult(null);
+        setResult(null);
     };
 
     // if the camera detects a QR code, it will be saved in the state
