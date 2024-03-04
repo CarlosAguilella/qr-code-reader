@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { InputBase, Button, InputAdornment } from "@mui/material";
-import { Toaster, toast } from "react-hot-toast";
 
 import './inputCode.css';
 
@@ -22,7 +21,6 @@ const InputCode = ({setTypeView}) => {
     const closeForm = () => {
         setOpen(false);
         setTypeView('both');
-        toast.success('Código introducido correctamente.');
     }
 
     return (
@@ -62,7 +60,6 @@ const InputCode = ({setTypeView}) => {
                     </div>
                 </>
             )}
-            <Toaster />
         </div>
     );
 }
