@@ -8,26 +8,23 @@ const ScannerView = () => {
 
     return (
         <div className="scanner-view">
-            {typeView === 'form' ? (
-                <>
-                    <InputCode setTypeView={setTypeView} />
-                </>
-
-            ) : (
-                <>
-                    {typeView === 'scan' ? (
+            {
+                typeView === 'scan' ? (
+                    <>
+                        <ScannerQr setTypeView={setTypeView} />
+                    </>
+                ) : (
+                    typeView === 'form' ? (
                         <>
-                            <ScannerQr setTypeView={setTypeView} />
+                            <InputCode setTypeView={setTypeView} />
                         </>
                     ) : (
                         <>
                             <ScannerQr setTypeView={setTypeView} />
                             <InputCode setTypeView={setTypeView} />
                         </>
-                    )}
-
-                </>
-            )}
+                    )
+                )}
         </div>
     );
 }

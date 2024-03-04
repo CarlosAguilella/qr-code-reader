@@ -21,6 +21,7 @@ const ScannerQr = ({setTypeView}) => {
         setTypeView('scan');
     };
 
+    // close camera and reset result
     const closeCamera = () => {
         setRecording(false);
         setTypeView('both');

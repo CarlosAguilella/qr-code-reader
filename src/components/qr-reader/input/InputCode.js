@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { InputBase, Button, InputAdornment } from "@mui/material";
+import { Toaster, toast } from "react-hot-toast";
 
 import './inputCode.css';
 
 const MYIMAGE = 'mano.png';
 
-const InputCode = ({ setTypeView }) => {
+const InputCode = ({setTypeView}) => {
     // Utils
     const [inputValue, setInputValue] = useState(null);
     const [open, setOpen] = useState(false);
@@ -17,10 +18,11 @@ const InputCode = ({ setTypeView }) => {
         setTypeView('form');
     }
 
-    // send the code to the parent component
+    // close form
     const closeForm = () => {
         setOpen(false);
         setTypeView('both');
+        toast.success('Código introducido correctamente.');
     }
 
     return (
@@ -59,10 +61,8 @@ const InputCode = ({ setTypeView }) => {
                         </Button>
                     </div>
                 </>
-
             )}
-
-
+            <Toaster />
         </div>
     );
 }
