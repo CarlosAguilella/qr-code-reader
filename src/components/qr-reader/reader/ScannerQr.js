@@ -17,7 +17,7 @@ const ScannerQr = () => {
     // open camera  // and reset result
     const openCamera = () => {
         setRecording(true);
-        setResult(null);
+        setResult(null); // es necesario para que se vuelva a escanear, si no, no se vuelve a escanear
     };
 
     // if the camera detects a QR code, it will be saved in the state, the camera will be closed and a message will be displayed
@@ -25,6 +25,7 @@ const ScannerQr = () => {
         if (data) {
             setResult(data);
             setRecording(false);
+            // esta alerta se muestra cuando se lee el código QR y es válido
             toast.success('Código QR leído correctamente.');
         }
     };
@@ -41,6 +42,10 @@ const ScannerQr = () => {
                     <div className='flex-center'>
                         {result}
                     </div>
+                    {/* 
+                        he puesto un botón para que se pueda volver a escanear
+                        si no se pone, no se vuelve a escanear
+                    */}
                     <div className='flex-center'>
                         <Button className='scanner-button' variant="contained" onClick={openCamera}>
                             PULSA PARA ESCANEAR ENTRADA Y/O CARNET
