@@ -5,7 +5,7 @@ import './inputCode.css';
 
 const MYIMAGE = 'mano.png';
 
-const InputCode = () => {
+const InputCode = ({ setTypeValue }) => {
     // Utils
     const [inputValue, setInputValue] = useState("");
     const [open, setOpen] = useState(false);

@@ -1,24 +1,28 @@
 import ScannerQr from "./reader/ScannerQr";
 import InputCode from "./input/InputCode";
+import { useState } from "react";
 
 const ScannerView = () => {
+    // Utils
+    const [typeView, setTypeView] = useState('both');
+
     return (
         <div className="scanner-view">
-            {recording ? (
+            {typeView === 'form' ? (
                 <>
-                    <InputCode />
+                    <InputCode setTypeView={setTypeView} />
                 </>
 
             ) : (
                 <>
-                    {open ? (
+                    {typeView === 'scan' ? (
                         <>
-                            <ScannerQr />
+                            <ScannerQr setTypeView={setTypeView} />
                         </>
                     ) : (
                         <>
-                            <ScannerQr />
-                            <InputCode />
+                            <ScannerQr setTypeView={setTypeView} />
+                            <InputCode setTypeView={setTypeView} />
                         </>
                     )}
 
