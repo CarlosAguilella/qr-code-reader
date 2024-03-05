@@ -73,7 +73,7 @@ const ScannerQr = ({ setTypeView }) => {
                     </div>
                     <div className='flex-center'>
                         <Button className='scanner-button' onClick={openCamera}>
-                            PULSA PARA VOLVER A ESCANEAR
+                            PULSA PARA ESCANEAR
                         </Button>
                     </div>
                 </>
