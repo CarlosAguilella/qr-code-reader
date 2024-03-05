@@ -1,8 +1,9 @@
 /* CAMERA QR CSS */
 .scanner-qr .scanner-video {
-    height: 250px;
-    width: 250px;
-    position: relative;
+    max-height: 250px;
+    min-height: 250px;
+    max-width: 250px;
+    min-width: 250px;
     margin-bottom: 2em;
 }
 
@@ -29,4 +30,16 @@
 
 .scanner-qr .scanner-button:hover {
     background-color: var(--yellow-hover);
+}
+
+.scanner-qr .scanner-result {
+    white-space: pre;
+    margin: 1em;
+    padding: 1em 0;
+    border-radius: 7.5px;
+    max-width: 250px;
+    min-width: 250px;
+    text-align: center;
+    color: var(--black);
+    background-color: var(--header-blue);
 }

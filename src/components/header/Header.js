@@ -1,28 +1,22 @@
 import React from "react";
-import { Grid } from "@mui/material";
 
 import './header.css';
 
 function Header() {
     return (
         <div className="header">
-            <Grid container alignItems={'center'} spacing={2}>
-                <Grid item xs={3}>
-                    <div className='header-logo flex-end'>
-                        <p>🛡️</p>
-                    </div>
-                </Grid>
-                <Grid item xs={9}>
-                    <div className='header-title'>
-                        <p>AJUNTAMENT DE LES ALQUERIES</p>
-                    </div>
-                </Grid>                
-                <Grid item xs={12}>
-                    <div className='header-subtitle flex-end'>
-                        <p>CONTROLLER &nbsp;&nbsp;👤</p>
-                    </div>
-                </Grid>
-            </Grid>
+            <div className='header-title flex-center'>
+                <p className="flex-space-between">
+                    <span>🛡️</span>
+                    <span>AJUNTAMENT DE LES ALQUERIES</span>
+                </p>
+            </div>
+            <div className='header-subtitle flex-end'>
+                <p className="flex-space-between">
+                    <span>CONTROLLER</span>
+                    <span>👤</span>
+                </p>
+            </div>
         </div>
     );
 }

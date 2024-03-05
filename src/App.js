@@ -9,7 +9,6 @@ function App() {
   return (
     <div className='app-container montserrat'>
       <Header />
-      <br />
       <ScannerView />
     </div>
   );

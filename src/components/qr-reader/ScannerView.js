@@ -1,15 +1,18 @@
-import ScannerQr from "./reader/ScannerQr";
-import InputCode from "./input/FormCode";
 import { useState } from "react";
 import { Grid } from "@mui/material";
+
+import InputCode from "./input/FormCode";
+import ScannerQr from "./reader/ScannerQr";
 
 const ScannerView = () => {
     // Utils
     const [typeView, setTypeView] = useState('both');
+//    const [typeView, setTypeView] = useState('scan');
+
 
     return (
         <div className="scanner-view">
-            <Grid container alignItems={'center'} spacing={2}>
+            <Grid container alignItems='center' spacing={2}>
                 {typeView === 'both' ? (
                     <>
                         <Grid item xs={12} sm={6}>
@@ -21,10 +24,10 @@ const ScannerView = () => {
                     </>
                 ) : (
                     <>
-                        <Grid item xs={12} sm={(typeView === 'scan' ? 12 : 6)}>
+                        <Grid item xs={12}>
                             {(typeView === 'scan') && <ScannerQr setTypeView={setTypeView} />}
                         </Grid>
-                        <Grid item xs={12} sm={(typeView === 'form' ? 12 : 6)}>
+                        <Grid item xs={12}>
                             {(typeView === 'form') && <InputCode setTypeView={setTypeView} />}
                         </Grid>
                     </>

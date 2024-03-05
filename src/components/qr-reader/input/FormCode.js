@@ -7,9 +7,11 @@ const MYIMAGE = 'mano.png';
 
 const InputCode = ({ setTypeView }) => {
     // Utils
-    const [inputValue, setInputValue] = useState(null);
     const [open, setOpen] = useState(false);
-
+    
+    // Values
+    const [inputValue, setInputValue] = useState(null);
+    
     // open form to introduce the code
     const openForm = () => {
         setInputValue(null);

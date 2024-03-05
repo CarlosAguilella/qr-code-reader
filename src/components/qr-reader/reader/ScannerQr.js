@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import QrReader from 'react-qr-reader';
 import { Button } from '@mui/material';
 import { Toaster, toast } from 'react-hot-toast';
+import QrReader from 'react-qr-reader';
 
 import './scannerQr.css';
 
 const DELAY = 50;
 const CAMERA = { facingMode: 'environment' };
 const MYIMAGE = 'qr-logo.png';
+const RESULT2 = 'Nombre: Carlos\nApellido: Aguilella \nDNI: 12345678A\nFecha: 05/03/2024\nHora: 13:50\nCantidad: 1\nTipo: Entrada';
 
 const ScannerQr = ({ setTypeView }) => {
     // Utils
@@ -33,14 +34,14 @@ const ScannerQr = ({ setTypeView }) => {
         if (data) {
             setResult(data);
             setRecording(false);
-            toast.success('Código QR leído correctamente.');
             setTypeView('both');
+            toast.success('Código QR leído correctamente.');
         }
     };
 
     // if there is an error, it will be printed in the console
     const errorQr = () => {
-        console.error('Ha ocurrido un error al intentar leer el código QR.');
+        toast.error('Ha ocurrido un error al intentar leer el código QR.');
     }
 
     return (
@@ -63,10 +64,25 @@ const ScannerQr = ({ setTypeView }) => {
                         </Button>
                     </div>
                 </>
+            ) : !RESULT2 ? (
+                <>
+                    <div className='flex-center'>
+                        <div className='scanner-result'>
+                            {RESULT2}
+                        </div>
+                    </div>
+                    <div className='flex-center'>
+                        <Button className='scanner-button' onClick={openCamera}>
+                            PULSA PARA VOLVER A ESCANEAR
+                        </Button>
+                    </div>
+                </>
             ) : result ? (
                 <>
                     <div className='flex-center'>
-                        {result}
+                        <div className='scanner-result'>
+                            {result}
+                        </div>
                     </div>
                     <div className='flex-center'>
                         <Button className='scanner-button' onClick={openCamera}>
@@ -77,7 +93,7 @@ const ScannerQr = ({ setTypeView }) => {
             ) : (
                 <>
                     <div className='flex-center'>
-                        <img className='scanner-image' src={MYIMAGE} alt="MYIMAGE" />
+                        <img src={MYIMAGE} alt="MYIMAGE" />
                     </div>
                     <div className='flex-center'>
                         <Button className='scanner-button' onClick={openCamera}>
