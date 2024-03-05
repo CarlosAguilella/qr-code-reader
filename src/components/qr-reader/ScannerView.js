@@ -6,9 +6,7 @@ import ScannerQr from "./reader/ScannerQr";
 
 const ScannerView = () => {
     // Utils
-//    const [typeView, setTypeView] = useState('both');
-    const [typeView, setTypeView] = useState('scan');
-
+    const [typeView, setTypeView] = useState('both');
 
     return (
         <div className="scanner-view">
