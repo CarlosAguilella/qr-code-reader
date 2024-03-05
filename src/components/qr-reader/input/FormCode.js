@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { InputBase, Button, InputAdornment } from "@mui/material";
 
-import './inputCode.css';
+import './formCode.css';
 
 const MYIMAGE = 'mano.png';
 

@@ -1,5 +1,5 @@
 import ScannerQr from "./reader/ScannerQr";
-import InputCode from "./input/InputCode";
+import InputCode from "./input/FormCode";
 import { useState } from "react";
 import { Grid } from "@mui/material";
 
