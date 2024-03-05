@@ -64,7 +64,7 @@ const ScannerQr = ({ setTypeView }) => {
                         </Button>
                     </div>
                 </>
-            ) : !RESULT2 ? (
+            ) : RESULT2 ? (
                 <>
                     <div className='flex-center'>
                         <div className='scanner-result'>
