@@ -20,7 +20,8 @@
 
 .header .header-subtitle p {
     background-color: var(--qr-reader-blue);
-    width: 290px;
+    max-width: 290px;
+    min-width: 290px;
     padding: 0.5em;
     border-radius: 7.5px;
 }
@@ -39,7 +40,8 @@
     }
 
     .header .header-subtitle p {
-        width: 220px;
+        max-width: 220px;
+        min-width: 220px;
     }
 }
 
@@ -57,7 +59,8 @@
     }
 
     .header .header-subtitle p {
-        width: 175px;
+        max-width: 175px;
+        min-width: 175px;
     }
 }
 
@@ -75,6 +78,7 @@
     }
 
     .header .header-subtitle p {
-        width: 125px;
+        max-width: 125px;
+        min-width: 125px;
     }
 }

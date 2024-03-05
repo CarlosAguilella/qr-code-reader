@@ -64,7 +64,7 @@ const ScannerQr = ({ setTypeView }) => {
                         </Button>
                     </div>
                     <div className='flex-center'>
-                        <p>Resultado de prueba:</p>
+                        <p>Resultado de prueba (será eliminado):</p>
                     </div>
                     <div className='flex-center'>
                         <div className='scanner-result'>
