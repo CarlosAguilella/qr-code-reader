@@ -1,6 +1,6 @@
 /* CAMERA QR CSS */
 .scanner-qr .scanner-video {
-    /* Usamos max/min porque así obligas a poner x tamaño, si usas simplemente height/width si lo requiere el navegador, se lo saltará */
+    /* Usamos max/min porque así fuerzas x tamaño, si usas simplemente height/width si lo requiere el navegador, se lo saltará */
     max-height: 250px;
     min-height: 250px;
     max-width: 250px;
