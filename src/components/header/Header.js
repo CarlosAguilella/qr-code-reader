@@ -16,8 +16,7 @@ function Header() {
                     <div className='header-title'>
                         <p>AJUNTAMENT DE LES ALQUERIES</p>
                     </div>
-                </Grid>
-                
+                </Grid>                
                 <Grid item xs={12}>
                     <div className='header-subtitle flex-end'>
                         <p>CONTROLLER &nbsp;&nbsp;👤</p>
