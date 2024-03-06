@@ -83,7 +83,7 @@ const ScannerQr = ({ setTypeView }) => {
                 <>
                     <div className='flex-center'>
                         <div className='scanner-result'>
-                            {result === RESULT2 ? {result} : 'El código QR leído no es válido.'}
+                            {result === RESULT2 ? 'TRUE' : 'FALSE'}
                         </div>
                     </div>
                     <div className='flex-center'>
