@@ -8,7 +8,7 @@ import './scannerQr.css';
 const DELAY = 50;
 const CAMERA = { facingMode: 'environment' };
 const MYIMAGE = 'qr-logo.png';
-const RESULT2 = 'true';
+const RESULT2 = ['true', 'perro', 'gato'];
 
 const ScannerQr = ({ setTypeView }) => {
     // Utils
