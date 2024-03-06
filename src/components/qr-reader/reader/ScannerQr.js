@@ -12,8 +12,10 @@ const RESULT2 = 'Nombre: Carlos \nApellido: Aguilella \nDNI: 12345678A \nCorreo:
 
 const ScannerQr = ({ setTypeView }) => {
     // Utils
-    const [result, setResult] = useState(null);
     const [recording, setRecording] = useState(false);
+
+    // Values
+    const [result, setResult] = useState(null);
 
     // open camera and reset result
     const openCamera = () => {

@@ -81,4 +81,8 @@
         padding-right: 0.5em;
         padding-left: 0.5em;
     }
+
+    .header .header-subtitle {
+        margin-top: 0.5em;
+    }
 }
