@@ -63,7 +63,7 @@ const ScannerQr = ({ setTypeView }) => {
                             PARAR DE ESCANEAR
                         </Button>
                     </div>
-                    <div className='flex-center'>
+                    {/* <div className='flex-center'>
                         <p>Resultado de prueba (será eliminado):</p>
                     </div>
                     <div className='flex-center'>
@@ -75,7 +75,7 @@ const ScannerQr = ({ setTypeView }) => {
                         <Button className='scanner-button' onClick={closeCamera}>
                             PULSA SALIR DEL RESULTADO DE PRUEBA
                         </Button>
-                    </div>
+                    </div> */}
                 </>
             ) : result ? (
                 <>
