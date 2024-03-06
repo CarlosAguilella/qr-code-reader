@@ -88,7 +88,7 @@ const ScannerQr = ({ setTypeView }) => {
                     </div> */}
                     <div className='flex-center'>
                         <div className='scanner-result'>
-                            {VALORES_CORRECTOS.includes(result) ? `${result} se encuentra en el Array con los valores correctos` : `${result} NO se encuentra en el Array con los valores correctos`}
+                            {VALORES_CORRECTOS.includes(result) ? `(${result}) se encuentra en el Array con los valores correctos` : `(${result}) NO se encuentra en el Array con los valores correctos`}
                         </div>
                     </div>
                     <div className='flex-center'>
