@@ -8,7 +8,7 @@ import './scannerQr.css';
 const DELAY = 50;
 const CAMERA = { facingMode: 'environment' };
 const MYIMAGE = 'qr-logo.png';
-const RESULT2 = 'Nombre: Carlos \nApellido: Aguilella \nDNI: 12345678A \nCorreo: ejemplo@ejemplo \nFecha: 05/03/2024 \nHora: 13:50\nCantidad: 1\nTipo: Entrada \nEvento: Clase de Yoga \nPrecio: 10€';
+const RESULT2 = 'true';
 
 const ScannerQr = ({ setTypeView }) => {
     // Utils
@@ -83,7 +83,7 @@ const ScannerQr = ({ setTypeView }) => {
                 <>
                     <div className='flex-center'>
                         <div className='scanner-result'>
-                            {result}
+                            {result === RESULT2 ? {result} : 'El código QR leído no es válido.'}
                         </div>
                     </div>
                     <div className='flex-center'>
