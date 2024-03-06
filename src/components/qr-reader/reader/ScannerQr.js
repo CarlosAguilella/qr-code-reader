@@ -8,7 +8,7 @@ import './scannerQr.css';
 const DELAY = 50;
 const CAMERA = { facingMode: 'environment' };
 const MYIMAGE = 'qr-logo.png';
-const RESULT2 = ['true', 'perro', 'gato', 'TENGO UN COCHE ROJO'];
+const VALORES_CORRECTOS = ['true', 'perro', 'gato', 'TENGO UN COCHE ROJO'];
 
 const ScannerQr = ({ setTypeView }) => {
     // Utils
@@ -88,7 +88,7 @@ const ScannerQr = ({ setTypeView }) => {
                     </div> */}
                     <div className='flex-center'>
                         <div className='scanner-result'>
-                            {RESULT2.includes(result) ? 'Result se encuentra en el array' : 'No se encuentra en el array'}
+                            {VALORES_CORRECTOS.includes(result) ? `${result} se encuentra en el Array con los valores correctos` : `${result} NO se encuentra en el Array con los valores correctos`}
                         </div>
                     </div>
                     <div className='flex-center'>
