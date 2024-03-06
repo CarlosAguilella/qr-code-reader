@@ -7,7 +7,7 @@ function Header() {
         <div className="header">
             <div className='header-title flex-center'>
                 <p className="flex-space-between">
-                    <span>🛡️</span>
+                    <span className="header-logo">🛡️</span>
                     <span>AJUNTAMENT DE LES ALQUERIES</span>
                 </p>
             </div>

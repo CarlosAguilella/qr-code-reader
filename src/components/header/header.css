@@ -4,12 +4,13 @@
     margin-bottom: 3em;
 }
 
-.header .header-logo {
-    font-size: 5em;
-}
-
 .header .header-title {
     font-size: 3.5em;
+}
+
+.header .header-logo {
+    font-size: 1.5em;
+    padding-right: 0.5em;
 }
 
 .header .header-subtitle {
@@ -27,14 +28,10 @@
 }
 
 @media (max-width: 1600px) {
-    .header .header-logo {
-        font-size: 3.5em;
-    }
-
     .header .header-title {
         font-size: 3em;
     }
-
+    
     .header .header-subtitle {
         font-size: 1.4em;
     }
@@ -46,10 +43,6 @@
 }
 
 @media (max-width: 1200px) {
-    .header .header-logo {
-        font-size: 4em;
-    }
-
     .header .header-title {
         font-size: 2em;
     }
@@ -65,10 +58,6 @@
 }
 
 @media (max-width: 900px) {
-    .header .header-logo {
-        font-size: 3em;
-    }
-
     .header .header-title {
         font-size: 1.5em;
     }
@@ -80,5 +69,16 @@
     .header .header-subtitle p {
         max-width: 125px;
         min-width: 125px;
+    }
+}
+
+@media (max-width: 600px) {
+    .header .header-title {
+        font-size: 1.2em;
+    }
+
+    .header .header-logo {
+        padding-right: 0.5em;
+        padding-left: 0.5em;
     }
 }
