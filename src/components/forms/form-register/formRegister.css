@@ -1,0 +1,75 @@
+.form-register {
+    margin: 2em;
+    padding: 2em;
+    border-radius: 7.5px;
+    background-color: var(--white);
+    box-shadow: 0 0 5px 0 var(--black);
+}
+
+.form-register .form-title {
+    margin-bottom: 1.5em;
+    padding: 0.5em;
+    border-radius: 7.5px;
+    background-color: var(--green-input);
+    border: 1px solid var(--black);
+}
+
+.form-register .form-nombre {
+    margin: 0 20px 20px 20px;
+    background-color: var(--green-form);
+}
+
+.form-register .form-apellido {
+    margin: 0 20px 20px 20px;
+    background-color: var(--green-form);
+}
+
+.form-register .form-fecha-nacimiento {
+    margin: 0 20px 20px 20px;
+    background-color: var(--green-form);
+}
+
+.form-register .form-NIF-NIE {
+    margin: 0 20px 20px 20px;
+    background-color: var(--green-form);
+}
+
+.form-register .form-telefono {
+    margin: 0 20px 20px 20px;
+    background-color: var(--green-form);
+}
+
+.form-register .form-domicilio {
+    margin: 0 20px 20px 20px;
+    background-color: var(--green-form);
+}
+
+.form-register .form-localidad {
+    margin: 0 20px 20px 20px;    
+    background-color: var(--green-form);
+}
+
+.form-register .form-codigo-postal {
+    margin: 0 20px 20px 20px;
+    background-color: var(--green-form);
+}
+
+.form-register .form-provincia {
+    margin: 0 20px 20px 20px;
+    background-color: var(--green-form);
+}
+
+.form-register .form-button {
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    max-width: 250px;
+    min-width: 250px;
+    border-radius: 7.5px;
+    color: var(--black);
+    background-color: var(--green-input);
+}
+
+.form-register .form-button:hover {
+    background-color: var(--green-form);
+}

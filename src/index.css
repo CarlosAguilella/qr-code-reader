@@ -10,6 +10,8 @@ body {
   --white:          #ffffff;
   --yellow:         #ffcd29;
   --yellow-hover:   #cda523;
+  --green-form:     #aff4c6;
+  --green-input:    #14ae5c;
   --header-blue:    #3a99ff;
   --qr-reader-blue: #bed5fe;
   --montserrat:       'Montserrat', sans-serif;}
