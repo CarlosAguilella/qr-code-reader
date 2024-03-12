@@ -69,6 +69,7 @@ const FormRegister = () => {
                     placeholder='Nombre'
                     fullWidth
                     required
+                    className="form-input"
                     value={formValues.nombre}
                     onChange={handleChangeInput}
                     style={{ marginRight: '0.5em' }}
@@ -83,6 +84,7 @@ const FormRegister = () => {
                     placeholder='Apellido'
                     fullWidth
                     required
+                    className="form-input"
                     value={formValues.apellido}
                     onChange={handleChangeInput}
                     style={{ marginRight: '0.5em' }}
@@ -97,6 +99,7 @@ const FormRegister = () => {
                     placeholder='Fecha de nacimiento'
                     fullWidth
                     required
+                    className="form-input"
                     value={formValues.fecha_nacimiento}
                     onChange={handleChangeInput}
                     style={{ marginRight: '0.5em' }}
@@ -111,6 +114,7 @@ const FormRegister = () => {
                     placeholder='NIF/NIE(numérico)'
                     fullWidth
                     required
+                    className="form-input"
                     value={formValues.NIF_NIE}
                     onChange={handleChangeInput}
                     style={{ marginRight: '0.5em' }}
@@ -125,6 +129,7 @@ const FormRegister = () => {
                     placeholder='Teléfono(numérico)'
                     fullWidth
                     required
+                    className="form-input"
                     value={formValues.telefono}
                     onChange={handleChangeInput}
                     style={{ marginRight: '0.5em' }}
@@ -139,6 +144,7 @@ const FormRegister = () => {
                     placeholder='Domicilio'
                     fullWidth
                     required
+                    className="form-input"
                     value={formValues.domicilio}
                     onChange={handleChangeInput}
                     style={{ marginRight: '0.5em' }}
@@ -153,6 +159,7 @@ const FormRegister = () => {
                     placeholder='Localidad'
                     fullWidth
                     required
+                    className="form-input"
                     value={formValues.localidad}
                     onChange={handleChangeInput}
                     style={{ marginRight: '0.5em' }}
@@ -167,6 +174,7 @@ const FormRegister = () => {
                     placeholder='Código postal(numérico)'
                     fullWidth
                     required
+                    className="form-input"
                     value={formValues.codigo_postal}
                     onChange={handleChangeInput}
                     style={{ marginRight: '0.5em' }}
@@ -181,6 +189,7 @@ const FormRegister = () => {
                     placeholder='Provincia'
                     fullWidth
                     required
+                    className="form-input"
                     value={formValues.provincia}
                     onChange={handleChangeInput}
                     style={{ marginRight: '0.5em' }}

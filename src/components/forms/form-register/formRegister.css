@@ -1,8 +1,8 @@
 .form-register {
-    margin: 2em;
+    margin: 4em;
     padding: 2em;
     border-radius: 7.5px;
-    background-color: var(--white);
+    background-color: #ebffeb;
     box-shadow: 0 0 5px 0 var(--black);
 }
 
@@ -14,48 +14,8 @@
     border: 1px solid var(--black);
 }
 
-.form-register .form-nombre {
-    margin: 0 50px 20px 50px;
-    background-color: var(--green-form);
-}
-
-.form-register .form-apellido {
-    margin: 0 50px 20px 50px;
-    background-color: var(--green-form);
-}
-
-.form-register .form-fecha-nacimiento {
-    margin: 0 50px 20px 50px;
-    background-color: var(--green-form);
-}
-
-.form-register .form-NIF-NIE {
-    margin: 0 50px 20px 50px;
-    background-color: var(--green-form);
-}
-
-.form-register .form-telefono {
-    margin: 0 50px 20px 50px;
-    background-color: var(--green-form);
-}
-
-.form-register .form-domicilio {
-    margin: 0 50px 20px 50px;
-    background-color: var(--green-form);
-}
-
-.form-register .form-localidad {
-    margin: 0 50px 20px 50px;
-    background-color: var(--green-form);
-}
-
-.form-register .form-codigo-postal {
-    margin: 0 50px 20px 50px;
-    background-color: var(--green-form);
-}
-
-.form-register .form-provincia {
-    margin: 0 50px 20px 50px;
+.form-register .form-input {
+    margin: 0.65em;
     background-color: var(--green-form);
 }
 
