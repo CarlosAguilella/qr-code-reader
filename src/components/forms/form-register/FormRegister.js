@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, TextField } from "@mui/material";
+import { Toaster, toast } from 'react-hot-toast';
 
 import "./formRegister.css";
 
@@ -18,30 +19,30 @@ const FormRegister = () => {
         provincia: "",
     });
 
-    // this function will handle the errors
+    // this function will handle the errors/success with a toast
     const handleErrors = (e) => {
         e.preventDefault();
         const errors = {};
         if (formValues.nombre === "") {
-            alert("El nombre es obligatorio");
+            toast.error("El nombre es obligatorio");
         } else if (formValues.apellido === "") {
-            alert("El apellido es obligatorio");
+            toast.error("El apellido es obligatorio");
         } else if (formValues.fecha_nacimiento === "") {
-            alert("La fecha de nacimiento es obligatoria");
+            toast.error("La fecha de nacimiento es obligatoria");
         } else if (formValues.NIF_NIE === "") {
-            alert("El NIF/NIE es obligatorio");
+            toast.error("El NIF/NIE es obligatorio");
         } else if (formValues.telefono === "") {
-            alert("El teléfono es obligatorio");
+            toast.error("El teléfono es obligatorio");
         } else if (formValues.domicilio === "") {
-            alert("El domicilio es obligatorio");
+            toast.error("El domicilio es obligatorio");
         } else if (formValues.localidad === "") {
-            alert("La localidad es obligatoria");
+            toast.error("La localidad es obligatoria");
         } else if (formValues.codigo_postal === "") {
-            alert("El código postal es obligatorio");
+            toast.error("El código postal es obligatorio");
         } else if (formValues.provincia === "") {
-            alert("La provincia es obligatoria");
+            toast.error("La provincia es obligatoria");
         } else {
-            alert("Formulario enviado");
+            toast.success("Formulario enviado");
             console.log(formValues);
         }
         return errors;
@@ -203,6 +204,7 @@ const FormRegister = () => {
                     Enviar
                 </Button>
             </div>
+            <Toaster />
         </div>
     );
 };
