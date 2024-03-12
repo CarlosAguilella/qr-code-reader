@@ -15,47 +15,47 @@
 }
 
 .form-register .form-nombre {
-    margin: 0 20px 20px 20px;
+    margin: 0 50px 20px 50px;
     background-color: var(--green-form);
 }
 
 .form-register .form-apellido {
-    margin: 0 20px 20px 20px;
+    margin: 0 50px 20px 50px;
     background-color: var(--green-form);
 }
 
 .form-register .form-fecha-nacimiento {
-    margin: 0 20px 20px 20px;
+    margin: 0 50px 20px 50px;
     background-color: var(--green-form);
 }
 
 .form-register .form-NIF-NIE {
-    margin: 0 20px 20px 20px;
+    margin: 0 50px 20px 50px;
     background-color: var(--green-form);
 }
 
 .form-register .form-telefono {
-    margin: 0 20px 20px 20px;
+    margin: 0 50px 20px 50px;
     background-color: var(--green-form);
 }
 
 .form-register .form-domicilio {
-    margin: 0 20px 20px 20px;
+    margin: 0 50px 20px 50px;
     background-color: var(--green-form);
 }
 
 .form-register .form-localidad {
-    margin: 0 20px 20px 20px;    
+    margin: 0 50px 20px 50px;
     background-color: var(--green-form);
 }
 
 .form-register .form-codigo-postal {
-    margin: 0 20px 20px 20px;
+    margin: 0 50px 20px 50px;
     background-color: var(--green-form);
 }
 
 .form-register .form-provincia {
-    margin: 0 20px 20px 20px;
+    margin: 0 50px 20px 50px;
     background-color: var(--green-form);
 }
 
