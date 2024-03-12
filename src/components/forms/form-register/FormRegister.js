@@ -4,6 +4,8 @@ import { Button, TextField } from "@mui/material";
 import "./formRegister.css";
 
 const FormRegister = () => {
+
+    // this is the state for the form values
     const [formValues, setFormValues] = useState({
         nombre: "",
         apellido: "",
@@ -16,6 +18,7 @@ const FormRegister = () => {
         provincia: "",
     });
 
+    // this function will handle the errors
     const handleErrors = (e) => {
         e.preventDefault();
         const errors = {};
@@ -44,6 +47,7 @@ const FormRegister = () => {
         return errors;
     }
 
+    // this function will handle the input changes
     const handleChangeInput = (e) => {
         setFormValues({
             ...formValues,
@@ -202,5 +206,4 @@ form values ''                  done
 crear handles para cada uno     done
 textfield                       done
 errors                          done
-
 */
