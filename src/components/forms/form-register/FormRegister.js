@@ -20,33 +20,25 @@ const FormRegister = () => {
         e.preventDefault();
         const errors = {};
         if (formValues.nombre === "") {
-            errors.nombre = "El nombre es obligatorio";
-            console.log(errors.nombre);
+            alert("El nombre es obligatorio");
         } else if (formValues.apellido === "") {
-            errors.apellido = "El apellido es obligatorio";
-            console.log(errors.apellido);
+            alert("El apellido es obligatorio");
         } else if (formValues.fecha_nacimiento === "") {
-            errors.fecha_nacimiento = "La fecha de nacimiento es obligatoria";
-            console.log(errors.fecha_nacimiento);
+            alert("La fecha de nacimiento es obligatoria");
         } else if (formValues.NIF_NIE === "") {
-            errors.NIF_NIE = "El NIF/NIE es obligatorio";
-            console.log(errors.NIF_NIE);
+            alert("El NIF/NIE es obligatorio");
         } else if (formValues.telefono === "") {
-            errors.telefono = "El teléfono es obligatorio";
-            console.log(errors.telefono);
+            alert("El teléfono es obligatorio");
         } else if (formValues.domicilio === "") {
-            errors.domicilio = "El domicilio es obligatorio";
-            console.log(errors.domicilio);
+            alert("El domicilio es obligatorio");
         } else if (formValues.localidad === "") {
-            errors.localidad = "La localidad es obligatoria";
-            console.log(errors.localidad);
+            alert("La localidad es obligatoria");
         } else if (formValues.codigo_postal === "") {
-            errors.codigo_postal = "El código postal es obligatorio";
-            console.log(errors.codigo_postal);
+            alert("El código postal es obligatorio");
         } else if (formValues.provincia === "") {
-            errors.provincia = "La provincia es obligatoria";
-            console.log(errors.provincia);
+            alert("La provincia es obligatoria");
         } else {
+            alert("Formulario enviado");
             console.log(formValues);
         }
         return errors;
