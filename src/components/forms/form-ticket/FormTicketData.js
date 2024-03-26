@@ -18,14 +18,18 @@ const FormTicketData = ({
     setLargeDesc,
     unlimited,
     setUnlimited,
+    ticketNumber,
+    setTicketNumber,
     free,
     setFree,
+    ticketPrice,
+    setTicketPrice,
     exclusive,
-    setExclusivo,
+    setExclusive,
     startDate,
-    handleFechaInicioChange,
+    handleStartingDate,
     endingDate,
-    handleFechaFinChange,
+    handleEndingDate,
     image,
     handleUploadImage
 }) => {
@@ -40,11 +44,12 @@ const FormTicketData = ({
                 </Button>
                 <Button className="form-button-checkbox" onClick={() => setVisible(!visible)}>
                     <Checkbox
+                        style={{ marginTop: '-0.1em' }}
                         checked={visible}
                         size="small"
                         sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                     />
-                    <h4>Producto visible</h4>
+                    Producto visible
                 </Button>
             </div>
             <div className="form-es">
@@ -159,11 +164,20 @@ const FormTicketData = ({
                             {unlimited === true ? (
                                 <div className="form-info">Ilimitadas</div>
                             ) : (
-                                <div className="form-info">45</div>
+                                <div className="form-info">
+                                    <InputBase
+                                        onChange={(e) => setTicketNumber(e.target.value)}
+                                        className="form-input"
+                                        variant="outlined"
+                                        fullWidth
+                                        value={ticketNumber}
+                                        style={{ paddingLeft: '1.7em', paddingTop: '0.4em' }}
+                                    />
+                                </div>
                             )}
                         </Grid>
                         <Grid item xs={5} sm={8} lg={9}>
-                            <Button className="form-button-checkbox" onClick={() => setUnlimited(!unlimited)}>
+                            <Button className="form-data-checkbox" onClick={() => setUnlimited(!unlimited)}>
                                 <Checkbox
                                     checked={unlimited}
                                     style={{ marginTop: '-0.1em' }}
@@ -184,14 +198,23 @@ const FormTicketData = ({
                             {free === true ? (
                                 <div className="form-info">Gratuito</div>
                             ) : (
-                                <div className="form-info">3€</div>
+                                <div className="form-info">
+                                    <InputBase
+                                        onChange={(e) => setTicketPrice(e.target.value)}
+                                        className="form-input"
+                                        variant="outlined"
+                                        fullWidth
+                                        value={ticketPrice}
+                                        style={{ paddingLeft: '2em', paddingTop: '0.4em' }}
+                                    />
+                                </div>
                             )}
                         </Grid>
                         <Grid item xs={5} sm={8} lg={9}>
-                            <Button className="form-button-checkbox" onClick={() => setFree(!free)}>
+                            <Button className="form-data-checkbox" onClick={() => setFree(!free)}>
                                 <Checkbox
-                                    checked={free}
                                     style={{ marginTop: '-0.1em' }}
+                                    checked={free}
                                     size="small"
                                     sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                 />
@@ -206,13 +229,12 @@ const FormTicketData = ({
                             <h4>Exclusivo para soci@s</h4>
                         </Grid>
                         <Grid item xs={3} sm={1}>
-                            <Button className="form-button-checkbox" onClick={() => setExclusivo(!exclusive)}>
+                            <Button className="form-data-checkbox" onClick={() => setExclusive(!exclusive)}>
                                 <Checkbox
                                     icon={<RadioButtonUncheckedIcon />}
                                     checkedIcon={<RadioButtonCheckedIcon />}
                                     checked={exclusive === true ? true : false}
                                     shape='round'
-                                    style={{ marginTop: '-0.1em' }}
                                     size="small"
                                     sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                 />
@@ -220,12 +242,11 @@ const FormTicketData = ({
                             </Button>
                         </Grid>
                         <Grid item xs={4} sm={8} lg={9}>
-                            <Button className="form-button-checkbox" onClick={() => setExclusivo(!exclusive)}>
+                            <Button className="form-data-checkbox" onClick={() => setExclusive(!exclusive)}>
                                 <Checkbox
                                     icon={<RadioButtonUncheckedIcon />}
                                     checkedIcon={<RadioButtonCheckedIcon />}
                                     checked={exclusive === false ? true : false}
-                                    style={{ marginTop: '-0.1em' }}
                                     size="small"
                                     sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                 />
@@ -244,7 +265,7 @@ const FormTicketData = ({
                         </Grid>
                         <Grid item xs={8} sm={7} md={8} lg={10}>
                             <input
-                                onChange={handleFechaInicioChange}
+                                onChange={handleStartingDate}
                                 type="date"
                                 value={startDate}
                                 className="form-button-date"
@@ -262,7 +283,7 @@ const FormTicketData = ({
                         </Grid>
                         <Grid item xs={8} sm={7} md={8} lg={10}>
                             <input
-                                onChange={handleFechaFinChange}
+                                onChange={handleEndingDate}
                                 type="date"
                                 value={endingDate}
                                 className="form-button-date"

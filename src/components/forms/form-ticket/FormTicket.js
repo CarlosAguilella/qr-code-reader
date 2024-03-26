@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { DateTime } from "luxon"; // Librería para manejar fechas
+
 import PreviewTicket from "./PreviewTicket";
 import NoPreviewTicket from "./NoPreviewTicket";
 import FormTicketData from "./FormTicketData";
+
 import "./formTicket.css";
 
 const FormTicket = () => {
@@ -13,7 +15,9 @@ const FormTicket = () => {
         smallDesc: "",
         largeDesc: "",
         unlimited: true,
+        ticketNumber: 45,
         free: true,
+        ticketPrice: 3,
         exclusive: true,
         startDate: "",
         endingDate: "",
@@ -26,11 +30,13 @@ const FormTicket = () => {
     const setSmallDesc = (value) => setTicketData(prevState => ({ ...prevState, smallDesc: value }));
     const setLargeDesc = (value) => setTicketData(prevState => ({ ...prevState, largeDesc: value }));
     const setUnlimited = (value) => setTicketData(prevState => ({ ...prevState, unlimited: value }));
+    const setTicketNumber = (value) => setTicketData(prevState => ({ ...prevState, ticketNumber: value }));
     const setFree = (value) => setTicketData(prevState => ({ ...prevState, free: value }));
-    const setExclusivo = (value) => setTicketData(prevState => ({ ...prevState, exclusive: value }));
+    const setTicketPrice = (value) => setTicketData(prevState => ({ ...prevState, ticketPrice: value }));
+    const setExclusive = (value) => setTicketData(prevState => ({ ...prevState, exclusive: value }));
 
     // Función para controlar que la fecha de inicio no sea anterior a la fecha actual
-    const handleFechaInicioChange = (e) => {
+    const handleStartingDate = (e) => {
         const date1 = e.target.value;
         const today = DateTime.now().toISODate(); // Fecha actual(por LUXON)
         if (date1 < today) {
@@ -41,7 +47,7 @@ const FormTicket = () => {
     }
 
     // Función para controlar que la fecha de fin no sea anterior a la fecha de inicio
-    const handleFechaFinChange = (e) => {
+    const handleEndingDate = (e) => {
         const date2 = e.target.value;
         const date1 = ticketData.startDate;
         if (date2 < date1) {
@@ -67,7 +73,7 @@ const FormTicket = () => {
     }
 
     // Extraer los datos del estado
-    const { preview, visible, smallDesc, largeDesc, unlimited, free, exclusive, startDate, endingDate, image } = ticketData;
+    const { preview, visible, smallDesc, largeDesc, unlimited, ticketNumber, free, ticketPrice, exclusive, startDate, endingDate, image } = ticketData;
 
     return (
         <>
@@ -80,7 +86,9 @@ const FormTicket = () => {
                             smallDesc={smallDesc}
                             largeDesc={largeDesc}
                             unlimited={unlimited}
+                            ticketNumber={ticketNumber}
                             free={free}
+                            ticketPrice={ticketPrice}
                             exclusive={exclusive}
                             startDate={startDate}
                             endingDate={endingDate}
@@ -106,14 +114,18 @@ const FormTicket = () => {
                     setLargeDesc={setLargeDesc}
                     unlimited={unlimited}
                     setUnlimited={setUnlimited}
+                    ticketNumber={ticketNumber}
+                    setTicketNumber={setTicketNumber}
                     free={free}
                     setFree={setFree}
+                    ticketPrice={ticketPrice}
+                    setTicketPrice={setTicketPrice}
                     exclusive={exclusive}
-                    setExclusivo={setExclusivo}
+                    setExclusive={setExclusive}
                     startDate={startDate}
-                    handleFechaInicioChange={handleFechaInicioChange}
+                    handleStartingDate={handleStartingDate}
                     endingDate={endingDate}
-                    handleFechaFinChange={handleFechaFinChange}
+                    handleEndingDate={handleEndingDate}
                     image={image}
                     handleUploadImage={handleUploadImage}
                 />

@@ -8,7 +8,9 @@ const PreviewTicket = ({
     smallDesc,
     largeDesc,
     unlimited,
+    ticketNumber,
     free,
+    ticketPrice,
     exclusive,
     startDate,
     endingDate,
@@ -33,11 +35,11 @@ const PreviewTicket = ({
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Entradas disponibles:</span>
-                            <span className="preview-data-value">{unlimited === true ? "Ilimitadas" : "45"}</span>
+                            <span className="preview-data-value">{(unlimited === true || ticketNumber === "") ? "Ilimitadas" : ticketNumber}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Precio:</span>
-                            <span className="preview-data-value">{free === true ? "Gratuito" : "3€"}</span>
+                            <span className="preview-data-value">{(free === true || ticketPrice === "") ? "Gratuito" : ticketPrice}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Exclusivo para soci@s:</span>

@@ -1,6 +1,7 @@
 /* FORM TICKET DATA */
+
 .form-ticket .form-title {
-    padding: 0 5em;
+    padding: 0 7em;
     width: auto;
     border-radius: 7.5px;
     text-align: center;
@@ -8,7 +9,7 @@
 }
 
 .form-ticket .form-button {
-    padding: 0.5em;
+    padding: 0.2em 1.2em;
     text-transform: capitalize;
     border-radius: 7.5px;
     color: var(--black);
@@ -20,18 +21,14 @@
 }
 
 .form-ticket .form-button-checkbox {
-    margin: 0;
+    margin: 0 2em 0 0;
     padding: 0;
+    text-transform: capitalize;
+    color: var(--black);
 }
 
 .form-ticket .form-button-checkbox:hover {
     background-color: var(--white);
-}
-
-.form-ticket .form-button-checkbox h4 {
-    margin: 0.25em 1em 0 -0.5em;
-    text-transform: capitalize;
-    color: var(--black);
 }
 
 .form-ticket .form-es {
@@ -46,8 +43,8 @@
 .form-ticket .form-es .form-es-title {
     max-width: 50px;
     min-width: 50px;
-    max-height: 30px;
-    min-height: 30px;
+    max-height: 40px;
+    min-height: 40px;
     border: 1px solid var(--gray);
     border-radius: 7.5px;
     text-align: center;
@@ -55,17 +52,18 @@
 }
 
 .form-ticket .form-es .form-es-title h2 {
-    margin-top: 0em;
+    margin-top: 0.1em;
+    font-size: 1.8em;
 }
 
 .form-ticket .form-es .form-line {
-    margin-top: 1em;
+    margin-top: 1.25em;
     border-radius: 7.5px;
     background-color: var(--green);
 }
 
 .form-ticket .form-es .form-desc-title {
-    margin-top: -1em;
+    margin-top: -1.5em;
 }
 
 .form-ticket .form-es .form-desc-small {
@@ -79,7 +77,7 @@
 }
 
 .form-ticket .form-es .form-desc-large {
-    padding: 0.5em 0.5em 3.5em;
+    padding: 0.5em 0.5em 3em;
     border-radius: 7.5px;
     background-color: var(--green);
 }
@@ -98,10 +96,10 @@
 }
 
 .form-ticket .form-val .form-val-title {
-    max-width: 60px;
-    min-width: 60px;
-    max-height: 30px;
-    min-height: 30px;
+    max-width: 70px;
+    min-width: 70px;
+    max-height: 40px;
+    min-height: 40px;
     border: 1px solid var(--gray);
     border-radius: 7.5px;
     text-align: center;
@@ -109,17 +107,18 @@
 }
 
 .form-ticket .form-val .form-val-title h2 {
-    margin-top: 0em;
+    margin-top: 0.1em;
+    font-size: 1.8em;
 }
 
 .form-ticket .form-val .form-line {
-    margin-top: 1em;
+    margin-top: 1.25em;
     border-radius: 7.5px;
     background-color: var(--green);
 }
 
 .form-ticket .form-val .form-desc-title {
-    margin-top: -1em;
+    margin-top: -1.5em;
 }
 
 .form-ticket .form-val .form-desc-small {
@@ -133,7 +132,7 @@
 }
 
 .form-ticket .form-val .form-desc-large {
-    padding: 0.5em 0.5em 3.5em;
+    padding: 0.5em 0.5em 3em;
     border-radius: 7.5px;
     background-color: var(--green);
 }
@@ -151,7 +150,7 @@
     margin-bottom: -1.5em;
 }
 
-.form-ticket .form-data .form-info {
+.form-ticket .form-data .ticket-data .form-info {
     margin-top: 1.5em;
     font-size: 0.9em;
     border-radius: 7.5px;
@@ -160,28 +159,32 @@
     background-color: var(--green);
 }
 
-.form-ticket .form-data .form-button-checkbox {
-    margin-top: 0.9em;
+.form-ticket .form-data .ticket-data .form-input {
+    max-height: 20px;
+    min-height: 20px;
+}
+
+.form-ticket .form-data .ticket-data .form-data-checkbox {
+    margin-top: 0.5em;
     text-transform: capitalize;
     color: var(--black);
 }
 
-.form-ticket .form-data .form-subtitle-data {
+.form-ticket .form-data .ticket-data .form-subtitle-data {
     margin-top: 3.5em;
     font-size: 0.4em;
 }
 
-.form-ticket .form-data .form-button-date {
+.form-ticket .form-data .ticket-data .form-button-date {
     margin-top: 1.5em;
     padding: 0 3em;
     border-radius: 7.5px;
     text-align: center;
-    text-transform: lowercase;
     color: var(--black);
     background-color: var(--green);
 }
 
-.form-ticket .form-data .form-button-image img {
+.form-ticket .form-data .ticket-data .form-button-image img {
     margin-top: 1.5em;
     max-width: 200px;
     min-width: 200px;
@@ -191,7 +194,7 @@
     cursor: pointer;
 }
 
-.form-ticket .form-data .form-image {
+.form-ticket .form-data .ticket-data .form-image {
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     padding: 0 2em;
