@@ -1,17 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
 body {
-  background-color: var(--qr-reader-blue);
+  background-color: var(--white);
   margin: 0;
 }
 
 :root {
   --black:          #000000;
   --white:          #ffffff;
+  --gray:           #808080;
+  --light-gray:     #d3d3d3;
   --yellow:         #ffcd29;
   --yellow-hover:   #cda523;
+  --green:          #c4ffcc;
   --green-form:     #aff4c6;
   --green-input:    #14ae5c;
+  --blue-button:    #cdd2ff;
   --header-blue:    #3a99ff;
   --qr-reader-blue: #bed5fe;
   --montserrat:       'Montserrat', sans-serif;}

@@ -1,0 +1,226 @@
+/* FORM TICKET DATA */
+.form-ticket .form-title {
+    padding: 0 5em;
+    width: auto;
+    border-radius: 7.5px;
+    text-align: center;
+    background-color: var(--green);
+}
+
+.form-ticket .form-button {
+    padding: 0.5em;
+    text-transform: capitalize;
+    border-radius: 7.5px;
+    color: var(--black);
+    background-color: var(--blue-button);
+}
+
+.form-ticket .form-button:hover {
+    background-color: var(--green);
+}
+
+.form-ticket .form-button-checkbox {
+    margin: 0;
+    padding: 0;
+}
+
+.form-ticket .form-button-checkbox:hover {
+    background-color: var(--white);
+}
+
+.form-ticket .form-button-checkbox h4 {
+    margin: 0.25em 1em 0 -0.5em;
+    text-transform: capitalize;
+    color: var(--black);
+}
+
+.form-ticket .form-es {
+    margin: 0.5em 2em;
+    padding: 0.5em;
+    border: 1px solid var(--gray);
+    border-radius: 7.5px;
+    color: var(--black);
+    background-color: var(--white);
+}
+
+.form-ticket .form-es .form-es-title {
+    max-width: 50px;
+    min-width: 50px;
+    max-height: 30px;
+    min-height: 30px;
+    border: 1px solid var(--gray);
+    border-radius: 7.5px;
+    text-align: center;
+    background-color: var(--light-gray);
+}
+
+.form-ticket .form-es .form-es-title h2 {
+    margin-top: 0em;
+}
+
+.form-ticket .form-es .form-line {
+    margin-top: 1em;
+    border-radius: 7.5px;
+    background-color: var(--green);
+}
+
+.form-ticket .form-es .form-desc-title {
+    margin-top: -1em;
+}
+
+.form-ticket .form-es .form-desc-small {
+    padding: 0.5em 0.5em 0.5em;
+    border-radius: 7.5px;
+    background-color: var(--green);
+}
+
+.form-ticket .form-es .form-desc-small .form-input {
+    padding-right: 0;
+}
+
+.form-ticket .form-es .form-desc-large {
+    padding: 0.5em 0.5em 3.5em;
+    border-radius: 7.5px;
+    background-color: var(--green);
+}
+
+.form-ticket .form-es .form-desc-large .form-input {
+    padding-right: 0;
+}
+
+.form-ticket .form-val {
+    margin: 0 2em;
+    padding: 0.5em;
+    border: 1px solid var(--gray);
+    border-radius: 7.5px;
+    color: var(--black);
+    background-color: var(--white);
+}
+
+.form-ticket .form-val .form-val-title {
+    max-width: 60px;
+    min-width: 60px;
+    max-height: 30px;
+    min-height: 30px;
+    border: 1px solid var(--gray);
+    border-radius: 7.5px;
+    text-align: center;
+    background-color: var(--light-gray);
+}
+
+.form-ticket .form-val .form-val-title h2 {
+    margin-top: 0em;
+}
+
+.form-ticket .form-val .form-line {
+    margin-top: 1em;
+    border-radius: 7.5px;
+    background-color: var(--green);
+}
+
+.form-ticket .form-val .form-desc-title {
+    margin-top: -1em;
+}
+
+.form-ticket .form-val .form-desc-small {
+    padding: 0.5em 0.5em 0.5em;
+    border-radius: 7.5px;
+    background-color: var(--green);
+}
+
+.form-ticket .form-val .form-desc-small .form-input {
+    padding-right: 0;
+}
+
+.form-ticket .form-val .form-desc-large {
+    padding: 0.5em 0.5em 3.5em;
+    border-radius: 7.5px;
+    background-color: var(--green);
+}
+
+.form-ticket .form-val .form-desc-large .form-input {
+    padding-right: 0;
+}
+
+.form-ticket .form-data {
+    margin: 0 2em;
+    padding: 0;
+}
+
+.form-ticket .form-data .ticket-data {
+    margin-bottom: -1.5em;
+}
+
+.form-ticket .form-data .form-info {
+    margin-top: 1.5em;
+    font-size: 0.9em;
+    border-radius: 7.5px;
+    text-align: center;
+    color: var(--black);
+    background-color: var(--green);
+}
+
+.form-ticket .form-data .form-button-checkbox {
+    margin-top: 0.9em;
+    text-transform: capitalize;
+    color: var(--black);
+}
+
+.form-ticket .form-data .form-subtitle-data {
+    margin-top: 3.5em;
+    font-size: 0.4em;
+}
+
+.form-ticket .form-data .form-button-date {
+    margin-top: 1.5em;
+    padding: 0 3em;
+    border-radius: 7.5px;
+    text-align: center;
+    text-transform: lowercase;
+    color: var(--black);
+    background-color: var(--green);
+}
+
+.form-ticket .form-data .form-button-image img {
+    margin-top: 1.5em;
+    max-width: 200px;
+    min-width: 200px;
+    max-height: 150px;
+    min-height: 150px;
+    border-radius: 7.5px;
+    cursor: pointer;
+}
+
+.form-ticket .form-data .form-image {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    padding: 0 2em;
+    border-radius: 7.5px;
+}
+
+/* FORM TICKET DIALOG */
+
+.form-dialog {
+    padding: 3em;
+}
+
+.form-dialog .preview-container .preview-title {
+    text-align: center;
+}
+
+.preview-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-data-item {
+    margin-bottom: 1em;
+}
+
+.preview-data-label {
+    font-weight: bold;
+}
+
+.preview-data-value {
+    margin-left: 1em;
+}
