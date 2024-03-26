@@ -33,6 +33,7 @@ const FormTicketData = ({
     image,
     handleUploadImage
 }) => {
+
     return (
         <div className="form-ticket">
             <div className="flex-center">
@@ -315,3 +316,12 @@ const FormTicketData = ({
 };
 
 export default FormTicketData;
+
+
+/* 
+    Hay que cambiar donde está ticketPrice y ticketNumber en la vista, ya que queda mal
+    El imput de fechas no tiene el mismo estilo que los demás inputs, debe de ser modificado
+    Deberia de modificar el popup para que el fondo sea la pantalla anterior y no solo el popup
+    Solucionar el problema de las descripciones, ya que en la larga el pading queda mal
+    Tambien solucionar de las mismas que no se copie el resultado en ambas descripciones
+*/

@@ -23,7 +23,7 @@
 .form-ticket .form-button-checkbox {
     margin: 0 2em 0 0;
     padding: 0;
-    text-transform: capitalize;
+    text-transform: none;
     color: var(--black);
 }
 
@@ -186,6 +186,7 @@
 
 .form-ticket .form-data .ticket-data .form-button-image img {
     margin-top: 1.5em;
+    margin-bottom: 1.5em;
     max-width: 200px;
     min-width: 200px;
     max-height: 150px;

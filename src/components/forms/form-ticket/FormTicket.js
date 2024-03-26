@@ -35,6 +35,14 @@ const FormTicket = () => {
     const setTicketPrice = (value) => setTicketData(prevState => ({ ...prevState, ticketPrice: value }));
     const setExclusive = (value) => setTicketData(prevState => ({ ...prevState, exclusive: value }));
 
+    // // Función para controlar los cambios en los inputs
+    // const handleChange = (e) => {
+    //     setTicketData({
+    //         ...ticketData,
+    //         [e.target.name]: e.target.value
+    //     })
+    // }
+
     // Función para controlar que la fecha de inicio no sea anterior a la fecha actual
     const handleStartingDate = (e) => {
         const date1 = e.target.value;

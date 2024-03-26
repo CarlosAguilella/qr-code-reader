@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Dialog, Button, Grid } from "@mui/material";
+import { Dialog, Button } from "@mui/material";
 
 const PreviewTicket = ({
     preview,
@@ -17,6 +17,7 @@ const PreviewTicket = ({
     image,
     handleUploadImage
 }) => {
+
     return (
         <Dialog open={preview} onClose={() => setPreview(!preview)}>
             <div className="form-dialog">
@@ -35,15 +36,15 @@ const PreviewTicket = ({
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Entradas disponibles:</span>
-                            <span className="preview-data-value">{(unlimited === true || ticketNumber === "") ? "Ilimitadas" : ticketNumber}</span>
+                            <span className="preview-data-value">{(unlimited === true || ticketNumber === "") ? "Ilimitadas" : (ticketNumber === "0" ) ? "No hay entradas disponibles" : ticketNumber}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Precio:</span>
-                            <span className="preview-data-value">{(free === true || ticketPrice === "") ? "Gratuito" : ticketPrice}</span>
+                            <span className="preview-data-value">{(free === true || ticketPrice === "" || ticketPrice === "0" ) ? "Gratuito" : ticketPrice}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Exclusivo para soci@s:</span>
-                            <span className="preview-data-value">{exclusive === true ? "Es exclusivo para soci@s" : "No es exclusivo para soci@s"}</span>
+                            <span className="preview-data-value">{exclusive === true ? "Si" : "No"}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Fecha inicio:</span>
