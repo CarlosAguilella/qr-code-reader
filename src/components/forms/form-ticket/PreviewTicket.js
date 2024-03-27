@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Dialog, Button } from "@mui/material";
 
@@ -14,8 +13,7 @@ const PreviewTicket = ({
     exclusive,
     startDate,
     endingDate,
-    image,
-    handleUploadImage
+    image
 }) => {
 
     return (
@@ -28,19 +26,27 @@ const PreviewTicket = ({
                     <div className="preview-data">
                         <div className="preview-data-item">
                             <span className="preview-data-label">Descripción corta:</span>
-                            <span className="preview-data-value">{smallDesc === "" ? "No hay descripción corta" : smallDesc}</span>
+                            {smallDesc.length > 50 ? (
+                                <span className="preview-data-value">La descripción no puede ser más larga de 50 carácteres</span>
+                            ) : (
+                                <span className="preview-data-value">{smallDesc === "" ? "No hay descripción corta" : smallDesc}</span>
+                            )}
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Descripción larga:</span>
-                            <span className="preview-data-value">{largeDesc === "" ? "No hay descripción larga" : largeDesc}</span>
+                            {largeDesc.length > 500 ? (
+                                <span className="preview-data-value">La descripción no puede ser más larga de 500 carácteres</span>
+                            ) : (
+                                <span className="preview-data-value">{largeDesc === "" ? "No hay descripción larga" : largeDesc}</span>
+                            )}
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Entradas disponibles:</span>
-                            <span className="preview-data-value">{(unlimited === true || ticketNumber === "") ? "Ilimitadas" : (ticketNumber === "0" ) ? "No hay entradas disponibles" : ticketNumber}</span>
+                            <span className="preview-data-value">{(unlimited === true || ticketNumber === "") ? "Ilimitadas" : (ticketNumber === "0") ? "No hay entradas disponibles" : ticketNumber}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Precio:</span>
-                            <span className="preview-data-value">{(free === true || ticketPrice === "" || ticketPrice === "0" ) ? "Gratuito" : ticketPrice}</span>
+                            <span className="preview-data-value">{(free === true || ticketPrice === "" || ticketPrice === "0") ? "Gratuito" : ticketPrice}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Exclusivo para soci@s:</span>

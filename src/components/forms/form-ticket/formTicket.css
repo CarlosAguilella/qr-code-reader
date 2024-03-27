@@ -66,6 +66,11 @@
     margin-top: -1.5em;
 }
 
+.form-ticket .form-es .form-desc-title .form-subtitle-data {
+    margin-top: -3.5em;
+    font-size: 0.4em;
+}
+
 .form-ticket .form-es .form-desc-small {
     padding: 0.5em 0.5em 0.5em;
     border-radius: 7.5px;
@@ -121,6 +126,11 @@
     margin-top: -1.5em;
 }
 
+.form-ticket .form-val .form-desc-title .form-subtitle-data {
+    margin-top: -3.5em;
+    font-size: 0.4em;
+}
+
 .form-ticket .form-val .form-desc-small {
     padding: 0.5em 0.5em 0.5em;
     border-radius: 7.5px;
@@ -148,6 +158,11 @@
 
 .form-ticket .form-data .ticket-data {
     margin-bottom: -1.5em;
+}
+
+.form-ticket .form-data .ticket-data .form-alert {
+    margin-top: -3.5em;
+    font-size: 0.4em;
 }
 
 .form-ticket .form-data .ticket-data .form-info {
@@ -227,4 +242,11 @@
 
 .preview-data-value {
     margin-left: 1em;
+}
+
+.preview-image {
+    margin-top: 1em;
+    max-width: 200px;
+    max-height: 150px;
+    align-items: center;
 }

@@ -13,8 +13,10 @@ const NoPreviewTicket = ({ preview, setPreview }) => {
                         <h1>Contenido no visible</h1>
                     </div>
                 </div>
-                <div className="preview-image">
-                    <img src={MYIMAGE} alt="No visible" />
+                <div className="flex-center">
+                    <div className="preview-image">
+                        <img src={MYIMAGE} alt="No visible" />
+                    </div>
                 </div>
                 <div className="flex-end">
                     <div className="form-button">
