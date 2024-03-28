@@ -18,9 +18,11 @@ const NoPreviewTicket = ({ preview, setPreview }) => {
                         </div>
                     </div>
                     <div className="flex-end">
-                        <Button onClick={() => setPreview(!preview)}>
-                            Cerrar
-                        </Button>
+                        <div className="preview-button">
+                            <Button onClick={() => setPreview(!preview)}>
+                                Cerrar
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>
