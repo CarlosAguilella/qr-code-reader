@@ -4,6 +4,7 @@ import Header from './components/header/Header';
 import ScannerView from './components/qr-reader/ScannerView';
 import FormRegister from './components/forms/form-register/FormRegister';
 import FormTicket from './components/forms/form-ticket/FormTicket';
+import FormForm from './components/forms/form-ticket/FormForm';
 
 import './index.css';
 
@@ -14,6 +15,7 @@ function App() {
       <ScannerView /> */}
       {/* <FormRegister /> */}
       <FormTicket />
+      {/* <FormForm /> */}
     </div>
   );
 }

@@ -227,20 +227,20 @@
     text-align: center;
 }
 
-.preview-container {
+.form-dialog .preview-container .preview-data {
     display: flex;
     flex-direction: column;
 }
 
-.preview-data-item {
+.form-dialog .preview-container .preview-data .preview-data-item {
     margin-bottom: 1em;
 }
 
-.preview-data-label {
+.form-dialog .preview-container .preview-data .preview-data-item .preview-data-label {
     font-weight: bold;
 }
 
-.preview-data-value {
+.form-dialog .preview-container .preview-data .preview-data-item .preview-data-value {
     margin-left: 1em;
 }
 

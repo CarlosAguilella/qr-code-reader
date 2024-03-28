@@ -1,21 +1,7 @@
 import React from "react";
 import { Dialog, Button } from "@mui/material";
 
-const PreviewTicket = ({
-    preview,
-    setPreview,
-    smallDesc,
-    largeDesc,
-    unlimited,
-    ticketNumber,
-    free,
-    ticketPrice,
-    exclusive,
-    startDate,
-    endingDate,
-    image
-}) => {
-
+const PreviewTicket = ({preview, setPreview, smallDescEs, largeDescEs, smallDescVal, largeDescVal, unlimited, ticketNumber, free, ticketPrice, exclusive, startDate, endingDate, image }) => {
     return (
         <Dialog open={preview} onClose={() => setPreview(!preview)}>
             <div className="form-dialog">
@@ -26,18 +12,34 @@ const PreviewTicket = ({
                     <div className="preview-data">
                         <div className="preview-data-item">
                             <span className="preview-data-label">Descripción corta:</span>
-                            {smallDesc.length > 50 ? (
+                            {smallDescEs.length > 50 ? (
                                 <span className="preview-data-value">La descripción no puede ser más larga de 50 carácteres</span>
                             ) : (
-                                <span className="preview-data-value">{smallDesc === "" ? "No hay descripción corta" : smallDesc}</span>
+                                <span className="preview-data-value">{smallDescEs === "" ? "No hay descripción corta" : smallDescEs}</span>
                             )}
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Descripción larga:</span>
-                            {largeDesc.length > 500 ? (
+                            {largeDescEs.length > 500 ? (
                                 <span className="preview-data-value">La descripción no puede ser más larga de 500 carácteres</span>
                             ) : (
-                                <span className="preview-data-value">{largeDesc === "" ? "No hay descripción larga" : largeDesc}</span>
+                                <span className="preview-data-value">{largeDescEs === "" ? "No hay descripción larga" : largeDescEs}</span>
+                            )}
+                        </div>
+                        <div className="preview-data-item">
+                            <span className="preview-data-label">Descripción corta (valenciano):</span>
+                            {smallDescVal.length > 50 ? (
+                                <span className="preview-data-value">La descripción no puede ser más larga de 50 carácteres</span>
+                            ) : (
+                                <span className="preview-data-value">{smallDescVal === "" ? "No hay descripción corta" : smallDescVal}</span>
+                            )}
+                        </div>
+                        <div className="preview-data-item">
+                            <span className="preview-data-label">Descripción larga (valenciano):</span>
+                            {largeDescVal.length > 500 ? (
+                                <span className="preview-data-value">La descripción no puede ser más larga de 500 carácteres</span>
+                            ) : (
+                                <span className="preview-data-value">{largeDescVal === "" ? "No hay descripción larga" : largeDescVal}</span>
                             )}
                         </div>
                         <div className="preview-data-item">
@@ -75,7 +77,7 @@ const PreviewTicket = ({
                     </div>
                 </div>
                 <div className="flex-end">
-                    <Button className="form-button" onClick={() => setPreview(!preview)}>
+                    <Button onClick={() => setPreview(!preview)}>
                         Cerrar
                     </Button>
                 </div>
