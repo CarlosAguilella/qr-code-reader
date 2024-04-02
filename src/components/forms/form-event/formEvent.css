@@ -1,0 +1,322 @@
+/* FORM event DATA */
+
+.form-event .form-title {
+    padding: 0 20%;
+    width: auto;
+    border-radius: 7.5px;
+    text-align: center;
+    background-color: var(--green);
+}
+
+.form-event .form-button {
+    max-width: 150px;
+    min-width: 150px;
+    text-transform: capitalize;
+    border-radius: 7.5px;
+    color: var(--black);
+    background-color: var(--blue-button);
+}
+
+.form-event .form-button:hover {
+    background-color: var(--header-blue);
+}
+
+.form-event .form-button-checkbox {
+    margin: 0 0.1em 0 0;
+    padding: 0;
+    text-transform: none;
+    color: var(--black);
+}
+
+.form-event .form-button-checkbox:hover {
+    background-color: var(--white);
+}
+
+.form-event .form-es {
+    margin: 0.5em 2em;
+    padding: 0.5em;
+    border: 1px solid var(--gray);
+    border-radius: 7.5px;
+    color: var(--black);
+    background-color: var(--white);
+}
+
+.form-event .form-es .form-es-title {
+    max-width: 50px;
+    min-width: 50px;
+    max-height: 40px;
+    min-height: 40px;
+    border: 1px solid var(--gray);
+    border-radius: 7.5px;
+    text-align: center;
+    background-color: var(--light-gray);
+}
+
+.form-event .form-es .form-es-title h2 {
+    margin-top: 0.1em;
+    font-size: 1.8em;
+}
+
+.form-event .form-es .form-line {
+    margin-top: 1.25em;
+    border-radius: 7.5px;
+    background-color: var(--green);
+}
+
+.form-event .form-es .form-desc-title {
+    margin-top: -1.5em;
+}
+
+.form-event .form-es .form-desc-title .form-subtitle-data {
+    margin-top: -3.5em;
+    font-size: 0.4em;
+}
+
+.form-event .form-es .form-desc-small {
+    padding: 0.5em 0.5em 0.5em;
+    border-radius: 7.5px;
+    background-color: var(--green);
+}
+
+.form-event .form-es .form-desc-small .form-input {
+    padding-right: 0;
+}
+
+.form-event .form-es .form-desc-large {
+    padding: 0.5em 0.5em 3em;
+    border-radius: 7.5px;
+    background-color: var(--green);
+}
+
+.form-event .form-es .form-desc-large .form-input {
+    padding-right: 0;
+}
+
+.form-event .form-val {
+    margin: 0 2em;
+    padding: 0.5em;
+    border: 1px solid var(--gray);
+    border-radius: 7.5px;
+    color: var(--black);
+    background-color: var(--white);
+}
+
+.form-event .form-val .form-val-title {
+    max-width: 70px;
+    min-width: 70px;
+    max-height: 40px;
+    min-height: 40px;
+    border: 1px solid var(--gray);
+    border-radius: 7.5px;
+    text-align: center;
+    background-color: var(--light-gray);
+}
+
+.form-event .form-val .form-val-title h2 {
+    margin-top: 0.1em;
+    font-size: 1.8em;
+}
+
+.form-event .form-val .form-line {
+    margin-top: 1.25em;
+    border-radius: 7.5px;
+    background-color: var(--green);
+}
+
+.form-event .form-val .form-desc-title {
+    margin-top: -1.5em;
+}
+
+.form-event .form-val .form-desc-title .form-subtitle-data {
+    margin-top: -3.5em;
+    font-size: 0.4em;
+}
+
+.form-event .form-val .form-desc-small {
+    padding: 0.5em 0.5em 0.5em;
+    border-radius: 7.5px;
+    background-color: var(--green);
+}
+
+.form-event .form-val .form-desc-small .form-input {
+    padding-right: 0;
+}
+
+.form-event .form-val .form-desc-large {
+    padding: 0.5em 0.5em 3em;
+    border-radius: 7.5px;
+    background-color: var(--green);
+}
+
+.form-event .form-val .form-desc-large .form-input {
+    padding-right: 0;
+}
+
+.form-event .form-data {
+    margin: 0 2em;
+    padding: 0.5em;
+    border: 1px solid var(--gray);
+    border-radius: 7.5px;
+    color: var(--black);
+    background-color: var(--white);
+}
+
+.form-event .form-data .event-data {
+    margin: 0;
+    padding: 0;
+}
+
+.form-event .form-data .event-data .form-data-title {
+    max-width: 160px;
+    min-width: 160px;
+    max-height: 40px;
+    min-height: 40px;
+    border: 1px solid var(--gray);
+    border-radius: 7.5px;
+    text-align: center;
+    background-color: var(--light-gray);
+}
+
+.form-event .form-data .event-data .form-data-title h2 {
+    margin-top: 0.1em;
+    font-size: 1.8em;
+}
+
+.form-event .form-data .event-data .form-alert {
+    margin-top: -3.5em;
+    font-size: 0.4em;
+}
+
+.form-event .form-data .event-data .form-info {
+    margin-top: 1.5em;
+    font-size: 0.9em;
+    max-width: 100px;
+    border-radius: 7.5px;
+    color: var(--black);
+    background-color: var(--green);
+}
+
+.form-event .form-data .event-data .form-input {
+    max-height: 20px;
+    min-height: 20px;
+}
+
+.form-event .form-data .event-data .form-data-checkbox {
+    margin-top: 0.5em;
+    text-transform: capitalize;
+    color: var(--black);
+}
+
+.form-event .form-data .event-data .form-subtitle-data {
+    margin-top: 3.5em;
+    font-size: 0.4em;
+}
+
+.form-event .form-data .event-data .form-button-date {
+    margin-top: 1.5em;
+    padding: 0 3em;
+    border-radius: 7.5px;
+    text-align: center;
+    color: var(--black);
+    background-color: var(--green);
+}
+
+.form-event .form-data .event-data .form-button-image img {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    max-width: 200px;
+    min-width: 200px;
+    max-height: 150px;
+    min-height: 150px;
+    border-radius: 7.5px;
+    cursor: pointer;
+}
+
+.form-event .form-data .event-data .form-image {
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    padding: 0 2em;
+    border-radius: 7.5px;
+}
+
+.form-event .form-cat {
+    margin: 0.5em 2em;
+    padding: 0.5em;
+    border: 1px solid var(--gray);
+    border-radius: 7.5px;
+    color: var(--black);
+    background-color: var(--white);
+}
+
+.form-event .form-cat .form-cat-title {
+    max-width: 300px;
+    min-width: 300px;
+    max-height: 40px;
+    min-height: 40px;
+    border: 1px solid var(--gray);
+    border-radius: 7.5px;
+    text-align: center;
+    background-color: var(--light-gray);
+}
+
+.form-event .form-cat .form-cat-title h2 {
+    margin-top: 0.1em;
+    font-size: 1.8em;
+}
+
+.form-event .form-cat .form-data-checkbox {
+    margin-top: 0.5em;
+    text-transform: capitalize;
+    color: var(--black);
+}
+
+/* FORM event DIALOG */
+
+.form-dialog {
+    padding: 3em;
+    background-color: var(--white);
+}
+
+.form-dialog .preview-container .preview-title {
+    text-align: center;
+    background-color: var(--green);
+}
+
+.form-dialog .preview-container .preview-data {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--green);
+}
+
+.form-dialog .preview-container .preview-data .preview-data-item {
+    margin-bottom: 1em;
+    background-color: var(--green-input);
+}
+
+.form-dialog .preview-container .preview-data .preview-data-item .preview-data-label {
+    font-weight: bold;
+}
+
+.form-dialog .preview-container .preview-data .preview-data-item .preview-data-value {
+    margin-left: 1em;
+}
+
+.form-dialog .preview-container .preview-button {
+    margin-top: 1em;
+    padding: 0.2em 1.2em;
+    text-transform: capitalize;
+    border-radius: 7.5px;
+    color: var(--black);
+    background-color: var(--green);
+}
+
+.form-dialog .preview-container .preview-button:hover {
+    background-color: var(--green-input);
+}
+
+.form-dialog .preview-container .preview-image {
+    margin-top: 1em;
+    max-width: 200px;
+    max-height: 150px;
+    align-items: center;
+}
