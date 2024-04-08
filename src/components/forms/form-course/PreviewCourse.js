@@ -1,7 +1,7 @@
 import React from "react";
 import { Dialog, Button } from "@mui/material";
 
-const PreviewCourse = ({ duesData1, duesData2, duesData3, duesData4, nonMemberDues, nonMemberFree, memberDues, memberFree, duesNumber, payment, preStartingDate, preEndingDate, preview, visible, smallDescEs, largeDescEs, smallDescVal, largeDescVal, unlimited, courseNumber, waitingList, startDate, endingDate, image, winterProgram, summerProgram, adultsProgram, poolProgram, free, setPreview, coursePrice, exclusive }) => {
+const PreviewCourse = ({ duesData1, duesData2, duesData3, duesData4, nonMemberDues, nonMemberFree, memberDues, memberFree, duesNumber, payment, preStartingDate, preEndingDate, preview, visible, smallDescEs, largeDescEs, smallDescVal, largeDescVal, unlimited, courseNumber, waitingList, startDate, endingDate, image, winterProgram, summerProgram, childsProgram, adultsProgram, poolProgram, free, setPreview, coursePrice, exclusive }) => {
     return (
         <Dialog open={preview} onClose={() => setPreview(!preview)}>
             <div className="form-dialog">
@@ -47,6 +47,14 @@ const PreviewCourse = ({ duesData1, duesData2, duesData3, duesData4, nonMemberDu
                             <span className="preview-data-value">{(unlimited === true || courseNumber === "") ? "Ilimitadas" : (courseNumber === "0") ? "No hay entradas disponibles" : courseNumber}</span>
                         </div>
                         <div className="preview-data-item">
+                            <span className="preview-data-label">Inicio Preinscrición:</span>
+                            <span className="preview-data-value">{preStartingDate === "" ? "No hay fecha de inicio de preinscripción" : preStartingDate}</span>
+                        </div>
+                        <div className="preview-data-item">
+                            <span className="preview-data-label">Fin Preinscrición:</span>
+                            <span className="preview-data-value">{preEndingDate === "" ? "No hay fecha de fin de preinscripción" : preEndingDate}</span>
+                        </div>
+                        <div className="preview-data-item">
                             <span className="preview-data-label">Fecha inicio:</span>
                             <span className="preview-data-value">{startDate === "" ? "No hay fecha de inicio" : startDate}</span>
                         </div>
@@ -71,103 +79,33 @@ const PreviewCourse = ({ duesData1, duesData2, duesData3, duesData4, nonMemberDu
                             <span className="preview-data-value">{waitingList === true ? "Si" : "No"}</span>
                         </div>
                         <div className="preview-data-item">
-                            <span className="preview-data-label">Inicio Preinscrición:</span>
-                            <span className="preview-data-value">{preStartingDate === "" ? "No hay fecha de inicio de preinscripción" : preStartingDate}</span>
+                            <span className="preview-data-label">Precio para soci@s:</span>
+                            <span className="preview-data-value">{memberDues === 0 || memberDues === "" ? "Gratuito" : memberDues}</span>
                         </div>
                         <div className="preview-data-item">
-                            <span className="preview-data-label">Fin Preinscrición:</span>
-                            <span className="preview-data-value">{preEndingDate === "" ? "No hay fecha de fin de preinscripción" : preEndingDate}</span>
+                            <span className="preview-data-label">Precio para no soci@s:</span>
+                            <span className="preview-data-value">{nonMemberDues === 0 || nonMemberDues === "" ? "Gratuito" : nonMemberDues}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Permitir pago a plazos</span>
                             <span className="preview-data-value">{payment === true ? "Si" : "No"}</span>
                         </div>
                         {payment === true && (
-                            <>
-                                <div className="preview-data-item">
-                                    <span className="preview-data-label">Número de cuotas:</span>
-                                    <span className="preview-data-value">{duesNumber === "" ? "No hay número de cuotas" : duesNumber}</span>
-                                </div>
-                                <div className="preview-data-item">
-                                    <span className="preview-data-label">Precio para soci@s:</span>
-                                    <span className="preview-data-value">{memberDues === 0 || memberDues === "" ? "Gratuito" : memberDues}</span>
-                                </div>
-                                <div className="preview-data-item">
-                                    <span className="preview-data-label">Precio para no soci@s:</span>
-                                    <span className="preview-data-value">{nonMemberDues === 0 || nonMemberDues === "" ? "Gratuito" : nonMemberDues}</span>
-                                </div>
-                            </>
-
-                        )}
-                        {payment === true && duesNumber === 1 && (
                             <div className="preview-data-item">
-                                <span className="preview-data-label">Cuota 1:</span>
-                                <span className="preview-data-value">{duesData1 === "" ? "No hay cuota 1" : duesData1}</span>
+                                <span className="preview-data-label">Número de cuotas:</span>
+                                <span className="preview-data-value">{duesNumber === "" ? "No hay número de cuotas" : duesNumber}</span>
                             </div>
                         )}
-                        {payment === true && duesNumber === 2 && (
-                            <>
-                                <div className="preview-data-item">
-                                    <span className="preview-data-label">Cuota 1:</span>
-                                    <span className="preview-data-value">{duesData1 === "" ? "No hay cuota 1" : duesData1}</span>
-                                </div>
-                                <div className="preview-data-item">
-                                    <span className="preview-data-label">Cuota 2:</span>
-                                    <span className="preview-data-value">{duesData2 === "" ? "No hay cuota 2" : duesData2}</span>
-                                </div>
-                            </>
-                        )}
-                        {payment === true && duesNumber === 3 && (
-                            <>
-                                <div className="preview-data-item">
-                                    <span className="preview-data-label">Cuota 1:</span>
-                                    <span className="preview-data-value">{duesData1 === "" ? "No hay cuota 1" : duesData1}</span>
-                                </div>
-                                <div className="preview-data-item">
-                                    <span className="preview-data-label">Cuota 2:</span>
-                                    <span className="preview-data-value">{duesData2 === "" ? "No hay cuota 2" : duesData2}</span>
-                                </div>
-                                <div className="preview-data-item">
-                                    <span className="preview-data-label">Cuota 3:</span>
-                                    <span className="preview-data-value">{duesData3 === "" ? "No hay cuota 3" : duesData3}</span>
-                                </div>
-                            </>
-                        )}
-                        {payment === true && duesNumber === 4 && (
-                            <>
-                                <div className="preview-data-item">
-                                    <span className="preview-data-label">Cuota 1:</span>
-                                    <span className="preview-data-value">{duesData1 === "" ? "No hay cuota 1" : duesData1}</span>
-                                </div>
-                                <div className="preview-data-item">
-                                    <span className="preview-data-label">Cuota 2:</span>
-                                    <span className="preview-data-value">{duesData2 === "" ? "No hay cuota 2" : duesData2}</span>
-                                </div>
-                                <div className="preview-data-item">
-                                    <span className="preview-data-label">Cuota 3:</span>
-                                    <span className="preview-data-value">{duesData3 === "" ? "No hay cuota 3" : duesData3}</span>
-                                </div>
-                                <div className="preview-data-item">
-                                    <span className="preview-data-label">Cuota 4:</span>
-                                    <span className="preview-data-value">{duesData4 === "" ? "No hay cuota 4" : duesData4}</span>
-                                </div>
-                            </>
-                        )}
                         <div className="preview-data-item">
-                            <span className="preview-data-label">Programa de Invierno:</span>
-                            <span className="preview-data-value">{winterProgram === true ? "Si" : "No"}</span>
-                        </div>
-                        <div className="preview-data-item">
-                            <span className="preview-data-label">Programa de Verano:</span>
-                            <span className="preview-data-value">{summerProgram === true ? "Si" : "No"}</span>
-                        </div>
-                        <div className="preview-data-item">
-                            <span className="preview-data-label">Programa de...:</span>
-                            <span className="preview-data-value">{adultsProgram === true ? "Adultos/Jovenes" : "Niños"}</span>
-                        </div>
-                        <div className="preview-data-item">
-                            <span className="preview-data-label">Programa de Piscina:</span>
-                            <span className="preview-data-value">{poolProgram === true ? "Si" : "No"}</span>
+                            <span className="preview-data-label">Programa:</span>
+                            <span className="preview-data-value">
+                                {winterProgram === true ? "Invierno " : ""}
+                                {summerProgram === true ? "Verano " : ""}
+                                {childsProgram === true ? "Infantil " : ""}
+                                {adultsProgram === true ? "Adultos " : ""}
+                                {poolProgram === true ? "Piscina " : ""}
+                                {winterProgram === false && summerProgram === false && childsProgram === false && adultsProgram === false && poolProgram === false ? "No hay programa" : ""}
+                            </span>
                         </div>
                     </div>
                 </div>

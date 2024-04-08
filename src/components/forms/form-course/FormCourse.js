@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { DateTime } from "luxon";
 import { Grid, InputBase, Checkbox, Button, MenuItem, Select } from "@mui/material";
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
@@ -16,7 +16,9 @@ const FormCourse = () => {
     // Global Utils
     const inputRef = useRef();
     const { width } = useWindowSize();
+    const i = 1;
 
+    // Values
     const [courseData, setCourseData] = useState({
         preview: false,
         visible: false,
@@ -30,24 +32,33 @@ const FormCourse = () => {
         startDate: "",
         endingDate: "",
         image: null,
-        payment: false,
         winterProgram: false,
         summerProgram: false,
+        childsProgram: false,
         adultsProgram: false,
         poolProgram: false,
         preStartingDate: "",
         preEndingDate: "",
         payment: false,
-        duesNumber: 1,
-        memberDues: 0,
+        duesNumber: 1, // Por defecto, establecido en 1
+        memberDues: 100,
         memberFree: false,
-        nonMemberDues: 0,
+        nonMemberDues: 400,
         nonMemberFree: false,
-        duesData1: "",
-        duesData2: "",
-        duesData3: "",
-        duesData4: "",
+        duesInfo: []
     });
+
+    useEffect(() => {
+        const today = DateTime.now();
+        const firstDayOfNextMonth = today.plus({ months: 1 }).startOf('month');
+
+        // Establecer la fecha de inicio como el primer día del próximo mes
+        setCourseData(prevState => ({
+            ...prevState,
+            startDate: firstDayOfNextMonth.toISODate(),
+            duesInfo: [firstDayOfNextMonth.toISODate()]
+        }));
+    }, []);
 
     const handlePreview = () => {
         setCourseData({ ...courseData, preview: !courseData.preview });
@@ -61,15 +72,35 @@ const FormCourse = () => {
         setCourseData({ ...courseData, [e.target.name]: e.target.value });
     }
 
+    // Función para manejar el cambio en el número de cuotas
     const handleChangeSelect = (e) => {
-        setCourseData({ ...courseData, [e.target.name]: e.target.value });
-    }
+        const numberOfDues = parseInt(e.target.value);
+        const { startDate } = courseData;
+        let duesInfo = [startDate];
+
+        // Generar fechas de cuotas adicionales
+        for (let i = 1; i < numberOfDues; i++) {
+            const nextDueDate = DateTime.fromISO(duesInfo[i - 1]).plus({ months: 1 }).toISODate();
+            duesInfo.push(nextDueDate);
+        }
+
+        setCourseData(prevState => ({
+            ...prevState,
+            duesNumber: numberOfDues,
+            duesInfo: duesInfo
+        }));
+    };
 
     const handleBetweenWaitingList = (e) => {
         setCourseData({ ...courseData, waitingList: !courseData.waitingList });
     }
-    const handleBetweenAdults = (e) => {
+
+    const handleAdultsProgram = (e) => {
         setCourseData({ ...courseData, adultsProgram: !courseData.adultsProgram });
+    }
+
+    const handleChildsProgram = (e) => {
+        setCourseData({ ...courseData, childsProgram: !courseData.childsProgram });
     }
 
     const handleBetweenPayment = (e) => {
@@ -132,47 +163,7 @@ const FormCourse = () => {
         input.click();
     }
 
-    const handleDuesData1 = (e) => {
-        const date1 = e.target.value;
-        const today = DateTime.now().toISODate();
-        if (date1 < today) {
-            alert("La fecha de inicio no puede ser menor a la fecha actual");
-        } else {
-            setCourseData(prevState => ({ ...prevState, duesData1: date1 }));
-        }
-    }
-
-    const handleDuesData2 = (e) => {
-        const date2 = e.target.value;
-        const date1 = courseData.duesData1;
-        if (date2 < date1) {
-            alert("La fecha de fin no puede ser menor a la fecha de inicio");
-        } else {
-            setCourseData(prevState => ({ ...prevState, duesData2: date2 }));
-        }
-    }
-
-    const handleDuesData3 = (e) => {
-        const date3 = e.target.value;
-        const date2 = courseData.duesData2;
-        if (date3 < date2) {
-            alert("La fecha de fin no puede ser menor a la fecha de anterior");
-        } else {
-            setCourseData(prevState => ({ ...prevState, duesData3: date3 }));
-        }
-    }
-
-    const handleDuesData4 = (e) => {
-        const date4 = e.target.value;
-        const date3 = courseData.duesData3;
-        if (date4 < date3) {
-            alert("La fecha de fin no puede ser menor a la fecha de anterior");
-        } else {
-            setCourseData(prevState => ({ ...prevState, duesData4: date4 }));
-        }
-    }
-
-    const { duesData1, duesData2, duesData3, duesData4, nonMemberDues, nonMemberFree, memberDues, memberFree, duesNumber, payment, preStartingDate, preEndingDate, preview, visible, smallDescEs, largeDescEs, smallDescVal, largeDescVal, unlimited, courseNumber, waitingList, startDate, endingDate, image, winterProgram, summerProgram, adultsProgram, poolProgram } = courseData;
+    const { duesData, nonMemberDues, nonMemberFree, memberDues, memberFree, duesNumber, payment, preStartingDate, preEndingDate, preview, visible, smallDescEs, largeDescEs, smallDescVal, largeDescVal, unlimited, courseNumber, waitingList, startDate, endingDate, image, winterProgram, summerProgram, childsProgram, adultsProgram, poolProgram } = courseData;
 
     console.log(courseData);
 
@@ -190,13 +181,13 @@ const FormCourse = () => {
                             endingDate={endingDate} image={image}
                             handleUploadImage={handleUploadImage}
                             winterProgram={winterProgram} summerProgram={summerProgram}
+                            childsProgram={childsProgram}
                             adultsProgram={adultsProgram} poolProgram={poolProgram}
                             preStartingDate={preStartingDate} preEndingDate={preEndingDate}
                             payment={payment} duesNumber={duesNumber}
                             memberDues={memberDues} nonMemberDues={nonMemberDues}
                             memberFree={memberFree} nonMemberFree={nonMemberFree}
-                            duesData1={duesData1} duesData2={duesData2}
-                            duesData3={duesData3} duesData4={duesData4}
+                            duesData={duesData}
                         />
                     ) : (
                         <NoPreviewCourse
@@ -427,6 +418,88 @@ const FormCourse = () => {
                                 <Grid container>
                                     <Grid item xs={12} md={5} lg={3}>
                                         <div className="flex-start">
+                                            <h4>Inicio Preinscripción</h4>
+                                        </div>
+                                    </Grid>
+                                    <Grid item xs={12} md={7} lg={9}>
+                                        <div className={width > 900 ? 'flex-start' : 'flex-center'}>
+                                            <input
+                                                onChange={handlePreStartingDate}
+                                                type="date"
+                                                value={preStartingDate}
+                                                className="form-button-date"
+                                                required
+                                                name="preStartDate"
+                                                min={DateTime.now().toISODate()}
+                                            />
+                                        </div>
+                                    </Grid>
+                                </Grid>
+                            </div>
+                            <div className="course-data">
+                                <Grid container>
+                                    <Grid item xs={12} md={5} lg={3}>
+                                        <div className="flex-start">
+                                            <h4>Final Preinscripción</h4>
+                                        </div>
+                                    </Grid>
+                                    <Grid item xs={12} md={7} lg={9}>
+                                        <div className={width > 900 ? 'flex-start' : 'flex-center'}>
+                                            <input
+                                                onChange={handlePreEndingDate}
+                                                type="date"
+                                                value={preEndingDate}
+                                                className="form-button-date"
+                                                required
+                                                name="preEndingDate"
+                                                max={startDate}
+                                            />
+                                        </div>
+                                    </Grid>
+                                </Grid>
+                            </div>
+                            <div className="course-data">
+                                <Grid container>
+                                    <Grid item xs={12} sm={5} lg={3}>
+                                        <h4>Permitir lista de espera</h4>
+                                    </Grid>
+                                    <Grid item xs={6} sm={2}>
+                                        <div className={width > 900 ? 'flex-start' : 'flex-center'}>
+                                            <Button className="form-data-checkbox" onClick={handleBetweenWaitingList}>
+                                                <Checkbox
+                                                    icon={<RadioButtonUncheckedIcon />}
+                                                    checkedIcon={<RadioButtonCheckedIcon />}
+                                                    checked={courseData.waitingList === true ? true : false}
+                                                    shape='round'
+                                                    size="small"
+                                                    sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
+                                                    name="waitingList"
+                                                />
+                                                Si
+                                            </Button>
+                                        </div>
+                                    </Grid>
+                                    <Grid item xs={6} sm={5} lg={7}>
+                                        <div className={width > 900 ? 'flex-start' : 'flex-center'}>
+                                            <Button className="form-data-checkbox" onClick={handleBetweenWaitingList}>
+                                                <Checkbox
+                                                    icon={<RadioButtonUncheckedIcon />}
+                                                    checkedIcon={<RadioButtonCheckedIcon />}
+                                                    checked={courseData.waitingList === false ? true : false}
+                                                    size="small"
+                                                    sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
+                                                    name="waitingList"
+                                                />
+                                                No
+                                            </Button>
+                                        </div>
+                                    </Grid>
+                                </Grid>
+                            </div>
+                            <div className="course-data">
+                                <Grid container>
+                                    <Grid item xs={12} md={5} lg={3}>
+                                        <div className="flex-start">
                                             <h4>Fecha inicio</h4>
                                             <h6 className="form-subtitle-data">&nbsp;(cuando podrá comenzar a usarse las entradas)</h6>
                                         </div>
@@ -472,50 +545,174 @@ const FormCourse = () => {
                             <div className="course-data">
                                 <Grid container>
                                     <Grid item xs={12} sm={5} lg={3}>
-                                        <h4>Permitir lista de espera</h4>
+                                        <h4>Importe cuota SOCIOS</h4>
                                     </Grid>
-                                    <Grid item xs={6} sm={2}>
+                                    <Grid item xs={6} sm={5} lg={1}>
                                         <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                            <Button className="form-data-checkbox" onClick={handleBetweenWaitingList}>
+                                            {memberFree === true ? (
+                                                <div className="form-info">Gratuito</div>
+                                            ) : (
+                                                <div className="form-info">
+                                                    <InputBase
+                                                        onChange={handleChangeInput}
+                                                        className="form-input"
+                                                        variant="outlined"
+                                                        fullWidth
+                                                        value={courseData.memberDues}
+                                                        style={{ paddingTop: '0.4em' }}
+                                                        name="memberDues"
+                                                    />
+                                                </div>
+                                            )}
+                                        </div>
+                                    </Grid>
+                                    <Grid item xs={6} sm={2} lg={8}>
+                                        <div className={width > 900 ? 'flex-start' : 'flex-center'}>
+                                            <Button className="form-data-checkbox" onClick={handleChecked}>
                                                 <Checkbox
-                                                    icon={<RadioButtonUncheckedIcon />}
-                                                    checkedIcon={<RadioButtonCheckedIcon />}
-                                                    checked={courseData.waitingList === true ? true : false}
-                                                    shape='round'
+                                                    checked={courseData.memberFree}
+                                                    style={{ marginTop: '-0.1em' }}
                                                     size="small"
                                                     sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
-                                                    name="waitingList"
+                                                    name="memberFree"
                                                 />
-                                                Si
+                                                Gratuito
                                             </Button>
                                         </div>
                                     </Grid>
-                                    <Grid item xs={6} sm={5} lg={7}>
+                                    <Grid item xs={12} sm={5} lg={3}>
+                                        <h4>Importe cuota NO SOCIOS</h4>
+                                    </Grid>
+                                    <Grid item xs={6} sm={5} lg={1}>
                                         <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                            <Button className="form-data-checkbox" onClick={handleBetweenWaitingList}>
+                                            {nonMemberFree === true ? (
+                                                <div className="form-info">Gratuito</div>
+                                            ) : (
+                                                <div className="form-info">
+                                                    <InputBase
+                                                        onChange={handleChangeInput}
+                                                        className="form-input"
+                                                        variant="outlined"
+                                                        fullWidth
+                                                        value={courseData.nonMemberDues}
+                                                        style={{ paddingTop: '0.4em' }}
+                                                        name="nonMemberDues"
+                                                    />
+                                                </div>
+                                            )}
+                                        </div>
+                                    </Grid>
+                                    <Grid item xs={6} sm={2} lg={8}>
+                                        <div className={width > 900 ? 'flex-start' : 'flex-center'}>
+                                            <Button className="form-data-checkbox" onClick={handleChecked}>
                                                 <Checkbox
-                                                    icon={<RadioButtonUncheckedIcon />}
-                                                    checkedIcon={<RadioButtonCheckedIcon />}
-                                                    checked={courseData.waitingList === false ? true : false}
+                                                    checked={courseData.nonMemberFree}
+                                                    style={{ marginTop: '-0.1em' }}
                                                     size="small"
                                                     sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
-                                                    name="waitingList"
+                                                    name="nonMemberFree"
                                                 />
-                                                No
+                                                Gratuito
                                             </Button>
                                         </div>
                                     </Grid>
                                 </Grid>
                             </div>
-
+                            {memberFree === true && nonMemberFree === true ? (
+                                <></>
+                            ) : (
+                                <>
+                                    <div className="course-data">
+                                        <Grid container>
+                                            <Grid item xs={12} sm={5} lg={3}>
+                                                <h4>Permitir pago a plazos</h4>
+                                            </Grid>
+                                            <Grid item xs={6} sm={2}>
+                                                <div className={width > 900 ? 'flex-start' : 'flex-center'}>
+                                                    <Button className="form-data-checkbox" onClick={handleBetweenPayment}>
+                                                        <Checkbox
+                                                            icon={<RadioButtonUncheckedIcon />}
+                                                            checkedIcon={<RadioButtonCheckedIcon />}
+                                                            checked={courseData.payment}
+                                                            shape='round'
+                                                            size="small"
+                                                            sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
+                                                            name="payment"
+                                                        />
+                                                        Si
+                                                    </Button>
+                                                </div>
+                                            </Grid>
+                                            <Grid item xs={6} sm={5} lg={7}>
+                                                <div className={width > 900 ? 'flex-start' : 'flex-center'}>
+                                                    <Button className="form-data-checkbox" onClick={handleBetweenPayment}>
+                                                        <Checkbox
+                                                            icon={<RadioButtonUncheckedIcon />}
+                                                            checkedIcon={<RadioButtonCheckedIcon />}
+                                                            checked={!courseData.payment}
+                                                            size="small"
+                                                            sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
+                                                            name="payment"
+                                                        />
+                                                        No
+                                                    </Button>
+                                                </div>
+                                            </Grid>
+                                        </Grid>
+                                    </div>
+                                    {courseData.payment && (
+                                        <div className="course-data">
+                                            <Grid container>
+                                                <Grid item xs={12} sm={5} lg={3}>
+                                                    <h4>Nº de Cuotas</h4>
+                                                </Grid>
+                                                <Grid item xs={12} sm={7}>
+                                                    <div className={width > 900 ? 'flex-start' : 'flex-center'}>
+                                                        <div className="form-info">
+                                                            <Select
+                                                                onChange={handleChangeSelect}
+                                                                className="form-input"
+                                                                variant="outlined"
+                                                                fullWidth
+                                                                defaultValue={1}
+                                                                style={{ paddingTop: '0.4em' }}
+                                                                name="duesNumber"
+                                                            >
+                                                                {[1, 2, 3, 4, 6, 12, 24].map((value) => (
+                                                                    <MenuItem key={value} value={value}>{value}</MenuItem>
+                                                                ))}
+                                                            </Select>
+                                                        </div>
+                                                    </div>
+                                                </Grid>
+                                                {memberFree === false && (
+                                                    <Grid item xs={6} sm={5} lg={3}>
+                                                        <h4>Socios: {(memberDues / courseData.duesNumber).toFixed(2)} €</h4>
+                                                    </Grid>
+                                                )}
+                                                {nonMemberFree === false && (
+                                                    <Grid item xs={6} sm={5} lg={3}>
+                                                        <h4>No socios: {(nonMemberDues / courseData.duesNumber).toFixed(2)} €</h4>
+                                                    </Grid>
+                                                )}
+                                                {courseData.duesInfo.map((due, index) => (
+                                                    <Grid key={index} item xs={12}>
+                                                        <h4>{`La cuota ${index + 1} se cobrará el día ${due}`}</h4>
+                                                    </Grid>
+                                                ))}
+                                            </Grid>
+                                        </div>
+                                    )}
+                                </>
+                            )}
                             <div className="course-image">
                                 <Grid container>
-                                    <Grid item xs={6}>
+                                    <Grid item xs={3}>
                                         <div className="flex-start">
                                             <h4>Imagen</h4>
                                         </div>
                                     </Grid>
-                                    <Grid item xs={6}>
+                                    <Grid item xs={9}>
                                         <div className={width > 900 ? 'flex-start' : 'flex-center'}>
                                             {image === null ? (
                                                 <div className="form-button-image" onClick={handleUploadImage}>
@@ -530,396 +727,6 @@ const FormCourse = () => {
                                     </Grid>
                                 </Grid>
                             </div>
-                            <div className="course-data">
-                                <Grid container>
-                                    <Grid item xs={12} md={5} lg={3}>
-                                        <div className="flex-start">
-                                            <h4>Inicio Preinscripción</h4>
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={12} md={7} lg={9}>
-                                        <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                            <input
-                                                onChange={handlePreStartingDate}
-                                                type="date"
-                                                value={preStartingDate}
-                                                className="form-button-date"
-                                                required
-                                                name="preStartDate"
-                                                min={DateTime.now().toISODate()}
-                                            />
-                                        </div>
-                                    </Grid>
-                                </Grid>
-                            </div>
-                            <div className="course-data">
-                                <Grid container>
-                                    <Grid item xs={12} md={5} lg={3}>
-                                        <div className="flex-start">
-                                            <h4>Final Preinscripción</h4>
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={12} md={7} lg={9}>
-                                        <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                            <input
-                                                onChange={handlePreEndingDate}
-                                                type="date"
-                                                value={preEndingDate}
-                                                className="form-button-date"
-                                                required
-                                                name="preEndingDate"
-                                                min={DateTime.now().toISODate()}
-                                            />
-                                        </div>
-                                    </Grid>
-                                </Grid>
-                            </div>
-                            <div className="course-data">
-                                <Grid container>
-                                    <Grid item xs={12} sm={5} lg={3}>
-                                        <h4>Permitir pago a plazos</h4>
-                                    </Grid>
-                                    <Grid item xs={6} sm={2}>
-                                        <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                            <Button className="form-data-checkbox" onClick={handleBetweenPayment}>
-                                                <Checkbox
-                                                    icon={<RadioButtonUncheckedIcon />}
-                                                    checkedIcon={<RadioButtonCheckedIcon />}
-                                                    checked={courseData.payment === true ? true : false}
-                                                    shape='round'
-                                                    size="small"
-                                                    sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
-                                                    name="payment"
-                                                />
-                                                Si
-                                            </Button>
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={6} sm={5} lg={7}>
-                                        <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                            <Button className="form-data-checkbox" onClick={handleBetweenPayment}>
-                                                <Checkbox
-                                                    icon={<RadioButtonUncheckedIcon />}
-                                                    checkedIcon={<RadioButtonCheckedIcon />}
-                                                    checked={courseData.payment === false ? true : false}
-                                                    size="small"
-                                                    sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
-                                                    name="payment"
-                                                />
-                                                No
-                                            </Button>
-                                        </div>
-                                    </Grid>
-                                </Grid>
-                            </div>
-                            {payment === true ? (
-                                <div className="course-data">
-                                    <Grid container>
-                                        <Grid item xs={12} sm={5} lg={3}>
-                                            <h4>Nº de Cuotas</h4>
-                                        </Grid>
-                                        <Grid item xs={6} sm={7}>
-                                            <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                                <div className="form-info">
-                                                    <Select
-                                                        onChange={handleChangeSelect}
-                                                        className="form-input"
-                                                        variant="outlined"
-                                                        fullWidth
-                                                        value={courseData.duesNumber}
-                                                        style={{ paddingTop: '0.4em' }}
-                                                        name="duesNumber"
-                                                    >
-                                                        <MenuItem value={1}>1</MenuItem>
-                                                        <MenuItem value={2}>2</MenuItem>
-                                                        <MenuItem value={3}>3</MenuItem>
-                                                        <MenuItem value={4}>4</MenuItem>
-                                                    </Select>
-                                                </div>
-                                            </div>
-                                        </Grid>
-                                        <Grid item xs={12} sm={5} lg={3}>
-                                            <h4>Importe cuota SOCIOS</h4>
-                                        </Grid>
-                                        <Grid item xs={6} sm={5} lg={1}>
-                                            <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                                {memberFree === true ? (
-                                                    <div className="form-info">Gratuito</div>
-                                                ) : (
-                                                    <div className="form-info">
-                                                        <InputBase
-                                                            onChange={handleChangeInput}
-                                                            className="form-input"
-                                                            variant="outlined"
-                                                            fullWidth
-                                                            value={courseData.memberDues}
-                                                            style={{ paddingTop: '0.4em' }}
-                                                            name="memberDues"
-                                                        />
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </Grid>
-                                        <Grid item xs={6} sm={2} lg={8}>
-                                            <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                                <Button className="form-data-checkbox" onClick={handleChecked}>
-                                                    <Checkbox
-                                                        checked={courseData.memberFree}
-                                                        style={{ marginTop: '-0.1em' }}
-                                                        size="small"
-                                                        sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
-                                                        name="memberFree"
-                                                    />
-                                                    Gratuito
-                                                </Button>
-                                            </div>
-                                        </Grid>
-                                        <Grid item xs={12} sm={5} lg={3}>
-                                            <h4>Importe cuota NO SOCIOS</h4>
-                                        </Grid>
-                                        <Grid item xs={6} sm={5} lg={1}>
-                                            <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                                {nonMemberFree === true ? (
-                                                    <div className="form-info">Gratuito</div>
-                                                ) : (
-                                                    <div className="form-info">
-                                                        <InputBase
-                                                            onChange={handleChangeInput}
-                                                            className="form-input"
-                                                            variant="outlined"
-                                                            fullWidth
-                                                            value={courseData.nonMemberDues}
-                                                            style={{ paddingTop: '0.4em' }}
-                                                            name="nonMemberDues"
-                                                        />
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </Grid>
-                                        <Grid item xs={6} sm={2} lg={8}>
-                                            <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                                <Button className="form-data-checkbox" onClick={handleChecked}>
-                                                    <Checkbox
-                                                        checked={courseData.nonMemberFree}
-                                                        style={{ marginTop: '-0.1em' }}
-                                                        size="small"
-                                                        sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
-                                                        name="nonMemberFree"
-                                                    />
-                                                    Gratuito
-                                                </Button>
-                                            </div>
-                                        </Grid>
-                                        <Grid item xs={12}>
-                                            {duesNumber === 1 ? (
-                                                <>
-                                                    <Grid container>
-                                                        <Grid item xs={1}>
-                                                        </Grid>
-                                                        <Grid item xs={2}>
-                                                            <h4>Fecha cuota 1</h4>
-                                                        </Grid>
-                                                        <Grid item xs={9}>
-                                                            <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                                                <input
-                                                                    onChange={handleStartingDate}
-                                                                    type="date"
-                                                                    value={courseData.duesData1}
-                                                                    className="form-button-date"
-                                                                    required
-                                                                    name="startDate"
-                                                                    min={DateTime.now().toISODate()}
-                                                                />
-                                                            </div>
-                                                        </Grid>
-                                                    </Grid>
-
-                                                </>
-                                            ) : duesNumber === 2 ? (
-                                                <>
-                                                    <Grid container>
-                                                        <Grid item xs={1}>
-                                                        </Grid>
-                                                        <Grid item xs={2}>
-                                                            <h4>Fecha cuota 1</h4>
-                                                        </Grid>
-                                                        <Grid item xs={9}>
-                                                            <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                                                <input
-                                                                    onChange={handleDuesData1}
-                                                                    type="date"
-                                                                    value={courseData.duesData1}
-                                                                    className="form-button-date"
-                                                                    required
-                                                                    name="startDate"
-                                                                    min={DateTime.now().toISODate()}
-                                                                />
-                                                            </div>
-                                                        </Grid>
-                                                        <Grid item xs={1}>
-                                                        </Grid>
-                                                        <Grid item xs={2}>
-                                                            <h4>Fecha cuota 2</h4>
-                                                        </Grid>
-                                                        <Grid item xs={9}>
-                                                            <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                                                <input
-                                                                    onChange={handleDuesData2}
-                                                                    type="date"
-                                                                    value={courseData.duesData2}
-                                                                    className="form-button-date"
-                                                                    required
-                                                                    name="startDate"
-                                                                    min={courseData.duesData1}
-                                                                />
-                                                            </div>
-                                                        </Grid>
-                                                    </Grid>
-                                                </>
-                                            ) : duesNumber === 3 ? (
-                                                <>
-                                                    <Grid container>
-                                                        <Grid item xs={1}>
-                                                        </Grid>
-                                                        <Grid item xs={2}>
-                                                            <h4>Fecha cuota 1</h4>
-                                                        </Grid>
-                                                        <Grid item xs={9}>
-                                                            <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                                                <input
-                                                                    onChange={handleDuesData1}
-                                                                    type="date"
-                                                                    value={courseData.duesData1}
-                                                                    className="form-button-date"
-                                                                    required
-                                                                    name="startDate"
-                                                                    min={DateTime.now().toISODate()}
-                                                                />
-                                                            </div>
-                                                        </Grid>
-                                                        <Grid item xs={1}>
-                                                        </Grid>
-                                                        <Grid item xs={2}>
-                                                            <h4>Fecha cuota 2</h4>
-                                                        </Grid>
-                                                        <Grid item xs={9}>
-                                                            <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                                                <input
-                                                                    onChange={handleDuesData2}
-                                                                    type="date"
-                                                                    value={courseData.duesData2}
-                                                                    className="form-button-date"
-                                                                    required
-                                                                    name="startDate"
-                                                                    min={courseData.duesData1}
-                                                                />
-                                                            </div>
-                                                        </Grid>
-                                                        <Grid item xs={1}>
-                                                        </Grid>
-                                                        <Grid item xs={2}>
-                                                            <h4>Fecha cuota 3</h4>
-                                                        </Grid>
-                                                        <Grid item xs={9}>
-                                                            <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                                                <input
-                                                                    onChange={handleDuesData3}
-                                                                    type="date"
-                                                                    value={courseData.duesData3}
-                                                                    className="form-button-date"
-                                                                    required
-                                                                    name="startDate"
-                                                                    min={courseData.duesData2}
-                                                                />
-                                                            </div>
-                                                        </Grid>
-                                                    </Grid>
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <Grid container>
-                                                        <Grid item xs={1}>
-                                                        </Grid>
-                                                        <Grid item xs={2}>
-                                                            <h4>Fecha cuota 1</h4>
-                                                        </Grid>
-                                                        <Grid item xs={9}>
-                                                            <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                                                <input
-                                                                    onChange={handleDuesData1}
-                                                                    type="date"
-                                                                    value={courseData.duesData1}
-                                                                    className="form-button-date"
-                                                                    required
-                                                                    name="startDate"
-                                                                    min={DateTime.now().toISODate()}
-                                                                />
-                                                            </div>
-                                                        </Grid>
-                                                        <Grid item xs={1}>
-                                                        </Grid>
-                                                        <Grid item xs={2}>
-                                                            <h4>Fecha cuota 2</h4>
-                                                        </Grid>
-                                                        <Grid item xs={9}>
-                                                            <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                                                <input
-                                                                    onChange={handleDuesData2}
-                                                                    type="date"
-                                                                    value={courseData.duesData2}
-                                                                    className="form-button-date"
-                                                                    required
-                                                                    name="startDate"
-                                                                    min={courseData.duesData1}
-                                                                />
-                                                            </div>
-                                                        </Grid>
-                                                        <Grid item xs={1}>
-                                                        </Grid>
-                                                        <Grid item xs={2}>
-                                                            <h4>Fecha cuota 3</h4>
-                                                        </Grid>
-                                                        <Grid item xs={9}>
-                                                            <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                                                <input
-                                                                    onChange={handleDuesData3}
-                                                                    type="date"
-                                                                    value={courseData.duesData3}
-                                                                    className="form-button-date"
-                                                                    required
-                                                                    name="startDate"
-                                                                    min={courseData.duesData2}
-                                                                />
-                                                            </div>
-                                                        </Grid>
-                                                        <Grid item xs={1}>
-                                                        </Grid>
-                                                        <Grid item xs={2}>
-                                                            <h4>Fecha cuota 4</h4>
-                                                        </Grid>
-                                                        <Grid item xs={9}>
-                                                            <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                                                <input
-                                                                    onChange={handleDuesData4}
-                                                                    type="date"
-                                                                    value={courseData.duesData4}
-                                                                    className="form-button-date"
-                                                                    required
-                                                                    name="startDate"
-                                                                    min={courseData.duesData3}
-                                                                />
-                                                            </div>
-                                                        </Grid>
-                                                    </Grid>
-                                                </>
-                                            )
-                                            }
-                                        </Grid>
-                                    </Grid>
-                                </div>
-                            ) : (
-                                <></>
-                            )}
                         </div>
                         <div className="form-cat">
                             <Grid container>
@@ -942,7 +749,7 @@ const FormCourse = () => {
                                                 name="winterProgram"
                                                 onClick={handleChecked}
                                             />
-                                            Programa de invierno
+                                            Invierno
                                         </Button>
                                     </div>
                                 </Grid>
@@ -957,7 +764,7 @@ const FormCourse = () => {
                                                 name="summerProgram"
                                                 onClick={handleChecked}
                                             />
-                                            Programa de verano
+                                            Verano
                                         </Button>
                                     </div>
                                 </Grid>
@@ -969,13 +776,13 @@ const FormCourse = () => {
                                         <Button className="form-data-checkbox">
                                             <Checkbox
                                                 style={{ marginTop: '-0.1em' }}
-                                                checked={!courseData.adultsProgram}
+                                                checked={courseData.childsProgram}
                                                 size="small"
                                                 sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
-                                                name="adultsProgram"
-                                                onClick={handleBetweenAdults}
+                                                name="childsProgram"
+                                                onClick={handleChildsProgram}
                                             />
-                                            Para niñ@s
+                                            Niñ@s
                                         </Button>
                                     </div>
                                 </Grid>
@@ -988,9 +795,9 @@ const FormCourse = () => {
                                                 size="small"
                                                 sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                 name="adultsProgram"
-                                                onClick={handleBetweenAdults}
+                                                onClick={handleAdultsProgram}
                                             />
-                                            Para jóvenes/adultos
+                                            Jóvenes/Adultos
                                         </Button>
                                     </div>
                                 </Grid>

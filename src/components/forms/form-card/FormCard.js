@@ -2,9 +2,7 @@ import React, { useState, useRef } from 'react';
 
 import './formCard.css';
 
-const MYIMAGE = 'AjuntamentDeLesAlqueries.png';
-const MYIMAGE2 = 'imagen.png';
-const MYIMAGE3 = 'qr1234.png';
+const MYIMAGE = 'AjuntamentDeLesAlqueries.png', MYIMAGE2 = 'imagen.png', MYIMAGE3 = 'qr1234.png', MYIMAGE4 = 'background.png';
 
 const FormCard = () => {
     const [name, setName] = useState('');
@@ -84,6 +82,7 @@ const FormCard = () => {
                 onKeyDown={handleKeyDown}
             />
             <div className='card-back'>
+                <img src={MYIMAGE4} alt='Back' />
             </div>
         </div >
     );

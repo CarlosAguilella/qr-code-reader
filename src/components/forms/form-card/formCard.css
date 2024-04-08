@@ -1,7 +1,6 @@
 .form-card-container {
-    margin-left: 1em;
-    width: 450px;
-    height: 275px;
+    width: 469px;
+    height: 328px;
     border: 2px solid #000000;
     border-radius: 10px;
     background-color: #fff;
@@ -9,28 +8,28 @@
 }
 
 .form-card-container .card-logo img {
-    margin-top: 1em;
+    margin-top: 0.5em;
     margin-left: 1.5em;
-    margin-bottom: 1.5em;
+    margin-bottom: 1em;
     width: 140px;
-    height: 70px;
+    height: 80px;
 }
 
 .form-card-container .card-image img {
-    z-index: 1;
+    z-index: 2;
     position: absolute;
     margin-top: 1em;
     margin-left: 1.5em;
     width: auto;
-    max-width: 130px;
-    height: 130px;
+    max-width: 150px;
+    height: 170px;
     border-radius: 7.5px; 
 }
 
 .form-card-container .card-input-name {
     position: absolute;
-    top: 155px;
-    left: 165px;
+    top: 185px;
+    left: 185px;
     width: 280px;
     font-size: 1.5em;
     border: 0;
@@ -38,8 +37,8 @@
 
 .form-card-container .card-input-surname1 {
     position: absolute;
-    top: 185px;
-    left: 165px;
+    top: 215px;
+    left: 185px;
     width: 280px;
     font-size: 1.5em;
     border: 0;
@@ -47,8 +46,8 @@
 
 .form-card-container .card-input-surname2 {
     position: absolute;
-    top: 215px;
-    left: 165px;
+    top: 245px;
+    left: 185px;
     width: 280px;
     font-size: 1.5em;
     border: 0;
@@ -56,8 +55,8 @@
 
 .form-card-container .card-input-code {
     position: absolute;
-    top: 240px;
-    left: 165px;
+    top: 275px;
+    left: 185px;
     width: 150px;
     font-size: 1em;
     border: 0;
@@ -76,15 +75,9 @@
     border-radius: 7.5px;
 }
 
-.form-card-container .card-back {
-    z-index: 0;
-    position: absolute;
-    width: 120px;
-    height: 176px;
-    border-top-right-radius: 2em;
-    border-bottom-right-radius: 7em;
-    border-bottom-left-radius: 7.5px;
-    top: 100px;
-    left: 20px;
-    background-color: blue;
+.form-card-container .card-back img {
+    margin-top: -1em;
+    width: 135px;
+    height: 235px;
+    border-bottom-left-radius: 0.6em;
 }
