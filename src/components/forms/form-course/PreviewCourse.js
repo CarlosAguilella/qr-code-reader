@@ -43,16 +43,8 @@ const PreviewCourse = ({ duesData1, duesData2, duesData3, duesData4, nonMemberDu
                             )}
                         </div>
                         <div className="preview-data-item">
-                            <span className="preview-data-label">Entradas disponibles:</span>
+                            <span className="preview-data-label">Plazas disponibles:</span>
                             <span className="preview-data-value">{(unlimited === true || courseNumber === "") ? "Ilimitadas" : (courseNumber === "0") ? "No hay entradas disponibles" : courseNumber}</span>
-                        </div>
-                        <div className="preview-data-item">
-                            <span className="preview-data-label">Precio:</span>
-                            <span className="preview-data-value">{(free === true || coursePrice === "" || coursePrice === "0") ? "Gratuito" : coursePrice}</span>
-                        </div>
-                        <div className="preview-data-item">
-                            <span className="preview-data-label">Exclusivo para soci@s:</span>
-                            <span className="preview-data-value">{exclusive === true ? "Si" : "No"}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Fecha inicio:</span>
@@ -73,6 +65,18 @@ const PreviewCourse = ({ duesData1, duesData2, duesData3, duesData4, nonMemberDu
                                     </div>
                                 )}
                             </span>
+                        </div>
+                        <div className="preview-data-item">
+                            <span className="preview-data-label">Permitir lista de espera:</span>
+                            <span className="preview-data-value">{waitingList === true ? "Si" : "No"}</span>
+                        </div>
+                        <div className="preview-data-item">
+                            <span className="preview-data-label">Inicio Preinscrición:</span>
+                            <span className="preview-data-value">{preStartingDate === "" ? "No hay fecha de inicio de preinscripción" : preStartingDate}</span>
+                        </div>
+                        <div className="preview-data-item">
+                            <span className="preview-data-label">Fin Preinscrición:</span>
+                            <span className="preview-data-value">{preEndingDate === "" ? "No hay fecha de fin de preinscripción" : preEndingDate}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Permitir pago a plazos</span>

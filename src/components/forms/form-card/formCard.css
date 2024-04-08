@@ -1,49 +1,90 @@
-FormCard.css
-.container {
-    width: 85.6mm;
-    height: 53.98mm;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-   }
-   
-   .form-group {
-    margin-bottom: 10px;
-   }
-   
-   label {
-    display: block;
-    margin-bottom: 5px;
-   }
-   
-   input[type="text"], input[type="file"] {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-   }
-   
-   button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-   }
-   
-   button:hover {
-    background-color: #0056b3;
-   }
-   
-   @media print {
-    @page {
-    size: 85.6mm 53.98mm;
-    margin: 0;
-    }
-   }
+.form-card-container {
+    margin-left: 1em;
+    width: 450px;
+    height: 275px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-card-container .card-logo img {
+    margin-top: 1em;
+    margin-left: 1.5em;
+    margin-bottom: 1.5em;
+    width: 140px;
+    height: 70px;
+}
+
+.form-card-container .card-image img {
+    z-index: 1;
+    position: absolute;
+    margin-top: 1em;
+    margin-left: 1.5em;
+    width: auto;
+    max-width: 130px;
+    height: 130px;
+    border-radius: 7.5px; 
+}
+
+.form-card-container .card-input-name {
+    position: absolute;
+    top: 155px;
+    left: 165px;
+    width: 280px;
+    font-size: 1.5em;
+    border: 0;
+}
+
+.form-card-container .card-input-surname1 {
+    position: absolute;
+    top: 185px;
+    left: 165px;
+    width: 280px;
+    font-size: 1.5em;
+    border: 0;
+}
+
+.form-card-container .card-input-surname2 {
+    position: absolute;
+    top: 215px;
+    left: 165px;
+    width: 280px;
+    font-size: 1.5em;
+    border: 0;
+}
+
+.form-card-container .card-input-code {
+    position: absolute;
+    top: 240px;
+    left: 165px;
+    width: 150px;
+    font-size: 1em;
+    border: 0;
+}
+
+.form-card-container .card-qr {
+    position: absolute;
+    top: 15px;
+    left: 320px;
+}
+
+.form-card-container .card-qr img {
+    width: 130px;
+    height: 130px;
+    border: 3px solid #5d47a2;
+    border-radius: 7.5px;
+}
+
+.form-card-container .card-back {
+    z-index: 0;
+    position: absolute;
+    width: 120px;
+    height: 176px;
+    border-top-right-radius: 2em;
+    border-bottom-right-radius: 7em;
+    border-bottom-left-radius: 7.5px;
+    top: 100px;
+    left: 20px;
+    background-color: blue;
+}

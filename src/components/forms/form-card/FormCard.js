@@ -1,80 +1,92 @@
-// import React, { useState, useRef } from 'react';
-// import QRCode from 'qrcode.react';
-// import { useReactToPrint } from 'react-to-print';
-// import { Grid } from "@mui/material";
+import React, { useState, useRef } from 'react';
 
-// import './formCard.css';
+import './formCard.css';
 
-// const MYIMAGE = 'logo192.png';
+const MYIMAGE = 'AjuntamentDeLesAlqueries.png';
+const MYIMAGE2 = 'imagen.png';
+const MYIMAGE3 = 'qr1234.png';
 
-// const FormCard = () => {
-//  const [name, setName] = useState('');
-//  const [photo, setPhoto] = useState(null);
-//  const componentRef = useRef();
+const FormCard = () => {
+    const [name, setName] = useState('');
+    const [surname1, setSurname1] = useState('');
+    const [surname2, setSurname2] = useState('');
+    const [code, setCode] = useState('');
+    const [image, setImage] = useState(null);
 
-//  const handlePrint = useReactToPrint({
-//  content: () => componentRef.current,
-//  pageStyle: `
-//  @page {
-//  size: credit-card;
-//  }
-//  @media print {
-//  body {
-//  margin: 0;
-//  }
-//  }
-//  `,
-//  });
+    const handleKeyDown = (event) => {
+        if (event.ctrlKey && event.key === 'p') {
+            event.preventDefault();
+        }
+    };
 
-//  const handleKeyDown = (event) => {
-//  if (event.ctrlKey && event.key === 'p') {
-//  event.preventDefault();
-//  handlePrint();
-//  }
-//  };
+    const handleUploadImage = () => {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.onchange = (event) => {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                setImage(event.target.result);
+            };
+            reader.readAsDataURL(file);
+        };
+        input.click();
+    }
 
-//  const handlePhotoChange = (event) => {
-//  setPhoto(URL.createObjectURL(event.target.files[0]));
-//  };
+    return (
+        <div className='form-card-container'>
+            <div className='card-qr'>
+                <img src={MYIMAGE3} alt='QR'/>
+            </div>
+            <div className='card-logo'>
+                <img src={MYIMAGE} alt='Logo' />
+            </div>
+            {image ? (
+                <div type='file' className='card-image' onClick={handleUploadImage}>
+                    <img src={image} alt='Foto' />
+                </div>
+            ) : (
+                <div type='file' className='card-image' onClick={handleUploadImage}>
+                    <img src={MYIMAGE2} alt='Foto' />
+                </div>
+            )}
+            <input
+                className='card-input-name'
+                type='text'
+                placeholder='Nombre'
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                onKeyDown={handleKeyDown}
+            />
+            <input
+                className='card-input-surname1'
+                type='text'
+                placeholder='Apellido 1'
+                value={surname1}
+                onChange={(event) => setSurname1(event.target.value)}
+                onKeyDown={handleKeyDown}
+            />
+            <input
+                className='card-input-surname2'
+                type='text'
+                placeholder='Apellido 2'
+                value={surname2}
+                onChange={(event) => setSurname2(event.target.value)}
+                onKeyDown={handleKeyDown}
+            />
+            <input
+                className='card-input-code'
+                type='text'
+                placeholder='Código'
+                value={code}
+                onChange={(event) => setCode(event.target.value)}
+                onKeyDown={handleKeyDown}
+            />
+            <div className='card-back'>
+            </div>
+        </div >
+    );
+};
 
-//  const generateQR = (name) => {
-//  return `Nombre: ${name}`;
-//  };
-
-//  return (
-//  <div className='form-card-container'>
-//  <Grid container>
-//  <Grid item xs={3}>
-//  <div className='card-logo'>
-//  <img src={MYIMAGE} alt='Logo' />
-//  </div>
-//  </Grid>
-//  <Grid item xs={3}>
-//  <div className='form-card' ref={componentRef}>
-//  <div className='form-card-title'>
-//  <h1>Ajuntament de</h1>
-//  <h1>les Alqueries</h1>
-//  </div>
-//  </div>
-//  </Grid>
-//  <Grid item xs={12}>
-//  <input
-//  type='text'
-//  placeholder='Nombre'
-//  value={name}
-//  onChange={(event) => setName(event.target.value)}
-//  onKeyDown={handleKeyDown}
-//  />
-//  </Grid>
-//  <Grid item xs={12}>
-//  <input type='file' onChange={handlePhotoChange} />
-//  </Grid>
-//  <Grid item xs={12}>
-//  <button onClick={handlePrint}>Imprimir</button>
-//  </Grid>
-//  </Grid>
-//  </div>
-//  );
-// };
-
-// export default FormCard;
+export default FormCard;

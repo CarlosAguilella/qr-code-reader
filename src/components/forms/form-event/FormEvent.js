@@ -497,10 +497,10 @@ const FormEvent = () => {
                                         <h2>CATEGORIZACIÓN</h2>
                                     </div>
                                 </Grid>
-                                <Grid item xs={4}>
+                                <Grid item xs={12} md={4}>
                                     <h4>Duración:</h4>
                                 </Grid>
-                                <Grid item xs={4}>
+                                <Grid item xs={6} md={4}>
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
@@ -515,7 +515,7 @@ const FormEvent = () => {
                                         </Button>
                                     </div>
                                 </Grid>
-                                <Grid item xs={4}>
+                                <Grid item xs={6} md={4}>
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
@@ -530,10 +530,10 @@ const FormEvent = () => {
                                         </Button>
                                     </div>
                                 </Grid>
-                                <Grid item xs={4}>
+                                <Grid item xs={12} md={4}>
                                     <h4>Edad:</h4>
                                 </Grid>
-                                <Grid item xs={4}>
+                                <Grid item xs={6} md={4}>
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
@@ -548,7 +548,7 @@ const FormEvent = () => {
                                         </Button>
                                     </div>
                                 </Grid>
-                                <Grid item xs={4}>
+                                <Grid item xs={6} md={4}>
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
@@ -563,10 +563,10 @@ const FormEvent = () => {
                                         </Button>
                                     </div>
                                 </Grid>
-                                <Grid item xs={4}>
+                                <Grid item xs={12} md={4}>
                                     <h4>Otros:</h4>
                                 </Grid>
-                                <Grid item xs={4}>
+                                <Grid item xs={6} md={4}>
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox

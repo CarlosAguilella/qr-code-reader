@@ -132,6 +132,46 @@ const FormCourse = () => {
         input.click();
     }
 
+    const handleDuesData1 = (e) => {
+        const date1 = e.target.value;
+        const today = DateTime.now().toISODate();
+        if (date1 < today) {
+            alert("La fecha de inicio no puede ser menor a la fecha actual");
+        } else {
+            setCourseData(prevState => ({ ...prevState, duesData1: date1 }));
+        }
+    }
+
+    const handleDuesData2 = (e) => {
+        const date2 = e.target.value;
+        const date1 = courseData.duesData1;
+        if (date2 < date1) {
+            alert("La fecha de fin no puede ser menor a la fecha de inicio");
+        } else {
+            setCourseData(prevState => ({ ...prevState, duesData2: date2 }));
+        }
+    }
+
+    const handleDuesData3 = (e) => {
+        const date3 = e.target.value;
+        const date2 = courseData.duesData2;
+        if (date3 < date2) {
+            alert("La fecha de fin no puede ser menor a la fecha de anterior");
+        } else {
+            setCourseData(prevState => ({ ...prevState, duesData3: date3 }));
+        }
+    }
+
+    const handleDuesData4 = (e) => {
+        const date4 = e.target.value;
+        const date3 = courseData.duesData3;
+        if (date4 < date3) {
+            alert("La fecha de fin no puede ser menor a la fecha de anterior");
+        } else {
+            setCourseData(prevState => ({ ...prevState, duesData4: date4 }));
+        }
+    }
+
     const { duesData1, duesData2, duesData3, duesData4, nonMemberDues, nonMemberFree, memberDues, memberFree, duesNumber, payment, preStartingDate, preEndingDate, preview, visible, smallDescEs, largeDescEs, smallDescVal, largeDescVal, unlimited, courseNumber, waitingList, startDate, endingDate, image, winterProgram, summerProgram, adultsProgram, poolProgram } = courseData;
 
     console.log(courseData);
@@ -468,14 +508,14 @@ const FormCourse = () => {
                                 </Grid>
                             </div>
 
-                            <div className="course-data">
+                            <div className="course-image">
                                 <Grid container>
-                                    <Grid item xs={12} md={6} lg={3}>
+                                    <Grid item xs={6}>
                                         <div className="flex-start">
                                             <h4>Imagen</h4>
                                         </div>
                                     </Grid>
-                                    <Grid item xs={12} md={1} lg={9}>
+                                    <Grid item xs={6}>
                                         <div className={width > 900 ? 'flex-start' : 'flex-center'}>
                                             {image === null ? (
                                                 <div className="form-button-image" onClick={handleUploadImage}>
@@ -490,9 +530,6 @@ const FormCourse = () => {
                                     </Grid>
                                 </Grid>
                             </div>
-
-
-
                             <div className="course-data">
                                 <Grid container>
                                     <Grid item xs={12} md={5} lg={3}>
@@ -505,7 +542,7 @@ const FormCourse = () => {
                                             <input
                                                 onChange={handlePreStartingDate}
                                                 type="date"
-                                                value={startDate}
+                                                value={preStartingDate}
                                                 className="form-button-date"
                                                 required
                                                 name="preStartDate"
@@ -515,8 +552,6 @@ const FormCourse = () => {
                                     </Grid>
                                 </Grid>
                             </div>
-
-
                             <div className="course-data">
                                 <Grid container>
                                     <Grid item xs={12} md={5} lg={3}>
@@ -529,7 +564,7 @@ const FormCourse = () => {
                                             <input
                                                 onChange={handlePreEndingDate}
                                                 type="date"
-                                                value={startDate}
+                                                value={preEndingDate}
                                                 className="form-button-date"
                                                 required
                                                 name="preEndingDate"
@@ -539,8 +574,6 @@ const FormCourse = () => {
                                     </Grid>
                                 </Grid>
                             </div>
-
-
                             <div className="course-data">
                                 <Grid container>
                                     <Grid item xs={12} sm={5} lg={3}>
@@ -627,7 +660,7 @@ const FormCourse = () => {
                                                 )}
                                             </div>
                                         </Grid>
-                                        <Grid item xs={12} sm={2} lg={8}>
+                                        <Grid item xs={6} sm={2} lg={8}>
                                             <div className={width > 900 ? 'flex-start' : 'flex-center'}>
                                                 <Button className="form-data-checkbox" onClick={handleChecked}>
                                                     <Checkbox
@@ -663,7 +696,7 @@ const FormCourse = () => {
                                                 )}
                                             </div>
                                         </Grid>
-                                        <Grid item xs={12} sm={2} lg={8}>
+                                        <Grid item xs={6} sm={2} lg={8}>
                                             <div className={width > 900 ? 'flex-start' : 'flex-center'}>
                                                 <Button className="form-data-checkbox" onClick={handleChecked}>
                                                     <Checkbox
@@ -713,7 +746,7 @@ const FormCourse = () => {
                                                         <Grid item xs={9}>
                                                             <div className={width > 900 ? 'flex-start' : 'flex-center'}>
                                                                 <input
-                                                                    onChange={handleStartingDate}
+                                                                    onChange={handleDuesData1}
                                                                     type="date"
                                                                     value={courseData.duesData1}
                                                                     className="form-button-date"
@@ -731,7 +764,7 @@ const FormCourse = () => {
                                                         <Grid item xs={9}>
                                                             <div className={width > 900 ? 'flex-start' : 'flex-center'}>
                                                                 <input
-                                                                    onChange={handleStartingDate}
+                                                                    onChange={handleDuesData2}
                                                                     type="date"
                                                                     value={courseData.duesData2}
                                                                     className="form-button-date"
@@ -754,7 +787,7 @@ const FormCourse = () => {
                                                         <Grid item xs={9}>
                                                             <div className={width > 900 ? 'flex-start' : 'flex-center'}>
                                                                 <input
-                                                                    onChange={handleStartingDate}
+                                                                    onChange={handleDuesData1}
                                                                     type="date"
                                                                     value={courseData.duesData1}
                                                                     className="form-button-date"
@@ -772,7 +805,7 @@ const FormCourse = () => {
                                                         <Grid item xs={9}>
                                                             <div className={width > 900 ? 'flex-start' : 'flex-center'}>
                                                                 <input
-                                                                    onChange={handleStartingDate}
+                                                                    onChange={handleDuesData2}
                                                                     type="date"
                                                                     value={courseData.duesData2}
                                                                     className="form-button-date"
@@ -790,7 +823,7 @@ const FormCourse = () => {
                                                         <Grid item xs={9}>
                                                             <div className={width > 900 ? 'flex-start' : 'flex-center'}>
                                                                 <input
-                                                                    onChange={handleStartingDate}
+                                                                    onChange={handleDuesData3}
                                                                     type="date"
                                                                     value={courseData.duesData3}
                                                                     className="form-button-date"
@@ -813,7 +846,7 @@ const FormCourse = () => {
                                                         <Grid item xs={9}>
                                                             <div className={width > 900 ? 'flex-start' : 'flex-center'}>
                                                                 <input
-                                                                    onChange={handleStartingDate}
+                                                                    onChange={handleDuesData1}
                                                                     type="date"
                                                                     value={courseData.duesData1}
                                                                     className="form-button-date"
@@ -831,7 +864,7 @@ const FormCourse = () => {
                                                         <Grid item xs={9}>
                                                             <div className={width > 900 ? 'flex-start' : 'flex-center'}>
                                                                 <input
-                                                                    onChange={handleStartingDate}
+                                                                    onChange={handleDuesData2}
                                                                     type="date"
                                                                     value={courseData.duesData2}
                                                                     className="form-button-date"
@@ -849,7 +882,7 @@ const FormCourse = () => {
                                                         <Grid item xs={9}>
                                                             <div className={width > 900 ? 'flex-start' : 'flex-center'}>
                                                                 <input
-                                                                    onChange={handleStartingDate}
+                                                                    onChange={handleDuesData3}
                                                                     type="date"
                                                                     value={courseData.duesData3}
                                                                     className="form-button-date"
@@ -867,7 +900,7 @@ const FormCourse = () => {
                                                         <Grid item xs={9}>
                                                             <div className={width > 900 ? 'flex-start' : 'flex-center'}>
                                                                 <input
-                                                                    onChange={handleStartingDate}
+                                                                    onChange={handleDuesData4}
                                                                     type="date"
                                                                     value={courseData.duesData4}
                                                                     className="form-button-date"
@@ -895,10 +928,10 @@ const FormCourse = () => {
                                         <h2>CATEGORIZACIÓN</h2>
                                     </div>
                                 </Grid>
-                                <Grid item xs={4}>
+                                <Grid item xs={12} md={4}>
                                     <h4>Duración:</h4>
                                 </Grid>
-                                <Grid item xs={4}>
+                                <Grid item xs={6} md={4}>
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
@@ -913,7 +946,7 @@ const FormCourse = () => {
                                         </Button>
                                     </div>
                                 </Grid>
-                                <Grid item xs={4}>
+                                <Grid item xs={6} md={4}>
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
@@ -928,10 +961,10 @@ const FormCourse = () => {
                                         </Button>
                                     </div>
                                 </Grid>
-                                <Grid item xs={4}>
+                                <Grid item xs={12} md={4}>
                                     <h4>Edad:</h4>
                                 </Grid>
-                                <Grid item xs={4}>
+                                <Grid item xs={6} md={4}>
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
@@ -946,7 +979,7 @@ const FormCourse = () => {
                                         </Button>
                                     </div>
                                 </Grid>
-                                <Grid item xs={4}>
+                                <Grid item xs={6} md={4}>
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
@@ -961,10 +994,10 @@ const FormCourse = () => {
                                         </Button>
                                     </div>
                                 </Grid>
-                                <Grid item xs={4}>
+                                <Grid item xs={12} md={4}>
                                     <h4>Otros:</h4>
                                 </Grid>
-                                <Grid item xs={4}>
+                                <Grid item xs={6} md={4}>
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox

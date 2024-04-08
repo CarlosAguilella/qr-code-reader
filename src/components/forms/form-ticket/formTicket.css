@@ -270,7 +270,7 @@
     color: var(--black);
 }
 
-/* FORM TICKET DIALOG */
+/* FORM DIALOG */
 
 .form-dialog {
     padding: 3em;
@@ -290,7 +290,6 @@
 
 .form-dialog .preview-container .preview-data .preview-data-item {
     margin-bottom: 1em;
-    background-color: var(--green-input);
 }
 
 .form-dialog .preview-container .preview-data .preview-data-item .preview-data-label {
