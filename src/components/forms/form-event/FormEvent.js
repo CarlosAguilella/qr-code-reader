@@ -52,7 +52,7 @@ const FormEvent = () => {
     const handleBetweenExclusive = (e) => {
         setEventData({ ...eventData, exclusive: !eventData.exclusive });
     }
-    const  handleBetweenAdults = (e) => {
+    const handleBetweenAdults = (e) => {
         setEventData({ ...eventData, adultsProgram: !eventData.adultsProgram });
     }
 
@@ -585,8 +585,7 @@ const FormEvent = () => {
                         </div>
                     </div>
                 </form>
-            )
-        }
+            )}
         </>
     );
 }
