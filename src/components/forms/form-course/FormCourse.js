@@ -40,7 +40,7 @@ const FormCourse = () => {
         preStartingDate: "",
         preEndingDate: "",
         payment: false,
-        duesNumber: 1, // Por defecto, establecido en 1
+        duesNumber: 1,
         memberDues: 100,
         memberFree: false,
         nonMemberDues: 400,
@@ -49,16 +49,34 @@ const FormCourse = () => {
     });
 
     useEffect(() => {
-        const today = DateTime.now();
-        const firstDayOfNextMonth = today.plus({ months: 1 }).startOf('month');
+        const firstDayOfNextMonth = DateTime.now().plus({ months: 1 }).startOf('month').toFormat('dd-MM-yyyy');
 
         // Establecer la fecha de inicio como el primer día del próximo mes
         setCourseData(prevState => ({
             ...prevState,
-            startDate: firstDayOfNextMonth.toISODate(),
-            duesInfo: [firstDayOfNextMonth.toISODate()]
+            startDate: firstDayOfNextMonth,
+            duesInfo: [firstDayOfNextMonth]
         }));
     }, []);
+
+    // Función para manejar el cambio en el número de cuotas
+    const handleChangeSelect = (e) => {
+        const numberOfDues = parseInt(e.target.value);
+        const { startDate } = courseData;
+        let duesInfo = [startDate];
+
+        // Generar fechas de cuotas adicionales
+        for (let i = 1; i < numberOfDues; i++) {
+            const nextDueDate = DateTime.fromFormat(duesInfo[i - 1], 'dd-MM-yyyy').plus({ months: 1 }).toFormat('dd-MM-yyyy');
+            duesInfo.push(nextDueDate);
+        }
+
+        setCourseData(prevState => ({
+            ...prevState,
+            duesNumber: numberOfDues,
+            duesInfo: duesInfo
+        }));
+    };
 
     const handlePreview = () => {
         setCourseData({ ...courseData, preview: !courseData.preview });
@@ -71,25 +89,6 @@ const FormCourse = () => {
     const handleChangeInput = (e) => {
         setCourseData({ ...courseData, [e.target.name]: e.target.value });
     }
-
-    // Función para manejar el cambio en el número de cuotas
-    const handleChangeSelect = (e) => {
-        const numberOfDues = parseInt(e.target.value);
-        const { startDate } = courseData;
-        let duesInfo = [startDate];
-
-        // Generar fechas de cuotas adicionales
-        for (let i = 1; i < numberOfDues; i++) {
-            const nextDueDate = DateTime.fromISO(duesInfo[i - 1]).plus({ months: 1 }).toISODate();
-            duesInfo.push(nextDueDate);
-        }
-
-        setCourseData(prevState => ({
-            ...prevState,
-            duesNumber: numberOfDues,
-            duesInfo: duesInfo
-        }));
-    };
 
     const handleBetweenWaitingList = (e) => {
         setCourseData({ ...courseData, waitingList: !courseData.waitingList });
@@ -685,20 +684,38 @@ const FormCourse = () => {
                                                         </div>
                                                     </div>
                                                 </Grid>
+                                                <Grid item xs={12}>
+                                                    <h4>Precio por cuota:</h4>
+                                                </Grid>
                                                 {memberFree === false && (
-                                                    <Grid item xs={6} sm={5} lg={3}>
-                                                        <h4>Socios: {(memberDues / courseData.duesNumber).toFixed(2)} €</h4>
-                                                    </Grid>
+                                                    <>
+                                                        <Grid item xs={1}>
+                                                        </Grid>
+                                                        <Grid item xs={11}>
+                                                            <h4>Socios: {(memberDues / courseData.duesNumber).toFixed(2)} €</h4>
+                                                        </Grid>
+                                                    </>
                                                 )}
                                                 {nonMemberFree === false && (
-                                                    <Grid item xs={6} sm={5} lg={3}>
-                                                        <h4>No socios: {(nonMemberDues / courseData.duesNumber).toFixed(2)} €</h4>
-                                                    </Grid>
+                                                    <>
+                                                        <Grid item xs={1}>
+                                                        </Grid>
+                                                        <Grid item xs={11}>
+                                                            <h4>No socios: {(nonMemberDues / courseData.duesNumber).toFixed(2)} €</h4>
+                                                        </Grid>
+                                                    </>
                                                 )}
+                                                <Grid item xs={12}>
+                                                    <h4>Fecha de pago:</h4>
+                                                </Grid>
                                                 {courseData.duesInfo.map((due, index) => (
-                                                    <Grid key={index} item xs={12}>
-                                                        <h4>{`La cuota ${index + 1} se cobrará el día ${due}`}</h4>
-                                                    </Grid>
+                                                    <>
+                                                        <Grid item xs={1}>
+                                                        </Grid>
+                                                        <Grid key={index} item xs={11}>
+                                                            <h4>{`Cuota ${index + 1}, Día ${due}`}</h4>
+                                                        </Grid>
+                                                    </>
                                                 ))}
                                             </Grid>
                                         </div>

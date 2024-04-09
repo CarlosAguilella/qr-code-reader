@@ -1,83 +1,177 @@
+@page {
+    size: 85.6mm 53.98mm;
+    margin: 0;
+}
+
 .form-card-container {
-    width: 469px;
-    height: 328px;
-    border: 2px solid #000000;
-    border-radius: 10px;
+    width: 85.6mm;
+    height: 53.3mm;
+    border-radius: 7.5px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-card-container .card-logo img {
     margin-top: 0.5em;
-    margin-left: 1.5em;
+    margin-left: 1em;
     margin-bottom: 1em;
-    width: 140px;
-    height: 80px;
+    width: 90px;
+    height: 50px;
 }
 
 .form-card-container .card-image img {
     z-index: 2;
     position: absolute;
-    margin-top: 1em;
-    margin-left: 1.5em;
+    margin-top: 1.2em;
+    margin-left: 1em;
     width: auto;
-    max-width: 150px;
-    height: 170px;
-    border-radius: 7.5px; 
+    max-width: 80px;
+    height: 90px;
+    border-radius: 7.5px;
 }
 
 .form-card-container .card-input-name {
     position: absolute;
-    top: 185px;
-    left: 185px;
-    width: 280px;
-    font-size: 1.5em;
+    top: 125px;
+    left: 105px;
+    width: 170px;
+    font-size: 1em;
     border: 0;
 }
 
 .form-card-container .card-input-surname1 {
     position: absolute;
-    top: 215px;
-    left: 185px;
-    width: 280px;
-    font-size: 1.5em;
+    top: 145px;
+    left: 105px;
+    width: 170px;
+    font-size: 1em;
     border: 0;
 }
 
 .form-card-container .card-input-surname2 {
     position: absolute;
-    top: 245px;
-    left: 185px;
-    width: 280px;
-    font-size: 1.5em;
+    top: 165px;
+    left: 105px;
+    width: 170px;
+    font-size: 1em;
     border: 0;
 }
 
 .form-card-container .card-input-code {
     position: absolute;
-    top: 275px;
-    left: 185px;
-    width: 150px;
-    font-size: 1em;
+    top: 185px;
+    left: 105px;
+    width: 90px;
+    font-size: 0.5em;
     border: 0;
 }
 
 .form-card-container .card-qr {
     position: absolute;
     top: 15px;
-    left: 320px;
-}
-
-.form-card-container .card-qr img {
-    width: 130px;
-    height: 130px;
+    left: 210px;
+    padding: 10px;
+    width: 75px;
+    height: 75px;
     border: 3px solid #5d47a2;
     border-radius: 7.5px;
 }
 
+.form-card-container .card-back {
+    margin: 0;
+    padding: 0;
+}
+
 .form-card-container .card-back img {
-    margin-top: -1em;
-    width: 135px;
-    height: 235px;
-    border-bottom-left-radius: 0.6em;
+    position: absolute;
+    top: 63px;
+    width: 95px;
+    height: 140px;
+}
+
+@media print {
+    .form-card-container {
+        width: 85.9mm;
+        height: 54mm;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-card-container .card-logo img {
+        margin-top: 0.5em;
+        margin-left: 1em;
+        margin-bottom: 1em;
+        width: 90px;
+        height: 50px;
+    }
+
+    .form-card-container .card-image img {
+        z-index: 2;
+        position: absolute;
+        margin-top: 1.2em;
+        margin-left: 1em;
+        width: auto;
+        max-width: 80px;
+        height: 90px;
+        border-radius: 7.5px;
+    }
+
+    .form-card-container .card-input-name {
+        position: absolute;
+        top: 125px;
+        left: 105px;
+        width: 170px;
+        font-size: 1em;
+        border: 0;
+    }
+
+    .form-card-container .card-input-surname1 {
+        position: absolute;
+        top: 145px;
+        left: 105px;
+        width: 170px;
+        font-size: 1em;
+        border: 0;
+    }
+
+    .form-card-container .card-input-surname2 {
+        position: absolute;
+        top: 165px;
+        left: 105px;
+        width: 170px;
+        font-size: 1em;
+        border: 0;
+    }
+
+    .form-card-container .card-input-code {
+        position: absolute;
+        top: 185px;
+        left: 105px;
+        width: 90px;
+        font-size: 0.5em;
+        border: 0;
+    }
+
+    .form-card-container .card-qr {
+        position: absolute;
+        top: 10px;
+        left: 220px;
+        padding: 7.5px;
+        width: 75px;
+        height: 75px;
+        border: 3px solid #5d47a2;
+        border-radius: 7.5px;
+    }
+
+    .form-card-container .card-back {
+        margin: 0;
+        padding: 0;
+    }
+
+    .form-card-container .card-back img {
+        position: absolute;
+        top: 66px;
+        width: 94px;
+        height: 139.5px;
+    }
 }

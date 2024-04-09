@@ -99,12 +99,18 @@ const PreviewCourse = ({ duesData1, duesData2, duesData3, duesData4, nonMemberDu
                         <div className="preview-data-item">
                             <span className="preview-data-label">Programa:</span>
                             <span className="preview-data-value">
-                                {winterProgram === true ? "Invierno " : ""}
-                                {summerProgram === true ? "Verano " : ""}
-                                {childsProgram === true ? "Infantil " : ""}
-                                {adultsProgram === true ? "Adultos " : ""}
+                                <br />
+                                {winterProgram === true && summerProgram === true ? "Todo el año " :
+                                (winterProgram === true && summerProgram === false) ? "Invierno " : 
+                                (winterProgram === false && summerProgram === true) ? "Verano " : 
+                                (winterProgram === false && summerProgram === false) ? "No seleccionada epoca del año " : ""}
+                                <br />
+                                {childsProgram ===  true && adultsProgram === true ? "Niños y adultos " :
+                                (childsProgram === true && adultsProgram === false) ? "Niños " :
+                                (childsProgram === false && adultsProgram === true) ? "Adultos " :
+                                (childsProgram === false && adultsProgram === false) ? "No especificada la edad " : ""}
+                                <br />
                                 {poolProgram === true ? "Piscina " : ""}
-                                {winterProgram === false && summerProgram === false && childsProgram === false && adultsProgram === false && poolProgram === false ? "No hay programa" : ""}
                             </span>
                         </div>
                     </div>
