@@ -12,9 +12,9 @@ function App() {
   return (
     <div className='app-container montserrat'>
       {/* <FormTicket />
-      <FormEvent />
-      <FormCourse /> */}
-      <FormCard />
+      <FormEvent />*/}
+      <FormCourse />
+      {/* <FormCard /> */}
     </div>
   );
 }

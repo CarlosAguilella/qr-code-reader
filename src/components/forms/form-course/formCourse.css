@@ -58,6 +58,7 @@
 }
 
 .form-course .form-es .form-line {
+    padding-top: 1.25em;    
     margin-top: 1.25em;
     border-radius: 7.5px;
     background-color: var(--green);
@@ -118,6 +119,7 @@
 }
 
 .form-course .form-val .form-line {
+    padding-top: 1.25em;    
     margin-top: 1.25em;
     border-radius: 7.5px;
     background-color: var(--green);
@@ -239,6 +241,15 @@
     border-radius: 7.5px;
 }
 
+.form-course .form-data .course-image .form-image img {
+    max-width: 200px;
+    height: auto;
+}
+
+.form-course .form-data .course-data .dues-table {
+    padding-left: 3.2em;
+}
+
 .form-course .form-cat {
     margin: 0.5em 2em;
     padding: 0.5em;
@@ -268,4 +279,54 @@
     margin-top: 0.5em;
     text-transform: capitalize;
     color: var(--black);
+}
+
+/* FORM DIALOG */
+
+.form-dialog {
+    padding: 3em;
+    background-color: var(--white);
+}
+
+.form-dialog .preview-container .preview-title {
+    text-align: center;
+    background-color: var(--green);
+}
+
+.form-dialog .preview-container .preview-data {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--green);
+}
+
+.form-dialog .preview-container .preview-data .preview-data-item {
+    margin-bottom: 1em;
+}
+
+.form-dialog .preview-container .preview-data .preview-data-item .preview-data-label {
+    font-weight: bold;
+}
+
+.form-dialog .preview-container .preview-data .preview-data-item .preview-data-value {
+    margin-left: 1em;
+}
+
+.form-dialog .preview-container .preview-button {
+    margin-top: 1em;
+    padding: 0.2em 1.2em;
+    text-transform: capitalize;
+    border-radius: 7.5px;
+    color: var(--black);
+    background-color: var(--green);
+}
+
+.form-dialog .preview-container .preview-button:hover {
+    background-color: var(--green-input);
+}
+
+.form-dialog .preview-container .preview-image {
+    margin-top: 1em;
+    max-width: 200px;
+    max-height: 150px;
+    align-items: center;
 }

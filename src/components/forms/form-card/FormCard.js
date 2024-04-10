@@ -42,7 +42,7 @@ const FormCard = () => {
     return (
         <div className='form-card-container'>
             <div className='card-qr'>
-                <QRCode value={qrData} style={{width: '75px', height: '75px'}} />
+                <QRCode value={qrData} className='qr-input' />
             </div>
             <div className='card-logo'>
                 <img src={MYIMAGE} alt='Logo' />

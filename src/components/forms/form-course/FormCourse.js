@@ -1,8 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
-import { DateTime } from "luxon";
 import { Grid, InputBase, Checkbox, Button, MenuItem, Select } from "@mui/material";
+import { DateTime } from "luxon";
+
+// TODO desestructura botones 
+// lo he intentado y no funciona
+// import { RadioButtonUncheckedIcon, RadioButtonCheckedIcon } from '@mui/icons-material';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+
 import { useWindowSize } from '../../hooks/useWindowSize';
 
 import PreviewCourse from "./PreviewCourse";
@@ -14,9 +19,8 @@ const MYIMAGE = "imagen.png";
 
 const FormCourse = () => {
     // Global Utils
-    const inputRef = useRef();
+    const inputRef = useRef(null);
     const { width } = useWindowSize();
-    const i = 1;
 
     // Values
     const [courseData, setCourseData] = useState({
@@ -26,16 +30,22 @@ const FormCourse = () => {
         largeDescEs: "",
         smallDescVal: "",
         largeDescVal: "",
-        unlimited: true,
+        unlimited: false,
         courseNumber: 45,
-        waitingList: true,
+        waitingList: false,
         startDate: "",
         endingDate: "",
         image: null,
+        // TODO Guardar sólo un valor string
+        duration: "",
         winterProgram: false,
         summerProgram: false,
-        childsProgram: false,
+        // TODO Guardar sólo un valor string
+        ageDescription: "",
+        childrenProgram: false,
         adultsProgram: false,
+        // TODO Guardar sólo un valor string
+        poolProgramOption: "",
         poolProgram: false,
         preStartingDate: "",
         preEndingDate: "",
@@ -59,6 +69,71 @@ const FormCourse = () => {
         }));
     }, []);
 
+    // TODO no está funcionando, solo muestra la cuota 1 y despues para
+    // const handleSetDuesInfo = () => {
+    //     const firstDayOfNextMonth = DateTime.now().plus({ months: 1 }).startOf('month').toFormat('dd-MM-yyyy');
+
+    //     // Establecer la fecha de inicio como el primer día del próximo mes
+    //     // TODO Cambiar estado
+    //     setCourseData({
+    //         ...courseData,
+    //         startDate: firstDayOfNextMonth,
+    //         duesInfo: [firstDayOfNextMonth]
+    //     });
+    // }
+
+
+    useEffect(() => {
+        handleDuration();
+    }, [courseData.winterProgram, courseData.summerProgram]);
+
+    useEffect(() => {
+        handleAgeDescription();
+    }, [courseData.childrenProgram, courseData.adultsProgram]);
+
+    useEffect(() => {
+        handleCategorization();
+    }, [courseData.poolProgram]);
+
+    const handleDuration = () => {
+        let duration = "";
+
+        if (courseData.winterProgram && courseData.summerProgram) {
+            duration = "allYear";
+        } else if (courseData.winterProgram && !courseData.summerProgram) {
+            duration = "winter";
+        } else if (!courseData.winterProgram && courseData.summerProgram) {
+            duration = "summer";
+        } else {
+            duration = "noSeason";
+        }
+        setCourseData(prevState => ({ ...prevState, duration }));
+    }
+
+    const handleAgeDescription = () => {
+        let ageDescription = "";
+        if (courseData.childrenProgram && courseData.adultsProgram) {
+            ageDescription = "allAges";
+        } else if (courseData.childrenProgram && !courseData.adultsProgram) {
+            ageDescription = "children";
+        } else if (!courseData.childrenProgram && courseData.adultsProgram) {
+            ageDescription = "adults";
+        } else {
+            ageDescription = "noAge";
+        }
+        setCourseData(prevState => ({ ...prevState, ageDescription }));
+    }
+
+    const handleCategorization = () => {
+        let poolProgramOption = "";
+        if (courseData.poolProgram) {
+            poolProgramOption = "pool";
+        } else {
+            poolProgramOption = "noPool";
+        }
+        setCourseData(prevState => ({ ...prevState, poolProgramOption }));
+    }
+
     // Función para manejar el cambio en el número de cuotas
     const handleChangeSelect = (e) => {
         const numberOfDues = parseInt(e.target.value);
@@ -71,11 +146,11 @@ const FormCourse = () => {
             duesInfo.push(nextDueDate);
         }
 
-        setCourseData(prevState => ({
-            ...prevState,
+        setCourseData({
+            ...courseData,
             duesNumber: numberOfDues,
             duesInfo: duesInfo
-        }));
+        });
     };
 
     const handlePreview = () => {
@@ -94,12 +169,13 @@ const FormCourse = () => {
         setCourseData({ ...courseData, waitingList: !courseData.waitingList });
     }
 
+    // Cambiar
     const handleAdultsProgram = (e) => {
         setCourseData({ ...courseData, adultsProgram: !courseData.adultsProgram });
     }
 
-    const handleChildsProgram = (e) => {
-        setCourseData({ ...courseData, childsProgram: !courseData.childsProgram });
+    const handleChildrenProgram = (e) => {
+        setCourseData({ ...courseData, childrenProgram: !courseData.childrenProgram });
     }
 
     const handleBetweenPayment = (e) => {
@@ -109,30 +185,36 @@ const FormCourse = () => {
     const handleStartingDate = (e) => {
         const date1 = e.target.value;
         const today = DateTime.now().toISODate();
+
         if (date1 < today) {
             alert("La fecha de inicio no puede ser menor a la fecha actual");
         } else {
-            setCourseData(prevState => ({ ...prevState, startDate: date1 }));
+            setCourseData(...courseData, { startDate: date1 });
         }
     }
+
+    //TODO QUITAR PREVSTATEEEEEEEEEEEEEEEEEEEE !!!!
 
     const handleEndingDate = (e) => {
         const date2 = e.target.value;
         const date1 = courseData.startDate;
+
         if (date2 < date1) {
             alert("La fecha de fin no puede ser menor a la fecha de inicio");
         } else {
-            setCourseData(prevState => ({ ...prevState, endingDate: date2 }));
+            setCourseData(...courseData, { endingDate: date2 });
         }
     }
 
     const handlePreStartingDate = (e) => {
         const date1 = e.target.value;
         const today = DateTime.now().toISODate();
+
         if (date1 < today) {
             alert("La fecha de inicio no puede ser menor a la fecha actual");
         } else {
-            setCourseData(prevState => ({ ...prevState, preStartingDate: date1 }));
+            //TODO PREVSTATEEEEEEEEEEEEEEEEEEEE !!!!
+            setCourseData(...courseData, { preStartingDate: date1 });
         }
     }
 
@@ -142,66 +224,51 @@ const FormCourse = () => {
         if (date2 < date1) {
             alert("La fecha de fin no puede ser menor a la fecha de inicio");
         } else {
-            setCourseData(prevState => ({ ...prevState, preEndingDate: date2 }));
+            //TODO PREVSTATEEEEEEEEEEEEEEEEEEEE !!!!
+            setCourseData(...courseData, { preEndingDate: date2 });
         }
     }
 
     const handleUploadImage = () => {
-        const input = document.createElement("input");
-        input.required = true;
-        input.type = "file";
-        input.ref = inputRef;
-        input.onchange = (e) => {
-            const file = e.target.files[0];
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => {
-                setCourseData(prevState => ({ ...prevState, image: reader.result }));
-            };
+        const file = inputRef.current.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+            // Verificar si se ha cargado un archivo
+            if (file) {
+                // Verificar si el archivo es una imagen
+                if (file.type.startsWith('image/')) {
+                    setCourseData({ ...courseData, image: reader.result });
+                } else {
+                    alert("Por favor, seleccione una imagen válida.");
+                }
+            } else {
+                alert("Por favor, seleccione un archivo.");
+            }
         };
-        input.click();
+
+        // Leer el contenido del archivo seleccionado
+        if (file) {
+            reader.readAsDataURL(file);
+        }
     }
 
-    const { duesData, nonMemberDues, nonMemberFree, memberDues, memberFree, duesNumber, payment, preStartingDate, preEndingDate, preview, visible, smallDescEs, largeDescEs, smallDescVal, largeDescVal, unlimited, courseNumber, waitingList, startDate, endingDate, image, winterProgram, summerProgram, childsProgram, adultsProgram, poolProgram } = courseData;
-
-    console.log(courseData);
+    // TODO NO DESESCTRUCTURAR
+    // const { preStartingDate, preEndingDate, startDate, endingDate, image, memberDues, nonMemberDues, duesNumber, waitingList, childrenProgram, adultsProgram, poolProgram, memberFree, nonMemberFree, unlimited, courseNumber, smallDescEs, largeDescEs, smallDescVal, largeDescVal, winterProgram, summerProgram, visible, preview, duration, ageDescription, poolProgramOption, payment, duesInfo } = courseData;
 
     return (
         <>
-            {courseData.preview === true ? (
-                <>
-                    {visible === true ? (
-                        <PreviewCourse
-                            preview={preview} setPreview={handlePreview}
-                            smallDescEs={smallDescEs} largeDescEs={largeDescEs}
-                            smallDescVal={smallDescVal} largeDescVal={largeDescVal}
-                            unlimited={unlimited} courseNumber={courseNumber}
-                            waitingList={waitingList} startDate={startDate}
-                            endingDate={endingDate} image={image}
-                            handleUploadImage={handleUploadImage}
-                            winterProgram={winterProgram} summerProgram={summerProgram}
-                            childsProgram={childsProgram}
-                            adultsProgram={adultsProgram} poolProgram={poolProgram}
-                            preStartingDate={preStartingDate} preEndingDate={preEndingDate}
-                            payment={payment} duesNumber={duesNumber}
-                            memberDues={memberDues} nonMemberDues={nonMemberDues}
-                            memberFree={memberFree} nonMemberFree={nonMemberFree}
-                            duesData={duesData}
-                        />
-                    ) : (
-                        <NoPreviewCourse
-                            preview={preview} setPreview={handlePreview}
-                        />
-                    )}
-                </>
-            ) : (
+            {!courseData.preview ? (
                 <form>
                     <div className="form-course">
                         <div className="flex-center">
                             <h1 className="form-title">CURSO</h1>
                         </div>
-                        <div className="flex-end" style={{ marginRight: '0,66rem' }}>
-                            <Grid container spacing={2}>
+                        {/* TODO  QUITAR ESTILOS EN LÍNEA */}
+                        <div className="flex-end">
+                            {/* TODO style={{ marginRight: '0,66rem' }}> */}
+                            {/* TODO ALIGN ITEMS CENTER*/}
+                            <Grid container spacing={2} alignItems='center'>
                                 <Grid item xs={6} lg={10}>
                                     <div className="flex-end">
                                         <Button type="submit" className="form-button">
@@ -220,10 +287,8 @@ const FormCourse = () => {
                                     <div className={width > 1200 ? "flex-start" : "flex-center"}>
                                         <Button className="form-button-checkbox" onClick={handleChecked}>
                                             <Checkbox
-                                                style={{ marginTop: '-0.1em' }}
                                                 checked={courseData.visible}
                                                 size="small"
-                                                sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                 name="visible"
                                             />
                                             Producto visible
@@ -233,24 +298,23 @@ const FormCourse = () => {
                             </Grid>
                         </div>
                         <div className="form-es">
-                            <Grid container spacing={2}>
+                            <Grid container spacing={2} alignItems='center'>
                                 <Grid item xs={12} sm={3} lg={2}>
                                     <div className="form-es-title">
                                         <h2>ES</h2>
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} sm={9} lg={10}>
-                                    <div className="form-line">
-                                        &nbsp;
-                                    </div>
+                                    {/* TODO EVITA USAR NBSP / PARRAFO / PADDING */}
+                                    <p className="form-line">
+                                    </p>
                                 </Grid>
                                 <Grid item xs={12} sm={3} lg={2}>
                                     <div className="form-desc-title">
                                         <h4>Descripción corta</h4>
-                                        {smallDescEs.length > 50 ? (
+                                        {/* TODO AÑADIR CONDICIONAL &&  */}
+                                        {courseData.smallDescEs.length > 50 && (
                                             <h6 className="form-subtitle-data">(máximo de 50 carácteres)</h6>
-                                        ) : (
-                                            <h6 style={{ display: 'none' }}>()</h6>
                                         )}
                                     </div>
                                 </Grid>
@@ -272,10 +336,8 @@ const FormCourse = () => {
                                 <Grid item xs={12} sm={3} lg={2}>
                                     <div className="form-desc-title">
                                         <h4>Descripción larga</h4>
-                                        {largeDescEs.length > 500 ? (
+                                        {courseData.largeDescEs.length > 500 && (
                                             <h6 className="form-subtitle-data">(máximo de 500 carácteres)</h6>
-                                        ) : (
-                                            <h6 style={{ display: 'none' }}>()</h6>
                                         )}
                                     </div>
                                 </Grid>
@@ -298,24 +360,24 @@ const FormCourse = () => {
                             </Grid>
                         </div>
                         <div className="form-val">
-                            <Grid container spacing={2}>
+                            {/* ALIGN ITEMS */}
+                            <Grid container spacing={2} alignItems='center'>
                                 <Grid item xs={12} sm={3} lg={2}>
                                     <div className="form-val-title">
                                         <h2>VAL</h2>
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} sm={9} lg={10}>
-                                    <div className="form-line">
-                                        &nbsp;
-                                    </div>
+                                    {/* NBSP */}
+                                    <p className="form-line">
+                                    </p>
                                 </Grid>
                                 <Grid item xs={12} sm={3} lg={2}>
                                     <div className="form-desc-title">
                                         <h4>Descripció curta</h4>
-                                        {smallDescVal.length > 50 ? (
+                                        {/* CONDICIONAL */}
+                                        {courseData.smallDescVal.length > 50 && (
                                             <h6 className="form-subtitle-data">(màxim de 50 caràcters)</h6>
-                                        ) : (
-                                            <h6 style={{ display: 'none' }}>()</h6>
                                         )}
                                     </div>
                                 </Grid>
@@ -323,12 +385,12 @@ const FormCourse = () => {
                                     <div className="form-desc-small">
                                         <div className="flex-start">
                                             <InputBase
+                                                required
+                                                fullWidth
                                                 onChange={handleChangeInput}
                                                 className="form-input"
                                                 variant="outlined"
-                                                fullWidth
                                                 value={courseData.smallDescVal}
-                                                required
                                                 name="smallDescVal"
                                             />
                                         </div>
@@ -337,10 +399,8 @@ const FormCourse = () => {
                                 <Grid item xs={12} sm={3} lg={2}>
                                     <div className="form-desc-title">
                                         <h4>Descripció llarga</h4>
-                                        {largeDescVal.length > 500 ? (
+                                        {courseData.largeDescVal.length > 500 && (
                                             <h6 className="form-subtitle-data">(màxim de 500 caràcters)</h6>
-                                        ) : (
-                                            <h6 style={{ display: 'none' }}>()</h6>
                                         )}
                                     </div>
                                 </Grid>
@@ -364,7 +424,7 @@ const FormCourse = () => {
                         </div>
                         <div className="form-data">
                             <div className="course-data">
-                                <Grid container>
+                                <Grid container alignItems='center'>
                                     <Grid item xs={12}>
                                         <div className="form-data-title">
                                             <h2>ENTRADA</h2>
@@ -372,15 +432,15 @@ const FormCourse = () => {
                                     </Grid>
                                     <Grid item xs={12} sm={5} lg={3}>
                                         <h4>Plazas disponibles</h4>
-                                        {courseNumber === "" ? (
+                                        {/* TODO condicional */}
+                                        {courseData.courseNumber === "" && (
                                             <h6 className="form-alert">(Si está vacío será ilimitado)</h6>
-                                        ) : (
-                                            <h6 style={{ display: 'none' }}>()</h6>
                                         )}
                                     </Grid>
                                     <Grid item xs={6} sm={2} >
                                         <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                            {unlimited === true ? (
+                                            {/* TODO QUITAR TRUE */}
+                                            {courseData.unlimited ? (
                                                 <div className="form-info">Ilimitadas</div>
                                             ) : (
                                                 <div className="form-info">
@@ -390,7 +450,6 @@ const FormCourse = () => {
                                                         variant="outlined"
                                                         fullWidth
                                                         value={courseData.courseNumber}
-                                                        style={{ paddingTop: '0.4em' }}
                                                         name="courseNumber"
                                                     />
                                                 </div>
@@ -400,11 +459,10 @@ const FormCourse = () => {
                                     <Grid item xs={6} sm={5} lg={7}>
                                         <div className={width > 900 ? 'flex-start' : 'flex-center'}>
                                             <Button className="form-data-checkbox" onClick={handleChecked}>
+                                                {/* TODO ESTILO EN LINEA Y SX */}
                                                 <Checkbox
                                                     checked={courseData.unlimited}
-                                                    style={{ marginTop: '-0.1em' }}
                                                     size="small"
-                                                    sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                     name="unlimited"
                                                 />
                                                 Ilimitadas
@@ -414,7 +472,7 @@ const FormCourse = () => {
                                 </Grid>
                             </div>
                             <div className="course-data">
-                                <Grid container>
+                                <Grid container alignItems='center'>
                                     <Grid item xs={12} md={5} lg={3}>
                                         <div className="flex-start">
                                             <h4>Inicio Preinscripción</h4>
@@ -425,7 +483,7 @@ const FormCourse = () => {
                                             <input
                                                 onChange={handlePreStartingDate}
                                                 type="date"
-                                                value={preStartingDate}
+                                                value={courseData.preStartingDate}
                                                 className="form-button-date"
                                                 required
                                                 name="preStartDate"
@@ -436,7 +494,7 @@ const FormCourse = () => {
                                 </Grid>
                             </div>
                             <div className="course-data">
-                                <Grid container>
+                                <Grid container alignItems='center'>
                                     <Grid item xs={12} md={5} lg={3}>
                                         <div className="flex-start">
                                             <h4>Final Preinscripción</h4>
@@ -447,18 +505,18 @@ const FormCourse = () => {
                                             <input
                                                 onChange={handlePreEndingDate}
                                                 type="date"
-                                                value={preEndingDate}
+                                                value={courseData.preEndingDate}
                                                 className="form-button-date"
                                                 required
                                                 name="preEndingDate"
-                                                max={startDate}
+                                                max={courseData.startDate}
                                             />
                                         </div>
                                     </Grid>
                                 </Grid>
                             </div>
                             <div className="course-data">
-                                <Grid container>
+                                <Grid container alignItems='center'>
                                     <Grid item xs={12} sm={5} lg={3}>
                                         <h4>Permitir lista de espera</h4>
                                     </Grid>
@@ -468,10 +526,9 @@ const FormCourse = () => {
                                                 <Checkbox
                                                     icon={<RadioButtonUncheckedIcon />}
                                                     checkedIcon={<RadioButtonCheckedIcon />}
-                                                    checked={courseData.waitingList === true ? true : false}
+                                                    checked={courseData.waitingList}
                                                     shape='round'
                                                     size="small"
-                                                    sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                     name="waitingList"
                                                 />
                                                 Si
@@ -484,9 +541,8 @@ const FormCourse = () => {
                                                 <Checkbox
                                                     icon={<RadioButtonUncheckedIcon />}
                                                     checkedIcon={<RadioButtonCheckedIcon />}
-                                                    checked={courseData.waitingList === false ? true : false}
+                                                    checked={!courseData.waitingList}
                                                     size="small"
-                                                    sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                     name="waitingList"
                                                 />
                                                 No
@@ -496,11 +552,13 @@ const FormCourse = () => {
                                 </Grid>
                             </div>
                             <div className="course-data">
-                                <Grid container>
+                                <Grid container alignItems={'center'}>
                                     <Grid item xs={12} md={5} lg={3}>
                                         <div className="flex-start">
                                             <h4>Fecha inicio</h4>
-                                            <h6 className="form-subtitle-data">&nbsp;(cuando podrá comenzar a usarse las entradas)</h6>
+                                            {/* TODO EN CSS BUSCAS .COURSE-DATA H6 (PADDING/MARGIN) */}
+                                            {/* no ha sido necesario, era muy pequeño el cambio, no se aprecia */}
+                                            <h6 className="form-subtitle-data">(cuando podrá comenzar a usarse las entradas)</h6>
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} md={7} lg={9}>
@@ -508,7 +566,7 @@ const FormCourse = () => {
                                             <input
                                                 onChange={handleStartingDate}
                                                 type="date"
-                                                value={startDate}
+                                                value={courseData.startDate}
                                                 className="form-button-date"
                                                 required
                                                 name="startDate"
@@ -519,11 +577,11 @@ const FormCourse = () => {
                                 </Grid>
                             </div>
                             <div className="course-data">
-                                <Grid container>
+                                <Grid container alignItems='center'>
                                     <Grid item xs={12} md={5} lg={3}>
                                         <div className="flex-start">
                                             <h4>Fecha fin</h4>
-                                            <h6 className="form-subtitle-data">&nbsp;(cuando expirará las entradas)</h6>
+                                            <h6 className="form-subtitle-data">(cuando expirará las entradas)</h6>
                                         </div>
                                     </Grid>
                                     <Grid item xs={12} md={7} lg={9}>
@@ -531,24 +589,24 @@ const FormCourse = () => {
                                             <input
                                                 onChange={handleEndingDate}
                                                 type="date"
-                                                value={endingDate}
+                                                value={courseData.endingDate}
                                                 className="form-button-date"
                                                 required
                                                 name="endingDate"
-                                                min={startDate}
+                                                min={courseData.startDate}
                                             />
                                         </div>
                                     </Grid>
                                 </Grid>
                             </div>
                             <div className="course-data">
-                                <Grid container>
+                                <Grid container alignItems='center'>
                                     <Grid item xs={12} sm={5} lg={3}>
                                         <h4>Importe cuota SOCIOS</h4>
                                     </Grid>
                                     <Grid item xs={6} sm={5} lg={1}>
                                         <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                            {memberFree === true ? (
+                                            {courseData.memberFree ? (
                                                 <div className="form-info">Gratuito</div>
                                             ) : (
                                                 <div className="form-info">
@@ -558,7 +616,6 @@ const FormCourse = () => {
                                                         variant="outlined"
                                                         fullWidth
                                                         value={courseData.memberDues}
-                                                        style={{ paddingTop: '0.4em' }}
                                                         name="memberDues"
                                                     />
                                                 </div>
@@ -570,9 +627,7 @@ const FormCourse = () => {
                                             <Button className="form-data-checkbox" onClick={handleChecked}>
                                                 <Checkbox
                                                     checked={courseData.memberFree}
-                                                    style={{ marginTop: '-0.1em' }}
                                                     size="small"
-                                                    sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                     name="memberFree"
                                                 />
                                                 Gratuito
@@ -584,7 +639,7 @@ const FormCourse = () => {
                                     </Grid>
                                     <Grid item xs={6} sm={5} lg={1}>
                                         <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                            {nonMemberFree === true ? (
+                                            {courseData.nonMemberFree ? (
                                                 <div className="form-info">Gratuito</div>
                                             ) : (
                                                 <div className="form-info">
@@ -594,7 +649,6 @@ const FormCourse = () => {
                                                         variant="outlined"
                                                         fullWidth
                                                         value={courseData.nonMemberDues}
-                                                        style={{ paddingTop: '0.4em' }}
                                                         name="nonMemberDues"
                                                     />
                                                 </div>
@@ -606,9 +660,7 @@ const FormCourse = () => {
                                             <Button className="form-data-checkbox" onClick={handleChecked}>
                                                 <Checkbox
                                                     checked={courseData.nonMemberFree}
-                                                    style={{ marginTop: '-0.1em' }}
                                                     size="small"
-                                                    sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                     name="nonMemberFree"
                                                 />
                                                 Gratuito
@@ -617,12 +669,10 @@ const FormCourse = () => {
                                     </Grid>
                                 </Grid>
                             </div>
-                            {memberFree === true && nonMemberFree === true ? (
-                                <></>
-                            ) : (
+                            {(!courseData.memberFree || !courseData.nonMemberFree) && (
                                 <>
                                     <div className="course-data">
-                                        <Grid container>
+                                        <Grid container alignItems='center'>
                                             <Grid item xs={12} sm={5} lg={3}>
                                                 <h4>Permitir pago a plazos</h4>
                                             </Grid>
@@ -635,7 +685,6 @@ const FormCourse = () => {
                                                             checked={courseData.payment}
                                                             shape='round'
                                                             size="small"
-                                                            sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                             name="payment"
                                                         />
                                                         Si
@@ -650,7 +699,6 @@ const FormCourse = () => {
                                                             checkedIcon={<RadioButtonCheckedIcon />}
                                                             checked={!courseData.payment}
                                                             size="small"
-                                                            sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                             name="payment"
                                                         />
                                                         No
@@ -661,12 +709,12 @@ const FormCourse = () => {
                                     </div>
                                     {courseData.payment && (
                                         <div className="course-data">
-                                            <Grid container>
-                                                <Grid item xs={12} sm={5} lg={3}>
+                                            <Grid container alignItems='center'>
+                                                <Grid item xs={12} sm={6} lg={3}>
                                                     <h4>Nº de Cuotas</h4>
                                                 </Grid>
-                                                <Grid item xs={12} sm={7}>
-                                                    <div className={width > 900 ? 'flex-start' : 'flex-center'}>
+                                                <Grid item xs={12} sm={6}>
+                                                    <div className="flex-start">
                                                         <div className="form-info">
                                                             <Select
                                                                 onChange={handleChangeSelect}
@@ -674,34 +722,60 @@ const FormCourse = () => {
                                                                 variant="outlined"
                                                                 fullWidth
                                                                 defaultValue={1}
-                                                                style={{ paddingTop: '0.4em' }}
                                                                 name="duesNumber"
                                                             >
-                                                                {[1, 2, 3, 4, 6, 12, 24].map((value) => (
-                                                                    <MenuItem key={value} value={value}>{value}</MenuItem>
-                                                                ))}
+                                                                <MenuItem value={1} key={1}>1</MenuItem>
+                                                                <MenuItem value={2} key={2}>2</MenuItem>
+                                                                <MenuItem value={3} key={3}>3</MenuItem>
+                                                                <MenuItem value={4} key={4}>4</MenuItem>
+                                                                <MenuItem value={6} key={6}>6</MenuItem>
+                                                                <MenuItem value={12} key={12}>12</MenuItem>
                                                             </Select>
                                                         </div>
                                                     </div>
                                                 </Grid>
+                                                {/* TODO poner divs */}
+                                                {/* <div>
+                                                    <div className="flex-start">
+                                                        <h4>Precio por cuota:</h4>
+                                                    </div>
+                                                    {!courseData.memberFree && (
+                                                        <div className="flex-start">
+                                                            <h4>Socios: {(courseData.memberDues / courseData.duesNumber).toFixed(2)} €</h4>
+                                                        </div>
+                                                    )}
+                                                    {!courseData.nonMemberFree && (
+                                                        <div className="flex-start">
+                                                            <h4>No socios: {(courseData.nonMemberDues / courseData.duesNumber).toFixed(2)} €</h4>
+                                                        </div>
+                                                    )}
+                                                    <div className="flex-start">
+                                                        <h4>Fecha de pago:</h4>
+                                                    </div>
+                                                    {courseData.duesInfo.map((due) => (
+                                                        <div key={due.id} className="flex-start">
+                                                            <h4>{`Cuota ${due.id}, Día ${due.date}`}</h4>
+                                                        </div>
+                                                    ))}
+                                                </div> */}
                                                 <Grid item xs={12}>
                                                     <h4>Precio por cuota:</h4>
                                                 </Grid>
-                                                {memberFree === false && (
+                                                {courseData.memberFree === false && (
                                                     <>
                                                         <Grid item xs={1}>
                                                         </Grid>
                                                         <Grid item xs={11}>
-                                                            <h4>Socios: {(memberDues / courseData.duesNumber).toFixed(2)} €</h4>
+                                                            <h4>Socios: {(courseData.memberDues / courseData.duesNumber).toFixed(2)} €</h4>
                                                         </Grid>
                                                     </>
                                                 )}
-                                                {nonMemberFree === false && (
+                                                {courseData.nonMemberFree === false && (
                                                     <>
                                                         <Grid item xs={1}>
                                                         </Grid>
                                                         <Grid item xs={11}>
-                                                            <h4>No socios: {(nonMemberDues / courseData.duesNumber).toFixed(2)} €</h4>
+                                                            <h4>No socios: {(courseData.nonMemberDues / courseData.duesNumber).toFixed(2)} €</h4>
                                                         </Grid>
                                                     </>
                                                 )}
@@ -709,13 +783,9 @@ const FormCourse = () => {
                                                     <h4>Fecha de pago:</h4>
                                                 </Grid>
                                                 {courseData.duesInfo.map((due, index) => (
-                                                    <>
-                                                        <Grid item xs={1}>
-                                                        </Grid>
-                                                        <Grid key={index} item xs={11}>
-                                                            <h4>{`Cuota ${index + 1}, Día ${due}`}</h4>
-                                                        </Grid>
-                                                    </>
+                                                    <Grid key={index} item xs={12} sm={6} lg={4}>
+                                                        <h4 className="dues-table">{`Cuota ${index + 1}, Día ${due}`}</h4>
+                                                    </Grid>
                                                 ))}
                                             </Grid>
                                         </div>
@@ -723,7 +793,7 @@ const FormCourse = () => {
                                 </>
                             )}
                             <div className="course-image">
-                                <Grid container>
+                                <Grid container alignItems='center'>
                                     <Grid item xs={3}>
                                         <div className="flex-start">
                                             <h4>Imagen</h4>
@@ -731,22 +801,26 @@ const FormCourse = () => {
                                     </Grid>
                                     <Grid item xs={9}>
                                         <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                                            {image === null ? (
-                                                <div className="form-button-image" onClick={handleUploadImage}>
-                                                    <img src={MYIMAGE} alt="imagen"></img>
-                                                </div>
+                                            {courseData.image === null ? (
+                                                <>
+                                                    <input type="file" ref={inputRef} className="form-button-image" onChange={handleUploadImage} />
+                                                </>
                                             ) : (
-                                                <div className="form-image">
-                                                    <img src={image} alt="imagen"></img>
+                                                <div className="form-image flex-center">
+                                                    <img src={courseData.image} alt="imagen" />
+                                                    <Button onClick={() => setCourseData({ ...courseData, image: null })} className="form-button-image">
+                                                        ¿Borrar?
+                                                    </Button>
                                                 </div>
                                             )}
                                         </div>
+
                                     </Grid>
                                 </Grid>
                             </div>
                         </div>
                         <div className="form-cat">
-                            <Grid container>
+                            <Grid container alignItems='center'>
                                 <Grid item xs={12}>
                                     <div className="form-cat-title">
                                         <h2>CATEGORIZACIÓN</h2>
@@ -759,10 +833,8 @@ const FormCourse = () => {
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                style={{ marginTop: '-0.1em' }}
                                                 checked={courseData.winterProgram}
                                                 size="small"
-                                                sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                 name="winterProgram"
                                                 onClick={handleChecked}
                                             />
@@ -774,10 +846,8 @@ const FormCourse = () => {
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                style={{ marginTop: '-0.1em' }}
                                                 checked={courseData.summerProgram}
                                                 size="small"
-                                                sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                 name="summerProgram"
                                                 onClick={handleChecked}
                                             />
@@ -792,12 +862,10 @@ const FormCourse = () => {
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                style={{ marginTop: '-0.1em' }}
-                                                checked={courseData.childsProgram}
+                                                checked={courseData.childrenProgram}
                                                 size="small"
-                                                sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
-                                                name="childsProgram"
-                                                onClick={handleChildsProgram}
+                                                name="childrenProgram"
+                                                onClick={handleChildrenProgram}
                                             />
                                             Niñ@s
                                         </Button>
@@ -807,10 +875,8 @@ const FormCourse = () => {
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                style={{ marginTop: '-0.1em' }}
                                                 checked={courseData.adultsProgram}
                                                 size="small"
-                                                sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                 name="adultsProgram"
                                                 onClick={handleAdultsProgram}
                                             />
@@ -825,10 +891,8 @@ const FormCourse = () => {
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                style={{ marginTop: '-0.1em' }}
                                                 checked={courseData.poolProgram}
                                                 size="small"
-                                                sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                 name="poolProgram"
                                                 onClick={handleChecked}
                                             />
@@ -840,8 +904,22 @@ const FormCourse = () => {
                         </div>
                     </div>
                 </form>
-            )
-            }
+            ) : (
+                <>
+                    {/* TODO AL FINAL DEL COMPONENTE*/}
+                    {courseData.visible ? (
+                        <PreviewCourse
+                            // TODO NO DESESTRUCTURAR
+                            courseData={courseData}
+                            setPreview={handlePreview}
+                        />
+                    ) : (
+                        <NoPreviewCourse
+                            preview={courseData.preview} setPreview={handlePreview}
+                        />
+                    )}
+                </>
+            )}
         </>
     );
 }
