@@ -56,6 +56,8 @@ const FormCourse = () => {
     const handleSaveCourse = (e) => {
         if (!courseData.smallDescEs || !courseData.largeDescEs || !courseData.smallDescVal || !courseData.largeDescVal) {
             toast.error("Debes rellenar todos los campos de descripción");
+        } else if (courseData.courseNumber < 1 && !courseData.unlimited) {
+            toast.error("El número de plazas debe ser mayor a 0 plazas");  
         } else if (!courseData.startDate || !courseData.endingDate || !courseData.preStartingDate || !courseData.preEndingDate) {
             toast.error("Debes rellenar todas las fechas");
         } else if (courseData.startDate > courseData.endingDate) {
@@ -286,7 +288,7 @@ const FormCourse = () => {
                                 <Grid item xs={6}>
                                     <div className="flex-start">
                                         <Button className="form-button" onClick={handlePreview}>
-                                            Previsualizar
+                                            <span>Previsualizar</span>
                                         </Button>
                                     </div>
                                 </Grid>
@@ -298,7 +300,7 @@ const FormCourse = () => {
                                                 size="small"
                                                 name="visible"
                                             />
-                                            Producto visible
+                                            <span>Producto visible</span>
                                         </Button>
                                     </div>
                                 </Grid>
@@ -365,7 +367,6 @@ const FormCourse = () => {
                             </Grid>
                         </div>
                         <div className="form-val">
-                            {/* ALIGN ITEMS */}
                             <Grid container spacing={2} alignItems='center'>
                                 <Grid item xs={12} sm={3} lg={2}>
                                     <div className="form-val-title">
@@ -435,9 +436,6 @@ const FormCourse = () => {
                                     </Grid>
                                     <Grid item xs={12} lg={4}>
                                         <h4 className="form-data-title-info">Plazas disponibles</h4>
-                                        {!courseData.courseNumber && (
-                                            <h6 className="form-alert">(Si está vacío será ilimitado)</h6>
-                                        )}
                                     </Grid>
                                     <Grid item xs={6} lg={4}>
                                         <div className={width > 1200 ? 'flex-start' : 'flex-center'}>
@@ -466,7 +464,7 @@ const FormCourse = () => {
                                                     name="unlimited"
                                                     className="form-checkbox"
                                                 />
-                                                Ilimitadas
+                                                <span>Ilimitadas</span>
                                             </Button>
                                         </div>
                                     </Grid>
@@ -533,7 +531,7 @@ const FormCourse = () => {
                                                     name="waitingList"
                                                     className="form-checkbox"
                                                 />
-                                                Si
+                                                <span>Si</span>
                                             </Button>
                                         </div>
                                     </Grid>
@@ -548,7 +546,7 @@ const FormCourse = () => {
                                                     name="waitingList"
                                                     className="form-checkbox"
                                                 />
-                                                No
+                                                <span>No</span>
                                             </Button>
                                         </div>
                                     </Grid>
@@ -632,7 +630,7 @@ const FormCourse = () => {
                                                     name="memberFree"
                                                     className="form-checkbox"
                                                 />
-                                                Gratuito
+                                                <span>Gratuito</span>
                                             </Button>
                                         </div>
                                     </Grid>
@@ -666,7 +664,7 @@ const FormCourse = () => {
                                                     name="nonMemberFree"
                                                     className="form-checkbox"
                                                 />
-                                                Gratuito
+                                                <span>Gratuito</span>
                                             </Button>
                                         </div>
                                     </Grid>
@@ -691,7 +689,7 @@ const FormCourse = () => {
                                                             name="payment"
                                                             className="form-checkbox"
                                                         />
-                                                        Si
+                                                        <span>Si</span>
                                                     </Button>
                                                 </div>
                                             </Grid>
@@ -706,7 +704,7 @@ const FormCourse = () => {
                                                             name="payment"
                                                             className="form-checkbox"
                                                         />
-                                                        No
+                                                        <span>No</span>
                                                     </Button>
                                                 </div>
                                             </Grid>
@@ -795,7 +793,7 @@ const FormCourse = () => {
                                                 <div className="form-image flex-center">
                                                     <img src={courseData.image} alt="imagen" />
                                                     <Button onClick={() => setCourseData({ ...courseData, image: null })} className="form-button-image">
-                                                        ¿Borrar?
+                                                        <span>¿Borrar?</span>
                                                     </Button>
                                                 </div>
                                             )}
@@ -824,7 +822,7 @@ const FormCourse = () => {
                                                 name="winterProgram"
                                                 onClick={handleWinterProgram}
                                             />
-                                            Invierno
+                                            <span>Invierno</span>
                                         </Button>
                                     </div>
                                 </Grid>
@@ -837,7 +835,7 @@ const FormCourse = () => {
                                                 name="summerProgram"
                                                 onClick={handleSummerProgram}
                                             />
-                                            Verano
+                                            <span>Verano</span>
                                         </Button>
                                     </div>
                                 </Grid>
@@ -853,7 +851,7 @@ const FormCourse = () => {
                                                 name="childrenProgram"
                                                 onClick={handleChildrenProgram}
                                             />
-                                            Niñ@s
+                                            <span>Niñ@s</span>
                                         </Button>
                                     </div>
                                 </Grid>
@@ -866,7 +864,7 @@ const FormCourse = () => {
                                                 name="adultsProgram"
                                                 onClick={handleAdultsProgram}
                                             />
-                                            Jóvenes/Adultos
+                                            <span>Jóvenes/Adultos</span>
                                         </Button>
                                     </div>
                                 </Grid>
@@ -882,7 +880,7 @@ const FormCourse = () => {
                                                 name="poolProgram"
                                                 onClick={handlePoolProgram}
                                             />
-                                            Piscina
+                                            <span>Piscina</span>
                                         </Button>
                                     </div>
                                 </Grid>
@@ -911,7 +909,7 @@ const FormCourse = () => {
                                 <div className="flex-end">
                                     <div className="preview-button">
                                         <Button onClick={handlePreview}>
-                                            Cerrar
+                                            <span>Cerrar</span>
                                         </Button>
                                     </div>
                                 </div>

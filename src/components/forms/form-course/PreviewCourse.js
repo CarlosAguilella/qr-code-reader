@@ -56,11 +56,11 @@ const PreviewCourse = ({ courseData, setPreview }) => {
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Precio para soci@s:</span>
-                            <span className="preview-data-value">{courseData.memberDues === 0 || courseData.memberDues === "" ? "Gratuito" : courseData.memberDues}</span>
+                            <span className="preview-data-value">{courseData.memberDues === "0" || courseData.memberDues === "" ? "Gratuito" : courseData.memberDues}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Precio para no soci@s:</span>
-                            <span className="preview-data-value">{courseData.nonMemberDues === 0 || courseData.nonMemberDues === "" ? "Gratuito" : courseData.nonMemberDues}</span>
+                            <span className="preview-data-value">{courseData.nonMemberDues === "0" || courseData.nonMemberDues === "" ? "Gratuito" : courseData.nonMemberDues}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Permitir pago a plazos</span>
