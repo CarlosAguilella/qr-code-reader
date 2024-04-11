@@ -58,8 +58,9 @@
 }
 
 .form-course .form-es .form-line {
-    padding-top: 1.25em;    
+    padding-top: 1.25em;
     margin-top: 1.25em;
+    margin-bottom: 0;
     border-radius: 7.5px;
     background-color: var(--green);
 }
@@ -94,7 +95,7 @@
 }
 
 .form-course .form-val {
-    margin: 0 2em;
+    margin: 0 2em 0.5em;
     padding: 0.5em;
     border: 1px solid var(--gray);
     border-radius: 7.5px;
@@ -119,8 +120,9 @@
 }
 
 .form-course .form-val .form-line {
-    padding-top: 1.25em;    
+    padding-top: 1.25em;
     margin-top: 1.25em;
+    margin-bottom: 0;
     border-radius: 7.5px;
     background-color: var(--green);
 }
@@ -179,6 +181,10 @@
     background-color: var(--light-gray);
 }
 
+.form-course .form-data .course-data h4 {
+    margin-top: 2.5em;
+}
+
 .form-course .form-data .course-data .form-data-title h2 {
     margin-top: 0.1em;
     font-size: 1.8em;
@@ -198,19 +204,28 @@
     background-color: var(--green);
 }
 
-.form-course .form-data .course-data .form-input {
+.form-course .form-data .course-data .form-info .form-input {
     max-height: 20px;
     min-height: 20px;
+    max-width: 120px;
+    min-width: 120px;
+    padding-left: 2.5em;
+    padding-top: 0.5em;
 }
 
 .form-course .form-data .course-data .form-data-checkbox {
-    margin-top: 0.5em;
+    margin-top: 1.5em;
     text-transform: capitalize;
     color: var(--black);
 }
 
+.form-course .form-data .course-data .form-data-checkbox .form-checkbox {
+    margin-top: -0.25em;
+}
+
+
 .form-course .form-data .course-data .form-subtitle-data {
-    margin-top: 3.5em;
+    margin-top: 6.5em;
     font-size: 0.4em;
 }
 
@@ -241,12 +256,17 @@
     border-radius: 7.5px;
 }
 
+.form-course .form-data .course-image .form-button-image {
+    max-width: 85px;
+}
+
 .form-course .form-data .course-image .form-image img {
     max-width: 200px;
     height: auto;
 }
 
 .form-course .form-data .course-data .dues-table {
+    margin: 1em;
     padding-left: 3.2em;
 }
 
@@ -261,9 +281,7 @@
 
 .form-course .form-cat .form-cat-title {
     max-width: 300px;
-    min-width: 300px;
     max-height: 40px;
-    min-height: 40px;
     border: 1px solid var(--gray);
     border-radius: 7.5px;
     text-align: center;
@@ -273,6 +291,102 @@
 .form-course .form-cat .form-cat-title h2 {
     margin-top: 0.1em;
     font-size: 1.8em;
+}
+
+@media screen and (max-width: 600px) {
+    .form-course .form-es .form-line {
+        margin-top: 0;
+        margin-bottom: 1em;
+    }
+
+    .form-course .form-es .form-desc-title {
+        margin-top: -3em;
+    }
+
+    .form-course .form-es .form-desc-small {
+        margin-top: -1.5em;
+        margin-bottom: 1em;
+    }
+
+    .form-course .form-es .form-desc-large {
+        margin-top: -1.5em;
+    }
+
+    .form-course .form-val .form-line {
+        margin-top: 0;
+        margin-bottom: 1em;
+    }
+
+    .form-course .form-val .form-desc-title {
+        margin-top: -3em;
+    }
+
+    .form-course .form-val .form-desc-small {
+        margin-top: -1.5em;
+        margin-bottom: 1em;
+    }
+
+    .form-course .form-val .form-desc-large {
+        margin-top: -1.5em;
+    }
+
+    .form-course .form-data .course-data .form-data-title-info {
+        margin-top: 0.5em;
+    }
+
+    .form-course .form-data .course-data .form-button-date {
+        margin-top: -0.5em;
+    }
+
+    .form-course .form-data .course-data .form-data-checkbox {
+        margin-bottom: -1em;
+    }
+
+    .form-course .form-data .course-data .form-subtitle-data {
+        margin-left: 0.5em;
+        margin-top: 1em;
+    }
+
+    .form-course .form-data .course-data .form-info {
+        margin-top: -0.5em;
+    }
+
+    .form-course .form-data .course-data .form-info .form-input {
+        margin-top: -1.5em;
+    }
+
+    .form-course .form-data .course-data .form-data-checkbox {
+        margin-top: -1.5em;
+    }
+
+    .form-course .form-data .course-data .dues-table {
+        margin: 0.5em;
+    }
+
+    .form-course .form-data .course-image .form-data-title-info {
+        margin-top: 0.5em;
+    }
+
+    .form-course .form-es .form-es-title h2,
+    .form-course .form-val .form-val-title h2,
+    .form-course .form-data .course-data .form-data-title h2,
+    .form-course .form-cat .form-cat-title h2 {
+        margin-top: 0.7em;
+        font-size: 1em;
+    }
+
+    .form-course .form-cat .form-cat-title {
+        max-width: 200px;
+    }
+
+    .form-course .form-cat h4 {
+        margin-top: 0.5em;
+        margin-bottom: -1em;
+    }
+
+    .form-course .form-cat .form-cat-checkbox {
+        margin-bottom: -0.5em;
+    }
 }
 
 .form-course .form-cat .form-data-checkbox {
