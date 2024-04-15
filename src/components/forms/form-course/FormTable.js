@@ -13,22 +13,14 @@ import { v4 as uuidv4 } from 'uuid';
 import './formTable.css';
 
 const FormTable = ({ courseData }) => {
-    // Estado para almacenar las filas de la tabla principal
     const [rows, setRows] = useState([]);
-    // Estado para almacenar las filas eliminadas
     const [eliminadas, setEliminadas] = useState([]);
-    // Estado para almacenar si el modal de edición está abierto o cerrado
     const [editModalOpen, setEditModalOpen] = useState(false);
-    // Estado para almacenar la fila que se está editando
     const [editingRow, setEditingRow] = useState(null);
 
-    // Llenar las filas iniciales cuando se monta el componente
     useEffect(() => {
-        // Mapear los datos del formulario de creación de la tabla a las filas de la tabla
         setRows(courseData.createTableForm.map(item => ({
-            // Generar un UUID único para cada fila
             id: uuidv4(),
-            // Asignar los valores de las propiedades del objeto a las columnas
             TIPO: item.type,
             PRODUCTO: item.product,
             ACCESOS: item.access,
@@ -41,70 +33,44 @@ const FormTable = ({ courseData }) => {
         })));
     }, [courseData.createTableForm]);
 
-    // Este boton es el de la x, solo va desde la tabla principal a la de eliminadas, al reves es el de mostrar (ojo)
     const handleEliminar = (id) => {
-        // Encontrar la fila que se va a eliminar
         const eliminada = rows.find(row => row.id === id);
-        // Filtrar las filas para eliminar la fila seleccionada
         const nuevasFilas = rows.filter(row => row.id !== id);
-        // Actualizar el estado de las filas
         setRows(nuevasFilas);
-        // Agregar la fila eliminada al estado de las filas eliminadas
         setEliminadas([...eliminadas, eliminada]);
     }
 
-    // Este es el segundo boton, el de editar, que sirve para modificar los datos de la fila seleccionada
     const handleEditar = (id) => {
-        // Encontrar la fila que se está editando
         const filaEditada = rows.find(row => row.id === id);
-        // Establecer los datos de la fila que se está editando en el estado
         setEditingRow(filaEditada);
-        // Abrir el modal de edición
         setEditModalOpen(true);
     }
 
-    // Este es el boton de guardar cambios, que sirve para guardar los cambios realizados en la fila seleccionada
     const handleSaveChanges = () => {
-        // Aquí puedes agregar lógica para guardar los cambios realizados por el usuario en los datos de la fila
         const nuevasFilas = rows.map(row => {
-            // Si la fila es la que se está editando, devolver la fila editada
             if (row.id === editingRow.id) {
                 return editingRow;
             }
-            // Si no, devolver la fila sin cambios
             return row;
         });
-        // Actualizar el estado de las filas con los cambios guardados
         setRows(nuevasFilas);
-        // Cerrar el modal después de guardar los cambios
         setEditModalOpen(false);
     }
 
-    // Este es el tercer boton, el de duplicar, que sirve para duplicar la fila seleccionada, siempre con un nuevo ID ya que sino puede haber problemas
     const handleDuplicar = (id) => {
-        // Encontrar la fila que se va a duplicar
         const filaDuplicada = rows.find(row => row.id === id);
-        // Generar un nuevo UUID único para la fila duplicada
         const nuevoId = uuidv4();
-        // Crear una copia de la fila con un nuevo ID
         const filaDuplicadaConNuevoId = { ...filaDuplicada, id: nuevoId };
-        // Agregar la fila duplicada a las filas existentes
         setRows([...rows, filaDuplicadaConNuevoId]);
     }
 
-    // Este es el cuarto boton, el de mostrar, que sirve para mostrar la fila eliminada en la tabla principal, al reves es el de eliminar (X)
     const handleMostrarDeNuevo = (id) => {
-        // Encontrar la fila que se va a mostrar de nuevo
         const mostrada = eliminadas.find(row => row.id === id);
-        // Filtrar las filas eliminadas para eliminar la fila seleccionada
         const nuevasEliminadas = eliminadas.filter(row => row.id !== id);
-        // Actualizar el estado de las filas eliminadas
         setEliminadas(nuevasEliminadas);
-        // Agregar la fila mostrada de nuevo al estado de las filas
         setRows([...rows, mostrada]);
     }
 
-    // Columnas de la tabla
     const columns = [
         { field: 'id', headerName: 'id', width: 200 },
         { field: 'TIPO', headerName: 'Tipo', width: 80 },
@@ -126,7 +92,6 @@ const FormTable = ({ courseData }) => {
         },
     ];
 
-    // Columnas de la tabla de eliminadas
     const columnsEliminadas = [
         { field: 'id', headerName: 'id', width: 200 },
         { field: 'TIPO', headerName: 'Tipo', width: 80 },
