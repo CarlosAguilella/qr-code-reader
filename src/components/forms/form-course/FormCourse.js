@@ -9,6 +9,7 @@ import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import { useWindowSize } from '../../hooks/useWindowSize';
 
 import PreviewCourse from "./PreviewCourse";
+import FormTable from "./FormTable";
 
 import "./formCourse.css";
 
@@ -50,31 +51,49 @@ const FormCourse = () => {
         memberFree: false,
         nonMemberDues: 70,
         nonMemberFree: false,
-        duesInfo: []
+        duesInfo: [],
+        createTableForm: []
     });
 
-    const handleSaveCourse = (e) => {
-        if (!courseData.smallDescEs || !courseData.largeDescEs || !courseData.smallDescVal || !courseData.largeDescVal) {
-            toast.error("Debes rellenar todos los campos de descripción");
-        } else if (courseData.courseNumber < 1 && !courseData.unlimited) {
-            toast.error("El número de plazas debe ser mayor a 0 plazas");  
-        } else if (!courseData.startDate || !courseData.endingDate || !courseData.preStartingDate || !courseData.preEndingDate) {
-            toast.error("Debes rellenar todas las fechas");
-        } else if (courseData.startDate > courseData.endingDate) {
-            toast.error("La fecha de inicio no puede ser mayor a la fecha de fin");
-        } else if (courseData.preStartingDate > courseData.preEndingDate) {
-            toast.error("La fecha de inicio de preinscripción no puede ser mayor a la fecha de fin de preinscripción");
-        } else if (courseData.preStartingDate > courseData.startDate) {
-            toast.error("La fecha de inicio no puede ser menor a la fecha de inicio de preinscripción");
-        } else if (!courseData.image) {
-            toast.error("Debes subir una imagen");
-        } else if (!courseData.winterProgram && !courseData.summerProgram) {
-            toast.error("Debes seleccionar al menos una temporada");
-        } else if (!courseData.childrenProgram && !courseData.adultsProgram) {
-            toast.error("Debes seleccionar al menos un rango de edad");
-        } else {
-            toast.success("Curso guardado correctamente");
-        }
+    const handleCreateTableForm = () => {
+        // if (!courseData.smallDescEs || !courseData.largeDescEs || !courseData.smallDescVal || !courseData.largeDescVal) {
+        //     toast.error("Debes rellenar todos los campos de descripción");
+        // } else if (courseData.courseNumber < 1 && !courseData.unlimited) {
+        //     toast.error("El número de plazas debe ser mayor a 0 plazas");
+        // } else if (!courseData.startDate || !courseData.endingDate || !courseData.preStartingDate || !courseData.preEndingDate) {
+        //     toast.error("Debes rellenar todas las fechas");
+        // } else if (courseData.startDate > courseData.endingDate) {
+        //     toast.error("La fecha de inicio no puede ser mayor a la fecha de fin");
+        // } else if (courseData.preStartingDate > courseData.preEndingDate) {
+        //     toast.error("La fecha de inicio de preinscripción no puede ser mayor a la fecha de fin de preinscripción");
+        // } else if (courseData.preStartingDate > courseData.startDate) {
+        //     toast.error("La fecha de inicio no puede ser menor a la fecha de inicio de preinscripción");
+        // } else if (!courseData.image) {
+        //     toast.error("Debes subir una imagen");
+        // } else if (!courseData.winterProgram && !courseData.summerProgram) {
+        //     toast.error("Debes seleccionar al menos una temporada");
+        // } else if (!courseData.childrenProgram && !courseData.adultsProgram) {
+        //     toast.error("Debes seleccionar al menos un rango de edad");
+        // } else {
+            setCourseData({
+                ...courseData,
+                createTableForm: [
+                    ...courseData.createTableForm,
+                    {
+                        type: "Curso",
+                        product: courseData.largeDescEs ? courseData.largeDescEs : "No hay descripción",
+                        access: 5,
+                        members: ((courseData.memberFree && courseData.nonMemberFree) || (!courseData.memberFree && !courseData.nonMemberFree)) ? "TODOS" : !courseData.memberFree && courseData.nonMemberFree ? "SI" : "NO",
+                        price: courseData.memberFree && courseData.nonMemberFree ? "Gratuito" : !courseData.memberFree ? courseData.memberDues : courseData.nonMemberDues,
+                        stock: courseData.unlimited ? "Ilimitadas" : courseData.courseNumber,
+                        expiration: courseData.endingDate ? courseData.endingDate : "No hay fecha de fin",
+                        visible: courseData.visible ? "Si" : "No",
+                        actions: ""
+                    }
+                ]
+            });
+            toast.success("Curso creado correctamente");
+        // }
     }
 
     useEffect(() => {
@@ -82,12 +101,12 @@ const FormCourse = () => {
     }, []);
 
     const handleSetDuesInfo = () => {
-        const firstDayOfNextMonth = DateTime.now().plus({ months: 1 }).startOf('month').toFormat('dd-MM-yyyy');
+        const day1 = DateTime.now().plus({ months: 1 }).startOf('month').toFormat('dd-MM-yyyy');
 
         setCourseData({
             ...courseData,
-            startDate: firstDayOfNextMonth,
-            duesInfo: [firstDayOfNextMonth]
+            startDate: day1,
+            duesInfo: [day1]
         });
     }
 
@@ -280,7 +299,7 @@ const FormCourse = () => {
                             <Grid container spacing={2} alignItems='center'>
                                 <Grid item xs={6}>
                                     <div className="flex-end">
-                                        <Button className="form-button" onClick={handleSaveCourse}>
+                                        <Button className="form-button" onClick={handleCreateTableForm}>
                                             <span>Guardar</span>
                                         </Button>
                                     </div>
@@ -716,7 +735,7 @@ const FormCourse = () => {
                                                 <Grid item xs={12} lg={4}>
                                                     <h4 className="form-data-title-info">Nº de Cuotas</h4>
                                                 </Grid>
-                                                <Grid item xs={12}lg={8}>
+                                                <Grid item xs={12} lg={8}>
                                                     <div className={width > 1200 ? 'flex-start' : 'flex-center'}>
                                                         <div className="form-info">
                                                             <Select
@@ -887,6 +906,10 @@ const FormCourse = () => {
                             </Grid>
                         </div>
                     </div>
+                    <FormTable
+                        courseData={courseData}
+                        setCourseData={setCourseData}
+                    />
                 </form>
             ) : (
                 <>
