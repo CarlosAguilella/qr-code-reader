@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 import { Grid, InputBase, Checkbox, Button } from "@mui/material";
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import { useWindowSize } from '../../hooks/useWindowSize';
+import { useWindowSize } from '../../../hooks/useWindowSize';
 
 import PreviewEvent from "./PreviewEvent";
 import NoPreviewEvent from "./NoPreviewEvent";

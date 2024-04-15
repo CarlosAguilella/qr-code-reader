@@ -1,0 +1,30 @@
+/* FORM TABLE DATA */
+.form-table {
+    margin: 0.5em 2em;
+    padding: 0.5em;
+    border: 1px solid var(--gray);
+    border-radius: 7.5px;
+    color: var(--black);
+    background-color: var(--white);
+}
+
+.form-table .form-table-title {
+    max-width: 300px;
+    max-height: 40px;
+    border: 1px solid var(--gray);
+    border-radius: 7.5px;
+    text-align: center;
+    background-color: var(--light-gray);
+}
+
+.form-table .form-table-title h2 {
+    margin-top: 0.1em;
+    font-size: 1.8em;
+}
+
+.form-table .form-table-rows {
+    margin-top: 1em;
+    padding: 0 1em;
+    height: 500px;
+    overflow-y: scroll;
+}

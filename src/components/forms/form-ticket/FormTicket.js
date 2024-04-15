@@ -3,7 +3,7 @@ import { DateTime } from "luxon"; // Librería para manejar fechas
 import { Grid, InputBase, Checkbox, Button } from "@mui/material";
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import { useWindowSize } from '../../hooks/useWindowSize';
+import { useWindowSize } from '../../../hooks/useWindowSize';
 
 import PreviewTicket from "./PreviewTicket";
 import NoPreviewTicket from "./NoPreviewTicket";
