@@ -3,7 +3,7 @@ import { DateTime } from "luxon"; // Librería para manejar fechas
 import { Grid, InputBase, Checkbox, Button } from "@mui/material";
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import { useWindowSize } from '../../../hooks/useWindowSize';
+import { useWindowSize } from '../../hooks/useWindowSize';
 
 import PreviewTicket from "./PreviewTicket";
 import NoPreviewTicket from "./NoPreviewTicket";
@@ -19,7 +19,7 @@ const FormTicket = () => {
     const { width } = useWindowSize();
 
     // Estado para controlar los datos del ticket
-    const [ticketData, setTicketData] = useState({
+    const [formInfo, setFormInfo] = useState({
         preview: false,
         visible: false,
         smallDescEs: "",
@@ -42,26 +42,114 @@ const FormTicket = () => {
 
     // Función para controlar la vista previa
     const handlePreview = () => {
-        setTicketData(prevState => ({ ...prevState, preview: !prevState.preview }));
+        setFormInfo(prevState => ({ ...prevState, preview: !prevState.preview }));
     }
 
     // Función para controlar los checkbox
     const handleChecked = (e) => {
-        setTicketData({ ...ticketData, [e.target.name]: e.target.checked });
+        setFormInfo({ ...formInfo, [e.target.name]: e.target.checked });
     }
 
     // Función para controlar los inputs
     const handleChangeInput = (e) => {
-        setTicketData({ ...ticketData, [e.target.name]: e.target.value });
+        setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
     }
 
     // Función para controlar el checkbox de exclusivo, ya que solo puede ser uno de los dos
     const handleBetweenExclusive = (e) => {
-        setTicketData(prevState => ({ ...prevState, exclusive: !prevState.exclusive }));
+        setFormInfo(prevState => ({ ...prevState, exclusive: !prevState.exclusive }));
     }
-    const handleBetweenAdults = (e) => {
-        setTicketData(prevState => ({ ...prevState, adultsProgram: !prevState.adultsProgram }));
-    }
+    
+    const handleWinterProgram = () => {
+        const updatedWinterProgram = !formInfo.winterProgram;
+        let updatedDuration = formInfo.duration;
+
+        if (updatedWinterProgram && formInfo.summerProgram) {
+            updatedDuration = "allYear";
+        } else if (updatedWinterProgram && !formInfo.summerProgram) {
+            updatedDuration = "winter";
+        } else if (!updatedWinterProgram && formInfo.summerProgram) {
+            updatedDuration = "summer";
+        }
+
+        setFormInfo({
+            ...formInfo,
+            winterProgram: updatedWinterProgram,
+            duration: updatedDuration
+        });
+    };
+
+    const handleSummerProgram = () => {
+        const updatedSummerProgram = !formInfo.summerProgram;
+        let updatedDuration = formInfo.duration;
+
+        if (formInfo.winterProgram && updatedSummerProgram) {
+            updatedDuration = "allYear";
+        } else if (formInfo.winterProgram && !updatedSummerProgram) {
+            updatedDuration = "winter";
+        } else if (!formInfo.winterProgram && updatedSummerProgram) {
+            updatedDuration = "summer";
+        }
+
+        setFormInfo({
+            ...formInfo,
+            summerProgram: updatedSummerProgram,
+            duration: updatedDuration
+        });
+    };
+
+    const handleAdultsProgram = () => {
+        const updatedAdultsProgram = !formInfo.adultsProgram;
+        let updatedAgeDescription = formInfo.ageDescription;
+
+        if (formInfo.childrenProgram && updatedAdultsProgram) {
+            updatedAgeDescription = "allAges";
+        } else if (formInfo.childrenProgram && !updatedAdultsProgram) {
+            updatedAgeDescription = "children";
+        } else if (!formInfo.childrenProgram && updatedAdultsProgram) {
+            updatedAgeDescription = "adults";
+        }
+
+        setFormInfo({
+            ...formInfo,
+            adultsProgram: updatedAdultsProgram,
+            ageDescription: updatedAgeDescription
+        });
+    };
+
+    const handleChildrenProgram = () => {
+        const updatedChildrenProgram = !formInfo.childrenProgram;
+        let updatedAgeDescription = formInfo.ageDescription;
+
+        if (updatedChildrenProgram && formInfo.adultsProgram) {
+            updatedAgeDescription = "allAges";
+        } else if (updatedChildrenProgram && !formInfo.adultsProgram) {
+            updatedAgeDescription = "children";
+        } else if (!updatedChildrenProgram && formInfo.adultsProgram) {
+            updatedAgeDescription = "adults";
+        }
+
+        setFormInfo({
+            ...formInfo,
+            childrenProgram: updatedChildrenProgram,
+            ageDescription: updatedAgeDescription
+        });
+    };
+
+    const handlePoolProgram = () => {
+        const updatedPoolProgram = !formInfo.poolProgram;
+        let updatedPoolProgramOption = formInfo.poolProgramOption;
+
+        if (updatedPoolProgram) {
+            updatedPoolProgramOption = "pool";
+        }
+
+        setFormInfo({
+            ...formInfo,
+            poolProgram: updatedPoolProgram,
+            poolProgramOption: updatedPoolProgramOption
+        });
+    };
 
     // Función para controlar que la fecha de inicio no sea anterior a la fecha actual
     const handleStartingDate = (e) => {
@@ -70,18 +158,18 @@ const FormTicket = () => {
         if (date1 < today) {
             alert("La fecha de inicio no puede ser anterior a la fecha actual");
         } else {
-            setTicketData(prevState => ({ ...prevState, startDate: date1 }));
+            setFormInfo(prevState => ({ ...prevState, startDate: date1 }));
         }
     }
 
     // Función para controlar que la fecha de fin no sea anterior a la fecha de inicio
     const handleEndingDate = (e) => {
         const date2 = e.target.value;
-        const date1 = ticketData.startDate;
+        const date1 = formInfo.startDate;
         if (date2 < date1) {
             alert("La fecha de fin no puede ser anterior a la fecha de inicio");
         } else {
-            setTicketData(prevState => ({ ...prevState, endingDate: date2 }));
+            setFormInfo(prevState => ({ ...prevState, endingDate: date2 }));
         }
     }
 
@@ -96,21 +184,21 @@ const FormTicket = () => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = () => {
-                setTicketData(prevState => ({ ...prevState, image: reader.result }));
+                setFormInfo(prevState => ({ ...prevState, image: reader.result }));
             };
         };
         input.click();
     }
 
     // Extraer los datos del estado
-    const { preview, visible, smallDescEs, largeDescEs, smallDescVal, largeDescVal, unlimited, ticketNumber, free, ticketPrice, exclusive, startDate, endingDate, image, winterProgram, summerProgram, adultsProgram, poolProgram } = ticketData;
+    const { preview, visible, smallDescEs, largeDescEs, smallDescVal, largeDescVal, unlimited, ticketNumber, free, ticketPrice, exclusive, startDate, endingDate, image, winterProgram, summerProgram, adultsProgram, poolProgram } = formInfo;
 
     // Mostrar los datos en consola
-    console.log(ticketData);
+    console.log(formInfo);
 
     return (
         <>
-            {ticketData.preview === true ? (
+            {formInfo.preview === true ? (
                 <>
                     {visible === true ? (
                         <PreviewTicket
@@ -158,7 +246,7 @@ const FormTicket = () => {
                                         <Button className="form-button-checkbox" onClick={handleChecked}>
                                             <Checkbox
                                                 style={{ marginTop: '-0.1em' }}
-                                                checked={ticketData.visible}
+                                                checked={formInfo.visible}
                                                 size="small"
                                                 sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                 name="visible"
@@ -199,7 +287,7 @@ const FormTicket = () => {
                                                 className="form-input"
                                                 variant="outlined"
                                                 fullWidth
-                                                value={ticketData.smallDescEs}
+                                                value={formInfo.smallDescEs}
                                                 required
                                                 name="smallDescEs"
                                             />
@@ -225,7 +313,7 @@ const FormTicket = () => {
                                                 variant="outlined"
                                                 fullWidth
                                                 multiline
-                                                value={ticketData.largeDescEs}
+                                                value={formInfo.largeDescEs}
                                                 required
                                                 name="largeDescEs"
                                             />
@@ -264,7 +352,7 @@ const FormTicket = () => {
                                                 className="form-input"
                                                 variant="outlined"
                                                 fullWidth
-                                                value={ticketData.smallDescVal}
+                                                value={formInfo.smallDescVal}
                                                 required
                                                 name="smallDescVal"
                                             />
@@ -290,7 +378,7 @@ const FormTicket = () => {
                                                 variant="outlined"
                                                 fullWidth
                                                 multiline
-                                                value={ticketData.largeDescVal}
+                                                value={formInfo.largeDescVal}
                                                 required
                                                 name="largeDescVal"
                                             />
@@ -326,7 +414,7 @@ const FormTicket = () => {
                                                         className="form-input"
                                                         variant="outlined"
                                                         fullWidth
-                                                        value={ticketData.ticketNumber}
+                                                        value={formInfo.ticketNumber}
                                                         style={{ paddingTop: '0.4em' }}
                                                         name="ticketNumber"
                                                     />
@@ -338,7 +426,7 @@ const FormTicket = () => {
                                         <div className={width > 900 ? 'flex-start' : 'flex-center'}>
                                             <Button className="form-data-checkbox" onClick={handleChecked}>
                                                 <Checkbox
-                                                    checked={ticketData.unlimited}
+                                                    checked={formInfo.unlimited}
                                                     style={{ marginTop: '-0.1em' }}
                                                     size="small"
                                                     sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
@@ -371,7 +459,7 @@ const FormTicket = () => {
                                                         className="form-input"
                                                         variant="outlined"
                                                         fullWidth
-                                                        value={ticketData.ticketPrice}
+                                                        value={formInfo.ticketPrice}
                                                         style={{ paddingTop: '0.4em' }}
                                                         name="ticketPrice"
                                                     />
@@ -384,7 +472,7 @@ const FormTicket = () => {
                                             <Button className="form-data-checkbox" onClick={handleChecked}>
                                                 <Checkbox
                                                     style={{ marginTop: '-0.1em' }}
-                                                    checked={ticketData.free}
+                                                    checked={formInfo.free}
                                                     size="small"
                                                     sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                     name="free"
@@ -406,7 +494,7 @@ const FormTicket = () => {
                                                 <Checkbox
                                                     icon={<RadioButtonUncheckedIcon />}
                                                     checkedIcon={<RadioButtonCheckedIcon />}
-                                                    checked={ticketData.exclusive === true ? true : false}
+                                                    checked={formInfo.exclusive === true ? true : false}
                                                     shape='round'
                                                     size="small"
                                                     sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
@@ -422,7 +510,7 @@ const FormTicket = () => {
                                                 <Checkbox
                                                     icon={<RadioButtonUncheckedIcon />}
                                                     checkedIcon={<RadioButtonCheckedIcon />}
-                                                    checked={ticketData.exclusive === false ? true : false}
+                                                    checked={formInfo.exclusive === false ? true : false}
                                                     size="small"
                                                     sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                     name="exclusive"
@@ -503,27 +591,25 @@ const FormTicket = () => {
                             </div>
                         </div>
                         <div className="form-cat">
-                            <Grid container>
+                            <Grid container alignItems='center'>
                                 <Grid item xs={12}>
                                     <div className="form-cat-title">
                                         <h2>CATEGORIZACIÓN</h2>
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} md={4}>
-                                    <h4>Duración:</h4>
+                                    <h4 className="form-cat-title-info">Duración:</h4>
                                 </Grid>
                                 <Grid item xs={6} md={4}>
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                style={{ marginTop: '-0.1em' }}
-                                                checked={ticketData.winterProgram}
+                                                checked={formInfo.winterProgram}
                                                 size="small"
-                                                sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                 name="winterProgram"
-                                                onClick={handleChecked}
+                                                onClick={handleWinterProgram}
                                             />
-                                            Programa de invierno
+                                            <span>Invierno</span>
                                         </Button>
                                     </div>
                                 </Grid>
@@ -531,32 +617,28 @@ const FormTicket = () => {
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                style={{ marginTop: '-0.1em' }}
-                                                checked={ticketData.summerProgram}
+                                                checked={formInfo.summerProgram}
                                                 size="small"
-                                                sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                 name="summerProgram"
-                                                onClick={handleChecked}
+                                                onClick={handleSummerProgram}
                                             />
-                                            Programa de verano
+                                            <span>Verano</span>
                                         </Button>
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} md={4}>
-                                    <h4>Edad:</h4>
+                                    <h4 className="form-cat-title-info">Edad:</h4>
                                 </Grid>
                                 <Grid item xs={6} md={4}>
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                style={{ marginTop: '-0.1em' }}
-                                                checked={!ticketData.adultsProgram}
+                                                checked={formInfo.childrenProgram}
                                                 size="small"
-                                                sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
-                                                name="adultsProgram"
-                                                onClick={handleBetweenAdults}
+                                                name="childrenProgram"
+                                                onClick={handleChildrenProgram}
                                             />
-                                            Para niñ@s
+                                            <span>Niñ@s</span>
                                         </Button>
                                     </div>
                                 </Grid>
@@ -564,32 +646,28 @@ const FormTicket = () => {
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                style={{ marginTop: '-0.1em' }}
-                                                checked={ticketData.adultsProgram}
+                                                checked={formInfo.adultsProgram}
                                                 size="small"
-                                                sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                 name="adultsProgram"
-                                                onClick={handleBetweenAdults}
+                                                onClick={handleAdultsProgram}
                                             />
-                                            Para jóvenes/adultos
+                                            <span>Jóvenes/Adultos</span>
                                         </Button>
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} md={4}>
-                                    <h4>Otros:</h4>
+                                    <h4 className="form-cat-title-info">Otros:</h4>
                                 </Grid>
                                 <Grid item xs={6} md={4}>
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                style={{ marginTop: '-0.1em' }}
-                                                checked={ticketData.poolProgram}
+                                                checked={formInfo.poolProgram}
                                                 size="small"
-                                                sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                 name="poolProgram"
-                                                onClick={handleChecked}
+                                                onClick={handlePoolProgram}
                                             />
-                                            Piscina
+                                            <span>Piscina</span>
                                         </Button>
                                     </div>
                                 </Grid>

@@ -1,9 +1,9 @@
 import React from "react";
 import { Dialog, Button } from "@mui/material";
 
-const PreviewCourse = ({ courseData, setPreview }) => {
+const PreviewCourse = ({ formInfo, setPreview }) => {
     return (
-        <Dialog open={courseData.preview} onClose={() => setPreview(courseData.preview)}>
+        <Dialog open={formInfo.preview} onClose={() => setPreview(formInfo.preview)}>
             <div className="form-dialog">
                 <div className="preview-container">
                     <div className="preview-title">
@@ -12,75 +12,75 @@ const PreviewCourse = ({ courseData, setPreview }) => {
                     <div className="preview-data">
                         <div className="preview-data-item">
                             <span className="preview-data-label">Descripción corta:</span>
-                            <span className="preview-data-value">{courseData.smallDescEs === "" ? "No hay descripción corta" : courseData.smallDescEs}</span>
+                            <span className="preview-data-value">{formInfo.smallDescEs === "" ? "No hay descripción corta" : formInfo.smallDescEs}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Descripción larga:</span>
-                            <span className="preview-data-value">{courseData.largeDescEs === "" ? "No hay descripción larga" : courseData.largeDescEs}</span>
+                            <span className="preview-data-value">{formInfo.largeDescEs === "" ? "No hay descripción larga" : formInfo.largeDescEs}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Descripció curta:</span>
-                            <span className="preview-data-value">{courseData.smallDescVal === "" ? "No hi ha descripció curta" : courseData.smallDescVal}</span>
+                            <span className="preview-data-value">{formInfo.smallDescVal === "" ? "No hi ha descripció curta" : formInfo.smallDescVal}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Descripció llarga:</span>
-                            <span className="preview-data-value">{courseData.largeDescVal === "" ? "No hi ha descripció llarga" : courseData.largeDescVal}</span>
+                            <span className="preview-data-value">{formInfo.largeDescVal === "" ? "No hi ha descripció llarga" : formInfo.largeDescVal}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Plazas disponibles:</span>
-                            <span className="preview-data-value">{(courseData.unlimited === true || courseData.courseNumber === "") ? "Ilimitadas" : (courseData.courseNumber === "0") ? "No hay entradas disponibles" : courseData.courseNumber}</span>
+                            <span className="preview-data-value">{(formInfo.unlimited === true || formInfo.courseNumber === "") ? "Ilimitadas" : (formInfo.courseNumber === "0") ? "No hay entradas disponibles" : formInfo.courseNumber}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Inicio Preinscrición:</span>
-                            <span className="preview-data-value">{courseData.preStartingDate === "" ? "No hay fecha de inicio" : courseData.preStartingDate}</span>
+                            <span className="preview-data-value">{formInfo.preStartingDate === "" ? "No hay fecha de inicio" : formInfo.preStartingDate}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Fin Preinscrición:</span>
-                            <span className="preview-data-value">{courseData.preEndingDate === "" ? "No hay fecha de fin" : courseData.preEndingDate}</span>
+                            <span className="preview-data-value">{formInfo.preEndingDate === "" ? "No hay fecha de fin" : formInfo.preEndingDate}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Fecha inicio:</span>
-                            <span className="preview-data-value">{courseData.startDate === "" ? "No hay fecha de inicio" : courseData.startDate}</span>
+                            <span className="preview-data-value">{formInfo.startDate === "" ? "No hay fecha de inicio" : formInfo.startDate}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Fecha fin:</span>
-                            <span className="preview-data-value">{courseData.endingDate === "" ? "No hay fecha de fin" : courseData.endingDate}</span>
+                            <span className="preview-data-value">{formInfo.endingDate === "" ? "No hay fecha de fin" : formInfo.endingDate}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Imagen:</span>
-                            <span className="preview-data-value">{courseData.image === null ? ("No hay imagen") : (<div className="flex-center"><img src={courseData.image} alt="imagen"></img></div>)}</span>
+                            <span className="preview-data-value">{formInfo.image === null ? ("No hay imagen") : (<div className="flex-center"><img src={formInfo.image} alt="imagen"></img></div>)}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Permitir lista de espera:</span>
-                            <span className="preview-data-value">{courseData.waitingList === true ? "Si" : "No"}</span>
+                            <span className="preview-data-value">{formInfo.waitingList === true ? "Si" : "No"}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Precio para soci@s:</span>
-                            <span className="preview-data-value">{courseData.memberDues === "0" || courseData.memberDues === "" ? "Gratuito" : courseData.memberDues}</span>
+                            <span className="preview-data-value">{formInfo.memberDues === "0" || formInfo.memberDues === "" ? "Gratuito" : formInfo.memberDues}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Precio para no soci@s:</span>
-                            <span className="preview-data-value">{courseData.nonMemberDues === "0" || courseData.nonMemberDues === "" ? "Gratuito" : courseData.nonMemberDues}</span>
+                            <span className="preview-data-value">{formInfo.nonMemberDues === "0" || formInfo.nonMemberDues === "" ? "Gratuito" : formInfo.nonMemberDues}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Permitir pago a plazos</span>
-                            <span className="preview-data-value">{courseData.payment === true ? "Si" : "No"}</span>
+                            <span className="preview-data-value">{formInfo.payment === true ? "Si" : "No"}</span>
                         </div>
-                        {courseData.payment && (
+                        {formInfo.payment && (
                             <div className="preview-data-item">
                                 <span className="preview-data-label">Número de cuotas:</span>
-                                <span className="preview-data-value">{courseData.duesNumber === "" ? "No hay número de cuotas" : courseData.duesNumber}</span>
+                                <span className="preview-data-value">{formInfo.duesNumber === "" ? "No hay número de cuotas" : formInfo.duesNumber}</span>
                             </div>
                         )}
                         <div className="preview-data-item">
                             <span className="preview-data-label">Programa:</span>
                             <span className="preview-data-value">
                                 <br />
-                                Duración: {courseData.duration}
+                                Duración: {formInfo.duration}
                                 <br />
-                                Edad: {courseData.ageDescription}
+                                Edad: {formInfo.ageDescription}
                                 <br />
-                                Otros: {courseData.poolProgramOption}
+                                Otros: {formInfo.poolProgramOption}
                             </span>
                         </div>
                     </div>
@@ -88,7 +88,7 @@ const PreviewCourse = ({ courseData, setPreview }) => {
             </div>
             <div className="flex-end">
                 <div className="preview-button">
-                    <Button onClick={() => setPreview(!courseData.preview)}>
+                    <Button onClick={() => setPreview(!formInfo.preview)}>
                         Cerrar
                     </Button>
                 </div>

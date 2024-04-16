@@ -12,26 +12,24 @@ import { v4 as uuidv4 } from 'uuid';
 
 import './formTable.css';
 
-const FormTable = ({ courseData }) => {
+const FormTable = () => {
     const [rows, setRows] = useState([]);
     const [eliminadas, setEliminadas] = useState([]);
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [editingRow, setEditingRow] = useState(null);
+    const [tipo, setTipo] = useState("");
+    const [producto, setProducto] = useState("");
+    const [accesos, setAccesos] = useState("");
+    const [socios, setSocios] = useState("");
+    const [precio, setPrecio] = useState("");
+    const [stock, setStock] = useState("");
+    const [expiracion, setExpiracion] = useState("");
+    const [visible, setVisible] = useState("");
 
     useEffect(() => {
-        setRows(courseData.createTableForm.map(item => ({
-            id: uuidv4(),
-            TIPO: item.type,
-            PRODUCTO: item.product,
-            ACCESOS: item.access,
-            SOCIOS: item.members,
-            PRECIO: item.price,
-            STOCK: item.stock,
-            EXPIRACION: item.expiration,
-            VISIBLE: item.visible,
-            ACCIONES: item.actions,
-        })));
-    }, [courseData.createTableForm]);
+        // Aquí deberías tener la lógica para inicializar las filas, puedes usar un array vacío por defecto
+        setRows([]);
+    }, []);
 
     const handleEliminar = (id) => {
         const eliminada = rows.find(row => row.id === id);
@@ -43,6 +41,14 @@ const FormTable = ({ courseData }) => {
     const handleEditar = (id) => {
         const filaEditada = rows.find(row => row.id === id);
         setEditingRow(filaEditada);
+        setTipo(filaEditada.TIPO);
+        setProducto(filaEditada.PRODUCTO);
+        setAccesos(filaEditada.ACCESOS);
+        setSocios(filaEditada.SOCIOS);
+        setPrecio(filaEditada.PRECIO);
+        setStock(filaEditada.STOCK);
+        setExpiracion(filaEditada.EXPIRACION);
+        setVisible(filaEditada.VISIBLE);
         setEditModalOpen(true);
     }
 
@@ -140,43 +146,43 @@ const FormTable = ({ courseData }) => {
                 <DialogContent>
                     <TextField
                         label="Tipo"
-                        value={editingRow ? editingRow.TIPO : ''}
-                        onChange={(e) => setEditingRow({ ...editingRow, TIPO: e.target.value })}
+                        value={tipo}
+                        onChange={(e) => setTipo(e.target.value)}
                     />
                     <TextField
                         label="Producto"
-                        value={editingRow ? editingRow.PRODUCTO : ''}
-                        onChange={(e) => setEditingRow({ ...editingRow, PRODUCTO: e.target.value })}
+                        value={producto}
+                        onChange={(e) => setProducto(e.target.value)}
                     />
                     <TextField
                         label="Accesos"
-                        value={editingRow ? editingRow.ACCESOS : ''}
-                        onChange={(e) => setEditingRow({ ...editingRow, ACCESOS: e.target.value })}
+                        value={accesos}
+                        onChange={(e) => setAccesos(e.target.value)}
                     />
                     <TextField
                         label="Socios"
-                        value={editingRow ? editingRow.SOCIOS : ''}
-                        onChange={(e) => setEditingRow({ ...editingRow, SOCIOS: e.target.value })}
+                        value={socios}
+                        onChange={(e) => setSocios(e.target.value)}
                     />
                     <TextField
                         label="Precio"
-                        value={editingRow ? editingRow.PRECIO : ''}
-                        onChange={(e) => setEditingRow({ ...editingRow, PRECIO: e.target.value })}
+                        value={precio}
+                        onChange={(e) => setPrecio(e.target.value)}
                     />
                     <TextField
                         label="Stock"
-                        value={editingRow ? editingRow.STOCK : ''}
-                        onChange={(e) => setEditingRow({ ...editingRow, STOCK: e.target.value })}
+                        value={stock}
+                        onChange={(e) => setStock(e.target.value)}
                     />
                     <TextField
                         label="Expiración"
-                        value={editingRow ? editingRow.EXPIRACION : ''}
-                        onChange={(e) => setEditingRow({ ...editingRow, EXPIRACION: e.target.value })}
+                        value={expiracion}
+                        onChange={(e) => setExpiracion(e.target.value)}
                     />
                     <TextField
                         label="Visible"
-                        value={editingRow ? editingRow.VISIBLE : ''}
-                        onChange={(e) => setEditingRow({ ...editingRow, VISIBLE: e.target.value })}
+                        value={visible}
+                        onChange={(e) => setVisible(e.target.value)}
                     />
                 </DialogContent>
                 <DialogActions>

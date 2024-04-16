@@ -2,6 +2,7 @@
 .header {
     background-color: var(--header-blue);
     margin-bottom: 3em;
+    max-width: 100px;
 }
 
 .header .header-title {

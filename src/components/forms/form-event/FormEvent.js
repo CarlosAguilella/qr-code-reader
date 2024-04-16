@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 import { Grid, InputBase, Checkbox, Button } from "@mui/material";
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import { useWindowSize } from '../../../hooks/useWindowSize';
+import { useWindowSize } from '../../hooks/useWindowSize';
 
 import PreviewEvent from "./PreviewEvent";
 import NoPreviewEvent from "./NoPreviewEvent";
@@ -12,11 +12,11 @@ import "./formEvent.css";
 
 const MYIMAGE = "imagen.png";
 
-const FormEvent = () => {
+const FormEvent = ({ onSave }) => {
     const inputRef = useRef();
     const { width } = useWindowSize();
 
-    const [eventData, setEventData] = useState({
+    const [formInfo, setFormInfo] = useState({
         preview: false,
         visible: false,
         smallDescEs: "",
@@ -37,24 +37,121 @@ const FormEvent = () => {
         poolProgram: false
     });
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Aquí deberías validar el formulario si es necesario
+        // Luego, llamas a onSave con los datos del formulario
+        onSave(formInfo);
+        // Además, podrías limpiar el formulario si lo deseas
+        // setFormInfo({ ...estadoInicial });
+    };
+
     const handlePreview = () => {
-        setEventData({ ...eventData, preview: !eventData.preview });
+        setFormInfo({ ...formInfo, preview: !formInfo.preview });
     }
 
     const handleChecked = (e) => {
-        setEventData({ ...eventData, [e.target.name]: e.target.checked });
+        setFormInfo({ ...formInfo, [e.target.name]: e.target.checked });
     }
 
     const handleChangeInput = (e) => {
-        setEventData({ ...eventData, [e.target.name]: e.target.value });
+        setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
     }
 
     const handleBetweenExclusive = (e) => {
-        setEventData({ ...eventData, exclusive: !eventData.exclusive });
+        setFormInfo({ ...formInfo, exclusive: !formInfo.exclusive });
     }
-    const handleBetweenAdults = (e) => {
-        setEventData({ ...eventData, adultsProgram: !eventData.adultsProgram });
-    }
+
+    const handleWinterProgram = () => {
+        const updatedWinterProgram = !formInfo.winterProgram;
+        let updatedDuration = formInfo.duration;
+
+        if (updatedWinterProgram && formInfo.summerProgram) {
+            updatedDuration = "allYear";
+        } else if (updatedWinterProgram && !formInfo.summerProgram) {
+            updatedDuration = "winter";
+        } else if (!updatedWinterProgram && formInfo.summerProgram) {
+            updatedDuration = "summer";
+        }
+
+        setFormInfo({
+            ...formInfo,
+            winterProgram: updatedWinterProgram,
+            duration: updatedDuration
+        });
+    };
+
+    const handleSummerProgram = () => {
+        const updatedSummerProgram = !formInfo.summerProgram;
+        let updatedDuration = formInfo.duration;
+
+        if (formInfo.winterProgram && updatedSummerProgram) {
+            updatedDuration = "allYear";
+        } else if (formInfo.winterProgram && !updatedSummerProgram) {
+            updatedDuration = "winter";
+        } else if (!formInfo.winterProgram && updatedSummerProgram) {
+            updatedDuration = "summer";
+        }
+
+        setFormInfo({
+            ...formInfo,
+            summerProgram: updatedSummerProgram,
+            duration: updatedDuration
+        });
+    };
+
+    const handleAdultsProgram = () => {
+        const updatedAdultsProgram = !formInfo.adultsProgram;
+        let updatedAgeDescription = formInfo.ageDescription;
+
+        if (formInfo.childrenProgram && updatedAdultsProgram) {
+            updatedAgeDescription = "allAges";
+        } else if (formInfo.childrenProgram && !updatedAdultsProgram) {
+            updatedAgeDescription = "children";
+        } else if (!formInfo.childrenProgram && updatedAdultsProgram) {
+            updatedAgeDescription = "adults";
+        }
+
+        setFormInfo({
+            ...formInfo,
+            adultsProgram: updatedAdultsProgram,
+            ageDescription: updatedAgeDescription
+        });
+    };
+
+    const handleChildrenProgram = () => {
+        const updatedChildrenProgram = !formInfo.childrenProgram;
+        let updatedAgeDescription = formInfo.ageDescription;
+
+        if (updatedChildrenProgram && formInfo.adultsProgram) {
+            updatedAgeDescription = "allAges";
+        } else if (updatedChildrenProgram && !formInfo.adultsProgram) {
+            updatedAgeDescription = "children";
+        } else if (!updatedChildrenProgram && formInfo.adultsProgram) {
+            updatedAgeDescription = "adults";
+        }
+
+        setFormInfo({
+            ...formInfo,
+            childrenProgram: updatedChildrenProgram,
+            ageDescription: updatedAgeDescription
+        });
+    };
+
+    const handlePoolProgram = () => {
+        const updatedPoolProgram = !formInfo.poolProgram;
+        let updatedPoolProgramOption = formInfo.poolProgramOption;
+
+        if (updatedPoolProgram) {
+            updatedPoolProgramOption = "pool";
+        }
+
+        setFormInfo({
+            ...formInfo,
+            poolProgram: updatedPoolProgram,
+            poolProgramOption: updatedPoolProgramOption
+        });
+    };
 
     const handleStartingDate = (e) => {
         const date1 = e.target.value;
@@ -62,17 +159,17 @@ const FormEvent = () => {
         if (date1 < today) {
             alert("La fecha de inicio no puede ser menor a la fecha actual");
         } else {
-            setEventData(prevState => ({ ...prevState, startDate: date1 }));
+            setFormInfo(prevState => ({ ...prevState, startDate: date1 }));
         }
     }
 
     const handleEndingDate = (e) => {
         const date2 = e.target.value;
-        const date1 = eventData.startDate;
+        const date1 = formInfo.startDate;
         if (date2 < date1) {
             alert("La fecha de fin no puede ser menor a la fecha de inicio");
         } else {
-            setEventData(prevState => ({ ...prevState, endingDate: date2 }));
+            setFormInfo(prevState => ({ ...prevState, endingDate: date2 }));
         }
     }
 
@@ -86,41 +183,41 @@ const FormEvent = () => {
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = () => {
-                setEventData(prevState => ({ ...prevState, image: reader.result }));
+                setFormInfo(prevState => ({ ...prevState, image: reader.result }));
             };
         };
         input.click();
     }
 
-    const { preview, visible, smallDescEs, largeDescEs, smallDescVal, largeDescVal, unlimited, eventNumber, free, eventPrice, exclusive, startDate, endingDate, image, winterProgram, summerProgram, adultsProgram, poolProgram } = eventData;
+    const { preview, visible, smallDescEs, largeDescEs, smallDescVal, largeDescVal, unlimited, eventNumber, free, eventPrice, exclusive, startDate, endingDate, image, winterProgram, summerProgram, adultsProgram, poolProgram } = formInfo;
 
-    console.log(eventData);
+    console.log(formInfo);
 
     return (
         <>
-            {eventData.preview === true ? (
+            {formInfo.preview === true ? (
                 <>
-                    {visible === true ? (
+                    {formInfo.visible === true ? (
                         <PreviewEvent
-                            preview={preview} setPreview={handlePreview}
-                            smallDescEs={smallDescEs} largeDescEs={largeDescEs}
-                            smallDescVal={smallDescVal} largeDescVal={largeDescVal}
-                            unlimited={unlimited} eventNumber={eventNumber}
-                            free={free} eventPrice={eventPrice}
-                            exclusive={exclusive} startDate={startDate}
-                            endingDate={endingDate} image={image}
+                            preview={formInfo.preview} setPreview={handlePreview}
+                            smallDescEs={formInfo.smallDescEs} largeDescEs={formInfo.largeDescEs}
+                            smallDescVal={formInfo.smallDescVal} largeDescVal={formInfo.largeDescVal}
+                            unlimited={formInfo.unlimited} eventNumber={formInfo.eventNumber}
+                            free={formInfo.free} eventPrice={formInfo.eventPrice}
+                            exclusive={formInfo.exclusive} startDate={formInfo.startDate}
+                            endingDate={formInfo.endingDate} image={formInfo.image}
                             handleUploadImage={handleUploadImage}
-                            winterProgram={winterProgram} summerProgram={summerProgram}
-                            adultsProgram={adultsProgram} poolProgram={poolProgram}
+                            winterProgram={formInfo.winterProgram} summerProgram={formInfo.summerProgram}
+                            adultsProgram={formInfo.adultsProgram} poolProgram={formInfo.poolProgram}
                         />
                     ) : (
                         <NoPreviewEvent
-                            preview={preview} setPreview={handlePreview}
+                            preview={formInfo.preview} setPreview={handlePreview}
                         />
                     )}
                 </>
             ) : (
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="form-event">
                         <div className="flex-center">
                             <h1 className="form-title">EVENTO</h1>
@@ -146,7 +243,7 @@ const FormEvent = () => {
                                         <Button className="form-button-checkbox" onClick={handleChecked}>
                                             <Checkbox
                                                 style={{ marginTop: '-0.1em' }}
-                                                checked={eventData.visible}
+                                                checked={formInfo.visible}
                                                 size="small"
                                                 sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                 name="visible"
@@ -187,7 +284,7 @@ const FormEvent = () => {
                                                 className="form-input"
                                                 variant="outlined"
                                                 fullWidth
-                                                value={eventData.smallDescEs}
+                                                value={formInfo.smallDescEs}
                                                 required
                                                 name="smallDescEs"
                                             />
@@ -213,7 +310,7 @@ const FormEvent = () => {
                                                 variant="outlined"
                                                 fullWidth
                                                 multiline
-                                                value={eventData.largeDescEs}
+                                                value={formInfo.largeDescEs}
                                                 required
                                                 name="largeDescEs"
                                             />
@@ -252,7 +349,7 @@ const FormEvent = () => {
                                                 className="form-input"
                                                 variant="outlined"
                                                 fullWidth
-                                                value={eventData.smallDescVal}
+                                                value={formInfo.smallDescVal}
                                                 required
                                                 name="smallDescVal"
                                             />
@@ -278,7 +375,7 @@ const FormEvent = () => {
                                                 variant="outlined"
                                                 fullWidth
                                                 multiline
-                                                value={eventData.largeDescVal}
+                                                value={formInfo.largeDescVal}
                                                 required
                                                 name="largeDescVal"
                                             />
@@ -314,7 +411,7 @@ const FormEvent = () => {
                                                         className="form-input"
                                                         variant="outlined"
                                                         fullWidth
-                                                        value={eventData.eventNumber}
+                                                        value={formInfo.eventNumber}
                                                         style={{ paddingTop: '0.4em' }}
                                                         name="eventNumber"
                                                     />
@@ -326,7 +423,7 @@ const FormEvent = () => {
                                         <div className={width > 900 ? 'flex-start' : 'flex-center'}>
                                             <Button className="form-data-checkbox" onClick={handleChecked}>
                                                 <Checkbox
-                                                    checked={eventData.unlimited}
+                                                    checked={formInfo.unlimited}
                                                     style={{ marginTop: '-0.1em' }}
                                                     size="small"
                                                     sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
@@ -359,7 +456,7 @@ const FormEvent = () => {
                                                         className="form-input"
                                                         variant="outlined"
                                                         fullWidth
-                                                        value={eventData.eventPrice}
+                                                        value={formInfo.eventPrice}
                                                         style={{ paddingTop: '0.4em' }}
                                                         name="eventPrice"
                                                     />
@@ -372,7 +469,7 @@ const FormEvent = () => {
                                             <Button className="form-data-checkbox" onClick={handleChecked}>
                                                 <Checkbox
                                                     style={{ marginTop: '-0.1em' }}
-                                                    checked={eventData.free}
+                                                    checked={formInfo.free}
                                                     size="small"
                                                     sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                     name="free"
@@ -394,7 +491,7 @@ const FormEvent = () => {
                                                 <Checkbox
                                                     icon={<RadioButtonUncheckedIcon />}
                                                     checkedIcon={<RadioButtonCheckedIcon />}
-                                                    checked={eventData.exclusive === true ? true : false}
+                                                    checked={formInfo.exclusive === true ? true : false}
                                                     shape='round'
                                                     size="small"
                                                     sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
@@ -410,7 +507,7 @@ const FormEvent = () => {
                                                 <Checkbox
                                                     icon={<RadioButtonUncheckedIcon />}
                                                     checkedIcon={<RadioButtonCheckedIcon />}
-                                                    checked={eventData.exclusive === false ? true : false}
+                                                    checked={formInfo.exclusive === false ? true : false}
                                                     size="small"
                                                     sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                     name="exclusive"
@@ -491,27 +588,25 @@ const FormEvent = () => {
                             </div>
                         </div>
                         <div className="form-cat">
-                            <Grid container>
+                            <Grid container alignItems='center'>
                                 <Grid item xs={12}>
                                     <div className="form-cat-title">
                                         <h2>CATEGORIZACIÓN</h2>
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} md={4}>
-                                    <h4>Duración:</h4>
+                                    <h4 className="form-cat-title-info">Duración:</h4>
                                 </Grid>
                                 <Grid item xs={6} md={4}>
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                style={{ marginTop: '-0.1em' }}
-                                                checked={eventData.winterProgram}
+                                                checked={formInfo.winterProgram}
                                                 size="small"
-                                                sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                 name="winterProgram"
-                                                onClick={handleChecked}
+                                                onClick={handleWinterProgram}
                                             />
-                                            Programa de invierno
+                                            <span>Invierno</span>
                                         </Button>
                                     </div>
                                 </Grid>
@@ -519,32 +614,28 @@ const FormEvent = () => {
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                style={{ marginTop: '-0.1em' }}
-                                                checked={eventData.summerProgram}
+                                                checked={formInfo.summerProgram}
                                                 size="small"
-                                                sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                 name="summerProgram"
-                                                onClick={handleChecked}
+                                                onClick={handleSummerProgram}
                                             />
-                                            Programa de verano
+                                            <span>Verano</span>
                                         </Button>
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} md={4}>
-                                    <h4>Edad:</h4>
+                                    <h4 className="form-cat-title-info">Edad:</h4>
                                 </Grid>
                                 <Grid item xs={6} md={4}>
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                style={{ marginTop: '-0.1em' }}
-                                                checked={!eventData.adultsProgram}
+                                                checked={formInfo.childrenProgram}
                                                 size="small"
-                                                sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
-                                                name="adultsProgram"
-                                                onClick={handleBetweenAdults}
+                                                name="childrenProgram"
+                                                onClick={handleChildrenProgram}
                                             />
-                                            Para niñ@s
+                                            <span>Niñ@s</span>
                                         </Button>
                                     </div>
                                 </Grid>
@@ -552,32 +643,28 @@ const FormEvent = () => {
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                style={{ marginTop: '-0.1em' }}
-                                                checked={eventData.adultsProgram}
+                                                checked={formInfo.adultsProgram}
                                                 size="small"
-                                                sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                 name="adultsProgram"
-                                                onClick={handleBetweenAdults}
+                                                onClick={handleAdultsProgram}
                                             />
-                                            Para jóvenes/adultos
+                                            <span>Jóvenes/Adultos</span>
                                         </Button>
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} md={4}>
-                                    <h4>Otros:</h4>
+                                    <h4 className="form-cat-title-info">Otros:</h4>
                                 </Grid>
                                 <Grid item xs={6} md={4}>
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                style={{ marginTop: '-0.1em' }}
-                                                checked={eventData.poolProgram}
+                                                checked={formInfo.poolProgram}
                                                 size="small"
-                                                sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                                 name="poolProgram"
-                                                onClick={handleChecked}
+                                                onClick={handlePoolProgram}
                                             />
-                                            Piscina
+                                            <span>Piscina</span>
                                         </Button>
                                     </div>
                                 </Grid>
