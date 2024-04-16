@@ -22,7 +22,7 @@ const FormCourse = () => {
 
     // Values
     const [formInfo, setFormInfo] = useState({
-        preview: false,
+        preview: true,
         visible: false,
         smallDescEs: "",
         largeDescEs: "",
