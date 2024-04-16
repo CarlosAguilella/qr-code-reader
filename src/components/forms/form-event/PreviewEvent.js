@@ -12,35 +12,19 @@ const PreviewEvent = ({ preview, setPreview, smallDescEs, largeDescEs, smallDesc
                     <div className="preview-data">
                         <div className="preview-data-item">
                             <span className="preview-data-label">Descripción corta:</span>
-                            {smallDescEs.length > 50 ? (
-                                <span className="preview-data-value">La descripción no puede ser más larga de 50 carácteres</span>
-                            ) : (
-                                <span className="preview-data-value">{smallDescEs === "" ? "No hay descripción corta" : smallDescEs}</span>
-                            )}
+                            <span className="preview-data-value">{smallDescEs === "" ? "No hay descripción corta" : smallDescEs}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Descripción larga:</span>
-                            {largeDescEs.length > 500 ? (
-                                <span className="preview-data-value">La descripción no puede ser más larga de 500 carácteres</span>
-                            ) : (
-                                <span className="preview-data-value">{largeDescEs === "" ? "No hay descripción larga" : largeDescEs}</span>
-                            )}
+                            <span className="preview-data-value">{largeDescEs === "" ? "No hay descripción larga" : largeDescEs}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Descripció curta:</span>
-                            {smallDescVal.length > 50 ? (
-                                <span className="preview-data-value">La descripció no pot ser més llarga de 50 caràcters</span>
-                            ) : (
-                                <span className="preview-data-value">{smallDescVal === "" ? "No hi ha descripció curta" : smallDescVal}</span>
-                            )}
+                            <span className="preview-data-value">{smallDescVal === "" ? "No hi ha descripció curta" : smallDescVal}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Descripció llarga:</span>
-                            {largeDescVal.length > 500 ? (
-                                <span className="preview-data-value">La descripció no pot ser més llarga de 500 caràcters</span>
-                            ) : (
-                                <span className="preview-data-value">{largeDescVal === "" ? "No hi ha descripció llarga" : largeDescVal}</span>
-                            )}
+                            <span className="preview-data-value">{largeDescVal === "" ? "No hi ha descripció llarga" : largeDescVal}</span>
                         </div>
                         <div className="preview-data-item">
                             <span className="preview-data-label">Entradas disponibles:</span>

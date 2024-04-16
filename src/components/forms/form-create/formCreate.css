@@ -1,0 +1,40 @@
+/* FORM DATA */
+
+.form-create .form-title {
+    margin-bottom: 1em;
+    padding: 0.5em 4em;
+    width: auto;
+    border-radius: 7.5px;
+    text-align: center;
+    background-color: var(--green);
+}
+
+.form-create .form-title h2 {
+    margin: 0.1em;
+    font-size: 3.5em;
+}
+
+.form-create .create-data {
+    margin: 0 2em;
+    padding: 0.5em;
+    border: 1px solid var(--gray);
+    border-radius: 7.5px;
+    color: var(--black);
+    background-color: var(--white);
+}
+
+.form-create .create-data .form-data-title-info {
+    margin-top: 1.5em;
+    font-size: 1.4em;
+}
+
+.form-create .create-data .form-desc {
+    max-width: 160px;
+    min-width: 160px;
+    max-height: 40px;
+    min-height: 40px;
+    border: 1px solid var(--gray);
+    border-radius: 7.5px;
+    text-align: center;
+    background-color: var(--green);
+}

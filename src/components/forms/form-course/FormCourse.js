@@ -291,39 +291,6 @@ const FormCourse = () => {
             {!formInfo.preview ? (
                 <form>
                     <div className="form-course">
-                        <div className="flex-center">
-                            <h1 className="form-title">CURSO</h1>
-                        </div>
-                        <div className="flex-end">
-                            <Grid container spacing={2} alignItems='center'>
-                                <Grid item xs={6}>
-                                    <div className="flex-end">
-                                        <Button className="form-button" onClick={handleCreateTableForm}>
-                                            <span>Guardar</span>
-                                        </Button>
-                                    </div>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <div className="flex-start">
-                                        <Button className="form-button" onClick={handlePreview}>
-                                            <span>Previsualizar</span>
-                                        </Button>
-                                    </div>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <div className="flex-center">
-                                        <Button className="form-button-checkbox" onClick={handleChecked}>
-                                            <Checkbox
-                                                checked={formInfo.visible}
-                                                size="small"
-                                                name="visible"
-                                            />
-                                            <span>Producto visible</span>
-                                        </Button>
-                                    </div>
-                                </Grid>
-                            </Grid>
-                        </div>
                         <div className="form-es">
                             <Grid container spacing={2} alignItems='center'>
                                 <Grid item xs={12} sm={3} lg={2}>

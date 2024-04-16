@@ -193,9 +193,6 @@ const FormTicket = () => {
     // Extraer los datos del estado
     const { preview, visible, smallDescEs, largeDescEs, smallDescVal, largeDescVal, unlimited, ticketNumber, free, ticketPrice, exclusive, startDate, endingDate, image, winterProgram, summerProgram, adultsProgram, poolProgram } = formInfo;
 
-    // Mostrar los datos en consola
-    console.log(formInfo);
-
     return (
         <>
             {formInfo.preview === true ? (

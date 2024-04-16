@@ -12,7 +12,7 @@ import "./formEvent.css";
 
 const MYIMAGE = "imagen.png";
 
-const FormEvent = ({ onSave }) => {
+const FormEvent = () => {
     const inputRef = useRef();
     const { width } = useWindowSize();
 
@@ -36,15 +36,6 @@ const FormEvent = ({ onSave }) => {
         adultsProgram: false,
         poolProgram: false
     });
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Aquí deberías validar el formulario si es necesario
-        // Luego, llamas a onSave con los datos del formulario
-        onSave(formInfo);
-        // Además, podrías limpiar el formulario si lo deseas
-        // setFormInfo({ ...estadoInicial });
-    };
 
     const handlePreview = () => {
         setFormInfo({ ...formInfo, preview: !formInfo.preview });
@@ -191,33 +182,31 @@ const FormEvent = ({ onSave }) => {
 
     const { preview, visible, smallDescEs, largeDescEs, smallDescVal, largeDescVal, unlimited, eventNumber, free, eventPrice, exclusive, startDate, endingDate, image, winterProgram, summerProgram, adultsProgram, poolProgram } = formInfo;
 
-    console.log(formInfo);
-
     return (
         <>
             {formInfo.preview === true ? (
                 <>
-                    {formInfo.visible === true ? (
+                    {visible === true ? (
                         <PreviewEvent
-                            preview={formInfo.preview} setPreview={handlePreview}
-                            smallDescEs={formInfo.smallDescEs} largeDescEs={formInfo.largeDescEs}
-                            smallDescVal={formInfo.smallDescVal} largeDescVal={formInfo.largeDescVal}
-                            unlimited={formInfo.unlimited} eventNumber={formInfo.eventNumber}
-                            free={formInfo.free} eventPrice={formInfo.eventPrice}
-                            exclusive={formInfo.exclusive} startDate={formInfo.startDate}
-                            endingDate={formInfo.endingDate} image={formInfo.image}
+                            preview={preview} setPreview={handlePreview}
+                            smallDescEs={smallDescEs} largeDescEs={largeDescEs}
+                            smallDescVal={smallDescVal} largeDescVal={largeDescVal}
+                            unlimited={unlimited} eventNumber={eventNumber}
+                            free={free} eventPrice={eventPrice}
+                            exclusive={exclusive} startDate={startDate}
+                            endingDate={endingDate} image={image}
                             handleUploadImage={handleUploadImage}
-                            winterProgram={formInfo.winterProgram} summerProgram={formInfo.summerProgram}
-                            adultsProgram={formInfo.adultsProgram} poolProgram={formInfo.poolProgram}
+                            winterProgram={winterProgram} summerProgram={summerProgram}
+                            adultsProgram={adultsProgram} poolProgram={poolProgram}
                         />
                     ) : (
                         <NoPreviewEvent
-                            preview={formInfo.preview} setPreview={handlePreview}
+                            preview={preview} setPreview={handlePreview}
                         />
                     )}
                 </>
             ) : (
-                <form onSubmit={handleSubmit}>
+                <form>
                     <div className="form-event">
                         <div className="flex-center">
                             <h1 className="form-title">EVENTO</h1>
