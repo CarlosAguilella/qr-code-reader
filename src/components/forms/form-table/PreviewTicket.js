@@ -3,7 +3,7 @@ import { Dialog, Button } from "@mui/material";
 
 const PreviewTicket = ({ preview, setPreview, smallDescEs, largeDescEs, smallDescVal, largeDescVal, unlimited, ticketNumber, free, ticketPrice, exclusive, startDate, endingDate, image, winterProgram, summerProgram, adultsProgram, poolProgram }) => {
     return (
-        <Dialog open={preview} onClose={() => setPreview(!preview)}>
+        <Dialog open={preview ?? false} onClose={() => setPreview(!preview)}>
             <div className="form-dialog">
                 <div className="preview-container">
                     <div className="preview-title">

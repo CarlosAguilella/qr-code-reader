@@ -5,7 +5,7 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import { useWindowSize } from '../../hooks/useWindowSize';
 
-import PreviewEvent from "./PreviewEvent";
+import PreviewEvent from "../form-table/PreviewEvent";
 import NoPreviewEvent from "./NoPreviewEvent";
 
 import "./formEvent.css";
@@ -208,41 +208,6 @@ const FormEvent = () => {
             ) : (
                 <form>
                     <div className="form-event">
-                        <div className="flex-center">
-                            <h1 className="form-title">EVENTO</h1>
-                        </div>
-                        <div className="flex-end" style={{ marginRight: '0,66rem' }}>
-                            <Grid container spacing={2}>
-                                <Grid item xs={6} lg={10}>
-                                    <div className="flex-end">
-                                        <Button type="submit" className="form-button">
-                                            Guardar
-                                        </Button>
-                                    </div>
-                                </Grid>
-                                <Grid item xs={6} lg={1}>
-                                    <div className={width > 1200 ? "flex-end" : "flex-start"}>
-                                        <Button className="form-button" onClick={handlePreview}>
-                                            Previsualizar
-                                        </Button>
-                                    </div>
-                                </Grid>
-                                <Grid item xs={12} lg={1}>
-                                    <div className={width > 1200 ? "flex-start" : "flex-center"}>
-                                        <Button className="form-button-checkbox" onClick={handleChecked}>
-                                            <Checkbox
-                                                style={{ marginTop: '-0.1em' }}
-                                                checked={formInfo.visible}
-                                                size="small"
-                                                sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
-                                                name="visible"
-                                            />
-                                            Producto visible
-                                        </Button>
-                                    </div>
-                                </Grid>
-                            </Grid>
-                        </div>
                         <div className="form-es">
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={3} lg={2}>

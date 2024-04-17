@@ -9,17 +9,37 @@
 }
 
 .form-table .form-table-title {
+    margin-top: 2em;
+    margin-bottom: -1em;
+    padding: 0em 1em;
     max-width: 300px;
-    max-height: 40px;
     border: 1px solid var(--gray);
     border-radius: 7.5px;
     text-align: center;
-    background-color: var(--light-gray);
+    background-color: rgb(120, 248, 156);
 }
 
 .form-table .form-table-title h2 {
-    margin-top: 0.1em;
-    font-size: 1.8em;
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+    font-size: 0.8em;
+}
+
+.form-table .form-table-title-erased {
+    margin-top: 2em;
+    margin-bottom: -1em;
+    padding: 0em 1em;
+    max-width: 300px;
+    border: 1px solid var(--gray);
+    border-radius: 7.5px;
+    text-align: center;
+    background-color: rgb(236, 166, 166);
+}
+
+.form-table .form-table-title-erased h2 {
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+    font-size: 0.8em;
 }
 
 .form-table .form-table-rows {
@@ -27,4 +47,55 @@
     padding: 0 1em;
     height: 500px;
     overflow-y: scroll;
+}
+
+
+/* FORM DIALOG */
+
+.form-dialog {
+    padding: 3em;
+    background-color: var(--white);
+}
+
+.form-dialog .preview-container .preview-title {
+    text-align: center;
+    background-color: var(--green);
+}
+
+.form-dialog .preview-container .preview-data {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--green);
+}
+
+.form-dialog .preview-container .preview-data .preview-data-item {
+    margin-bottom: 1em;
+}
+
+.form-dialog .preview-container .preview-data .preview-data-item .preview-data-label {
+    font-weight: bold;
+}
+
+.form-dialog .preview-container .preview-data .preview-data-item .preview-data-value {
+    margin-left: 1em;
+}
+
+.form-dialog .preview-container .preview-button {
+    margin-top: 1em;
+    padding: 0.2em 1.2em;
+    text-transform: capitalize;
+    border-radius: 7.5px;
+    color: var(--black);
+    background-color: var(--green);
+}
+
+.form-dialog .preview-container .preview-button:hover {
+    background-color: var(--green-input);
+}
+
+.form-dialog .preview-container .preview-image {
+    margin-top: 1em;
+    max-width: 200px;
+    max-height: 150px;
+    align-items: center;
 }
