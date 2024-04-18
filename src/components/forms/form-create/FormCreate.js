@@ -14,13 +14,10 @@ const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagi
     const inputRef = useRef();
     const { width } = useWindowSize();
     const randomIdNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-    const randomIdEsp = ['-', '.', ':', ';'];
-    const randomIdChar = ['a', 'b', 'c', 'd', 'e'];
+    const randomIdChar = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
     const [formCreate, setFormCreate] = useState({
-        id: randomIdNum.sort(() => Math.random() - 0.5).slice(0, 4).join('') +
-            randomIdEsp.sort(() => Math.random() - 0.5).slice(0, 1).join('') +
-            randomIdChar.sort(() => Math.random() - 0.5).slice(0, 2).join(''),
+        id: randomIdNum.sort(() => Math.random() - 0.5).slice(0, 3).join('') + '-' + randomIdChar.sort(() => Math.random() - 0.5).slice(0, 3).join(''),
         tipo: valueSelected,
         producto: "",
         accesos: 0,
@@ -320,18 +317,42 @@ const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagi
                     width={width}
                     inputRef={inputRef}
                     handleChangeInput={handleChangeInput}
+                    handleCheckedInfo={handleCheckedInfo}
+                    handleBetweenWaitingList={handleBetweenWaitingList}
+                    handleStartingDate={handleStartingDate}
+                    handleEndingDate={handleEndingDate}
+                    handlePreStartingDate={handlePreStartingDate}
+                    handlePreEndingDate={handlePreEndingDate}
+                    handleChangeSelect={handleChangeSelect}
+                    handleBetweenPayment={handleBetweenPayment}
+                    handleUploadImage={handleUploadImage}
+                    handleWinterProgram={handleWinterProgram}
+                    handleSummerProgram={handleSummerProgram}
+                    handleAdultsProgram={handleAdultsProgram}
+                    handleChildrenProgram={handleChildrenProgram}
+                    handlePoolProgram={handlePoolProgram}
                 />
                 {valueSelected === "course" ? (
-                    <FormCourse
-                        formInfo={formInfo}
+                    <FormCourse formInfo={formInfo}
                         handleChangeInput={handleChangeInput}
                         handleCheckedInfo={handleCheckedInfo}
                         handleBetweenExclusive={handleBetweenExclusive}
                         handleStartingDate={handleStartingDate}
                         handleEndingDate={handleEndingDate}
                         handleUploadImage={handleUploadImage}
+                        handleBetweenWaitingList={handleBetweenWaitingList}
+                        handlePreStartingDate={handlePreStartingDate}
+                        handlePreEndingDate={handlePreEndingDate}
+                        handleChangeSelect={handleChangeSelect}
+                        handleBetweenPayment={handleBetweenPayment}
+                        handleWinterProgram={handleWinterProgram}
+                        handleSummerProgram={handleSummerProgram}
+                        handleAdultsProgram={handleAdultsProgram}
+                        handleChildrenProgram={handleChildrenProgram}
+                        handlePoolProgram={handlePoolProgram}
+                        inputRef={inputRef}
                     />
-                ) : (
+                ) : valueSelected === "event" ? (
                     <FormTicket
                         formInfo={formInfo}
                         handleChangeInput={handleChangeInput}
@@ -340,16 +361,12 @@ const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagi
                         handleStartingDate={handleStartingDate}
                         handleEndingDate={handleEndingDate}
                         handleUploadImage={handleUploadImage}
+                        inputRef={inputRef}
                     />
+                ) : (
+                    <FormTicket formInfo={formInfo} handleChangeInput={handleChangeInput} handleCheckedInfo={handleCheckedInfo} handleBetweenExclusive={handleBetweenExclusive} handleStartingDate={handleStartingDate} handleEndingDate={handleEndingDate} handleUploadImage={handleUploadImage} />
                 )}
-                <FormCat
-                    formInfo={formInfo}
-                    handleWinterProgram={handleWinterProgram}
-                    handleSummerProgram={handleSummerProgram}
-                    handleChildrenProgram={handleChildrenProgram}
-                    handleAdultsProgram={handleAdultsProgram}
-                    handlePoolProgram={handlePoolProgram}
-                />
+                <FormCat formInfo={formInfo} handleWinterProgram={handleWinterProgram} handleSummerProgram={handleSummerProgram} handleChildrenProgram={handleChildrenProgram} handleAdultsProgram={handleAdultsProgram} handlePoolProgram={handlePoolProgram} />
                 <div className="flex-center">
                     <Button onClick={handleReturnAndSave}>
                         <span className="create-button-option">Guardar</span>

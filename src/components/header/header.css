@@ -11,15 +11,19 @@
 }
 
 .header .header-button {
-    margin-top: 6em;
+    margin-top: 0;
 }
 
 .header .header-button .buttons {
-    background-color: var(--green-input);
-    color: var(--black);
+    max-width: 300px;
+    min-width: 300px;
+    max-height: 50px;
+    min-height: 50px;
+    background: var(--primary);
+    border: 1px solid var(--primary);   
+    border-radius: 5px;
+    color: var(--white);
     padding: 1em;
-    margin: 1em;
-    border: none;
-    cursor: pointer;
-    width: 100%;
+    text-transform: capitalize;
+    font-size: 2em;
 }

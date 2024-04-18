@@ -29,17 +29,35 @@ function Header({ setValueSelected }) {
     return (
         <div className="header">
             <Grid container spacing={2} alignItems={'center'}>
-                <Grid item xs={6}>
+                <Grid item xs={12}>
                     <div className="flex-start">
                         <img src={MYIMAGE} alt="Logo" />
                     </div>
                 </Grid>
-                <Grid item xs={6}>
-                    <div className='flex-end header-button'>
-                        <Button className="buttons" onClick={handleTable}>Table</Button>
-                        <Button className="buttons" onClick={handleCourse}>Course</Button>
-                        <Button className="buttons" onClick={handleEvent}>Event</Button>
-                        <Button className="buttons" onClick={handleProduct}>Product</Button>
+                <Grid item xs={12}>
+                    <div className='header-button'>
+                        <Grid container spacing={2} alignItems={'center'}>
+                            <Grid item xs={6}>
+                                <div className="flex-end">
+                                    <Button className="buttons" onClick={handleTable}>Table</Button>
+                                </div>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <div className="flex-start">
+                                    <Button className="buttons" onClick={handleCourse}>Course</Button>
+                                </div>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <div className="flex-end">
+                                    <Button className="buttons" onClick={handleEvent}>Event</Button>
+                                </div>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <div className="flex-start">
+                                    <Button className="buttons" onClick={handleProduct}>Product</Button>
+                                </div>
+                            </Grid>
+                        </Grid>
                     </div>
                 </Grid>
             </Grid>

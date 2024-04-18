@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Grid, Checkbox } from '@mui/material';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import CancelIcon from '@mui/icons-material/Cancel';
 import { DataGrid } from '@mui/x-data-grid';
 import { DateTime } from "luxon";
 
@@ -14,7 +14,7 @@ import './formTable.css';
 const FormTable = ({ arrayMagico, setArrayMagico }) => {
     const [previewComponent, setPreviewComponent] = useState(null);
     const [previewOpen, setPreviewOpen] = useState(false);
-    const randomIdNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], randomIdEsp = ['-', '.', ':', ';'], randomIdChar = ['a', 'b', 'c', 'd', 'e'];
+    const randomIdNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], randomIdChar = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
     const handleArrayMagico = (arrayMagico) => {
         if (Array.isArray(arrayMagico)) {
@@ -47,7 +47,7 @@ const FormTable = ({ arrayMagico, setArrayMagico }) => {
 
     const handleDuplicar = (id) => {
         let tmpArray = [...arrayMagico];
-        const nuevoId = randomIdNum.sort(() => Math.random() - 0.5).slice(0, 4).join('') + randomIdEsp.sort(() => Math.random() - 0.5).slice(0, 1).join('') + randomIdChar.sort(() => Math.random() - 0.5).slice(0, 2).join('');
+        const nuevoId = randomIdNum.sort(() => Math.random() - 0.5).slice(0, 3).join('') + '-' + randomIdChar.sort(() => Math.random() - 0.5).slice(0, 3).join('');
         const filaDuplicada = tmpArray.find(row => row.id === id);
         let newRow = { ...filaDuplicada, id: nuevoId };
         tmpArray.push(newRow);
@@ -102,10 +102,10 @@ const FormTable = ({ arrayMagico, setArrayMagico }) => {
         {
             field: 'acciones', headerName: 'ACCIONES', width: 150, renderCell: (params) => (
                 <div>
-                    <VisibilityIcon onClick={() => handlePreview(params.row.id)} />
+                    <VisibilityOutlinedIcon onClick={() => handlePreview(params.row.id)} />
                     <BorderColorIcon onClick={() => handleEditar(params.row.id)} />
                     <ContentCopyIcon onClick={() => handleDuplicar(params.row.id)} />
-                    <HighlightOffIcon onClick={() => handleEliminar(params.row.id)} />
+                    <CancelIcon onClick={() => handleEliminar(params.row.id)} style={{color:'red'}} />
                 </div>
             )
         },
@@ -123,10 +123,10 @@ const FormTable = ({ arrayMagico, setArrayMagico }) => {
         {
             field: 'acciones', headerName: 'ACCIONES', width: 150, renderCell: (params) => (
                 <div>
-                    <VisibilityIcon onClick={() => handlePreview(params.row.id)} />
+                    <VisibilityOutlinedIcon onClick={() => handlePreview(params.row.id)} />
                     <BorderColorIcon onClick={() => handleEditar(params.row.id)} />
                     <ContentCopyIcon onClick={() => handleDuplicar(params.row.id)} />
-                    <HighlightOffIcon onClick={() => handleMostrarDeNuevo(params.row.id)} />
+                    <CancelIcon onClick={() => handleMostrarDeNuevo(params.row.id)} />
                 </div>
             )
         },
