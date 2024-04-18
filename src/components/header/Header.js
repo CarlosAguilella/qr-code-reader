@@ -1,12 +1,31 @@
 import React from "react";
-import AddCircleOutlineSharpIcon from '@mui/icons-material/AddCircleOutlineSharp';
+import { Button, Grid } from "@mui/material";
 
 import './header.css';
-import { Grid } from "@mui/material";
 
 const MYIMAGE = "AjuntamentDeLesAlqueries.png"
 
-function Header({ onValueChange }) {
+function Header({ setValueSelected }) {
+    const handleTable = () => {
+        let tmpSelected = 'table';
+        setValueSelected(tmpSelected);
+    }
+
+    const handleCourse = () => {
+        let tmpSelected = 'course';
+        setValueSelected(tmpSelected);
+    }
+
+    const handleEvent = () => {
+        let tmpSelected = 'event';
+        setValueSelected(tmpSelected);
+    }
+
+    const handleProduct = () => {
+        let tmpSelected = 'product';
+        setValueSelected(tmpSelected);
+    }
+
     return (
         <div className="header">
             <Grid container spacing={2} alignItems={'center'}>
@@ -17,8 +36,10 @@ function Header({ onValueChange }) {
                 </Grid>
                 <Grid item xs={6}>
                     <div className='flex-end header-button'>
-                        <AddCircleOutlineSharpIcon className='header-icon' onClick={() => onValueChange(true)} />
-                        <span className="header-text" onClick={() => onValueChange(true)} >AÑADIR PRODUCTO</span>
+                        <Button className="buttons" onClick={handleTable}>Table</Button>
+                        <Button className="buttons" onClick={handleCourse}>Course</Button>
+                        <Button className="buttons" onClick={handleEvent}>Event</Button>
+                        <Button className="buttons" onClick={handleProduct}>Product</Button>
                     </div>
                 </Grid>
             </Grid>

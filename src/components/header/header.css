@@ -14,89 +14,12 @@
     margin-top: 6em;
 }
 
-.header .header-button .header-text {
-    margin-left: 0.5em;
-    padding: 0.25em 0.75em;
-    font-size: 0.7em;
-    border-radius: 2.5px;
-    color: var(--white);
+.header .header-button .buttons {
     background-color: var(--green-input);
-}
-
-.header .header-logo {
-    font-size: 1.5em;
-    padding-right: 0.5em;
-}
-
-.header .header-subtitle {
-    font-size: 1.8em;
-    margin-top: -2.5em;
-    margin-right: 2em;
-}
-
-.header .header-subtitle p {
-    max-width: 290px;
-    min-width: 290px;
-    padding: 0.5em;
-    border-radius: 7.5px;
-}
-
-@media (max-width: 1600px) {
-    .header .header-title {
-        font-size: 3em;
-    }
-    
-    .header .header-subtitle {
-        font-size: 1.4em;
-    }
-
-    .header .header-subtitle p {
-        max-width: 220px;
-        min-width: 220px;
-    }
-}
-
-@media (max-width: 1200px) {
-    .header .header-title {
-        font-size: 2em;
-    }
-
-    .header .header-subtitle {
-        font-size: 1.2em;
-    }
-
-    .header .header-subtitle p {
-        max-width: 175px;
-        min-width: 175px;
-    }
-}
-
-@media (max-width: 900px) {
-    .header .header-title {
-        font-size: 1.5em;
-    }
-
-    .header .header-subtitle {
-        font-size: 0.8em;
-    }
-
-    .header .header-subtitle p {
-        max-width: 125px;
-        min-width: 125px;
-    }
-}
-
-@media (max-width: 600px) {
-    .header .header-title {
-        font-size: 1.2em;
-    }
-
-    .header .header-logo {
-        padding-right: 0.5em;
-        padding-left: 0.5em;
-    }
-
-    .header .header-subtitle {
-        margin-top: 0.5em;
-    }
+    color: var(--black);
+    padding: 1em;
+    margin: 1em;
+    border: none;
+    cursor: pointer;
+    width: 100%;
 }

@@ -1,19 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Dialog, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 
-const PreviewTable = ({ open, data }) => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    useEffect(() => {
-        setIsOpen(open);
-    }, [open]);
-
+const PreviewTable = ({ open, onClose, data }) => {
     const handleClose = () => {
-        setIsOpen(false);
+        onClose();
     };
 
     return (
-        <Dialog open={isOpen} onClose={handleClose}>
+        <Dialog open={open} onClose={handleClose}>
             <div className="form-dialog">
                 <TableContainer component={Paper}>
                     <Table aria-label="preview table">
@@ -35,7 +29,7 @@ const PreviewTable = ({ open, data }) => {
                 </TableContainer>
                 <div className="flex-end">
                     <div className="preview-button">
-                        <Button onClick={() => setIsOpen(false)}>Cerrar</Button>
+                        <Button onClick={handleClose}>Cerrar</Button>
                     </div>
                 </div>
             </div>

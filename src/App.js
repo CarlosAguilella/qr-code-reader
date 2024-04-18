@@ -1,4 +1,3 @@
-// App.js
 import React, { useState } from 'react';
 import Header from './components/header/Header';
 import FormTable from './components/forms/form-table/FormTable';
@@ -6,22 +5,21 @@ import FormCreate from './components/forms/form-create/FormCreate';
 import './index.css';
 
 function App() {
-  const [valueSelected, setValueSelected] = useState(false);
+  const [valueSelected, setValueSelected] = useState('table');
   const [arrayMagico, setArrayMagico] = useState([]);
-
-  const handleValueChange = (value) => {
-    setValueSelected(value);
-  };
 
   return (
     <div className='app-container montserrat'>
-      {!valueSelected ? (
+      {valueSelected === 'table' ? (
         <>
-          <Header onValueChange={handleValueChange} />
+          <Header setValueSelected={setValueSelected} valueSelected={valueSelected} />
           <FormTable arrayMagico={arrayMagico} setArrayMagico={setArrayMagico} />
         </>
       ) : (
-        <FormCreate onValueChange={handleValueChange} setArrayMagico={setArrayMagico} arrayMagico={arrayMagico} />
+        <>
+          <Header setValueSelected={setValueSelected} valueSelected={valueSelected} />
+          <FormCreate setArrayMagico={setArrayMagico} arrayMagico={arrayMagico} setValueSelected={setValueSelected} valueSelected={valueSelected} />
+        </>
       )}
     </div>
   );

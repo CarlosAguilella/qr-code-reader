@@ -11,10 +11,10 @@ import PreviewTable from './PreviewTable';
 
 import './formTable.css';
 
-const FormTable = ({ arrayMagico }) => {
-    const [arrayMagicoState, setArrayMagico] = useState(arrayMagico);
+const FormTable = ({ arrayMagico, setArrayMagico }) => {
     const [previewComponent, setPreviewComponent] = useState(null);
     const [previewOpen, setPreviewOpen] = useState(false);
+    const randomIdNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], randomIdEsp = ['-', '.', ':', ';'], randomIdChar = ['a', 'b', 'c', 'd', 'e'];
 
     const handleArrayMagico = (arrayMagico) => {
         if (Array.isArray(arrayMagico)) {
@@ -23,7 +23,7 @@ const FormTable = ({ arrayMagico }) => {
     };
 
     const handlePreview = (id) => {
-        const fila = arrayMagicoState.find(row => row.id === id);
+        const fila = arrayMagico.find(row => row.id === id);
         const previewData = {
             'ID': fila.id,
             'TIPO': fila.tipo,
@@ -42,27 +42,39 @@ const FormTable = ({ arrayMagico }) => {
 
     const handlePreviewClose = () => {
         setPreviewOpen(false);
+        setPreviewComponent(null);
     };
 
     const handleDuplicar = (id) => {
-        const filaDuplicada = arrayMagicoState.find(row => row.id === id);
-        const nuevoId = Math.floor(Math.random() * 10000);
-        const filaDuplicadaConNuevoId = { ...filaDuplicada, id: nuevoId };
-        setArrayMagico([...arrayMagicoState, filaDuplicadaConNuevoId]);
-    }
+        let tmpArray = [...arrayMagico];
+        const nuevoId = randomIdNum.sort(() => Math.random() - 0.5).slice(0, 4).join('') + randomIdEsp.sort(() => Math.random() - 0.5).slice(0, 1).join('') + randomIdChar.sort(() => Math.random() - 0.5).slice(0, 2).join('');
+        const filaDuplicada = tmpArray.find(row => row.id === id);
+        let newRow = { ...filaDuplicada, id: nuevoId };
+        tmpArray.push(newRow);
+        setArrayMagico(tmpArray);
+    };
+
+    const handleEditar = (id) => {
+        let tmpArray = [...arrayMagico];
+        tmpArray.find(row => row.id === id).tipo = prompt('Introduce el nuevo tipo:', tmpArray.tipo);
+        tmpArray.find(row => row.id === id).producto = prompt('Introduce el nuevo producto:', tmpArray.producto);
+        tmpArray.find(row => row.id === id).accesos = prompt('Introduce los nuevos accesos:', tmpArray.accesos);
+        tmpArray.find(row => row.id === id).socios = prompt('Introduce si es para socios:', tmpArray.socios);
+        tmpArray.find(row => row.id === id).precio = prompt('Introduce el nuevo precio:', tmpArray.precio);
+        tmpArray.find(row => row.id === id).stock = prompt('Introduce el nuevo stock:', tmpArray.stock);
+        tmpArray.find(row => row.id === id).expiracion = prompt('Introduce la nueva fecha de expiración:', tmpArray.expiracion);
+        tmpArray.find(row => row.id === id).visible = prompt('Introduce si es visible:', tmpArray.visible);
+        setArrayMagico(tmpArray);
+    };
 
     const handleEliminar = (id) => {
-        const nuevasFilas = arrayMagicoState.map(row => {
-            if (row.id === id) {
-                return { ...row, deleted: true };
-            }
-            return row;
-        });
-        setArrayMagico(nuevasFilas);
+        let tmpArray = [...arrayMagico];
+        tmpArray.find(row => row.id === id).deleted = true;
+        setArrayMagico(tmpArray);
     };
 
     const handleMostrarDeNuevo = (id) => {
-        const nuevasFilas = arrayMagicoState.map(row => {
+        const nuevasFilas = arrayMagico.map(row => {
             if (row.id === id) {
                 return { ...row, deleted: false };
             }
@@ -81,16 +93,17 @@ const FormTable = ({ arrayMagico }) => {
         { field: 'precio', headerName: 'PRECIO', width: 150 },
         { field: 'stock', headerName: 'STOCK', width: 150 },
         { field: 'expiracion', headerName: 'EXPIRACION', width: 150 },
-        { field: 'visible', headerName: 'VISIBLE', width: 150, renderCell: (params) =>
-            params.row.visible && (
-                <Checkbox checked={params.row.visible} />
-            )
+        {
+            field: 'visible', headerName: 'VISIBLE', width: 150, renderCell: (params) =>
+                params.row.visible && (
+                    <Checkbox checked={params.row.visible} />
+                )
         },
         {
             field: 'acciones', headerName: 'ACCIONES', width: 150, renderCell: (params) => (
                 <div>
                     <VisibilityIcon onClick={() => handlePreview(params.row.id)} />
-                    <BorderColorIcon />
+                    <BorderColorIcon onClick={() => handleEditar(params.row.id)} />
                     <ContentCopyIcon onClick={() => handleDuplicar(params.row.id)} />
                     <HighlightOffIcon onClick={() => handleEliminar(params.row.id)} />
                 </div>
@@ -111,7 +124,7 @@ const FormTable = ({ arrayMagico }) => {
             field: 'acciones', headerName: 'ACCIONES', width: 150, renderCell: (params) => (
                 <div>
                     <VisibilityIcon onClick={() => handlePreview(params.row.id)} />
-                    <BorderColorIcon />
+                    <BorderColorIcon onClick={() => handleEditar(params.row.id)} />
                     <ContentCopyIcon onClick={() => handleDuplicar(params.row.id)} />
                     <HighlightOffIcon onClick={() => handleMostrarDeNuevo(params.row.id)} />
                 </div>
@@ -119,8 +132,8 @@ const FormTable = ({ arrayMagico }) => {
         },
     ];
 
-    const rowsNoEliminadas = arrayMagicoState.filter(row => !row.deleted);
-    const rowsEliminadas = arrayMagicoState.filter(row => row.deleted);
+    const rowsNoEliminadas = arrayMagico.filter(row => !row.deleted);
+    const rowsEliminadas = arrayMagico.filter(row => row.deleted);
 
     return (
         <div className="form-table" onChange={handleArrayMagico}>
@@ -134,7 +147,7 @@ const FormTable = ({ arrayMagico }) => {
                     </div>
                 </Grid>
                 <Grid item xs={12}>
-                    {arrayMagicoState.length === 0 ? (
+                    {arrayMagico.length === 0 ? (
                         <div className="flex-center">
                             <p>No hay filas disponibles.</p>
                         </div>
