@@ -21,7 +21,7 @@ const FormCourse = () => {
     const { width } = useWindowSize();
 
     // Values
-    const [formInfo, setFormInfo] = useState({
+    const [formCreate, setFormCreate] = useState({
         preview: false,
         visible: false,
         smallDescEs: "",
@@ -55,38 +55,38 @@ const FormCourse = () => {
     });
 
     const handleCreateTableForm = () => {
-        // if (!formInfo.smallDescEs || !formInfo.largeDescEs || !formInfo.smallDescVal || !formInfo.largeDescVal) {
+        // if (!formCreate.smallDescEs || !formCreate.largeDescEs || !formCreate.smallDescVal || !formCreate.largeDescVal) {
         //     toast.error("Debes rellenar todos los campos de descripción");
-        // } else if (formInfo.courseNumber < 1 && !formInfo.unlimited) {
+        // } else if (formCreate.courseNumber < 1 && !formCreate.unlimited) {
         //     toast.error("El número de plazas debe ser mayor a 0 plazas");
-        // } else if (!formInfo.startDate || !formInfo.endingDate || !formInfo.preStartingDate || !formInfo.preEndingDate) {
+        // } else if (!formCreate.startDate || !formCreate.endingDate || !formCreate.preStartingDate || !formCreate.preEndingDate) {
         //     toast.error("Debes rellenar todas las fechas");
-        // } else if (formInfo.startDate > formInfo.endingDate) {
+        // } else if (formCreate.startDate > formCreate.endingDate) {
         //     toast.error("La fecha de inicio no puede ser mayor a la fecha de fin");
-        // } else if (formInfo.preStartingDate > formInfo.preEndingDate) {
+        // } else if (formCreate.preStartingDate > formCreate.preEndingDate) {
         //     toast.error("La fecha de inicio de preinscripción no puede ser mayor a la fecha de fin de preinscripción");
-        // } else if (formInfo.preStartingDate > formInfo.startDate) {
+        // } else if (formCreate.preStartingDate > formCreate.startDate) {
         //     toast.error("La fecha de inicio no puede ser menor a la fecha de inicio de preinscripción");
-        // } else if (!formInfo.image) {
+        // } else if (!formCreate.image) {
         //     toast.error("Debes subir una imagen");
-        // } else if (!formInfo.winterProgram && !formInfo.summerProgram) {
+        // } else if (!formCreate.winterProgram && !formCreate.summerProgram) {
         //     toast.error("Debes seleccionar al menos una temporada");
-        // } else if (!formInfo.childrenProgram && !formInfo.adultsProgram) {
+        // } else if (!formCreate.childrenProgram && !formCreate.adultsProgram) {
         //     toast.error("Debes seleccionar al menos un rango de edad");
         // } else {
-        setFormInfo({
-            ...formInfo,
+        setFormCreate({
+            ...formCreate,
             createTableForm: [
-                ...formInfo.createTableForm,
+                ...formCreate.createTableForm,
                 {
                     type: "Curso",
-                    product: formInfo.largeDescEs ? formInfo.largeDescEs : "No hay descripción",
+                    product: formCreate.largeDescEs ? formCreate.largeDescEs : "No hay descripción",
                     access: 5,
-                    members: ((formInfo.memberFree && formInfo.nonMemberFree) || (!formInfo.memberFree && !formInfo.nonMemberFree)) ? "TODOS" : !formInfo.memberFree && formInfo.nonMemberFree ? "SI" : "NO",
-                    price: formInfo.memberFree && formInfo.nonMemberFree ? "Gratuito" : !formInfo.memberFree ? formInfo.memberDues : formInfo.nonMemberDues,
-                    stock: formInfo.unlimited ? "Ilimitadas" : formInfo.courseNumber,
-                    expiration: formInfo.endingDate ? formInfo.endingDate : "No hay fecha de fin",
-                    visible: formInfo.visible ? "Si" : "No",
+                    members: ((formCreate.memberFree && formCreate.nonMemberFree) || (!formCreate.memberFree && !formCreate.nonMemberFree)) ? "TODOS" : !formCreate.memberFree && formCreate.nonMemberFree ? "SI" : "NO",
+                    price: formCreate.memberFree && formCreate.nonMemberFree ? "Gratuito" : !formCreate.memberFree ? formCreate.memberDues : formCreate.nonMemberDues,
+                    stock: formCreate.unlimited ? "Ilimitadas" : formCreate.courseNumber,
+                    expiration: formCreate.endingDate ? formCreate.endingDate : "No hay fecha de fin",
+                    visible: formCreate.visible ? "Si" : "No",
                     actions: ""
                 }
             ]
@@ -102,8 +102,8 @@ const FormCourse = () => {
     const handleSetDuesInfo = () => {
         const day1 = DateTime.now().plus({ months: 1 }).startOf('month').toFormat('dd-MM-yyyy');
 
-        setFormInfo({
-            ...formInfo,
+        setFormCreate({
+            ...formCreate,
             startDate: day1,
             duesInfo: [day1]
         });
@@ -119,122 +119,122 @@ const FormCourse = () => {
             duesInfo.push(nextDueDate);
         }
 
-        setFormInfo({
-            ...formInfo,
+        setFormCreate({
+            ...formCreate,
             duesNumber: numberOfDues,
             duesInfo: duesInfo
         });
     };
 
     const handlePreview = () => {
-        setFormInfo({ ...formInfo, preview: !formInfo.preview });
+        setFormCreate({ ...formCreate, preview: !formCreate.preview });
     }
 
     const handleChecked = (e) => {
-        setFormInfo({ ...formInfo, [e.target.name]: e.target.checked });
+        setFormCreate({ ...formCreate, [e.target.name]: e.target.checked });
     }
 
     const handleChangeInput = (e) => {
-        setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
+        setFormCreate({ ...formCreate, [e.target.name]: e.target.value });
     }
 
     const handleBetweenWaitingList = () => {
-        setFormInfo({ ...formInfo, waitingList: !formInfo.waitingList });
+        setFormCreate({ ...formCreate, waitingList: !formCreate.waitingList });
     }
 
     const handleWinterProgram = () => {
-        const updatedWinterProgram = !formInfo.winterProgram;
-        let updatedDuration = formInfo.duration;
+        const updatedWinterProgram = !formCreate.winterProgram;
+        let updatedDuration = formCreate.duration;
 
-        if (updatedWinterProgram && formInfo.summerProgram) {
+        if (updatedWinterProgram && formCreate.summerProgram) {
             updatedDuration = "allYear";
-        } else if (updatedWinterProgram && !formInfo.summerProgram) {
+        } else if (updatedWinterProgram && !formCreate.summerProgram) {
             updatedDuration = "winter";
-        } else if (!updatedWinterProgram && formInfo.summerProgram) {
+        } else if (!updatedWinterProgram && formCreate.summerProgram) {
             updatedDuration = "summer";
         }
 
-        setFormInfo({
-            ...formInfo,
+        setFormCreate({
+            ...formCreate,
             winterProgram: updatedWinterProgram,
             duration: updatedDuration
         });
     };
 
     const handleSummerProgram = () => {
-        const updatedSummerProgram = !formInfo.summerProgram;
-        let updatedDuration = formInfo.duration;
+        const updatedSummerProgram = !formCreate.summerProgram;
+        let updatedDuration = formCreate.duration;
 
-        if (formInfo.winterProgram && updatedSummerProgram) {
+        if (formCreate.winterProgram && updatedSummerProgram) {
             updatedDuration = "allYear";
-        } else if (formInfo.winterProgram && !updatedSummerProgram) {
+        } else if (formCreate.winterProgram && !updatedSummerProgram) {
             updatedDuration = "winter";
-        } else if (!formInfo.winterProgram && updatedSummerProgram) {
+        } else if (!formCreate.winterProgram && updatedSummerProgram) {
             updatedDuration = "summer";
         }
 
-        setFormInfo({
-            ...formInfo,
+        setFormCreate({
+            ...formCreate,
             summerProgram: updatedSummerProgram,
             duration: updatedDuration
         });
     };
 
     const handleAdultsProgram = () => {
-        const updatedAdultsProgram = !formInfo.adultsProgram;
-        let updatedAgeDescription = formInfo.ageDescription;
+        const updatedAdultsProgram = !formCreate.adultsProgram;
+        let updatedAgeDescription = formCreate.ageDescription;
 
-        if (formInfo.childrenProgram && updatedAdultsProgram) {
+        if (formCreate.childrenProgram && updatedAdultsProgram) {
             updatedAgeDescription = "allAges";
-        } else if (formInfo.childrenProgram && !updatedAdultsProgram) {
+        } else if (formCreate.childrenProgram && !updatedAdultsProgram) {
             updatedAgeDescription = "children";
-        } else if (!formInfo.childrenProgram && updatedAdultsProgram) {
+        } else if (!formCreate.childrenProgram && updatedAdultsProgram) {
             updatedAgeDescription = "adults";
         }
 
-        setFormInfo({
-            ...formInfo,
+        setFormCreate({
+            ...formCreate,
             adultsProgram: updatedAdultsProgram,
             ageDescription: updatedAgeDescription
         });
     };
 
     const handleChildrenProgram = () => {
-        const updatedChildrenProgram = !formInfo.childrenProgram;
-        let updatedAgeDescription = formInfo.ageDescription;
+        const updatedChildrenProgram = !formCreate.childrenProgram;
+        let updatedAgeDescription = formCreate.ageDescription;
 
-        if (updatedChildrenProgram && formInfo.adultsProgram) {
+        if (updatedChildrenProgram && formCreate.adultsProgram) {
             updatedAgeDescription = "allAges";
-        } else if (updatedChildrenProgram && !formInfo.adultsProgram) {
+        } else if (updatedChildrenProgram && !formCreate.adultsProgram) {
             updatedAgeDescription = "children";
-        } else if (!updatedChildrenProgram && formInfo.adultsProgram) {
+        } else if (!updatedChildrenProgram && formCreate.adultsProgram) {
             updatedAgeDescription = "adults";
         }
 
-        setFormInfo({
-            ...formInfo,
+        setFormCreate({
+            ...formCreate,
             childrenProgram: updatedChildrenProgram,
             ageDescription: updatedAgeDescription
         });
     };
 
     const handlePoolProgram = () => {
-        const updatedPoolProgram = !formInfo.poolProgram;
-        let updatedPoolProgramOption = formInfo.poolProgramOption;
+        const updatedPoolProgram = !formCreate.poolProgram;
+        let updatedPoolProgramOption = formCreate.poolProgramOption;
 
         if (updatedPoolProgram) {
             updatedPoolProgramOption = "pool";
         }
 
-        setFormInfo({
-            ...formInfo,
+        setFormCreate({
+            ...formCreate,
             poolProgram: updatedPoolProgram,
             poolProgramOption: updatedPoolProgramOption
         });
     };
 
     const handleBetweenPayment = () => {
-        setFormInfo({ ...formInfo, payment: !formInfo.payment });
+        setFormCreate({ ...formCreate, payment: !formCreate.payment });
     }
 
     const handleStartingDate = (e) => {
@@ -244,18 +244,18 @@ const FormCourse = () => {
         if (date1 < today) {
             alert("La fecha de inicio no puede ser menor a la fecha actual");
         } else {
-            setFormInfo({ ...formInfo, startDate: date1 });
+            setFormCreate({ ...formCreate, startDate: date1 });
         }
     }
 
     const handleEndingDate = (e) => {
         const date2 = e.target.value;
-        const date1 = formInfo.startDate;
+        const date1 = formCreate.startDate;
 
         if (date2 < date1) {
             alert("La fecha de fin no puede ser menor a la fecha de inicio");
         } else {
-            setFormInfo({ ...formInfo, endingDate: date2 });
+            setFormCreate({ ...formCreate, endingDate: date2 });
         }
     }
 
@@ -266,29 +266,29 @@ const FormCourse = () => {
         if (date1 < today) {
             alert("La fecha de inicio no puede ser menor a la fecha actual");
         } else {
-            setFormInfo({ ...formInfo, preStartingDate: date1 });
+            setFormCreate({ ...formCreate, preStartingDate: date1 });
         }
     }
 
     const handlePreEndingDate = (e) => {
         const date2 = e.target.value;
-        const date1 = formInfo.preStartingDate;
+        const date1 = formCreate.preStartingDate;
         if (date2 < date1) {
             alert("La fecha de fin no puede ser menor a la fecha de inicio");
         } else {
-            setFormInfo({ ...formInfo, preEndingDate: date2 });
+            setFormCreate({ ...formCreate, preEndingDate: date2 });
         }
     }
 
     const handleUploadImage = () => {
         const file = inputRef.current.files[0];
         const url = URL.createObjectURL(file);
-        setFormInfo({ ...formInfo, image: url });
+        setFormCreate({ ...formCreate, image: url });
     }
 
     return (
         <>
-            {!formInfo.preview ? (
+            {!formCreate.preview ? (
                 <form>
                     <div className="form-course">
                         <div className="form-es">
@@ -305,7 +305,7 @@ const FormCourse = () => {
                                 <Grid item xs={12} sm={3} lg={2}>
                                     <div className="form-desc-title">
                                         <h4>Descripción corta</h4>
-                                        {formInfo.smallDescEs.length > 50 && (
+                                        {formCreate.smallDescEs.length > 50 && (
                                             <h6 className="form-subtitle-data">(máximo de 50 carácteres)</h6>
                                         )}
                                     </div>
@@ -318,7 +318,7 @@ const FormCourse = () => {
                                                 className="form-input"
                                                 variant="outlined"
                                                 fullWidth
-                                                value={formInfo.smallDescEs}
+                                                value={formCreate.smallDescEs}
                                                 required
                                                 name="smallDescEs"
                                             />
@@ -328,7 +328,7 @@ const FormCourse = () => {
                                 <Grid item xs={12} sm={3} lg={2}>
                                     <div className="form-desc-title">
                                         <h4>Descripción larga</h4>
-                                        {formInfo.largeDescEs.length > 500 && (
+                                        {formCreate.largeDescEs.length > 500 && (
                                             <h6 className="form-subtitle-data">(máximo de 500 carácteres)</h6>
                                         )}
                                     </div>
@@ -342,7 +342,7 @@ const FormCourse = () => {
                                                 variant="outlined"
                                                 fullWidth
                                                 multiline
-                                                value={formInfo.largeDescEs}
+                                                value={formCreate.largeDescEs}
                                                 required
                                                 name="largeDescEs"
                                             />
@@ -365,7 +365,7 @@ const FormCourse = () => {
                                 <Grid item xs={12} sm={3} lg={2}>
                                     <div className="form-desc-title">
                                         <h4>Descripció curta</h4>
-                                        {formInfo.smallDescVal.length > 50 && (
+                                        {formCreate.smallDescVal.length > 50 && (
                                             <h6 className="form-subtitle-data">(màxim de 50 caràcters)</h6>
                                         )}
                                     </div>
@@ -379,7 +379,7 @@ const FormCourse = () => {
                                                 onChange={handleChangeInput}
                                                 className="form-input"
                                                 variant="outlined"
-                                                value={formInfo.smallDescVal}
+                                                value={formCreate.smallDescVal}
                                                 name="smallDescVal"
                                             />
                                         </div>
@@ -388,7 +388,7 @@ const FormCourse = () => {
                                 <Grid item xs={12} sm={3} lg={2}>
                                     <div className="form-desc-title">
                                         <h4>Descripció llarga</h4>
-                                        {formInfo.largeDescVal.length > 500 && (
+                                        {formCreate.largeDescVal.length > 500 && (
                                             <h6 className="form-subtitle-data">(màxim de 500 caràcters)</h6>
                                         )}
                                     </div>
@@ -402,7 +402,7 @@ const FormCourse = () => {
                                                 variant="outlined"
                                                 fullWidth
                                                 multiline
-                                                value={formInfo.largeDescVal}
+                                                value={formCreate.largeDescVal}
                                                 required
                                                 name="largeDescVal"
                                             />
@@ -424,7 +424,7 @@ const FormCourse = () => {
                                     </Grid>
                                     <Grid item xs={6} lg={4}>
                                         <div className={width > 1200 ? 'flex-start' : 'flex-center'}>
-                                            {formInfo.unlimited ? (
+                                            {formCreate.unlimited ? (
                                                 <div className="form-info">Ilimitadas</div>
                                             ) : (
                                                 <div className="form-info">
@@ -433,7 +433,7 @@ const FormCourse = () => {
                                                         className="form-input"
                                                         variant="outlined"
                                                         fullWidth
-                                                        value={formInfo.courseNumber}
+                                                        value={formCreate.courseNumber}
                                                         name="courseNumber"
                                                     />
                                                 </div>
@@ -444,7 +444,7 @@ const FormCourse = () => {
                                         <div className={width > 1200 ? 'flex-start' : 'flex-center'}>
                                             <Button className="form-data-checkbox" onClick={handleChecked}>
                                                 <Checkbox
-                                                    checked={formInfo.unlimited}
+                                                    checked={formCreate.unlimited}
                                                     size="small"
                                                     name="unlimited"
                                                     className="form-checkbox"
@@ -467,7 +467,7 @@ const FormCourse = () => {
                                             <input
                                                 onChange={handlePreStartingDate}
                                                 type="date"
-                                                value={formInfo.preStartingDate}
+                                                value={formCreate.preStartingDate}
                                                 className="form-button-date"
                                                 required
                                                 name="preStartDate"
@@ -489,11 +489,11 @@ const FormCourse = () => {
                                             <input
                                                 onChange={handlePreEndingDate}
                                                 type="date"
-                                                value={formInfo.preEndingDate}
+                                                value={formCreate.preEndingDate}
                                                 className="form-button-date"
                                                 required
                                                 name="preEndingDate"
-                                                max={formInfo.startDate}
+                                                max={formCreate.startDate}
                                             />
                                         </div>
                                     </Grid>
@@ -510,7 +510,7 @@ const FormCourse = () => {
                                                 <Checkbox
                                                     icon={<RadioButtonUncheckedIcon />}
                                                     checkedIcon={<RadioButtonCheckedIcon />}
-                                                    checked={formInfo.waitingList}
+                                                    checked={formCreate.waitingList}
                                                     shape='round'
                                                     size="small"
                                                     name="waitingList"
@@ -526,7 +526,7 @@ const FormCourse = () => {
                                                 <Checkbox
                                                     icon={<RadioButtonUncheckedIcon />}
                                                     checkedIcon={<RadioButtonCheckedIcon />}
-                                                    checked={!formInfo.waitingList}
+                                                    checked={!formCreate.waitingList}
                                                     size="small"
                                                     name="waitingList"
                                                     className="form-checkbox"
@@ -550,7 +550,7 @@ const FormCourse = () => {
                                             <input
                                                 onChange={handleStartingDate}
                                                 type="date"
-                                                value={formInfo.startDate}
+                                                value={formCreate.startDate}
                                                 className="form-button-date"
                                                 required
                                                 name="startDate"
@@ -573,11 +573,11 @@ const FormCourse = () => {
                                             <input
                                                 onChange={handleEndingDate}
                                                 type="date"
-                                                value={formInfo.endingDate}
+                                                value={formCreate.endingDate}
                                                 className="form-button-date"
                                                 required
                                                 name="endingDate"
-                                                min={formInfo.startDate}
+                                                min={formCreate.startDate}
                                             />
                                         </div>
                                     </Grid>
@@ -590,7 +590,7 @@ const FormCourse = () => {
                                     </Grid>
                                     <Grid item xs={6} lg={4}>
                                         <div className={width > 1200 ? 'flex-start' : 'flex-center'}>
-                                            {formInfo.memberFree ? (
+                                            {formCreate.memberFree ? (
                                                 <div className="form-info">Gratuito</div>
                                             ) : (
                                                 <div className="form-info">
@@ -599,7 +599,7 @@ const FormCourse = () => {
                                                         className="form-input"
                                                         variant="outlined"
                                                         fullWidth
-                                                        value={formInfo.memberDues}
+                                                        value={formCreate.memberDues}
                                                         name="memberDues"
                                                     />
                                                 </div>
@@ -610,7 +610,7 @@ const FormCourse = () => {
                                         <div className={width > 1200 ? 'flex-start' : 'flex-center'}>
                                             <Button className="form-data-checkbox" onClick={handleChecked}>
                                                 <Checkbox
-                                                    checked={formInfo.memberFree}
+                                                    checked={formCreate.memberFree}
                                                     size="small"
                                                     name="memberFree"
                                                     className="form-checkbox"
@@ -624,7 +624,7 @@ const FormCourse = () => {
                                     </Grid>
                                     <Grid item xs={6} lg={4}>
                                         <div className={width > 1200 ? 'flex-start' : 'flex-center'}>
-                                            {formInfo.nonMemberFree ? (
+                                            {formCreate.nonMemberFree ? (
                                                 <div className="form-info">Gratuito</div>
                                             ) : (
                                                 <div className="form-info">
@@ -633,7 +633,7 @@ const FormCourse = () => {
                                                         className="form-input"
                                                         variant="outlined"
                                                         fullWidth
-                                                        value={formInfo.nonMemberDues}
+                                                        value={formCreate.nonMemberDues}
                                                         name="nonMemberDues"
                                                     />
                                                 </div>
@@ -644,7 +644,7 @@ const FormCourse = () => {
                                         <div className={width > 1200 ? 'flex-start' : 'flex-center'}>
                                             <Button className="form-data-checkbox" onClick={handleChecked}>
                                                 <Checkbox
-                                                    checked={formInfo.nonMemberFree}
+                                                    checked={formCreate.nonMemberFree}
                                                     size="small"
                                                     name="nonMemberFree"
                                                     className="form-checkbox"
@@ -655,7 +655,7 @@ const FormCourse = () => {
                                     </Grid>
                                 </Grid>
                             </div>
-                            {(!formInfo.memberFree || !formInfo.nonMemberFree) && (
+                            {(!formCreate.memberFree || !formCreate.nonMemberFree) && (
                                 <>
                                     <div className="course-data">
                                         <Grid container alignItems='center'>
@@ -668,7 +668,7 @@ const FormCourse = () => {
                                                         <Checkbox
                                                             icon={<RadioButtonUncheckedIcon />}
                                                             checkedIcon={<RadioButtonCheckedIcon />}
-                                                            checked={formInfo.payment}
+                                                            checked={formCreate.payment}
                                                             shape='round'
                                                             size="small"
                                                             name="payment"
@@ -684,7 +684,7 @@ const FormCourse = () => {
                                                         <Checkbox
                                                             icon={<RadioButtonUncheckedIcon />}
                                                             checkedIcon={<RadioButtonCheckedIcon />}
-                                                            checked={!formInfo.payment}
+                                                            checked={!formCreate.payment}
                                                             size="small"
                                                             name="payment"
                                                             className="form-checkbox"
@@ -695,7 +695,7 @@ const FormCourse = () => {
                                             </Grid>
                                         </Grid>
                                     </div>
-                                    {formInfo.payment && (
+                                    {formCreate.payment && (
                                         <div className="course-data">
                                             <Grid container alignItems='center'>
                                                 <Grid item xs={12} lg={4}>
@@ -725,30 +725,30 @@ const FormCourse = () => {
                                                 <Grid item xs={12} lg={4}>
                                                     <h4 className="form-data-title-info">Precio por cuota:</h4>
                                                 </Grid>
-                                                {!formInfo.memberFree && (
+                                                {!formCreate.memberFree && (
                                                     <>
                                                         {width < 1200 && (
                                                             <Grid item xs={1}></Grid>
                                                         )}
                                                         <Grid item xs={11} sm={5} lg={4}>
-                                                            <h4 className="form-data-title-info">Socios: {(formInfo.memberDues / formInfo.duesNumber).toFixed(2)} €</h4>
+                                                            <h4 className="form-data-title-info">Socios: {(formCreate.memberDues / formCreate.duesNumber).toFixed(2)} €</h4>
                                                         </Grid>
                                                     </>
                                                 )}
-                                                {!formInfo.nonMemberFree && (
+                                                {!formCreate.nonMemberFree && (
                                                     <>
                                                         {width < 1200 && (
                                                             <Grid item xs={1}></Grid>
                                                         )}
                                                         <Grid item xs={11} sm={5} lg={4}>
-                                                            <h4 className="form-data-title-info">No socios: {(formInfo.nonMemberDues / formInfo.duesNumber).toFixed(2)} €</h4>
+                                                            <h4 className="form-data-title-info">No socios: {(formCreate.nonMemberDues / formCreate.duesNumber).toFixed(2)} €</h4>
                                                         </Grid>
                                                     </>
                                                 )}
                                                 <Grid item xs={12}>
                                                     <h4 className="form-data-title-info">Fecha de pago:</h4>
                                                 </Grid>
-                                                {formInfo.duesInfo.map((due, index) => (
+                                                {formCreate.duesInfo.map((due, index) => (
                                                     <Grid key={index} item xs={12} sm={6} lg={4}>
                                                         <h4 className="dues-table">{`Cuota ${index + 1}, Día ${due}`}</h4>
                                                     </Grid>
@@ -767,7 +767,7 @@ const FormCourse = () => {
                                     </Grid>
                                     <Grid item xs={12} lg={8}>
                                         <div className={width > 1200 ? 'flex-start' : 'flex-center'}>
-                                            {!formInfo.image ? (
+                                            {!formCreate.image ? (
                                                 <>
                                                     <label htmlFor="input-image" onClick={() => { inputRef.current.click() }}>
                                                         <img src={MYIMAGE} alt="imagen" />
@@ -776,8 +776,8 @@ const FormCourse = () => {
                                                 </>
                                             ) : (
                                                 <div className="form-image flex-center">
-                                                    <img src={formInfo.image} alt="imagen" />
-                                                    <Button onClick={() => setFormInfo({ ...formInfo, image: null })} className="form-button-image">
+                                                    <img src={formCreate.image} alt="imagen" />
+                                                    <Button onClick={() => setFormCreate({ ...formCreate, image: null })} className="form-button-image">
                                                         <span>¿Borrar?</span>
                                                     </Button>
                                                 </div>
@@ -802,7 +802,7 @@ const FormCourse = () => {
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                checked={formInfo.winterProgram}
+                                                checked={formCreate.winterProgram}
                                                 size="small"
                                                 name="winterProgram"
                                                 onClick={handleWinterProgram}
@@ -815,7 +815,7 @@ const FormCourse = () => {
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                checked={formInfo.summerProgram}
+                                                checked={formCreate.summerProgram}
                                                 size="small"
                                                 name="summerProgram"
                                                 onClick={handleSummerProgram}
@@ -831,7 +831,7 @@ const FormCourse = () => {
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                checked={formInfo.childrenProgram}
+                                                checked={formCreate.childrenProgram}
                                                 size="small"
                                                 name="childrenProgram"
                                                 onClick={handleChildrenProgram}
@@ -844,7 +844,7 @@ const FormCourse = () => {
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                checked={formInfo.adultsProgram}
+                                                checked={formCreate.adultsProgram}
                                                 size="small"
                                                 name="adultsProgram"
                                                 onClick={handleAdultsProgram}
@@ -860,7 +860,7 @@ const FormCourse = () => {
                                     <div className="form-cat-checkbox">
                                         <Button className="form-data-checkbox">
                                             <Checkbox
-                                                checked={formInfo.poolProgram}
+                                                checked={formCreate.poolProgram}
                                                 size="small"
                                                 name="poolProgram"
                                                 onClick={handlePoolProgram}
@@ -875,9 +875,9 @@ const FormCourse = () => {
                 </form>
             ) : (
                 <>
-                    {formInfo.visible ? (
+                    {formCreate.visible ? (
                         <PreviewCourse
-                            formInfo={formInfo}
+                            formCreate={formCreate}
                             setPreview={handlePreview}
                         />
                     ) : (

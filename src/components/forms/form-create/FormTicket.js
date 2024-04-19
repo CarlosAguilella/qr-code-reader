@@ -8,7 +8,7 @@ import "./formCreate.css";
 
 const MYIMAGE = "imagen.png"
 
-const FormTicket = ({ formInfo, handleChangeInput, handleCheckedInfo, handleBetweenExclusive, handleStartingDate, handleEndingDate, handleUploadImage, inputRef, setFormInfo, width }) => {
+const FormTicket = ({ formCreate, handleChangeInput, handleCheckedInfo, handleBetweenExclusive, handleStartingDate, handleEndingDate, handleUploadImage, inputRef, setFormCreate, width }) => {
     return (
         <div className="form-data">
             <div className="event-data">
@@ -23,7 +23,7 @@ const FormTicket = ({ formInfo, handleChangeInput, handleCheckedInfo, handleBetw
                     </Grid>
                     <Grid item xs={6} sm={2} >
                         <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                            {formInfo.unlimited === true ? (
+                            {formCreate.unlimited === true ? (
                                 <div className="form-info">Ilimitadas</div>
                             ) : (
                                 <div className="form-info">
@@ -32,7 +32,7 @@ const FormTicket = ({ formInfo, handleChangeInput, handleCheckedInfo, handleBetw
                                         className="form-input"
                                         variant="outlined"
                                         fullWidth
-                                        value={formInfo.eventNumber}
+                                        value={formCreate.eventNumber}
                                         style={{ paddingTop: '0.4em' }}
                                         name="eventNumber"
                                     />
@@ -44,7 +44,7 @@ const FormTicket = ({ formInfo, handleChangeInput, handleCheckedInfo, handleBetw
                         <div className={width > 900 ? 'flex-start' : 'flex-center'}>
                             <Button className="form-data-checkbox" onClick={handleCheckedInfo}>
                                 <Checkbox
-                                    checked={formInfo.unlimited}
+                                    checked={formCreate.unlimited}
                                     style={{ marginTop: '-0.1em' }}
                                     size="small"
                                     sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
@@ -60,7 +60,7 @@ const FormTicket = ({ formInfo, handleChangeInput, handleCheckedInfo, handleBetw
                 <Grid container>
                     <Grid item xs={12} sm={5} lg={3}>
                         <h4>Precio (IVA incluido)</h4>
-                        {formInfo.ticketPrice === "" ? (
+                        {formCreate.ticketPrice === "" ? (
                             <h6 className="form-alert">(Si está vacío será gratuito)</h6>
                         ) : (
                             <h6 style={{ display: 'none' }}>()</h6>
@@ -68,7 +68,7 @@ const FormTicket = ({ formInfo, handleChangeInput, handleCheckedInfo, handleBetw
                     </Grid>
                     <Grid item xs={6} sm={2}>
                         <div className={width > 900 ? 'flex-start' : 'flex-center'}>
-                            {formInfo.free === true ? (
+                            {formCreate.free === true ? (
                                 <div className="form-info">Gratuito</div>
                             ) : (
                                 <div className="form-info">
@@ -77,7 +77,7 @@ const FormTicket = ({ formInfo, handleChangeInput, handleCheckedInfo, handleBetw
                                         className="form-input"
                                         variant="outlined"
                                         fullWidth
-                                        value={formInfo.ticketPrice}
+                                        value={formCreate.ticketPrice}
                                         style={{ paddingTop: '0.4em' }}
                                         name="ticketPrice"
                                     />
@@ -90,7 +90,7 @@ const FormTicket = ({ formInfo, handleChangeInput, handleCheckedInfo, handleBetw
                             <Button className="form-data-checkbox" onClick={handleCheckedInfo}>
                                 <Checkbox
                                     style={{ marginTop: '-0.1em' }}
-                                    checked={formInfo.free}
+                                    checked={formCreate.free}
                                     size="small"
                                     sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                     name="free"
@@ -112,7 +112,7 @@ const FormTicket = ({ formInfo, handleChangeInput, handleCheckedInfo, handleBetw
                                 <Checkbox
                                     icon={<RadioButtonUncheckedIcon />}
                                     checkedIcon={<RadioButtonCheckedIcon />}
-                                    checked={formInfo.exclusive === true ? true : false}
+                                    checked={formCreate.exclusive === true ? true : false}
                                     shape='round'
                                     size="small"
                                     sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
@@ -128,7 +128,7 @@ const FormTicket = ({ formInfo, handleChangeInput, handleCheckedInfo, handleBetw
                                 <Checkbox
                                     icon={<RadioButtonUncheckedIcon />}
                                     checkedIcon={<RadioButtonCheckedIcon />}
-                                    checked={formInfo.exclusive === false ? true : false}
+                                    checked={formCreate.exclusive === false ? true : false}
                                     size="small"
                                     sx={{ color: 'black', '&.Mui-checked': { color: 'black' } }}
                                     name="exclusive"
@@ -152,7 +152,7 @@ const FormTicket = ({ formInfo, handleChangeInput, handleCheckedInfo, handleBetw
                             <input
                                 onChange={handleStartingDate}
                                 type="date"
-                                value={formInfo.startDate}
+                                value={formCreate.startDate}
                                 className="form-button-date"
                                 required
                                 name="startDate"
@@ -175,11 +175,11 @@ const FormTicket = ({ formInfo, handleChangeInput, handleCheckedInfo, handleBetw
                             <input
                                 onChange={handleEndingDate}
                                 type="date"
-                                value={formInfo.endingDate}
+                                value={formCreate.endingDate}
                                 className="form-button-date"
                                 required
                                 name="endingDate"
-                                min={formInfo.startDate}
+                                min={formCreate.startDate}
                             />
                         </div>
                     </Grid>
@@ -194,7 +194,7 @@ const FormTicket = ({ formInfo, handleChangeInput, handleCheckedInfo, handleBetw
                     </Grid>
                     <Grid item xs={12} lg={8}>
                         <div className={width > 1200 ? 'flex-start' : 'flex-center'}>
-                            {!formInfo.image ? (
+                            {!formCreate.image ? (
                                 <>
                                     <label htmlFor="input-image" onClick={() => { inputRef.current.click() }}>
                                         <img src={MYIMAGE} alt="imagen" />
@@ -203,8 +203,8 @@ const FormTicket = ({ formInfo, handleChangeInput, handleCheckedInfo, handleBetw
                                 </>
                             ) : (
                                 <div className="form-image flex-center">
-                                    <img src={formInfo.image} alt="imagen" />
-                                    <Button onClick={() => setFormInfo({ ...formInfo, image: null })} className="form-button-image">
+                                    <img src={formCreate.image} alt="imagen" />
+                                    <Button onClick={() => setFormCreate({ ...formCreate, image: null })} className="form-button-image">
                                         <span>¿Borrar?</span>
                                     </Button>
                                 </div>

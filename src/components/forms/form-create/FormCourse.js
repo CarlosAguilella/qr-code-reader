@@ -8,7 +8,7 @@ import './formCreate.css';
 
 const MYIMAGE = "imagen.png";
 
-const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUploadImage, handleBetweenPayment, handleBetweenWaitingList, handleCheckedInfo, handlePreEndingDate, handlePreStartingDate, handleEndingDate, handleStartingDate, handleChangeSelect, inputRef }) => {
+const FormCourse = ({ formCreate, setFormCreate, width, handleChangeInput, handleUploadImage, handleBetweenPayment, handleBetweenWaitingList, handleCheckedInfo, handlePreEndingDate, handlePreStartingDate, handleEndingDate, handleStartingDate, handleChangeSelect, inputRef }) => {
     return (
         <div className="form-data">
             <div className="event-data">
@@ -23,7 +23,7 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                     </Grid>
                     <Grid item xs={6} lg={4}>
                         <div className={width > 1200 ? 'flex-start' : 'flex-center'}>
-                            {formInfo.unlimited ? (
+                            {formCreate.unlimited ? (
                                 <div className="form-info">Ilimitadas</div>
                             ) : (
                                 <div className="form-info">
@@ -32,7 +32,7 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                                         className="form-input"
                                         variant="outlined"
                                         fullWidth
-                                        value={formInfo.courseNumber}
+                                        value={formCreate.courseNumber}
                                         name="courseNumber"
                                     />
                                 </div>
@@ -43,7 +43,7 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                         <div className={width > 1200 ? 'flex-start' : 'flex-center'}>
                             <Button className="form-data-checkbox" onClick={handleCheckedInfo}>
                                 <Checkbox
-                                    checked={formInfo.unlimited}
+                                    checked={formCreate.unlimited}
                                     size="small"
                                     name="unlimited"
                                     className="form-checkbox"
@@ -66,7 +66,7 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                             <input
                                 onChange={handlePreStartingDate}
                                 type="date"
-                                value={formInfo.preStartingDate}
+                                value={formCreate.preStartingDate}
                                 className="form-button-date"
                                 required
                                 name="preStartDate"
@@ -88,11 +88,11 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                             <input
                                 onChange={handlePreEndingDate}
                                 type="date"
-                                value={formInfo.preEndingDate}
+                                value={formCreate.preEndingDate}
                                 className="form-button-date"
                                 required
                                 name="preEndingDate"
-                                max={formInfo.startDate}
+                                max={formCreate.startDate}
                             />
                         </div>
                     </Grid>
@@ -109,7 +109,7 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                                 <Checkbox
                                     icon={<RadioButtonUncheckedIcon />}
                                     checkedIcon={<RadioButtonCheckedIcon />}
-                                    checked={formInfo.waitingList}
+                                    checked={formCreate.waitingList}
                                     shape='round'
                                     size="small"
                                     name="waitingList"
@@ -125,7 +125,7 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                                 <Checkbox
                                     icon={<RadioButtonUncheckedIcon />}
                                     checkedIcon={<RadioButtonCheckedIcon />}
-                                    checked={!formInfo.waitingList}
+                                    checked={!formCreate.waitingList}
                                     shape='round'
                                     size="small"
                                     name="waitingList"
@@ -150,7 +150,7 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                             <input
                                 onChange={handleStartingDate}
                                 type="date"
-                                value={formInfo.startDate}
+                                value={formCreate.startDate}
                                 className="form-button-date"
                                 required
                                 name="startDate"
@@ -173,11 +173,11 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                             <input
                                 onChange={handleEndingDate}
                                 type="date"
-                                value={formInfo.endingDate}
+                                value={formCreate.endingDate}
                                 className="form-button-date"
                                 required
                                 name="endingDate"
-                                min={formInfo.startDate}
+                                min={formCreate.startDate}
                             />
                         </div>
                     </Grid>
@@ -190,7 +190,7 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                     </Grid>
                     <Grid item xs={6} lg={4}>
                         <div className={width > 1200 ? 'flex-start' : 'flex-center'}>
-                            {formInfo.memberFree ? (
+                            {formCreate.memberFree ? (
                                 <div className="form-info">Gratuito</div>
                             ) : (
                                 <div className="form-info">
@@ -199,7 +199,7 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                                         className="form-input"
                                         variant="outlined"
                                         fullWidth
-                                        value={formInfo.memberDues}
+                                        value={formCreate.memberDues}
                                         name="memberDues"
                                     />
                                 </div>
@@ -210,7 +210,7 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                         <div className={width > 1200 ? 'flex-start' : 'flex-center'}>
                             <Button className="form-data-checkbox" onClick={handleCheckedInfo}>
                                 <Checkbox
-                                    checked={formInfo.memberFree}
+                                    checked={formCreate.memberFree}
                                     size="small"
                                     name="memberFree"
                                     className="form-checkbox"
@@ -224,7 +224,7 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                     </Grid>
                     <Grid item xs={6} lg={4}>
                         <div className={width > 1200 ? 'flex-start' : 'flex-center'}>
-                            {formInfo.nonMemberFree ? (
+                            {formCreate.nonMemberFree ? (
                                 <div className="form-info">Gratuito</div>
                             ) : (
                                 <div className="form-info">
@@ -233,7 +233,7 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                                         className="form-input"
                                         variant="outlined"
                                         fullWidth
-                                        value={formInfo.nonMemberDues}
+                                        value={formCreate.nonMemberDues}
                                         name="nonMemberDues"
                                     />
                                 </div>
@@ -244,7 +244,7 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                         <div className={width > 1200 ? 'flex-start' : 'flex-center'}>
                             <Button className="form-data-checkbox" onClick={handleCheckedInfo}>
                                 <Checkbox
-                                    checked={formInfo.nonMemberFree}
+                                    checked={formCreate.nonMemberFree}
                                     size="small"
                                     name="nonMemberFree"
                                     className="form-checkbox"
@@ -255,7 +255,7 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                     </Grid>
                 </Grid>
             </div>
-            {(!formInfo.memberFree || !formInfo.nonMemberFree) && (
+            {(!formCreate.memberFree || !formCreate.nonMemberFree) && (
                 <>
                     <div className="event-data">
                         <Grid container alignItems='center'>
@@ -268,7 +268,7 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                                         <Checkbox
                                             icon={<RadioButtonUncheckedIcon />}
                                             checkedIcon={<RadioButtonCheckedIcon />}
-                                            checked={formInfo.payment}
+                                            checked={formCreate.payment}
                                             shape='round'
                                             size="small"
                                             name="payment"
@@ -284,7 +284,7 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                                         <Checkbox
                                             icon={<RadioButtonUncheckedIcon />}
                                             checkedIcon={<RadioButtonCheckedIcon />}
-                                            checked={!formInfo.payment}
+                                            checked={!formCreate.payment}
                                             size="small"
                                             name="payment"
                                             className="form-checkbox"
@@ -295,7 +295,7 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                             </Grid>
                         </Grid>
                     </div>
-                    {formInfo.payment && (
+                    {formCreate.payment && (
                         <div className="event-data">
                             <Grid container alignItems='center'>
                                 <Grid item xs={12} lg={4}>
@@ -325,30 +325,30 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                                 <Grid item xs={12} lg={4}>
                                     <h4 className="form-data-title-info">Precio por cuota:</h4>
                                 </Grid>
-                                {!formInfo.memberFree && (
+                                {!formCreate.memberFree && (
                                     <>
                                         {width < 1200 && (
                                             <Grid item xs={1}></Grid>
                                         )}
                                         <Grid item xs={11} sm={5} lg={4}>
-                                            <h4 className="form-data-title-info">Socios: {(formInfo.memberDues / formInfo.duesNumber).toFixed(2)} €</h4>
+                                            <h4 className="form-data-title-info">Socios: {(formCreate.memberDues / formCreate.duesNumber).toFixed(2)} €</h4>
                                         </Grid>
                                     </>
                                 )}
-                                {!formInfo.nonMemberFree && (
+                                {!formCreate.nonMemberFree && (
                                     <>
                                         {width < 1200 && (
                                             <Grid item xs={1}></Grid>
                                         )}
                                         <Grid item xs={11} sm={5} lg={4}>
-                                            <h4 className="form-data-title-info">No socios: {(formInfo.nonMemberDues / formInfo.duesNumber).toFixed(2)} €</h4>
+                                            <h4 className="form-data-title-info">No socios: {(formCreate.nonMemberDues / formCreate.duesNumber).toFixed(2)} €</h4>
                                         </Grid>
                                     </>
                                 )}
                                 <Grid item xs={12}>
                                     <h4 className="form-data-title-info">Fecha de pago:</h4>
                                 </Grid>
-                                {formInfo.duesInfo.map((due, index) => (
+                                {formCreate.duesInfo.map((due, index) => (
                                     <Grid key={index} item xs={12} sm={6} lg={4}>
                                         <h4 className="dues-table">{`Cuota ${index + 1}, Día ${due}`}</h4>
                                     </Grid>
@@ -367,7 +367,7 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                     </Grid>
                     <Grid item xs={12} lg={8}>
                         <div className={width > 1200 ? 'flex-start' : 'flex-center'}>
-                            {!formInfo.image ? (
+                            {!formCreate.image ? (
                                 <>
                                     <label htmlFor="input-image" onClick={() => { inputRef.current.click() }}>
                                         <img src={MYIMAGE} alt="imagen" />
@@ -376,8 +376,8 @@ const FormCourse = ({ formInfo, setFormInfo, width, handleChangeInput, handleUpl
                                 </>
                             ) : (
                                 <div className="form-image flex-center">
-                                    <img src={formInfo.image} alt="imagen" />
-                                    <Button onClick={() => setFormInfo({ ...formInfo, image: null })} className="form-button-image">
+                                    <img src={formCreate.image} alt="imagen" />
+                                    <Button onClick={() => setFormCreate({ ...formCreate, image: null })} className="form-button-image">
                                         <span>¿Borrar?</span>
                                     </Button>
                                 </div>

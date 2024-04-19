@@ -3,7 +3,7 @@ import { Grid, Button, Checkbox } from "@mui/material";
 
 import "./formCreate.css";
 
-const FormCat = ({ formInfo, handleWinterProgram, handleSummerProgram, handleChildrenProgram, handleAdultsProgram, handlePoolProgram }) => {
+const FormCat = ({ formCreate, handleWinterProgram, handleSummerProgram, handleChildrenProgram, handleAdultsProgram, handlePoolProgram }) => {
     return (
 
 
@@ -24,7 +24,7 @@ const FormCat = ({ formInfo, handleWinterProgram, handleSummerProgram, handleChi
                     <div className="form-cat-checkbox">
                         <Button className="form-data-checkbox">
                             <Checkbox
-                                checked={formInfo.winterProgram}
+                                checked={formCreate.winterProgram}
                                 size="small"
                                 name="winterProgram"
                                 onClick={handleWinterProgram}
@@ -37,7 +37,7 @@ const FormCat = ({ formInfo, handleWinterProgram, handleSummerProgram, handleChi
                     <div className="form-cat-checkbox">
                         <Button className="form-data-checkbox">
                             <Checkbox
-                                checked={formInfo.summerProgram}
+                                checked={formCreate.summerProgram}
                                 size="small"
                                 name="summerProgram"
                                 onClick={handleSummerProgram}
@@ -53,7 +53,7 @@ const FormCat = ({ formInfo, handleWinterProgram, handleSummerProgram, handleChi
                     <div className="form-cat-checkbox">
                         <Button className="form-data-checkbox">
                             <Checkbox
-                                checked={formInfo.childrenProgram}
+                                checked={formCreate.childrenProgram}
                                 size="small"
                                 name="childrenProgram"
                                 onClick={handleChildrenProgram}
@@ -66,7 +66,7 @@ const FormCat = ({ formInfo, handleWinterProgram, handleSummerProgram, handleChi
                     <div className="form-cat-checkbox">
                         <Button className="form-data-checkbox">
                             <Checkbox
-                                checked={formInfo.adultsProgram}
+                                checked={formCreate.adultsProgram}
                                 size="small"
                                 name="adultsProgram"
                                 onClick={handleAdultsProgram}
@@ -82,7 +82,7 @@ const FormCat = ({ formInfo, handleWinterProgram, handleSummerProgram, handleChi
                     <div className="form-cat-checkbox">
                         <Button className="form-data-checkbox">
                             <Checkbox
-                                checked={formInfo.poolProgram}
+                                checked={formCreate.poolProgram}
                                 size="small"
                                 name="poolProgram"
                                 onClick={handlePoolProgram}

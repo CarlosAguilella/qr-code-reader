@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Grid } from "@mui/material";
+import PersonIcon from '@mui/icons-material/Person';
 
 import './header.css';
 
@@ -29,9 +30,24 @@ function Header({ setValueSelected }) {
     return (
         <div className="header">
             <Grid container spacing={2} alignItems={'center'}>
-                <Grid item xs={12}>
+                <Grid item xs={6}>
                     <div className="flex-start">
-                        <img src={MYIMAGE} alt="Logo" />
+                        <Grid container spacing={2} alignItems={'center'}>
+                            <Grid item xs={12}>
+                                <img src={MYIMAGE} alt="Logo" />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <div className="flex-start header-subtitle">
+                                    <h5>GESTIÓN PRODUCTOS</h5>
+                                </div>
+                            </Grid>
+                        </Grid>
+                    </div>
+                </Grid>
+                <Grid item xs={6}>
+                    <div className="flex-end header-title">
+                        <h1>ADMIN</h1>
+                        <PersonIcon className="person-icon" />
                     </div>
                 </Grid>
                 <Grid item xs={12}>

@@ -6,7 +6,7 @@ import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 
 import "./formCreate.css";
 
-const FormInfo = ({ formCreate, handleInput, handleBetweenSocios, handleChecked, handleEndingDateExpirate }) => {
+const formCreate = ({ formCreate, handleInput, handleBetweenSocios, handleAllPeople, handleChecked, handleEndingDateExpirate }) => {
     return (
         <div className="form-create">
             <div className="create-data">
@@ -48,16 +48,16 @@ const FormInfo = ({ formCreate, handleInput, handleBetweenSocios, handleChecked,
                                 </div>
                             </div>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={3}>
                             <h4 className="form-data-title-info">Socios</h4>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={3}>
                             <div className="flex-start">
                                 <Button className="form-data-checkbox" onClick={handleBetweenSocios}>
                                     <Checkbox
                                         icon={<RadioButtonUncheckedIcon />}
                                         checkedIcon={<RadioButtonCheckedIcon />}
-                                        checked={formCreate.socios}
+                                        checked={formCreate.sociosValue}
                                         shape='round'
                                         size="small"
                                         name="socios"
@@ -67,18 +67,34 @@ const FormInfo = ({ formCreate, handleInput, handleBetweenSocios, handleChecked,
                                 </Button>
                             </div>
                         </Grid>
-                        <Grid item xs={4}>
+                        <Grid item xs={3}>
                             <div className="flex-start">
                                 <Button className="form-data-checkbox" onClick={handleBetweenSocios}>
                                     <Checkbox
                                         icon={<RadioButtonUncheckedIcon />}
                                         checkedIcon={<RadioButtonCheckedIcon />}
-                                        checked={!formCreate.socios}
+                                        checked={!formCreate.sociosValue}
                                         size="small"
                                         name="socios"
                                         className="form-checkbox"
                                     />
                                     <span>No</span>
+                                </Button>
+                            </div>
+                        </Grid>
+                        <Grid item xs={3}>
+                            <div className="flex-start">
+                                <Button className="form-data-checkbox" onClick={handleAllPeople}>
+                                    <Checkbox
+                                        icon={<RadioButtonUncheckedIcon />}
+                                        checkedIcon={<RadioButtonCheckedIcon />}
+                                        checked={formCreate.sociosValue === null}
+                                        shape='round'
+                                        size="small"
+                                        name="socios"
+                                        className="form-checkbox"
+                                    />
+                                    <span>Todos</span>
                                 </Button>
                             </div>
                         </Grid>
@@ -153,4 +169,4 @@ const FormInfo = ({ formCreate, handleInput, handleBetweenSocios, handleChecked,
     );
 };
 
-export default FormInfo;
+export default formCreate;

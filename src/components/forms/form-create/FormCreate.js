@@ -2,34 +2,36 @@ import React, { useState, useRef } from "react";
 import { Button } from "@mui/material";
 import { DateTime } from "luxon";
 import { useWindowSize } from '../../hooks/useWindowSize';
+import { v4 as uuidv4 } from 'uuid';
 
-import "./formCreate.css";
 import FormData from "./FormData";
 import FormDescriptions from "./FormDescriptions";
 import FormCourse from "./FormCourse";
 import FormTicket from "./FormTicket";
 import FormCat from "./FormCat";
 
+import "./formCreate.css";
+
 const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagico }) => {
     const inputRef = useRef();
     const { width } = useWindowSize();
-    const randomIdNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-    const randomIdChar = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    const uniqueId = uuidv4();
+    const smallId = uniqueId.slice(0, 6);
+    // const randomIdNum = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], randomIdChar = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
     const [formCreate, setFormCreate] = useState({
-        id: randomIdNum.sort(() => Math.random() - 0.5).slice(0, 3).join('') + '-' + randomIdChar.sort(() => Math.random() - 0.5).slice(0, 3).join(''),
+        // id: randomIdNum.sort(() => Math.random() - 0.5).slice(0, 3).join('') + '-' + randomIdChar.sort(() => Math.random() - 0.5).slice(0, 3).join(''),
+        id: smallId,
         tipo: valueSelected,
         producto: "",
         accesos: 0,
-        socios: false,
+        sociosValue: true,
+        socios: "SI",
         precio: 0,
         stock: 0,
         expiracion: DateTime.now().plus({ days: 1 }).toISODate(),
         visible: false,
-        deleted: false
-    });
-
-    const [formInfo, setFormInfo] = useState({
+        deleted: false,
         preview: false,
         visible: false,
         smallDescEs: "",
@@ -65,13 +67,6 @@ const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagi
         waitingList: false
     });
 
-    const handleChange = (e) => {
-        setFormCreate({
-            ...formCreate,
-            [e.target.name]: e.target.value
-        });
-    }
-
     const handleChecked = () => {
         setFormCreate({
             ...formCreate,
@@ -80,7 +75,7 @@ const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagi
     }
 
     const handleCheckedInfo = (e) => {
-        setFormInfo({ ...formInfo, [e.target.name]: e.target.checked });
+        setFormCreate({ ...formCreate, [e.target.name]: e.target.checked });
     }
 
     const handleInput = (e) => {
@@ -91,23 +86,35 @@ const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagi
     }
 
     const handleChangeInput = (e) => {
-        setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
+        setFormCreate({ ...formCreate, [e.target.name]: e.target.value });
     }
 
     const handleBetweenExclusive = (e) => {
-        setFormInfo({ ...formInfo, exclusive: !formInfo.exclusive });
+        setFormCreate({ ...formCreate, exclusive: !formCreate.exclusive });
     }
 
     const handleBetweenWaitingList = () => {
-        setFormInfo({ ...formInfo, waitingList: !formInfo.waitingList });
+        setFormCreate({ ...formCreate, waitingList: !formCreate.waitingList });
     }
 
     const handleBetweenPayment = () => {
-        setFormInfo({ ...formInfo, payment: !formInfo.payment });
+        setFormCreate({ ...formCreate, payment: !formCreate.payment });
     }
 
     const handleBetweenSocios = () => {
-        setFormCreate({ ...formCreate, socios: !formCreate.socios });
+        setFormCreate({
+            ...formCreate,
+            sociosValue: !formCreate.sociosValue,
+            socios: formCreate.socios === "SI" ? "NO" : "TODOS"
+        });
+    }
+
+    const handleAllPeople = () => {
+        setFormCreate({
+            ...formCreate,
+            sociosValue: null,
+            socios: "TODOS"
+        });
     }
 
     const handleChangeSelect = (e) => {
@@ -121,8 +128,8 @@ const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagi
             duesInfo.push(nextDueDate);
         }
 
-        setFormInfo({
-            ...formInfo,
+        setFormCreate({
+            ...formCreate,
             duesNumber: numberOfDues,
             duesInfo: duesInfo
         });
@@ -134,17 +141,17 @@ const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagi
         if (date1 < today) {
             alert("La fecha de inicio no puede ser menor a la fecha actual");
         } else {
-            setFormInfo(prevState => ({ ...prevState, startDate: date1 }));
+            setFormCreate(prevState => ({ ...prevState, startDate: date1 }));
         }
     }
 
     const handleEndingDate = (e) => {
         const date2 = e.target.value;
-        const date1 = formInfo.startDate;
+        const date1 = formCreate.startDate;
         if (date2 < date1) {
             alert("La fecha de fin no puede ser menor a la fecha de inicio");
         } else {
-            setFormInfo(prevState => ({ ...prevState, endingDate: date2 }));
+            setFormCreate(prevState => ({ ...prevState, endingDate: date2 }));
         }
     }
 
@@ -155,17 +162,17 @@ const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagi
         if (date1 < today) {
             alert("La fecha de inicio no puede ser menor a la fecha actual");
         } else {
-            setFormInfo({ ...formInfo, preStartingDate: date1 });
+            setFormCreate({ ...formCreate, preStartingDate: date1 });
         }
     }
 
     const handlePreEndingDate = (e) => {
         const date2 = e.target.value;
-        const date1 = formInfo.preStartingDate;
+        const date1 = formCreate.preStartingDate;
         if (date2 < date1) {
             alert("La fecha de fin no puede ser menor a la fecha de inicio");
         } else {
-            setFormInfo({ ...formInfo, preEndingDate: date2 });
+            setFormCreate({ ...formCreate, preEndingDate: date2 });
         }
     }
 
@@ -178,91 +185,91 @@ const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagi
     }
 
     const handleWinterProgram = () => {
-        const updatedWinterProgram = !formInfo.winterProgram;
-        let updatedDuration = formInfo.duration;
+        const updatedWinterProgram = !formCreate.winterProgram;
+        let updatedDuration = formCreate.duration;
 
-        if (updatedWinterProgram && formInfo.summerProgram) {
+        if (updatedWinterProgram && formCreate.summerProgram) {
             updatedDuration = "allYear";
-        } else if (updatedWinterProgram && !formInfo.summerProgram) {
+        } else if (updatedWinterProgram && !formCreate.summerProgram) {
             updatedDuration = "winter";
-        } else if (!updatedWinterProgram && formInfo.summerProgram) {
+        } else if (!updatedWinterProgram && formCreate.summerProgram) {
             updatedDuration = "summer";
         }
 
-        setFormInfo({
-            ...formInfo,
+        setFormCreate({
+            ...formCreate,
             winterProgram: updatedWinterProgram,
             duration: updatedDuration
         });
     };
 
     const handleSummerProgram = () => {
-        const updatedSummerProgram = !formInfo.summerProgram;
-        let updatedDuration = formInfo.duration;
+        const updatedSummerProgram = !formCreate.summerProgram;
+        let updatedDuration = formCreate.duration;
 
-        if (formInfo.winterProgram && updatedSummerProgram) {
+        if (formCreate.winterProgram && updatedSummerProgram) {
             updatedDuration = "allYear";
-        } else if (formInfo.winterProgram && !updatedSummerProgram) {
+        } else if (formCreate.winterProgram && !updatedSummerProgram) {
             updatedDuration = "winter";
-        } else if (!formInfo.winterProgram && updatedSummerProgram) {
+        } else if (!formCreate.winterProgram && updatedSummerProgram) {
             updatedDuration = "summer";
         }
 
-        setFormInfo({
-            ...formInfo,
+        setFormCreate({
+            ...formCreate,
             summerProgram: updatedSummerProgram,
             duration: updatedDuration
         });
     };
 
     const handleAdultsProgram = () => {
-        const updatedAdultsProgram = !formInfo.adultsProgram;
-        let updatedAgeDescription = formInfo.ageDescription;
+        const updatedAdultsProgram = !formCreate.adultsProgram;
+        let updatedAgeDescription = formCreate.ageDescription;
 
-        if (formInfo.childrenProgram && updatedAdultsProgram) {
+        if (formCreate.childrenProgram && updatedAdultsProgram) {
             updatedAgeDescription = "allAges";
-        } else if (formInfo.childrenProgram && !updatedAdultsProgram) {
+        } else if (formCreate.childrenProgram && !updatedAdultsProgram) {
             updatedAgeDescription = "children";
-        } else if (!formInfo.childrenProgram && updatedAdultsProgram) {
+        } else if (!formCreate.childrenProgram && updatedAdultsProgram) {
             updatedAgeDescription = "adults";
         }
 
-        setFormInfo({
-            ...formInfo,
+        setFormCreate({
+            ...formCreate,
             adultsProgram: updatedAdultsProgram,
             ageDescription: updatedAgeDescription
         });
     };
 
     const handleChildrenProgram = () => {
-        const updatedChildrenProgram = !formInfo.childrenProgram;
-        let updatedAgeDescription = formInfo.ageDescription;
+        const updatedChildrenProgram = !formCreate.childrenProgram;
+        let updatedAgeDescription = formCreate.ageDescription;
 
-        if (updatedChildrenProgram && formInfo.adultsProgram) {
+        if (updatedChildrenProgram && formCreate.adultsProgram) {
             updatedAgeDescription = "allAges";
-        } else if (updatedChildrenProgram && !formInfo.adultsProgram) {
+        } else if (updatedChildrenProgram && !formCreate.adultsProgram) {
             updatedAgeDescription = "children";
-        } else if (!updatedChildrenProgram && formInfo.adultsProgram) {
+        } else if (!updatedChildrenProgram && formCreate.adultsProgram) {
             updatedAgeDescription = "adults";
         }
 
-        setFormInfo({
-            ...formInfo,
+        setFormCreate({
+            ...formCreate,
             childrenProgram: updatedChildrenProgram,
             ageDescription: updatedAgeDescription
         });
     };
 
     const handlePoolProgram = () => {
-        const updatedPoolProgram = !formInfo.poolProgram;
-        let updatedPoolProgramOption = formInfo.poolProgramOption;
+        const updatedPoolProgram = !formCreate.poolProgram;
+        let updatedPoolProgramOption = formCreate.poolProgramOption;
 
         if (updatedPoolProgram) {
             updatedPoolProgramOption = "pool";
         }
 
-        setFormInfo({
-            ...formInfo,
+        setFormCreate({
+            ...formCreate,
             poolProgram: updatedPoolProgram,
             poolProgramOption: updatedPoolProgramOption
         });
@@ -278,7 +285,7 @@ const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagi
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = () => {
-                setFormInfo(prevState => ({ ...prevState, image: reader.result }));
+                setFormCreate(prevState => ({ ...prevState, image: reader.result }));
             };
         };
         input.click();
@@ -304,16 +311,17 @@ const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagi
             <div className="form-create" onSubmit={handleSubmit}>
                 <FormData
                     formCreate={formCreate}
-                    formInfo={formInfo}
+                    formCreate={formCreate}
                     handleInput={handleInput}
                     handleBetweenSocios={handleBetweenSocios}
+                    handleAllPeople={handleAllPeople}
                     handleChecked={handleChecked}
                     handleEndingDateExpirate={handleEndingDateExpirate}
                 />
                 <FormDescriptions
                     formCreate={formCreate}
-                    formInfo={formInfo}
-                    setFormInfo={setFormInfo}
+                    formCreate={formCreate}
+                    setFormCreate={setFormCreate}
                     width={width}
                     inputRef={inputRef}
                     handleChangeInput={handleChangeInput}
@@ -333,7 +341,7 @@ const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagi
                     handlePoolProgram={handlePoolProgram}
                 />
                 {valueSelected === "course" ? (
-                    <FormCourse formInfo={formInfo}
+                    <FormCourse formCreate={formCreate}
                         handleChangeInput={handleChangeInput}
                         handleCheckedInfo={handleCheckedInfo}
                         handleBetweenExclusive={handleBetweenExclusive}
@@ -354,7 +362,7 @@ const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagi
                     />
                 ) : valueSelected === "event" ? (
                     <FormTicket
-                        formInfo={formInfo}
+                        formCreate={formCreate}
                         handleChangeInput={handleChangeInput}
                         handleCheckedInfo={handleCheckedInfo}
                         handleBetweenExclusive={handleBetweenExclusive}
@@ -364,9 +372,24 @@ const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagi
                         inputRef={inputRef}
                     />
                 ) : (
-                    <FormTicket formInfo={formInfo} handleChangeInput={handleChangeInput} handleCheckedInfo={handleCheckedInfo} handleBetweenExclusive={handleBetweenExclusive} handleStartingDate={handleStartingDate} handleEndingDate={handleEndingDate} handleUploadImage={handleUploadImage} />
+                    <FormTicket
+                        formCreate={formCreate}
+                        handleChangeInput={handleChangeInput}
+                        handleCheckedInfo={handleCheckedInfo}
+                        handleBetweenExclusive={handleBetweenExclusive}
+                        handleStartingDate={handleStartingDate}
+                        handleEndingDate={handleEndingDate}
+                        handleUploadImage={handleUploadImage}
+                    />
                 )}
-                <FormCat formInfo={formInfo} handleWinterProgram={handleWinterProgram} handleSummerProgram={handleSummerProgram} handleChildrenProgram={handleChildrenProgram} handleAdultsProgram={handleAdultsProgram} handlePoolProgram={handlePoolProgram} />
+                <FormCat
+                    formCreate={formCreate}
+                    handleWinterProgram={handleWinterProgram}
+                    handleSummerProgram={handleSummerProgram}
+                    handleChildrenProgram={handleChildrenProgram}
+                    handleAdultsProgram={handleAdultsProgram}
+                    handlePoolProgram={handlePoolProgram}
+                />
                 <div className="flex-center">
                     <Button onClick={handleReturnAndSave}>
                         <span className="create-button-option">Guardar</span>

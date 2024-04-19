@@ -6,6 +6,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { DataGrid } from '@mui/x-data-grid';
 import { DateTime } from "luxon";
+import { v4 as uuidv4 } from 'uuid';
 
 import PreviewTable from './PreviewTable';
 
@@ -14,7 +15,9 @@ import './formTable.css';
 const FormTable = ({ arrayMagico, setArrayMagico }) => {
     const [previewComponent, setPreviewComponent] = useState(null);
     const [previewOpen, setPreviewOpen] = useState(false);
-    const randomIdNum = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0], randomIdChar = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    const uniqueId = uuidv4();
+    const smallId = uniqueId.slice(0, 6);
+    // const randomIdNum = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], randomIdChar = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
     const handleArrayMagico = (arrayMagico) => {
         if (Array.isArray(arrayMagico)) {
@@ -47,7 +50,8 @@ const FormTable = ({ arrayMagico, setArrayMagico }) => {
 
     const handleDuplicar = (id) => {
         let tmpArray = [...arrayMagico];
-        const nuevoId = randomIdNum.sort(() => Math.random() - 0.5).slice(0, 3).join('') + '-' + randomIdChar.sort(() => Math.random() - 0.5).slice(0, 3).join('');
+        // const nuevoId = randomIdNum.sort(() => Math.random() - 0.5).slice(0, 3).join('') + '-' + randomIdChar.sort(() => Math.random() - 0.5).slice(0, 3).join('');
+        const nuevoId = smallId;
         const filaDuplicada = tmpArray.find(row => row.id === id);
         let newRow = { ...filaDuplicada, id: nuevoId };
         tmpArray.push(newRow);
@@ -60,7 +64,7 @@ const FormTable = ({ arrayMagico, setArrayMagico }) => {
         tmpArray.find(row => row.id === id).producto = prompt('Introduce el nuevo producto:', tmpArray.producto);
         tmpArray.find(row => row.id === id).accesos = prompt('Introduce los nuevos accesos:', tmpArray.accesos);
         tmpArray.find(row => row.id === id).socios = prompt('Introduce si es para socios:', tmpArray.socios);
-        tmpArray.find(row => row.id === id).precio = prompt('Introduce el nuevo precio:', tmpArray.precio);
+        tmpArray.find(row => row.id === id).precio = prompt('Introduce el nuevo precio:', tmpArray.precio + ' €');
         tmpArray.find(row => row.id === id).stock = prompt('Introduce el nuevo stock:', tmpArray.stock);
         tmpArray.find(row => row.id === id).expiracion = prompt('Introduce la nueva fecha de expiración:', tmpArray.expiracion);
         tmpArray.find(row => row.id === id).visible = prompt('Introduce si es visible:', tmpArray.visible);
@@ -82,7 +86,6 @@ const FormTable = ({ arrayMagico, setArrayMagico }) => {
         });
         setArrayMagico(nuevasFilas);
     };
-
 
     const columns = [
         { field: 'id', headerName: 'ID', width: 150 },
@@ -126,7 +129,7 @@ const FormTable = ({ arrayMagico, setArrayMagico }) => {
                     <VisibilityOutlinedIcon onClick={() => handlePreview(params.row.id)} />
                     <BorderColorIcon onClick={() => handleEditar(params.row.id)} />
                     <ContentCopyIcon onClick={() => handleDuplicar(params.row.id)} />
-                    <CancelIcon onClick={() => handleMostrarDeNuevo(params.row.id)} />
+                    <CancelIcon onClick={() => handleMostrarDeNuevo(params.row.id)} style={{color:'red'}} />
                 </div>
             )
         },

@@ -3,7 +3,7 @@ import { Grid, InputBase } from '@mui/material';
 
 import './formCreate.css';
 
-const FormDescriptions = ({ formInfo, handleChangeInput }) => {
+const FormDescriptions = ({ formCreate, handleChangeInput }) => {
     return (
         <div className="form-event">
             <div className="form-es">
@@ -21,7 +21,7 @@ const FormDescriptions = ({ formInfo, handleChangeInput }) => {
                     <Grid item xs={12} sm={3} lg={2}>
                         <div className="form-desc-title">
                             <h4>Descripción corta</h4>
-                            {formInfo.smallDescEs.length > 50 ? (
+                            {formCreate.smallDescEs.length > 50 ? (
                                 <h6 className="form-subtitle-data">(máximo de 50 carácteres)</h6>
                             ) : (
                                 <h6 style={{ display: 'none' }}>()</h6>
@@ -36,7 +36,7 @@ const FormDescriptions = ({ formInfo, handleChangeInput }) => {
                                     className="form-input"
                                     variant="outlined"
                                     fullWidth
-                                    value={formInfo.smallDescEs}
+                                    value={formCreate.smallDescEs}
                                     required
                                     name="smallDescEs"
                                 />
@@ -46,7 +46,7 @@ const FormDescriptions = ({ formInfo, handleChangeInput }) => {
                     <Grid item xs={12} sm={3} lg={2}>
                         <div className="form-desc-title">
                             <h4>Descripción larga</h4>
-                            {formInfo.largeDescEs.length > 500 ? (
+                            {formCreate.largeDescEs.length > 500 ? (
                                 <h6 className="form-subtitle-data">(máximo de 500 carácteres)</h6>
                             ) : (
                                 <h6 style={{ display: 'none' }}>()</h6>
@@ -62,7 +62,7 @@ const FormDescriptions = ({ formInfo, handleChangeInput }) => {
                                     variant="outlined"
                                     fullWidth
                                     multiline
-                                    value={formInfo.largeDescEs}
+                                    value={formCreate.largeDescEs}
                                     required
                                     name="largeDescEs"
                                 />
@@ -86,7 +86,7 @@ const FormDescriptions = ({ formInfo, handleChangeInput }) => {
                     <Grid item xs={12} sm={3} lg={2}>
                         <div className="form-desc-title">
                             <h4>Descripció curta</h4>
-                            {formInfo.smallDescVal.length > 50 ? (
+                            {formCreate.smallDescVal.length > 50 ? (
                                 <h6 className="form-subtitle-data">(màxim de 50 caràcters)</h6>
                             ) : (
                                 <h6 style={{ display: 'none' }}>()</h6>
@@ -101,7 +101,7 @@ const FormDescriptions = ({ formInfo, handleChangeInput }) => {
                                     className="form-input"
                                     variant="outlined"
                                     fullWidth
-                                    value={formInfo.smallDescVal}
+                                    value={formCreate.smallDescVal}
                                     required
                                     name="smallDescVal"
                                 />
@@ -111,7 +111,7 @@ const FormDescriptions = ({ formInfo, handleChangeInput }) => {
                     <Grid item xs={12} sm={3} lg={2}>
                         <div className="form-desc-title">
                             <h4>Descripció llarga</h4>
-                            {formInfo.largeDescVal.length > 500 ? (
+                            {formCreate.largeDescVal.length > 500 ? (
                                 <h6 className="form-subtitle-data">(màxim de 500 caràcters)</h6>
                             ) : (
                                 <h6 style={{ display: 'none' }}>()</h6>
@@ -127,7 +127,7 @@ const FormDescriptions = ({ formInfo, handleChangeInput }) => {
                                     variant="outlined"
                                     fullWidth
                                     multiline
-                                    value={formInfo.largeDescVal}
+                                    value={formCreate.largeDescVal}
                                     required
                                     name="largeDescVal"
                                 />

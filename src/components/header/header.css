@@ -10,6 +10,36 @@
     min-height: 150px;
 }
 
+.header .header-subtitle {
+    padding: 0.25em 0.5em;
+    max-height: 15px;
+    min-height: 15px;
+    border-radius: 7.5px;
+    font-size: 0.8em;
+    background-color: var(--blue-button);
+}
+
+.header .header-title {
+    margin-top: 5em;
+}
+
+.header .header-title h1 {
+    padding: 0.5em;
+    color: var(--black);
+    font-size: 0.8em;
+    background-color: var(--blue-button);
+    border-top-left-radius: 7.5px;
+    border-bottom-left-radius: 7.5px;
+}
+
+.header .header-title .person-icon {
+    padding: 0.1em;
+    background-color: var(--white);
+    border-radius: 7.5px;
+    border: 1px solid var(--gray);
+    font-size: 2em;
+}
+
 .header .header-button {
     margin-top: 0;
 }
