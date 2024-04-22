@@ -9,38 +9,39 @@ import { DateTime } from "luxon";
 import { v4 as uuidv4 } from 'uuid';
 
 import PreviewTable from './PreviewTable';
+import EditTable from './EditTable';
 
 import './formTable.css';
 
-const FormTable = ({ arrayMagico, setArrayMagico }) => {
+const FormTable = ({ magicArray, setMagicArray }) => {
     const [previewComponent, setPreviewComponent] = useState(null);
     const [previewOpen, setPreviewOpen] = useState(false);
+    const [editComponent, setEditComponent] = useState(null);
     const uniqueId = uuidv4();
     const smallId = uniqueId.slice(0, 6);
     // const randomIdNum = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], randomIdChar = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-    const handleArrayMagico = (arrayMagico) => {
-        if (Array.isArray(arrayMagico)) {
-            setArrayMagico(arrayMagico);
-        }
+    const handleMagicArray = (magicArray) => {
+        let tmpMagicArray = [...magicArray];
+        setMagicArray(tmpMagicArray);
     };
 
     const handlePreview = (id) => {
-        const fila = arrayMagico.find(row => row.id === id);
+        setPreviewOpen(true);
+        const fila = magicArray.find(row => row.id === id);
         const previewData = {
             'ID': fila.id,
-            'TIPO': fila.tipo,
-            'PRODUCTO': fila.producto,
-            'ACCESOS': fila.accesos,
-            'SOCIOS': fila.socios ? 'Si' : 'No',
-            'PRECIO': fila.precio + ' €',
-            'STOCK': fila.stock,
+            'TIPO': !fila.tipo ? 'No disponible' : fila.tipo,
+            'PRODUCTO': !fila.producto ? 'No disponible' : fila.producto,
+            'ACCESOS': !fila.accesos ? 'No disponible' : fila.accesos,
+            'SOCIOS': !fila.socios ? 'No disponible' : fila.socios,
+            'PRECIO': !fila.precio ? 'No disponible' : fila.precio + ' €',
+            'STOCK': !fila.stock ? 'No disponible' : fila.stock,
             'EXPIRACION': DateTime.fromISO(fila.expiracion).toLocaleString(DateTime.DATETIME_MED),
             'VISIBLE': fila.visible ? 'Si' : 'No',
             'DELETED': fila.deleted ? 'Si' : 'No',
         };
-        setPreviewOpen(true);
-        setPreviewComponent(<PreviewTable open={previewOpen} onClose={handlePreviewClose} data={previewData} />);
+        setPreviewComponent(<PreviewTable open={setPreviewOpen} onClose={handlePreviewClose} data={previewData} />);
     };
 
     const handlePreviewClose = () => {
@@ -48,43 +49,52 @@ const FormTable = ({ arrayMagico, setArrayMagico }) => {
         setPreviewComponent(null);
     };
 
+    const handleEditar = (id) => {
+        setPreviewOpen(true);
+        const fila = magicArray.find(row => row.id === id);
+        setEditComponent(<EditTable open={true} onClose={handleEditClose} data={fila} handleUpdate={handleUpdate} />);
+    };
+
+    const handleUpdate = (updatedData) => {
+        const nuevasFilas = magicArray.map(row => {
+            if (row.id === updatedData.id) {
+                return updatedData;
+            }
+            return row;
+        });
+        setMagicArray(nuevasFilas);
+        setEditComponent(null);
+    };
+
+    const handleEditClose = () => {
+        setPreviewOpen(false);
+        setEditComponent(null);
+    };
+
     const handleDuplicar = (id) => {
-        let tmpArray = [...arrayMagico];
+        let tmpArray = [...magicArray];
         // const nuevoId = randomIdNum.sort(() => Math.random() - 0.5).slice(0, 3).join('') + '-' + randomIdChar.sort(() => Math.random() - 0.5).slice(0, 3).join('');
         const nuevoId = smallId;
         const filaDuplicada = tmpArray.find(row => row.id === id);
         let newRow = { ...filaDuplicada, id: nuevoId };
         tmpArray.push(newRow);
-        setArrayMagico(tmpArray);
-    };
-
-    const handleEditar = (id) => {
-        let tmpArray = [...arrayMagico];
-        tmpArray.find(row => row.id === id).tipo = prompt('Introduce el nuevo tipo:', tmpArray.tipo);
-        tmpArray.find(row => row.id === id).producto = prompt('Introduce el nuevo producto:', tmpArray.producto);
-        tmpArray.find(row => row.id === id).accesos = prompt('Introduce los nuevos accesos:', tmpArray.accesos);
-        tmpArray.find(row => row.id === id).socios = prompt('Introduce si es para socios:', tmpArray.socios);
-        tmpArray.find(row => row.id === id).precio = prompt('Introduce el nuevo precio:', tmpArray.precio + ' €');
-        tmpArray.find(row => row.id === id).stock = prompt('Introduce el nuevo stock:', tmpArray.stock);
-        tmpArray.find(row => row.id === id).expiracion = prompt('Introduce la nueva fecha de expiración:', tmpArray.expiracion);
-        tmpArray.find(row => row.id === id).visible = prompt('Introduce si es visible:', tmpArray.visible);
-        setArrayMagico(tmpArray);
+        setMagicArray(tmpArray);
     };
 
     const handleEliminar = (id) => {
-        let tmpArray = [...arrayMagico];
+        let tmpArray = [...magicArray];
         tmpArray.find(row => row.id === id).deleted = true;
-        setArrayMagico(tmpArray);
+        setMagicArray(tmpArray);
     };
 
     const handleMostrarDeNuevo = (id) => {
-        const nuevasFilas = arrayMagico.map(row => {
+        const nuevasFilas = magicArray.map(row => {
             if (row.id === id) {
                 return { ...row, deleted: false };
             }
             return row;
         });
-        setArrayMagico(nuevasFilas);
+        setMagicArray(nuevasFilas);
     };
 
     const columns = [
@@ -108,7 +118,7 @@ const FormTable = ({ arrayMagico, setArrayMagico }) => {
                     <VisibilityOutlinedIcon onClick={() => handlePreview(params.row.id)} />
                     <BorderColorIcon onClick={() => handleEditar(params.row.id)} />
                     <ContentCopyIcon onClick={() => handleDuplicar(params.row.id)} />
-                    <CancelIcon onClick={() => handleEliminar(params.row.id)} style={{color:'red'}} />
+                    <CancelIcon onClick={() => handleEliminar(params.row.id)} style={{ color: 'red' }} />
                 </div>
             )
         },
@@ -129,18 +139,18 @@ const FormTable = ({ arrayMagico, setArrayMagico }) => {
                     <VisibilityOutlinedIcon onClick={() => handlePreview(params.row.id)} />
                     <BorderColorIcon onClick={() => handleEditar(params.row.id)} />
                     <ContentCopyIcon onClick={() => handleDuplicar(params.row.id)} />
-                    <CancelIcon onClick={() => handleMostrarDeNuevo(params.row.id)} style={{color:'red'}} />
+                    <CancelIcon onClick={() => handleMostrarDeNuevo(params.row.id)} style={{ color: 'red' }} />
                 </div>
             )
         },
     ];
 
-    const rowsNoEliminadas = arrayMagico.filter(row => !row.deleted);
-    const rowsEliminadas = arrayMagico.filter(row => row.deleted);
+    const rowsNoEliminadas = magicArray.filter(row => !row.deleted);
+    const rowsEliminadas = magicArray.filter(row => row.deleted);
 
     return (
-        <div className="form-table" onChange={handleArrayMagico}>
-            {previewComponent}
+        <div className="form-table" onChange={handleMagicArray}>
+            {previewComponent}{editComponent}
             <Grid container spacing={2} alignItems="center">
                 <Grid item xs={12}>
                     <div className="flex-center">
@@ -150,13 +160,13 @@ const FormTable = ({ arrayMagico, setArrayMagico }) => {
                     </div>
                 </Grid>
                 <Grid item xs={12}>
-                    {arrayMagico.length === 0 ? (
+                    {magicArray.length === 0 ? (
                         <div className="flex-center">
                             <p>No hay filas disponibles.</p>
                         </div>
                     ) : (
                         <div className="form-table-rows">
-                            <DataGrid showCellVerticalBorder showColumnVerticalBorder rows={rowsNoEliminadas} columns={columns} pageSize={5} />
+                            <DataGrid hover showCellVerticalBorder showColumnVerticalBorder rows={rowsNoEliminadas} columns={columns} pageSize={5} />
                         </div>
                     )}
                 </Grid>

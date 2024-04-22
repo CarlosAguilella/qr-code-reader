@@ -12,7 +12,7 @@ import FormCat from "./FormCat";
 
 import "./formCreate.css";
 
-const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagico }) => {
+const FormCreate = ({ valueSelected, setValueSelected, magicArray, setMagicArray }) => {
     const inputRef = useRef();
     const { width } = useWindowSize();
     const uniqueId = uuidv4();
@@ -292,8 +292,8 @@ const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagi
     }
 
     const handleReturnAndSave = () => {
-        const tmpArrayMagico = [...arrayMagico, formCreate];
-        setArrayMagico(tmpArrayMagico);
+        const tmpMagicArray = [...magicArray, formCreate];
+        setMagicArray(tmpMagicArray);
         setValueSelected('table');
     };
 
@@ -311,7 +311,6 @@ const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagi
             <div className="form-create" onSubmit={handleSubmit}>
                 <FormData
                     formCreate={formCreate}
-                    formCreate={formCreate}
                     handleInput={handleInput}
                     handleBetweenSocios={handleBetweenSocios}
                     handleAllPeople={handleAllPeople}
@@ -319,7 +318,6 @@ const FormCreate = ({ valueSelected, setValueSelected, arrayMagico, setArrayMagi
                     handleEndingDateExpirate={handleEndingDateExpirate}
                 />
                 <FormDescriptions
-                    formCreate={formCreate}
                     formCreate={formCreate}
                     setFormCreate={setFormCreate}
                     width={width}

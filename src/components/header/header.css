@@ -45,15 +45,15 @@
 }
 
 .header .header-button .buttons {
-    max-width: 300px;
-    min-width: 300px;
-    max-height: 50px;
-    min-height: 50px;
+    max-width: 350px;
+    min-width: 350px;
+    max-height: 30px;
+    min-height: 30px;
     background: var(--primary);
     border: 1px solid var(--primary);   
     border-radius: 5px;
     color: var(--white);
     padding: 1em;
     text-transform: capitalize;
-    font-size: 2em;
+    font-size: 1.4em;
 }
