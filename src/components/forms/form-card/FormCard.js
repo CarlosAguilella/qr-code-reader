@@ -14,7 +14,7 @@ const FormCard = () => {
     const [image, setImage] = useState(null);
     const [qrDataURL, setQRDataURL] = useState('');
     const [pdfURL, setPdfURL] = useState(null);
-    const [pdfBlobInfo, setPdfBlobInfo] = useState('');
+    const [text, setText] = useState('');
 
     useEffect(() => {
         const qrContent = `Nombre: ${name}, Apellidos: ${surname1} ${surname2}, Código: ${code}`;
@@ -63,23 +63,19 @@ const FormCard = () => {
             pdf.rect(70, 2, 15, 15);
         }
 
-        // Generar el Blob del PDF
         const pdfBlob = pdf.output('blob');
+        const blobObj = new Blob([pdfBlob], { type: 'application/pdf' });
 
-        // Crear un objeto FileReader para leer el contenido del Blob
+        console.log(blobObj);
+
         const reader = new FileReader();
 
-        // Definir la función de retrollamada para cuando se complete la lectura
-        reader.onload = function (event) {
-            // El contenido del Blob estará disponible en event.target.result
+        reader.onload = (event) => {
             const blobContent = event.target.result;
 
-            // Aquí puedes hacer lo que desees con el contenido del Blob
-            console.log(blobContent); // Muestra el contenido del Blob en la consola
+            console.log(blobContent.slice(0, 1000));
         };
-
-        // Leer el contenido del Blob como texto
-        reader.readAsText(pdfBlob);
+        reader.readAsText(blobObj);
     };
 
     return (
@@ -131,9 +127,10 @@ const FormCard = () => {
                 <div className='card-back'>
                     <img src={MYIMAGE3} alt='Back' />
                 </div>
-                <Button onClick={handleGeneratePDF} style={{top: '300px'}}>Generate PDF</Button>
+                <Button onClick={handleGeneratePDF} style={{ top: '300px' }}>Generate PDF</Button>
+                <span style={{ top: '500px' }}>{text}</span>
             </div>
-            
+
         </>
     );
 };
