@@ -41,7 +41,9 @@ const FormTable = ({ magicArray, setMagicArray }) => {
             'VISIBLE': fila.visible ? 'Si' : 'No',
             'DELETED': fila.deleted ? 'Si' : 'No',
         };
-        setPreviewComponent(<PreviewTable open={setPreviewOpen} onClose={handlePreviewClose} data={previewData} />);
+        setPreviewComponent(
+            <PreviewTable open={setPreviewOpen} onClose={handlePreviewClose} data={previewData} />
+        );
     };
 
     const handlePreviewClose = () => {
@@ -52,7 +54,9 @@ const FormTable = ({ magicArray, setMagicArray }) => {
     const handleEditar = (id) => {
         setPreviewOpen(true);
         const fila = magicArray.find(row => row.id === id);
-        setEditComponent(<EditTable open={true} onClose={handleEditClose} data={fila} handleUpdate={handleUpdate} />);
+        setEditComponent(
+            <EditTable open={true} onClose={handleEditClose} data={fila} handleUpdate={handleUpdate} />
+        );
     };
 
     const handleUpdate = (updatedData) => {
