@@ -68,19 +68,12 @@
 
 .form-card-container .card-qr {
     position: absolute;
-    top: 25px;
-    left: 460px;
-    padding: 0px;
-    width: 150px;
-    height: 150px;
+    top: 15px;
+    left: 440px;
+    width: 180px;
+    height: 180px;
     border: 3px solid #5d47a2;
     border-radius: 7.5px;
-}
-
-.form-card-container .card-qr .qr-input {
-    width: 100px !important;
-    height: 100px !important;
-    border: 0;
 }
 
 .form-card-container .card-back {

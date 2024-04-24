@@ -17,18 +17,52 @@ const FormCreate = ({ valueSelected, setValueSelected, magicArray, setMagicArray
     const { width } = useWindowSize();
     const uniqueId = uuidv4();
     const smallId = uniqueId.slice(0, 6);
-    // const randomIdNum = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], randomIdChar = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
     const [formCreate, setFormCreate] = useState({
-        // id: randomIdNum.sort(() => Math.random() - 0.5).slice(0, 3).join('') + '-' + randomIdChar.sort(() => Math.random() - 0.5).slice(0, 3).join(''),
-        id: smallId, tipo: valueSelected, producto: "", accesos: 0, sociosValue: true, socios: "SI", precio: 0,
-        stock: 0, expiracion: DateTime.now().plus({ days: 1 }).toISODate(), visible: false, deleted: false,
-        preview: false, visible: false, smallDescEs: "", largeDescEs: "", smallDescVal: "", largeDescVal: "",
-        unlimited: true, eventNumber: 45, free: true, eventPrice: 3, exclusive: true, startDate: "",
-        endingDate: "", image: null, winterProgram: false, summerProgram: false, adultsProgram: false,
-        poolProgram: false, childrenProgram: false, duration: "", ageDescription: "", poolProgramOption: "",
-        memberFree: true, memberDues: 0, nonMemberFree: true, nonMemberDues: 0, payment: false,
-        duesNumber: 1, duesInfo: [], preStartingDate: "", preEndingDate: "", ticketPrice: 0, waitingList: false
+        id: smallId, 
+        tipo: valueSelected, 
+        producto: "", 
+        accesos: 0, 
+        sociosValue: true, 
+        socios: "SI", 
+        precio: 0,
+        stock: 0, 
+        expiracion: DateTime.now().plus({ days: 1 }).toISODate(), 
+        visible: false, 
+        deleted: false,
+        preview: false, 
+        visible: false, 
+        smallDescEs: "", 
+        largeDescEs: "", 
+        smallDescVal: "", 
+        largeDescVal: "",
+        unlimited: true, 
+        eventNumber: 45, 
+        free: true, 
+        eventPrice: 3, 
+        exclusive: true, 
+        startDate: "",
+        endingDate: "", 
+        image: null, 
+        winterProgram: false, 
+        summerProgram: false, 
+        adultsProgram: false,
+        poolProgram: false, 
+        childrenProgram: false, 
+        duration: "", 
+        ageDescription: "", 
+        poolProgramOption: "",
+        memberFree: true, 
+        memberDues: 0, 
+        nonMemberFree: true, 
+        nonMemberDues: 0, 
+        payment: false,
+        duesNumber: 1, 
+        duesInfo: [], 
+        preStartingDate: "", 
+        preEndingDate: "", 
+        ticketPrice: 0, 
+        waitingList: false
     });
 
     const handleChecked = () => {

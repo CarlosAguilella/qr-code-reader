@@ -19,7 +19,6 @@ const FormTable = ({ magicArray, setMagicArray }) => {
     const [editComponent, setEditComponent] = useState(null);
     const uniqueId = uuidv4();
     const smallId = uniqueId.slice(0, 6);
-    // const randomIdNum = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], randomIdChar = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
     const handleMagicArray = (magicArray) => {
         let tmpMagicArray = [...magicArray];
@@ -77,7 +76,6 @@ const FormTable = ({ magicArray, setMagicArray }) => {
 
     const handleDuplicar = (id) => {
         let tmpArray = [...magicArray];
-        // const nuevoId = randomIdNum.sort(() => Math.random() - 0.5).slice(0, 3).join('') + '-' + randomIdChar.sort(() => Math.random() - 0.5).slice(0, 3).join('');
         const nuevoId = smallId;
         const filaDuplicada = tmpArray.find(row => row.id === id);
         let newRow = { ...filaDuplicada, id: nuevoId };

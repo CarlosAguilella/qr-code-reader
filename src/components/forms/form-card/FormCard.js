@@ -2,9 +2,14 @@ import React, { useState, useEffect } from 'react';
 import QRCode from 'qrcode';
 import './formCard.css';
 import { Button } from '@mui/material';
+import { Document, Page, pdfjs } from 'react-pdf';
 import jsPDF from 'jspdf';
 
 const MYIMAGE = 'AjuntamentDeLesAlqueries.png', MYIMAGE2 = 'imagen.png', MYIMAGE3 = 'background.png';
+
+// Solución para el problema de CORS con archivos locales
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+// hay que usarlo ya que el worker de pdf.js no puede cargar archivos locales
 
 const FormCard = () => {
     const [name, setName] = useState('');
@@ -13,8 +18,7 @@ const FormCard = () => {
     const [code, setCode] = useState('');
     const [image, setImage] = useState(null);
     const [qrDataURL, setQRDataURL] = useState('');
-    const [pdfURL, setPdfURL] = useState(null);
-    const [text, setText] = useState('');
+    const [pdfBlob, setPdfBlob] = useState(null);
 
     useEffect(() => {
         const qrContent = `Nombre: ${name}, Apellidos: ${surname1} ${surname2}, Código: ${code}`;
@@ -52,30 +56,22 @@ const FormCard = () => {
         pdf.addImage(MYIMAGE3, 'PNG', 0, 20, 25, 40);
         pdf.addImage(image, 'PNG', 6, 28, 18, 22);
         pdf.setFontSize(12);
-        pdf.text(`${name}`, 28, 38);
-        pdf.text(`${surname1}`, 28, 42);
-        pdf.text(`${surname2}`, 28, 46);
+        pdf.text(name, 28, 38);
+        pdf.text(surname1, 28, 42);
+        pdf.text(surname2, 28, 46);
         pdf.setFontSize(8);
-        pdf.text(`${code}`, 28, 50);
+        pdf.text(code, 28, 49);
 
         if (qrDataURL) {
             pdf.addImage(qrDataURL, 'PNG', 70, 2, 15, 15);
-            pdf.rect(70, 2, 15, 15);
+            pdf.roundedRect(70, 2, 15, 15, 1, 1, 'S');
         }
 
-        const pdfBlob = pdf.output('blob');
-        const blobObj = new Blob([pdfBlob], { type: 'application/pdf' });
+        const newPdfBlob = pdf.output('blob');
 
-        console.log(blobObj);
-
-        const reader = new FileReader();
-
-        reader.onload = (event) => {
-            const blobContent = event.target.result;
-
-            console.log(blobContent.slice(0, 1000));
-        };
-        reader.readAsText(blobObj);
+        console.log(newPdfBlob);
+        
+        setPdfBlob(newPdfBlob);
     };
 
     return (
@@ -128,9 +124,20 @@ const FormCard = () => {
                     <img src={MYIMAGE3} alt='Back' />
                 </div>
                 <Button onClick={handleGeneratePDF} style={{ top: '300px' }}>Generate PDF</Button>
-                <span style={{ top: '500px' }}>{text}</span>
             </div>
-
+            <div style={{ top: '500px' }}>
+                {pdfBlob && (
+                    <>
+                        <p>PDF generado por el blob:</p>
+                        <Document
+                            file={pdfBlob}
+                            loading="Cargando PDF..."
+                        >
+                            <Page pageNumber={1} renderAnnotationLayer={false} renderTextLayer={false} />
+                        </Document>
+                    </>
+                )}
+            </div>
         </>
     );
 };
