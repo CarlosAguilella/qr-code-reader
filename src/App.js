@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className='app-container montserrat'>
-      {valueSelected === 'table' ? (
+      {/* {valueSelected === 'table' ? (
         <>
           <Header setValueSelected={setValueSelected} valueSelected={valueSelected} />
           <FormTable magicArray={magicArray} setMagicArray={setMagicArray} />
@@ -21,8 +21,8 @@ function App() {
           <Header setValueSelected={setValueSelected} valueSelected={valueSelected} />
           <FormCreate setMagicArray={setMagicArray} magicArray={magicArray} setValueSelected={setValueSelected} valueSelected={valueSelected} />
         </>
-      )}
-      {/* <FormCard/> */}
+      )} */}
+      <FormCard/>
     </div>
   );
 }

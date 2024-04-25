@@ -23,6 +23,8 @@ const FormTable = ({ magicArray, setMagicArray }) => {
     const handleMagicArray = (magicArray) => {
         let tmpMagicArray = [...magicArray];
         setMagicArray(tmpMagicArray);
+
+        console.log('MAGIC ARRAY', magicArray);
     };
 
     const handlePreview = (id) => {
@@ -41,7 +43,7 @@ const FormTable = ({ magicArray, setMagicArray }) => {
             'DELETED': fila.deleted ? 'Si' : 'No',
         };
         setPreviewComponent(
-            <PreviewTable open={setPreviewOpen} onClose={handlePreviewClose} data={previewData} />
+            <PreviewTable open={setPreviewOpen} onClose={handlePreviewClose} data={previewData} magicArray={magicArray} setMagicArray={setMagicArray} />
         );
     };
 
@@ -54,7 +56,7 @@ const FormTable = ({ magicArray, setMagicArray }) => {
         setPreviewOpen(true);
         const fila = magicArray.find(row => row.id === id);
         setEditComponent(
-            <EditTable open={true} onClose={handleEditClose} data={fila} handleUpdate={handleUpdate} />
+            <EditTable open={setPreviewOpen} onClose={handleEditClose} data={fila} handleUpdate={handleUpdate} magicArray={magicArray} setMagicArray={setMagicArray} />
         );
     };
 

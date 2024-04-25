@@ -4,6 +4,7 @@ import './formCard.css';
 import { Button } from '@mui/material';
 import { Document, Page, pdfjs } from 'react-pdf';
 import jsPDF from 'jspdf';
+import Html from 'react-pdf-html';
 
 const MYIMAGE = 'AjuntamentDeLesAlqueries.png', MYIMAGE2 = 'imagen.png', MYIMAGE3 = 'background.png';
 
