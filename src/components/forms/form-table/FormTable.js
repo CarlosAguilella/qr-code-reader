@@ -16,7 +16,7 @@ import './formTable.css';
 const FormTable = ({ magicArray, setMagicArray }) => {
     const [previewComponent, setPreviewComponent] = useState(null);
     const [previewOpen, setPreviewOpen] = useState(false);
-    const [editComponent, setEditComponent] = useState(null);
+    const [editComponent, setEditComponent] = useState("");
     const uniqueId = uuidv4();
     const smallId = uniqueId.slice(0, 6);
 
