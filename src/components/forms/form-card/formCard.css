@@ -1,6 +1,15 @@
 .card {
+    position: absolute;
+    top: 0;
     margin: 2em;
     padding: 0;
+}
+
+.card .card-image {
+    min-width: 10em;
+    max-width: 10em;
+    min-height: 10em;
+    max-height: 10em;
 }
 
 .card .card-logo {
@@ -21,63 +30,77 @@
 }
 
 .pdf-card {
-    margin: 0 2em;
-    padding: 0;
-    max-height: 30em;
+    max-width: 180px;
+    min-width: 180px;
+    max-height: 112px;
+    min-height: 112px;
 }
 
-.pdf-card .pdf-card-logo {
-    max-width: 10em;
-    max-height: 5em;
-    margin-bottom: -1em;
+.pdf-card .logo {
+    min-width: 183px;
+    max-width: 183px;
+    min-height: 70px;
+    max-height: 70px;
 }
 
-.pdf-card .pdf-card-logo img {
-    max-width: 10em;
-    max-height: 5em;
-    margin-bottom: -1em;
+.pdf-card .image {
+    max-width: 35px;
+    min-width: 35px;
+    max-height: 40px;
+    min-height: 40px;
+    margin-top: 2.5px;
+    margin-left: 5px;
+    border: 1px solid #018a2c;
+    border-top-right-radius: 7.5px;
+    border-bottom-left-radius: 7.5px;
 }
 
-.pdf-card .pdf-card-input-name {
-    max-width: 15em;
-    max-height: 5em;
-    margin-bottom: -1em;
+.pdf-card .logo2 {
+    min-width: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    max-height: 40px;
+    margin-left: 4px;
 }
 
-.pdf-card .pdf-card-input-surname1 {
-    max-width: 10em;
-    max-height: 5em;
-    margin-bottom: -1em;
+.pdf-card .qr {
+    max-width: 40px;
+    min-width: 40px;
+    max-height: 40px;
+    min-height: 40px;
+    margin-top: 2.5px;
+    border: 1px solid #018a2c;
+    border-top-right-radius: 7.5px;
+    border-bottom-left-radius: 7.5px;
 }
 
-.pdf-card .pdf-card-input-surname2 {
-    max-width: 10em;
-    max-height: 5em;
-    margin-bottom: -1em;
+.pdf-card .input-slogan {
+    padding-left: 10px;
+    font-size: 9px;
 }
 
-.pdf-card .pdf-card-input-code {
-    max-width: 10em;
-    max-height: 5em;
-    margin-bottom: 0.5em;
+.pdf-card .input-name {
+    margin-top: 0px;
+    font-size: 8px;
 }
 
-.pdf-card .pdf-card-image {
-    max-width: 3em;
-    max-height: 3em;
-    margin-bottom: -1em;
+.pdf-card .input-surname1 {
+    margin-top: -10px;
+    font-size: 8px;
 }
 
-.pdf-card .pdf-card-qr {
-    max-width: 3em;
-    max-height: 3em;
-    margin-bottom: -1em;
+.pdf-card .input-surname2 {
+    margin-top: -10px;
+    font-size: 8px;
 }
 
-.white {
-    width: 15em;
-    height: 20em;
-    position: absolute;
-    color: white;
-    background-color: white;
+.pdf-card .input-code {
+    margin-top: -10px;
+    font-size: 8px;
+}
+
+.pdf-card .input-date {
+    margin-top: 38px;
+    margin-left: -20px;
+    font-size: 6px;
 }

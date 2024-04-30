@@ -19,7 +19,8 @@ body {
   --blue-button:    #cdd2ff;
   --header-blue:    #3a99ff;
   --qr-reader-blue: #bed5fe;
-  --montserrat:       'Montserrat', sans-serif;}
+  --montserrat:       'Montserrat', sans-serif;
+}
 
 .montserrat {
   font-family: var(--montserrat) !important;
@@ -46,4 +47,10 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.flex-space-around {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
