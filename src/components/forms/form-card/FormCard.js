@@ -73,8 +73,6 @@ const FormCard = () => {
     return (
         <>
             <div className='card'>
-                <div className='flex-center' style={{background: {MYIMAGE1}}}>
-                </div>
                 <div className='flex-center'>
                     <input
                         className='card-input-name'
@@ -140,7 +138,7 @@ const FormCard = () => {
                 <div ref={reportTemplateRef} className='flex-start montserrat' style={{ display: 'none' }}>
                     <PdfCreator
                         qrDataURL={qrDataURL}
-                        MYIMAGE={MYIMAGE1}
+                        MYIMAGE3={MYIMAGE3}
                         image={image}
                         name={name}
                         surname1={surname1}

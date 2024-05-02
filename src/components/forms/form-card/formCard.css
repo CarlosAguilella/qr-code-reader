@@ -30,8 +30,8 @@
 }
 
 .pdf-card {
-    max-width: 180px;
-    min-width: 180px;
+    max-width: 182.5px;
+    min-width: 182.5px;
     max-height: 112px;
     min-height: 112px;
 }
@@ -60,7 +60,7 @@
     max-width: 40px;
     min-height: 40px;
     max-height: 40px;
-    margin-left: 4px;
+    margin-left: 2px;
 }
 
 .pdf-card .qr {

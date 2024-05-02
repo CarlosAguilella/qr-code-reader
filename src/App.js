@@ -3,6 +3,7 @@ import Header from './components/header/Header';
 import FormTable from './components/forms/form-table/FormTable';
 import FormCreate from './components/forms/form-create/FormCreate';
 import FormCard from './components/forms/form-card/FormCard';
+import CompraProducto from './components/forms/compra-producto/CompraProducto';
 import './index.css';
 
 function App() {
@@ -22,7 +23,8 @@ function App() {
           <FormCreate setMagicArray={setMagicArray} magicArray={magicArray} setValueSelected={setValueSelected} valueSelected={valueSelected} />
         </>
       )} */}
-      <FormCard/>
+      {/* <FormCard/> */}
+      <CompraProducto />
     </div>
   );
 }
