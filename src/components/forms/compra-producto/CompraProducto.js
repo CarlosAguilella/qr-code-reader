@@ -1,19 +1,83 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Grid } from "@mui/material";
+import { pdfjs } from 'react-pdf';
+import jsPDF from 'jspdf';
+
 import "./compraProducto.css";
+import PdfCreator from "./PdfCreator";
 
 const MYIMAGE = "AjuntamentDeLesAlqueries.png";
 const MYIMAGE2 = "personasPiscina.png";
-const MYIMAGE3 = "qr1234.png";
+const MYIMAGE3 = "qrInfoCompra.png";
+
 
 const CompraProducto = () => {
+    const descCorta = "Entrada válida para el acceso durante un día (mayores de 13años)";
+    const descLarga = "Ubicación: Piscina Municipal de Les Alqueries, Via Augusta, 60.. Horario: De lunes a viernes de 10.30h a 14:00h .Sábados y domingos de 11:00h a 20:00h.. La entrada brinda acceso completo durante todo el día.. Tras utilizar la entrada, si se necesita salir y regresar en el mismo día, se puede solicitar una pulsera de reacceso en el mostrador .Esta pulsera te permitirá reingresar durante el resto de la jornada.. La entrada no asegura en ningún caso la entrada a la piscina, si el aforo está completo tendrá que esperar en cola, sin ninguna preferencia respecto a los usuarios que hayan llegado antes.. Se podrá solicitar la veracidad de todos los datos, por lo que en caso de falsear los mismos quedará bloqueado el acceso al recinto.. Normativa general de uso piscina municipal:. - Menores de 12 años: han de ir obligatoriamente acompañados de un adulto, los de 13 años podrán ir solos a la piscina con una autorización de la madre, padre o tutor legal Por cada adulto se permite un máximo de 4 menores a su cargo. - Se debe seguir en todo momento las indicaciones del personal técnico y de los socorristas. - Respetar las normas de seguridad de las instalaciones. - Queda prohibido la entrada de animales. - No se permite la entrada de comida ni bebidas alcohólicas de alta graduación. - No se permite la entrada de vidrio. - Obligatorio usar ropa de baño y chanclas. - En la zona de playa no se podrá circular con calzado de calle. - No se permite fumar. - Es obligatorio ducharse antes del baño. - No está permitida la entrada de mesas, sillas o sombrillas, a excepción de causas justiﬁcadas. - Los bebes que lleven pañal será obligatorio el uso de pañal de agua para evitar la contaminación del agua por deposiciones. - El resto de normas de uso de la instalación estarán a disposición del público.";
+    const dataCompra = {
+        "Nombre": "Laura",
+        "Apellidos": "García Pérez",
+        "NIF/NIE": "16254901V",
+        "Tarjeta (Les Alqueries en forma)": "U8PKFX8L2WKR3"
+    };
+    const dataDirigido = {
+        "Nombre": "Marcos",
+        "Apellidos": "Gómez García",
+        "NIF/NIE": "56879614M",
+        "Parentesco": "Hijo",
+        "Tarjeta (Les Alqueries en forma)": "-"
+    };
+    const dataCompraInfo = {
+        "Fecha de compra": "30/04/2024",
+        "Descripción": "Entrada diaria piscina adulto",
+        "Metodo de pago": "Tarjeta de crédito",
+        "Precio": "2,60€"
+    };
+    const dataQR = "P8PKFX8L2WKR3";
+
+    const reportTemplateRef = useRef(null);
+    const [seePdf, setSeePdf] = useState(false);
+
+    const separarTexto = () => {
+        const fragmentos = descLarga.split('. ');
+
+        return fragmentos.map((fragmento, index) => (
+            <span key={index} style={{ color: 'gray' }}>
+                {fragmento.trim()}
+                <br />
+            </span>
+        ));
+    };
+
+    const generatePDF = () => {
+        const pdf = new jsPDF({
+            orientation: 'portrait',
+            unit: 'px',
+            format: 'a4',
+        });
+        pdf.html(reportTemplateRef.current, {
+            callback(pdf) {
+                pdf.save('card.pdf');
+            },
+        });
+    };
+
+    const handleSeePDF = () => {
+        setSeePdf(true);
+        generatePDF();
+        setTimeout(() => {
+            setSeePdf(false);
+        },);
+    }
+
+
     return (
         <div className="compra-producto">
             <Grid container>
                 <Grid item xs={12}>
                     <div className="flex-start">
                         <div>
-                            <img src={MYIMAGE} className="logo" />
+                            <img src={MYIMAGE} className="logo" alt="logo" />
                         </div>
                     </div>
                 </Grid>
@@ -25,53 +89,11 @@ const CompraProducto = () => {
                 <Grid item xs={12}>
                     <div className="flex-start">
                         <p className="descripcion-corta">
-                            <img src={MYIMAGE2} className="image" />
-                            Entrada válida para el acceso durante un día (mayores de 13años)
+                            <img src={MYIMAGE2} className="image" alt="imagen" />
+                            {descCorta}
                             <br />
                             <br />
-                            Ubicación: Piscina Municipal de Les Alqueries, Via Augusta, 60.
-                            <br />
-                            Horario: De lunes a viernes de 10.30h a 14:00h. Sábados y domingos de 11:00h a 20:00h.
-                            <br />
-                            La entrada brinda acceso completo durante todo el día.
-                            <br />
-                            Tras utilizar la entrada, si se necesita salir y regresar en el mismo día, se puede solicitar una pulsera
-                            de reacceso en el mostrador. Esta pulsera te permitirá reingresar durante el resto de la jornada.
-                            <br />
-                            La entrada no asegura en ningún caso la entrada a la piscina, si el aforo está completo tendrá que esperar en cola, sin ninguna
-                            preferencia respecto a los usuarios que hayan llegado antes.
-                            <br />
-                            Se podrá solicitar la veracidad de todos los datos, por lo que en caso de falsear los mismos quedará bloqueado el acceso al
-                            recinto.
-                            <br />
-                            Normativa general de uso piscina municipal:
-                            <br />
-                            - Menores de 12 años: han de ir obligatoriamente acompañados de un adulto, los de 13 años podrán ir solos a la piscina con
-                            una autorización de la madre, padre o tutor legal. Por cada adulto se permite un máximo de 4 menores a su cargo.
-                            <br />
-                            - Se debe seguir en todo momento las indicaciones del personal técnico y de los socorristas.
-                            <br />
-                            - Respetar las normas de seguridad de las instalaciones.
-                            <br />
-                            - Queda prohibido la entrada de animales.
-                            <br />
-                            - No se permite la entrada de comida ni bebidas alcohólicas de alta graduación
-                            <br />
-                            - No se permite la entrada de vidrio.
-                            <br />
-                            - Obligatorio usar ropa de baño y chanclas.
-                            <br />
-                            - En la zona de playa no se podrá circular con calzado de calle.
-                            <br />
-                            - No se permite fumar.
-                            <br />
-                            - Es obligatorio ducharse antes del baño.
-                            <br />
-                            - No está permitida la entrada de mesas, sillas o sombrillas, a excepción de causas justiﬁcadas.
-                            <br />
-                            - Los bebes que lleven pañal será obligatorio el uso de pañal de agua para evitar la contaminación del agua por deposiciones.
-                            <br />
-                            - El resto de normas de uso de la instalación estarán a disposición del público.
+                            {separarTexto(descLarga)}
                         </p>
                     </div>
                     <div className="flex-center">
@@ -89,68 +111,46 @@ const CompraProducto = () => {
                             <Grid item xs={6}>
                                 <div className="compra-data1">
                                     <Grid container>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info1">Nombre</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info2">Laura</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info1">Apellidos</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info2">García Pérez</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info1">NIF/NIE</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info2">16254901V</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info1">ID </p>
-                                            <p className="compra-info-desc">(Les Alqueries en forma)</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info2">U8PKFX8L2WKR3</p>
-                                        </Grid>
+                                        {Object.entries(dataCompra).map(([key, value], index) => (
+                                            <React.Fragment key={index}>
+                                                <Grid item xs={6}>
+                                                    {key === "Tarjeta (Les Alqueries en forma)" ? (
+                                                        <p className="compra-info1" style={{ color: 'gray' }}>
+                                                            <span>Tarjeta</span>
+                                                            <span style={{ fontSize: '0.8em' }}> (Les Alqueries en forma)</span>
+                                                        </p>
+                                                    ) : (
+                                                        <p className="compra-info1">{key}</p>
+                                                    )}
+                                                </Grid>
+                                                <Grid item xs={6}>
+                                                    <p className="compra-info2">{value}</p>
+                                                </Grid>
+                                            </React.Fragment>
+                                        ))}
                                     </Grid>
                                 </div>
                             </Grid>
                             <Grid item xs={6}>
                                 <div className="compra-data2">
                                     <Grid container>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info1">Nombre</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info2">Marcos</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info1">Apellidos</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info2">Gómez García</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info1">NIF/NIE</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info2">56879614M</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info1">Parentesco</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info2">Hijo</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info1">ID </p>
-                                            <p className="compra-info-desc">(Les Alqueries en forma)</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info2">-</p>
-                                        </Grid>
+                                        {Object.entries(dataDirigido).map(([key, value], index) => (
+                                            <React.Fragment key={index}>
+                                                <Grid item xs={6}>
+                                                    {key === "Tarjeta (Les Alqueries en forma)" ? (
+                                                        <p className="compra-info1" style={{ color: 'gray' }}>
+                                                            <span>Tarjeta</span>
+                                                            <span style={{ fontSize: '0.8em' }}> (Les Alqueries en forma)</span>
+                                                        </p>
+                                                    ) : (
+                                                        <p className="compra-info1">{key}</p>
+                                                    )}
+                                                </Grid>
+                                                <Grid item xs={6}>
+                                                    <p className="compra-info2">{value}</p>
+                                                </Grid>
+                                            </React.Fragment>
+                                        ))}
                                     </Grid>
                                 </div>
                             </Grid>
@@ -162,37 +162,30 @@ const CompraProducto = () => {
                             <Grid item xs={9}>
                                 <div className="compra-data3">
                                     <Grid container>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info1">Fecha de compra</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info2">30/04/2024</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info1">Descripción</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info2">Entrada diaria piscina adulto</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info1">Método de pago</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info2">Tarjeta de crédito</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info1">Precio</p>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <p className="compra-info2">2,60€</p>
-                                        </Grid>
+                                        {Object.entries(dataCompraInfo).map(([key, value], index) => (
+                                            <React.Fragment key={index}>
+                                                <Grid item xs={6}>
+                                                    <p className="compra-info1">{key}</p>
+                                                </Grid>
+                                                <Grid item xs={6}>
+                                                    <p className="compra-info2">{value}</p>
+                                                </Grid>
+                                            </React.Fragment>
+                                        ))}
                                     </Grid>
                                 </div>
                             </Grid>
                             <Grid item xs={3}>
                                 <div>
-                                    <img src={MYIMAGE3} className="image-qr" />
-                                    <p className="compra-info3">P8PKFX8L2WKR3</p>
+                                    <img src={MYIMAGE3} className="image-qr" alt="imagen qr" />
+                                    <p className="compra-qr">{dataQR}</p>
+                                </div>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <div className="flex-start">
+                                    <div>
+                                        <img src={MYIMAGE} className="logo" alt="logo" />
+                                    </div>
                                 </div>
                             </Grid>
                             <Grid item xs={12}>
@@ -204,6 +197,40 @@ const CompraProducto = () => {
                     </div>
                 </Grid>
             </Grid>
+            <div>
+                <button onClick={handleSeePDF}>Convertir a PDF</button>
+            </div>
+            {seePdf ? (
+                <div ref={reportTemplateRef} className='flex-start montserrat'>
+                    <PdfCreator
+                        descCorta={descCorta}
+                        descLarga={descLarga}
+                        dataCompra={dataCompra}
+                        dataDirigido={dataDirigido}
+                        dataCompraInfo={dataCompraInfo}
+                        dataQR={dataQR}
+                        MYIMAGE={MYIMAGE}
+                        MYIMAGE2={MYIMAGE2}
+                        MYIMAGE3={MYIMAGE3}
+                        separarTexto={separarTexto}
+                    />
+                </div>
+            ) : (
+                <div ref={reportTemplateRef} className='flex-start montserrat' style={{ display: 'none' }}>
+                    <PdfCreator
+                        descCorta={descCorta}
+                        descLarga={descLarga}
+                        dataCompra={dataCompra}
+                        dataDirigido={dataDirigido}
+                        dataCompraInfo={dataCompraInfo}
+                        dataQR={dataQR}
+                        MYIMAGE={MYIMAGE}
+                        MYIMAGE2={MYIMAGE2}
+                        MYIMAGE3={MYIMAGE3}
+                        separarTexto={separarTexto}
+                    />
+                </div>
+            )}
         </div>
     );
 }

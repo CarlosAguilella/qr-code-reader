@@ -7,7 +7,7 @@ import jsPDF from 'jspdf';
 
 import PdfCreator from './PdfCreator';
 
-const MYIMAGE1 = 'fondo.png';
+const MYIMAGE1 = 'TarjetaAlqueries.png';
 const MYIMAGE2 = 'fotoCarnet.png';
 const MYIMAGE3 = 'Escut.png';
 
@@ -135,7 +135,7 @@ const FormCard = () => {
                     />
                 </div>
             ) : (
-                <div ref={reportTemplateRef} className='flex-start montserrat' style={{ display: 'none' }}>
+                <div ref={reportTemplateRef} className='flex-start montserrat' style={{display: 'none'}}>
                     <PdfCreator
                         qrDataURL={qrDataURL}
                         MYIMAGE3={MYIMAGE3}

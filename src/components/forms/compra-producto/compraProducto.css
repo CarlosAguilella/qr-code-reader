@@ -8,8 +8,8 @@
 }
 
 .compra-producto .logo {
-    max-width: 200px;
-    min-width: 200px;
+    max-width: 160px;
+    min-width: 160px;
     max-height: 80px;
     min-height: 80px;
 }
@@ -19,13 +19,13 @@
     width: 100%;
     max-height: 50px;
     min-height: 50px;
-    text-align: center;
     padding-top: 0.5em;
+    text-align: center;
     font-size: 1.6em;
-    color: rgb(100, 100, 168);
     border: 3px solid rgb(100, 100, 168);
     border-top-right-radius: 25px;
     border-bottom-left-radius: 25px;
+    color: rgb(100, 100, 168);
 }
 
 .compra-producto .image {
@@ -45,7 +45,7 @@
 
 .compra-producto .compra-subtitle1 {
     width: auto;
-    font-size: 1.2em;
+    font-size: 1.1em;
     color: rgb(100, 100, 168)
 }
 
@@ -54,25 +54,27 @@
 }
 
 .compra-producto .compra-data1 .compra-info1 {
-    color: gray;
     margin-bottom: -0.5em;
+    font-size: 0.9em;
+    color: gray;
 }
 
 .compra-producto .compra-data1 .compra-info-desc {
     margin-top: -1.5em;
     margin-left: 2em;
-    font-size: 0.7em;
+    font-size: 0.6em;
     color: gray;
 }
 
 .compra-producto .compra-data1 .compra-info2 {
-    margin-left: -0.5em;
+    margin-left: -1em;
     margin-bottom: -0.5em;
+    font-size: 0.9em;
 }
 
 .compra-producto .compra-subtitle2 {
     width: auto;
-    font-size: 1.2em;
+    font-size: 1.1em;
     color: rgb(100, 100, 168)
 }
 
@@ -83,22 +85,25 @@
 .compra-producto .compra-data2 .compra-info1 {
     color: gray;
     margin-bottom: -0.5em;
+    font-size: 0.9em;
 }
 
 .compra-producto .compra-data2 .compra-info-desc {
     margin-top: -1.5em;
     margin-left: 2em;
-    font-size: 0.7em;
+    font-size: 0.6em;
     color: gray;
 }
 
 .compra-producto .compra-data2 .compra-info2 {
+    margin-left: -1em;
     margin-bottom: -0.5em;
+    font-size: 0.9em;
 }
 
 .compra-producto .compra-subtitle3 {
     width: auto;
-    font-size: 1.2em;
+    font-size: 1.1em;
     color: rgb(100, 100, 168)
 }
 
@@ -107,21 +112,24 @@
 }
 
 .compra-producto .compra-data3 .compra-info1 {
+    padding: 0.5em 0em 0.5em 1.5em;
+    margin: 0;
+    font-size: 0.9em;
     border: 1px solid lightgray;
     background-color: lightgray;
-    padding: 1em 0em 1em 1.5em;
-    margin: 0;
 }
 
 .compra-producto .compra-data3 .compra-info2 {
     margin: 0;
-    padding: 1em 0em 1em 1em;
+    padding: 0.5em 0em 0.5em 1em;
+    font-size: 0.9em;
     border: 1px solid lightgray;
 }
 
 .compra-producto .image-qr {
-    width: 150px;
-    height: 150px;
+    margin-top: -1.5em;
+    width: 120px;
+    height: 120px;
     border: 5px solid rgb(100, 100, 168);
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -129,10 +137,158 @@
 
 .compra-producto .compra-info3 {
     width: auto;
+    font-size: 0.9em;
 }
 
 .compra-producto .compra-subtitle4 {
     width: auto;
-    font-size: 1.2em;
+    font-size: 1.1em;
+    color: rgb(100, 100, 168)
+}
+
+.pdf-producto {
+    margin: 0 1.5em;
+    font-family: Arial, sans-serif;
+}
+
+.pdf-producto .logo {
+    max-width: 80px;
+    min-width: 80px;
+    max-height: 45px;
+    min-height: 45px;
+    margin: 10px 0;
+}
+
+.pdf-producto .compra-title {
+    margin: 0;
+    width: 45%;
+    max-height: 25px;
+    min-height: 25px;
+    padding-top: 0.25em;
+    text-align: center;
+    font-size: 1em;
+    border: 2px solid rgb(100, 100, 168);
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    color: rgb(100, 100, 168);
+}
+
+.pdf-producto .image {
+    float: left;
+    max-width: 100px;
+    min-width: 100px;
+    max-height: 70px;
+    min-height: 70px;
+    padding: 0 1em 0 0;
+}
+
+.pdf-producto .descripcion-corta {
+    float: right;
+    max-width: 420px;
+    font-size: 0.483em;
+}
+
+.pdf-producto .compra-subtitle1 {
+    width: auto;
+    font-size: 0.8em;
+    color: rgb(100, 100, 168)
+}
+
+.pdf-producto .compra-data1 {
+    width: auto;
+    margin-top: -10px;
+}
+
+.pdf-producto .compra-data1 .compra-info1 {
+    margin-bottom: -0.5em;
+    font-size: 0.5em;
+    color: gray;
+}
+
+.pdf-producto .compra-data1 .compra-info-desc {
+    margin-top: -1.5em;
+    font-size: 0.3em;
+    color: gray;
+}
+
+.pdf-producto .compra-data1 .compra-info2 {
+    margin-left: 10px;
+    margin-bottom: -80px;
+    font-size: 0.5em;
+}
+
+.pdf-producto .compra-subtitle2 {
+    width: auto;
+    font-size: 0.8em;
+    color: rgb(100, 100, 168)
+}
+
+.pdf-producto .compra-data2 {
+    width: auto;
+    margin-top: -10px;
+}
+
+.pdf-producto .compra-data2 .compra-info1 {
+    color: gray;
+    margin-bottom: -0.5em;
+    font-size: 0.5em;
+}
+
+.pdf-producto .compra-data2 .compra-info-desc {
+    margin-top: -1.5em;
+    font-size: 0.3em;
+    color: gray;
+}
+
+.pdf-producto .compra-data2 .compra-info2 {
+    margin-left: -200px;
+    margin-bottom: -100px;
+    font-size: 0.5em;
+}
+
+.pdf-producto .compra-subtitle3 {
+    width: auto;
+    font-size: 0.8em;
+    color: rgb(100, 100, 168)
+}
+
+.pdf-producto .compra-data3 {
+    width: 265px;
+    margin-bottom: 20px;
+}
+
+.pdf-producto .compra-data3 .compra-info1 {
+    padding: 0.5em 0em 0.5em 1.5em;
+    margin: 0;
+    font-size: 0.5em;
+    border: 1px solid lightgray;
+    background-color: lightgray;
+}
+
+.pdf-producto .compra-data3 .compra-info2 {
+    margin: 0;
+    padding: 0.5em 0em 0.5em 1em;
+    font-size: 0.5em;
+    border: 1px solid lightgray;
+}
+
+.pdf-producto .image-qr {
+    width: 70px;
+    height: 70px;
+    margin-left: -50px;
+    border: 2px solid rgb(100, 100, 168);
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.pdf-producto .compra-qr {
+    margin-left: -45px;
+    margin-top: -5px;
+    font-size: 0.5em;
+}
+
+.pdf-producto .compra-subtitle4 {
+    width: auto;
+    font-size: 0.8em;
     color: rgb(100, 100, 168)
 }
