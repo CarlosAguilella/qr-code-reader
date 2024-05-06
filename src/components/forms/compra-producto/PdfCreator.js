@@ -2,10 +2,10 @@ import React from 'react';
 import './compraProducto.css';
 import { Grid } from '@mui/material';
 
-const PdfCreator = ({ descCorta, descLarga, dataCompra, dataDirigido, dataCompraInfo, dataQR, MYIMAGE, MYIMAGE2, MYIMAGE3 }) => {
+const PdfCreator = ({ descCorta, descCortaM, descLarga, descLargaM, dataCompra, dataDirigido, dataCompraInfo, dataQR, MYIMAGE, MYIMAGE2, MYIMAGE3 }) => {
 
     const separarTexto = (descLarga) => {
-        const fragmentos = descLarga.split('. ');
+        const fragmentos = descLarga.split('\n ');
 
         return fragmentos.map((fragmento, index) => (
             <span key={index} style={{ color: 'gray' }}>
@@ -36,9 +36,13 @@ const PdfCreator = ({ descCorta, descLarga, dataCompra, dataDirigido, dataCompra
                             <p className="descripcion-corta">
                                 <img src={MYIMAGE2} className="image" alt="imagen" />
                                 {descCorta}
+                                {/* <br />
+                                {descCortaM} */}
                                 <br />
                                 <br />
                                 {separarTexto(descLarga)}
+                                {/* <br />
+                                {descLargaM} */}
                             </p>
                         </div>
                         <div className="flex-center">
@@ -110,10 +114,22 @@ const PdfCreator = ({ descCorta, descLarga, dataCompra, dataDirigido, dataCompra
                                             {Object.entries(dataCompraInfo).map(([key, value], index) => (
                                                 <React.Fragment key={index}>
                                                     <Grid item xs={6}>
-                                                        <p className="compra-info1">{key}</p>
+                                                        {index === 0 ? (
+                                                            <p className="compra-info1">{key}</p>
+                                                        ) : index === 3 ? (
+                                                            <p className="compra-info3">{key}</p>
+                                                        ) : (
+                                                            <p className="compra-info2">{key}</p>
+                                                        )}
                                                     </Grid>
                                                     <Grid item xs={6}>
-                                                        <p className="compra-info2">{value}</p>
+                                                        {index === 0 ? (
+                                                            <p className="compra-info-data1">{value}</p>
+                                                        ) : index === 3 ? (
+                                                            <p className="compra-info-data3">{value}</p>
+                                                        ) : (
+                                                            <p className="compra-info-data2">{value}</p>
+                                                        )}
                                                     </Grid>
                                                 </React.Fragment>
                                             ))}

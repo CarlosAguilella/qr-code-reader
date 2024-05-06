@@ -3,6 +3,8 @@ import { Grid } from "@mui/material";
 import { pdfjs } from 'react-pdf';
 import jsPDF from 'jspdf';
 
+import font from './Montserrat-Medium-normal.ttf';
+
 import "./compraProducto.css";
 import PdfCreator from "./PdfCreator";
 
@@ -12,14 +14,19 @@ const MYIMAGE3 = "qrInfoCompra.png";
 
 
 const CompraProducto = () => {
-    const descCorta = "Entrada válida para el acceso durante un día (mayores de 13años)";
-    const descLarga = "Ubicación: Piscina Municipal de Les Alqueries, Via Augusta, 60.. Horario: De lunes a viernes de 10.30h a 14:00h .Sábados y domingos de 11:00h a 20:00h.. La entrada brinda acceso completo durante todo el día.. Tras utilizar la entrada, si se necesita salir y regresar en el mismo día, se puede solicitar una pulsera de reacceso en el mostrador .Esta pulsera te permitirá reingresar durante el resto de la jornada.. La entrada no asegura en ningún caso la entrada a la piscina, si el aforo está completo tendrá que esperar en cola, sin ninguna preferencia respecto a los usuarios que hayan llegado antes.. Se podrá solicitar la veracidad de todos los datos, por lo que en caso de falsear los mismos quedará bloqueado el acceso al recinto.. Normativa general de uso piscina municipal:. - Menores de 12 años: han de ir obligatoriamente acompañados de un adulto, los de 13 años podrán ir solos a la piscina con una autorización de la madre, padre o tutor legal Por cada adulto se permite un máximo de 4 menores a su cargo. - Se debe seguir en todo momento las indicaciones del personal técnico y de los socorristas. - Respetar las normas de seguridad de las instalaciones. - Queda prohibido la entrada de animales. - No se permite la entrada de comida ni bebidas alcohólicas de alta graduación. - No se permite la entrada de vidrio. - Obligatorio usar ropa de baño y chanclas. - En la zona de playa no se podrá circular con calzado de calle. - No se permite fumar. - Es obligatorio ducharse antes del baño. - No está permitida la entrada de mesas, sillas o sombrillas, a excepción de causas justiﬁcadas. - Los bebes que lleven pañal será obligatorio el uso de pañal de agua para evitar la contaminación del agua por deposiciones. - El resto de normas de uso de la instalación estarán a disposición del público.";
+    const descCorta = "Entrada válida para el acceso durante un día (mayores de 13 años).";
+    const descCortaM = 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM'; // 55 caracteres y 1 línea
+    const descLarga = "Ubicación: Piscina Municipal de Les Alqueries, Via Augusta, 60.\n Horario: De lunes a viernes de 10:30h a 14:00h. Sábados y domingos de 11:00h a 20:00h.\n La entrada brinda acceso completo durante todo el día.\n Tras utilizar la entrada, si se necesita salir y regresar en el mismo día, se puede solicitar una pulsera de reacceso en el mostrador. Esta pulsera te permitirá reingresar durante el resto de la jornada.\n La entrada no asegura en ningún caso la entrada a la piscina, si el aforo está completo tendrá que esperar en cola, sin ninguna preferencia respecto a los usuarios que hayan llegado antes.\n Se podrá solicitar la veracidad de todos los datos, por lo que en caso de falsear los mismos quedará bloqueado el acceso al recinto.\n Normativa general de uso piscina municipal:\n - Menores de 12 años: han de ir obligatoriamente acompañados de un adulto, los de 13 años podrán ir solos a la piscina con una autorización de la madre, padre o tutor legal Por cada adulto se permite un máximo de 4 menores a su cargo.\n - Se debe seguir en todo momento las indicaciones del personal técnico y de los socorristas.\n - Respetar las normas de seguridad de las instalaciones.\n - Queda prohibido la entrada de animales.\n - No se permite la entrada de comida ni bebidas alcohólicas de alta graduación.\n - No se permite la entrada de vidrio.\n - Obligatorio usar ropa de baño y chanclas.\n - En la zona de playa no se podrá circular con calzado de calle.\n - No se permite fumar.\n - Es obligatorio ducharse antes del baño.\n - No está permitida la entrada de mesas, sillas o sombrillas, a excepción de causas justificadas.\n - Los bebes que lleven pañal será obligatorio el uso de pañal de agua para evitar la contaminación del agua por deposiciones.\n - El resto de normas de uso de la instalación estarán a disposición del público.\n";
+    const descLargaM = 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM'; // 66 caracteres y 25 líneas
     const dataCompra = {
         "Nombre": "Laura",
         "Apellidos": "García Pérez",
         "NIF/NIE": "16254901V",
         "Tarjeta (Les Alqueries en forma)": "U8PKFX8L2WKR3"
     };
+
+    // "MMMMMMMMMMMMMMMMMMM" // 19 caracteres de M para todos los campos de abajo
+
     const dataDirigido = {
         "Nombre": "Marcos",
         "Apellidos": "Gómez García",
@@ -27,19 +34,22 @@ const CompraProducto = () => {
         "Parentesco": "Hijo",
         "Tarjeta (Les Alqueries en forma)": "-"
     };
+
     const dataCompraInfo = {
         "Fecha de compra": "30/04/2024",
         "Descripción": "Entrada diaria piscina adulto",
         "Metodo de pago": "Tarjeta de crédito",
         "Precio": "2,60€"
     };
+
     const dataQR = "P8PKFX8L2WKR3";
 
     const reportTemplateRef = useRef(null);
+
     const [seePdf, setSeePdf] = useState(false);
 
     const separarTexto = () => {
-        const fragmentos = descLarga.split('. ');
+        const fragmentos = descLarga.split('\n ');
 
         return fragmentos.map((fragmento, index) => (
             <span key={index} style={{ color: 'gray' }}>
@@ -57,6 +67,9 @@ const CompraProducto = () => {
         });
         pdf.html(reportTemplateRef.current, {
             callback(pdf) {
+                pdf.addFileToVFS('Montserrat-Medium-normal.ttf', font);
+                pdf.addFont('Montserrat-Medium-normal.ttf', 'Montserrat', 'normal');
+                pdf.setFont('Montserrat', 'normal');
                 pdf.save('card.pdf');
             },
         });
@@ -91,9 +104,13 @@ const CompraProducto = () => {
                         <p className="descripcion-corta">
                             <img src={MYIMAGE2} className="image" alt="imagen" />
                             {descCorta}
+                            {/* <br />
+                            {descCortaM} */}
                             <br />
                             <br />
                             {separarTexto(descLarga)}
+                            {/* <br />
+                            {descLargaM} */}
                         </p>
                     </div>
                     <div className="flex-center">
@@ -204,7 +221,9 @@ const CompraProducto = () => {
                 <div ref={reportTemplateRef} className='flex-start montserrat'>
                     <PdfCreator
                         descCorta={descCorta}
+                        descCortaM={descCortaM}
                         descLarga={descLarga}
+                        descLargaM={descLargaM}
                         dataCompra={dataCompra}
                         dataDirigido={dataDirigido}
                         dataCompraInfo={dataCompraInfo}
