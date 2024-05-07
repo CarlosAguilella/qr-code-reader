@@ -17,7 +17,7 @@ const PdfCreator = ({ descCorta, descCortaM, descLarga, descLargaM, dataCompra, 
 
     return (
         <>
-            <div className="pdf-producto">
+            <div className="pdf-producto montserrat">
                 <Grid container>
                     <Grid item xs={12}>
                         <div className="flex-start">

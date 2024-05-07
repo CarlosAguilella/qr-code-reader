@@ -3,12 +3,11 @@ import { Grid } from "@mui/material";
 import { pdfjs } from 'react-pdf';
 import jsPDF from 'jspdf';
 
-import font from './Montserrat-Medium-normal.ttf';
 
 import "./compraProducto.css";
 import PdfCreator from "./PdfCreator";
 
-const MYIMAGE = "AjuntamentDeLesAlqueries.png";
+const MYIMAGE = "AyuntamientoDeLasAlquerias.png";
 const MYIMAGE2 = "personasPiscina.png";
 const MYIMAGE3 = "qrInfoCompra.png";
 
@@ -65,14 +64,20 @@ const CompraProducto = () => {
             unit: 'px',
             format: 'a4',
         });
-        pdf.html(reportTemplateRef.current, {
-            callback(pdf) {
-                pdf.addFileToVFS('Montserrat-Medium-normal.ttf', font);
-                pdf.addFont('Montserrat-Medium-normal.ttf', 'Montserrat', 'normal');
-                pdf.setFont('Montserrat', 'normal');
-                pdf.save('card.pdf');
-            },
-        });
+        
+        const font = './Montserrat-normal.js';
+
+        setTimeout(() => {
+            pdf.html(reportTemplateRef.current, {
+                callback(pdf) {
+                    pdf.addFileToVFS('Montserrat-normal.js', font);
+                    pdf.addFont('Montserrat-normal.js', 'Montserrat-normal', 'normal');
+                    pdf.setFont('Montserrat-normal');
+                    pdf.save('card.pdf');
+                    setSeePdf(false);
+                },
+            });
+        }, 0); 
     };
 
     const handleSeePDF = () => {
@@ -231,7 +236,6 @@ const CompraProducto = () => {
                         MYIMAGE={MYIMAGE}
                         MYIMAGE2={MYIMAGE2}
                         MYIMAGE3={MYIMAGE3}
-                        separarTexto={separarTexto}
                     />
                 </div>
             ) : (

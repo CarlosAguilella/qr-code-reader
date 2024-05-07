@@ -4,6 +4,7 @@
 }
 
 .compra-producto {
+    font-family: var(--montserrat) !important;
     margin: 0 1.5em;
 }
 
@@ -147,22 +148,25 @@
 }
 
 .pdf-producto {
+    font-family: var(--montserrat) !important;
+    max-width: 900px;
+    min-width: 900px;
     margin: 0 1.5em;
-    font-family: Arial, sans-serif;
 }
 
 .pdf-producto .logo {
-    max-width: 80px;
-    min-width: 80px;
-    max-height: 45px;
-    min-height: 45px;
-    margin: 10px 0 10px 20px;
+    max-width: 120px;
+    min-width: 120px;
+    max-height: 40px;
+    min-height: 40px;
+    margin: 20px 0 10px 20px;
 }
 
 .pdf-producto .compra-title {
     margin: 0;
     margin-bottom: 10px;
-    width: 45%;
+    max-width: 395px;
+    min-width: 395px;
     max-height: 25px;
     min-height: 25px;
     padding-top: 0.25em;
@@ -186,7 +190,7 @@
 .pdf-producto .descripcion-corta {
     float: right;
     max-width: 420px;
-    font-size: 0.45em;
+    font-size: 0.43em;
 }
 
 .pdf-producto .compra-subtitle1 {
@@ -197,7 +201,6 @@
 }
 
 .pdf-producto .compra-data1 {
-    width: auto;
     margin-top: -10px;
 }
 
