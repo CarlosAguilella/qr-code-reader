@@ -147,35 +147,45 @@
     color: rgb(100, 100, 168)
 }
 
+/* CSS DEL PDF QUE SE GENERA */
+
 .pdf-producto {
     font-family: var(--montserrat) !important;
     max-width: 900px;
     min-width: 900px;
-    margin: 0 1.5em;
+    margin: 0 1.25em;
 }
 
 .pdf-producto .logo {
-    max-width: 120px;
-    min-width: 120px;
-    max-height: 40px;
-    min-height: 40px;
+    max-width: 110px;
+    min-width: 110px;
+    max-height: 42px;
+    min-height: 42px;
     margin: 20px 0 10px 20px;
+}
+
+.pdf-producto .logo2 {
+    max-width: 110px;
+    min-width: 110px;
+    max-height: 42px;
+    min-height: 42px;
+    margin: 30px 0 0 20px;
 }
 
 .pdf-producto .compra-title {
     margin: 0;
     margin-bottom: 10px;
-    max-width: 395px;
-    min-width: 395px;
+    max-width: 400px;
+    min-width: 400px;
     max-height: 25px;
     min-height: 25px;
     padding-top: 0.25em;
     text-align: center;
     font-size: 1em;
-    border: 2px solid rgb(100, 100, 168);
+    border: 2px solid #2d72ba;
     border-top-right-radius: 15px;
     border-bottom-left-radius: 15px;
-    color: rgb(100, 100, 168);
+    color: #2d72ba;
 }
 
 .pdf-producto .image {
@@ -197,7 +207,7 @@
     margin-top: 1em;
     width: auto;
     font-size: 0.75em;
-    color: rgb(100, 100, 168)
+    color: #2d72ba;
 }
 
 .pdf-producto .compra-data1 {
@@ -206,27 +216,27 @@
 
 .pdf-producto .compra-data1 .compra-info1 {
     margin-bottom: -0.75em;
-    font-size: 0.6em;
-    color: gray;
+    font-size: 0.55em;
+    color: #a3a5a7;
 }
 
 .pdf-producto .compra-data1 .compra-info-desc {
     margin-top: -1.5em;
     font-size: 0.3em;
-    color: gray;
+    color: #a3a5a7;
 }
 
 .pdf-producto .compra-data1 .compra-info2 {
     margin-top: 1em;
-    margin-left: -5px;
+    margin-left: -15px;
     margin-bottom: -0.75em;
-    font-size: 0.6em;
+    font-size: 0.55em;
 }
 
 .pdf-producto .compra-subtitle2 {
     width: auto;
     font-size: 0.75em;
-    color: rgb(100, 100, 168)
+    color: #2d72ba;
 }
 
 .pdf-producto .compra-data2 {
@@ -235,30 +245,30 @@
 }
 
 .pdf-producto .compra-data2 .compra-info1 {
-    color: gray;
+    color: #a3a5a7;
     margin-bottom: -0.75em;
     max-width: 100px;
     min-width: 100px;
-    font-size: 0.6em;
+    font-size: 0.55em;
 }
 
 .pdf-producto .compra-data2 .compra-info-desc {
     margin-top: -1.5em;
     font-size: 0.3em;
-    color: gray;
+    color: #a3a5a7;
 }
 
 .pdf-producto .compra-data2 .compra-info2 {
-    margin-left: -220px;
+    margin-left: -235px;
     margin-bottom: -100px;
-    font-size: 0.6em;
+    font-size: 0.55em;
 }
 
 .pdf-producto .compra-subtitle3 {
     margin-top: 1em;
     width: auto;
     font-size: 0.75em;
-    color: rgb(100, 100, 168)
+    color: #2d72ba;
 }
 
 .pdf-producto .compra-data3 {
@@ -271,72 +281,34 @@
     margin: 0;
     font-size: 0.5em;
     border: 1px solid #d1d2d4;
-    border-bottom: 2px solid #d1d2d4;
     background-color: #d1d2d4;
 }
 
 .pdf-producto .compra-data3 .compra-info2 {
-    padding: 0.5em 0em 0.5em 1.5em;
-    margin: 0;
-    font-size: 0.5em;
     border: 1px solid #d1d2d4;
-    background-color: #d1d2d4;
-}
-
-.pdf-producto .compra-data3 .compra-info3 {
-    padding: 0.5em 0em 0.5em 1.5em;
-    margin: 0;
-    font-size: 0.5em;
-    border: 1px solid #d1d2d4;
-    border-bottom: 2px solid #d1d2d4;
-    background-color: #d1d2d4;
-}
-
-.pdf-producto .compra-data3 .compra-info-data1 {
     margin: 0;
     padding: 0.5em 0em 0.5em 1em;
     font-size: 0.5em;
-    border-top: 2px solid #d1d2d4;
-    border-right: 2px solid #d1d2d4;
-    border-bottom: 1px solid #d1d2d4;
-}
-
-.pdf-producto .compra-data3 .compra-info-data2 {
-    margin: 0;
-    padding: 0.5em 0em 0.5em 1em;
-    font-size: 0.5em;
-    border-top: 1px solid #d1d2d4;
-    border-right: 2px solid #d1d2d4;
-    border-bottom: 1px solid #d1d2d4;
-}
-
-.pdf-producto .compra-data3 .compra-info-data3 {
-    margin: 0;
-    padding: 0.5em 0em 0.5em 1em;
-    font-size: 0.5em;
-    border-top: 1px solid #d1d2d4;
-    border-right: 2px solid #d1d2d4;
-    border-bottom: 2px solid #d1d2d4;
 }
 
 .pdf-producto .image-qr {
-    padding: 5px;
+    padding: 2px;
     width: 65px;
     height: 65px;
     margin-left: -52.5px;
-    border: 2px solid rgb(100, 100, 168);
+    border: 2px solid #2d72ba;
     border-top-right-radius: 5px;
     border-bottom-left-radius: 5px;
 }
 
 .pdf-producto .compra-qr {
-    margin-left: -45px;
-    margin-top: -5px;
+    margin-left: -50px;
+    margin-top: -1px;
     font-size: 0.5em;
 }
 
 .pdf-producto .compra-subtitle4 {
     width: auto;
     font-size: 0.75em;
-    color: rgb(100, 100, 168)
+    color: #2d72ba;
 }

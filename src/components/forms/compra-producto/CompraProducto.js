@@ -3,7 +3,6 @@ import { Grid } from "@mui/material";
 import { pdfjs } from 'react-pdf';
 import jsPDF from 'jspdf';
 
-
 import "./compraProducto.css";
 import PdfCreator from "./PdfCreator";
 
@@ -11,20 +10,25 @@ const MYIMAGE = "AyuntamientoDeLasAlquerias.png";
 const MYIMAGE2 = "personasPiscina.png";
 const MYIMAGE3 = "qrInfoCompra.png";
 
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 const CompraProducto = () => {
     const descCorta = "Entrada válida para el acceso durante un día (mayores de 13 años).";
-    const descCortaM = 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM'; // 55 caracteres y 1 línea
+
+    const descCortaM = 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM'; // 51 caracteres y 1 línea
+
     const descLarga = "Ubicación: Piscina Municipal de Les Alqueries, Via Augusta, 60.\n Horario: De lunes a viernes de 10:30h a 14:00h. Sábados y domingos de 11:00h a 20:00h.\n La entrada brinda acceso completo durante todo el día.\n Tras utilizar la entrada, si se necesita salir y regresar en el mismo día, se puede solicitar una pulsera de reacceso en el mostrador. Esta pulsera te permitirá reingresar durante el resto de la jornada.\n La entrada no asegura en ningún caso la entrada a la piscina, si el aforo está completo tendrá que esperar en cola, sin ninguna preferencia respecto a los usuarios que hayan llegado antes.\n Se podrá solicitar la veracidad de todos los datos, por lo que en caso de falsear los mismos quedará bloqueado el acceso al recinto.\n Normativa general de uso piscina municipal:\n - Menores de 12 años: han de ir obligatoriamente acompañados de un adulto, los de 13 años podrán ir solos a la piscina con una autorización de la madre, padre o tutor legal Por cada adulto se permite un máximo de 4 menores a su cargo.\n - Se debe seguir en todo momento las indicaciones del personal técnico y de los socorristas.\n - Respetar las normas de seguridad de las instalaciones.\n - Queda prohibido la entrada de animales.\n - No se permite la entrada de comida ni bebidas alcohólicas de alta graduación.\n - No se permite la entrada de vidrio.\n - Obligatorio usar ropa de baño y chanclas.\n - En la zona de playa no se podrá circular con calzado de calle.\n - No se permite fumar.\n - Es obligatorio ducharse antes del baño.\n - No está permitida la entrada de mesas, sillas o sombrillas, a excepción de causas justificadas.\n - Los bebes que lleven pañal será obligatorio el uso de pañal de agua para evitar la contaminación del agua por deposiciones.\n - El resto de normas de uso de la instalación estarán a disposición del público.\n";
-    const descLargaM = 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM'; // 66 caracteres y 25 líneas
+
+    const descLargaM = 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM'; // 73 caracteres y 25 líneas
+
+    // "MMMMMMMMMMMMMMMMMMM" // 19 caracteres de M para todos los campos de abajo
+
     const dataCompra = {
         "Nombre": "Laura",
         "Apellidos": "García Pérez",
         "NIF/NIE": "16254901V",
         "Tarjeta (Les Alqueries en forma)": "U8PKFX8L2WKR3"
     };
-
-    // "MMMMMMMMMMMMMMMMMMM" // 19 caracteres de M para todos los campos de abajo
 
     const dataDirigido = {
         "Nombre": "Marcos",
@@ -64,20 +68,21 @@ const CompraProducto = () => {
             unit: 'px',
             format: 'a4',
         });
-        
+
         const font = './Montserrat-normal.js';
+        
+        pdf.addFileToVFS('Montserrat-normal.js', font);
+        pdf.addFont('Montserrat-normal.js', 'Montserrat-normal', 'normal');
+        pdf.setFont('Montserrat-normal');
 
         setTimeout(() => {
             pdf.html(reportTemplateRef.current, {
                 callback(pdf) {
-                    pdf.addFileToVFS('Montserrat-normal.js', font);
-                    pdf.addFont('Montserrat-normal.js', 'Montserrat-normal', 'normal');
-                    pdf.setFont('Montserrat-normal');
                     pdf.save('card.pdf');
                     setSeePdf(false);
                 },
             });
-        }, 0); 
+        }, 0);
     };
 
     const handleSeePDF = () => {
@@ -88,9 +93,11 @@ const CompraProducto = () => {
         },);
     }
 
-
     return (
         <div className="compra-producto">
+            <div>
+                <button onClick={handleSeePDF}>Convertir a PDF</button>
+            </div>
             <Grid container>
                 <Grid item xs={12}>
                     <div className="flex-start">
@@ -219,9 +226,6 @@ const CompraProducto = () => {
                     </div>
                 </Grid>
             </Grid>
-            <div>
-                <button onClick={handleSeePDF}>Convertir a PDF</button>
-            </div>
             {seePdf ? (
                 <div ref={reportTemplateRef} className='flex-start montserrat'>
                     <PdfCreator
@@ -242,7 +246,9 @@ const CompraProducto = () => {
                 <div ref={reportTemplateRef} className='flex-start montserrat' style={{ display: 'none' }}>
                     <PdfCreator
                         descCorta={descCorta}
+                        descCortaM={descCortaM}
                         descLarga={descLarga}
+                        descLargaM={descLargaM}
                         dataCompra={dataCompra}
                         dataDirigido={dataDirigido}
                         dataCompraInfo={dataCompraInfo}
@@ -250,7 +256,6 @@ const CompraProducto = () => {
                         MYIMAGE={MYIMAGE}
                         MYIMAGE2={MYIMAGE2}
                         MYIMAGE3={MYIMAGE3}
-                        separarTexto={separarTexto}
                     />
                 </div>
             )}
