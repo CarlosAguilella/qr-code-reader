@@ -150,7 +150,6 @@
 /* CSS DEL PDF QUE SE GENERA */
 
 .pdf-producto {
-    font-family: var(--montserrat) !important;
     max-width: 900px;
     min-width: 900px;
     margin: 0 1.25em;

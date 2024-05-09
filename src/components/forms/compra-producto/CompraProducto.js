@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Grid } from "@mui/material";
 import { pdfjs } from 'react-pdf';
 import jsPDF from 'jspdf';
+import {font} from './Montserrat-normal.js';
 
 import "./compraProducto.css";
 import PdfCreator from "./PdfCreator";
@@ -62,27 +63,24 @@ const CompraProducto = () => {
         ));
     };
 
+    
     const generatePDF = () => {
         const pdf = new jsPDF({
             orientation: 'portrait',
             unit: 'px',
             format: 'a4',
         });
+        
 
-        const font = './Montserrat-normal.js';
-        
         pdf.addFileToVFS('Montserrat-normal.js', font);
-        pdf.addFont('Montserrat-normal.js', 'Montserrat-normal', 'normal');
-        pdf.setFont('Montserrat-normal');
+        pdf.addFont('Montserrat-normal.js', 'Montserrat', 'normal');
+        pdf.setFont('Montserrat', 'normal');
         
-        setTimeout(() => {
-            pdf.html(reportTemplateRef.current, {
-                callback(pdf) {
-                    pdf.save('card.pdf');
-                    setSeePdf(false);
-                },
-            });
-        }, 0);
+        pdf.html(reportTemplateRef.current, {
+            callback(pdf) {
+                pdf.save('card.pdf');
+            },
+        });
     };
 
     const handleSeePDF = () => {
