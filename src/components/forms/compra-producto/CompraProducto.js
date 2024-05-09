@@ -74,7 +74,7 @@ const CompraProducto = () => {
         pdf.addFileToVFS('Montserrat-normal.js', font);
         pdf.addFont('Montserrat-normal.js', 'Montserrat-normal', 'normal');
         pdf.setFont('Montserrat-normal');
-
+        
         setTimeout(() => {
             pdf.html(reportTemplateRef.current, {
                 callback(pdf) {
