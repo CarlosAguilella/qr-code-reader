@@ -16,13 +16,13 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 const CompraProducto = () => {
     const descCorta = "Entrada válida para el acceso durante un día (mayores de 13 años).";
 
-    const descCortaM = 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM'; // 51 caracteres y 1 línea
+    const descCortaM = 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM'; // 51 caracteres y 1 línea.
 
     const descLarga = "Ubicación: Piscina Municipal de Les Alqueries, Via Augusta, 60.\n Horario: De lunes a viernes de 10:30h a 14:00h. Sábados y domingos de 11:00h a 20:00h.\n La entrada brinda acceso completo durante todo el día.\n Tras utilizar la entrada, si se necesita salir y regresar en el mismo día, se puede solicitar una pulsera de reacceso en el mostrador. Esta pulsera te permitirá reingresar durante el resto de la jornada.\n La entrada no asegura en ningún caso la entrada a la piscina, si el aforo está completo tendrá que esperar en cola, sin ninguna preferencia respecto a los usuarios que hayan llegado antes.\n Se podrá solicitar la veracidad de todos los datos, por lo que en caso de falsear los mismos quedará bloqueado el acceso al recinto.\n Normativa general de uso piscina municipal:\n - Menores de 12 años: han de ir obligatoriamente acompañados de un adulto, los de 13 años podrán ir solos a la piscina con una autorización de la madre, padre o tutor legal Por cada adulto se permite un máximo de 4 menores a su cargo.\n - Se debe seguir en todo momento las indicaciones del personal técnico y de los socorristas.\n - Respetar las normas de seguridad de las instalaciones.\n - Queda prohibido la entrada de animales.\n - No se permite la entrada de comida ni bebidas alcohólicas de alta graduación.\n - No se permite la entrada de vidrio.\n - Obligatorio usar ropa de baño y chanclas.\n - En la zona de playa no se podrá circular con calzado de calle.\n - No se permite fumar.\n - Es obligatorio ducharse antes del baño.\n - No está permitida la entrada de mesas, sillas o sombrillas, a excepción de causas justificadas.\n - Los bebes que lleven pañal será obligatorio el uso de pañal de agua para evitar la contaminación del agua por deposiciones.\n - El resto de normas de uso de la instalación estarán a disposición del público.\n";
 
-    const descLargaM = 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM'; // 73 caracteres y 25 líneas
+    const descLargaM = 'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM'; // 73 caracteres y 25 líneas.
 
-    // "MMMMMMMMMMMMMMMMMMM" // 19 caracteres de M para todos los campos de abajo
+    // "MMMMMMMMMMMMMMMMMMM" // 19 caracteres de M para todos los campos de abajo.
 
     const dataCompra = {
         "Nombre": "Laura",
@@ -62,7 +62,6 @@ const CompraProducto = () => {
             </span>
         ));
     };
-
     
     const generatePDF = () => {
         const pdf = new jsPDF({
@@ -71,7 +70,6 @@ const CompraProducto = () => {
             format: 'a4',
         });
         
-
         pdf.addFileToVFS('Montserrat-normal.js', font);
         pdf.addFont('Montserrat-normal.js', 'Montserrat', 'normal');
         pdf.setFont('Montserrat', 'normal');
@@ -144,7 +142,7 @@ const CompraProducto = () => {
                                                     {key === "Tarjeta (Les Alqueries en forma)" ? (
                                                         <p className="compra-info1" style={{ color: 'gray' }}>
                                                             <span>Tarjeta</span>
-                                                            <span style={{ fontSize: '0.8em' }}> (Les Alqueries en forma)</span>
+                                                            <span className="compra-desc" > (Les Alqueries en forma)</span>
                                                         </p>
                                                     ) : (
                                                         <p className="compra-info1">{key}</p>
@@ -167,7 +165,7 @@ const CompraProducto = () => {
                                                     {key === "Tarjeta (Les Alqueries en forma)" ? (
                                                         <p className="compra-info1" style={{ color: 'gray' }}>
                                                             <span>Tarjeta</span>
-                                                            <span style={{ fontSize: '0.8em' }}> (Les Alqueries en forma)</span>
+                                                            <span className="compra-desc"> (Les Alqueries en forma)</span>
                                                         </p>
                                                     ) : (
                                                         <p className="compra-info1">{key}</p>

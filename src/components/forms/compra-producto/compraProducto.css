@@ -60,10 +60,11 @@
     color: gray;
 }
 
-.compra-producto .compra-data1 .compra-info-desc {
+.compra-producto .compra-data1 .compra-desc {
     margin-top: -1.5em;
     margin-left: 2em;
-    font-size: 0.6em;
+    font-size: 0.8em;
+    font-style: italic;
     color: gray;
 }
 
@@ -89,10 +90,11 @@
     font-size: 0.9em;
 }
 
-.compra-producto .compra-data2 .compra-info-desc {
+.compra-producto .compra-data2 .compra-desc {
     margin-top: -1.5em;
     margin-left: 2em;
-    font-size: 0.6em;
+    font-size: 0.8em;
+    font-style: italic;
     color: gray;
 }
 
@@ -219,9 +221,10 @@
     color: #a3a5a7;
 }
 
-.pdf-producto .compra-data1 .compra-info-desc {
+.pdf-producto .compra-data1 .compra-desc {
     margin-top: -1.5em;
-    font-size: 0.3em;
+    font-size: 0.8em;
+    font-style: italic;
     color: #a3a5a7;
 }
 
@@ -251,9 +254,10 @@
     font-size: 0.55em;
 }
 
-.pdf-producto .compra-data2 .compra-info-desc {
+.pdf-producto .compra-data2 .compra-desc {
     margin-top: -1.5em;
-    font-size: 0.3em;
+    font-size: 0.8em;
+    font-style: italic;
     color: #a3a5a7;
 }
 

@@ -28,7 +28,7 @@ const PdfCreator = ({ descCorta, descCortaM, descLarga, descLargaM, dataCompra, 
                     </Grid>
                     <Grid item xs={12}>
                         <div className="flex-start">
-                            <p className="compra-title"><strong>Entrada diaria piscina adulto</strong></p>
+                            <p className="compra-title">Entrada diaria piscina adulto</p>
                         </div>
                     </Grid>
                     <Grid item xs={12}>
@@ -66,7 +66,7 @@ const PdfCreator = ({ descCorta, descCortaM, descLarga, descLargaM, dataCompra, 
                                                         {key === "Tarjeta (Les Alqueries en forma)" ? (
                                                             <p className="compra-info1" style={{ color: '#a3a5a7' }}>
                                                                 <span>Tarjeta</span>
-                                                                <span style={{ fontSize: '0.8em' }}> (Les Alqueries en forma)</span>
+                                                                <span className='compra-desc'> (Les Alqueries en forma)</span>
                                                             </p>
                                                         ) : (
                                                             <p className="compra-info1">{key}</p>
@@ -89,7 +89,7 @@ const PdfCreator = ({ descCorta, descCortaM, descLarga, descLargaM, dataCompra, 
                                                         {key === "Tarjeta (Les Alqueries en forma)" ? (
                                                             <p className="compra-info1" style={{ color: '#a3a5a7' }}>
                                                                 <span>Tarjeta</span>
-                                                                <span style={{ fontSize: '0.8em' }}> (Les Alqueries en forma)</span>
+                                                                <span className='compra-desc'> (Les Alqueries en forma)</span>
                                                             </p>
                                                         ) : (
                                                             <p className="compra-info1">{key}</p>
