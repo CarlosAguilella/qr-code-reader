@@ -15,8 +15,6 @@ const HorarioPiscina = ({ open, onClose }) => {
 
     return (
         <div className='horario-container'>
-            <h4>PISCINA MUNICIPAL</h4>
-            <p>Horario:</p>
             {rowsPISCINAMUNICIPAL.map((row) => (
                 <div key={row.id}>
                     <p>{row.dia} - {row.horario}</p>

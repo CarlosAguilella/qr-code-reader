@@ -14,16 +14,17 @@ const HorarioPolideportivo = ({ open, onClose }) => {
     ];
 
     return (
-        <div className='horario-container'>
-            <h4>POLIDEPORTIVO MUNICIPAL</h4>
-            <p>Horario:</p>
-            {rowsPOLIDEPORTIVO.map((row) => (
-                <div key={row.id}>
-                    <p>{row.dia} - {row.horario}</p>
-                </div>
-            ))}
-            <button onClick={onClose}>Cerrar</button>
-        </div>
+        <>
+            <h1 className="flex-center">Horario</h1>
+            <div className='horario-container'>
+                {rowsPOLIDEPORTIVO.map((row) => (
+                    <div key={row.id}>
+                        <p>{row.dia} - {row.horario}</p>
+                    </div>
+                ))}
+                <button onClick={onClose}>Cerrar</button>
+            </div>
+        </>
     );
 }
 

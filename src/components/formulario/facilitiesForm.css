@@ -1,0 +1,120 @@
+.facilities-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    color: #333;
+}
+
+.facilities-form-container .container-info {
+    padding: 1.5em;
+    border: 1px solid #612b93;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.facilities-form-container .container-info .link {
+    color: #612b93;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.facilities-form-container .container-info .link:hover {
+    color: #4b1f73;
+}
+
+.facilities-form-container button {
+    background-color: #612b93;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.facilities-form-container button:hover {
+    background-color: #4b1f73;
+    transform: translateY(-2px);
+}
+
+.facilities-form-container button:active {
+    background-color: #3a1757;
+    transform: translateY(0);
+}
+
+.facilities-form-container img {
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.facilities-form-container p {
+    margin: 0.5em 0;
+}
+
+@media (max-width: 768px) {
+    .facilities-form-container .container-info {
+        padding: 1em;
+    }
+
+    .facilities-form-container img {
+        width: 80px;
+    }
+
+    .facilities-form-container button {
+        padding: 0.5em;
+    }
+}
+
+.horario-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #333;
+}
+
+.price-table {
+    margin: 2em 5em;
+}
+
+.price-table .price-header {
+    padding: 0 2em;
+}
+
+.price-table .info-price {
+    padding: 0 2em;
+}
+
+.price-table .price-header h3 {
+    font-size: 1.1em;
+}
+
+.price-table .info-price div {
+    font-size: 1em;
+}
+
+.facilities-form {
+    width: 80%;
+    margin: 3em auto;
+}
+
+.facilities-form .facilities-form-data {
+    color: black;
+}
+
+.facilities-form .facilities-form-input {
+    width: 100%;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 1px solid black;
+}
+
+.title-facilities-form {
+    width: 80%;
+    margin: 2em auto; 
+    color: black;
+    font-size: 1em;
+}

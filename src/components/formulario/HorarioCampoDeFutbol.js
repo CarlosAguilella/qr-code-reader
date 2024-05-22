@@ -1,5 +1,4 @@
 import React from "react";
-import "./formulario.css";
 
 const HorarioCampoDeFutbol = ({ open, onClose }) => {
     if (!open) return null;
@@ -16,8 +15,6 @@ const HorarioCampoDeFutbol = ({ open, onClose }) => {
 
     return (
         <div className='horario-container'>
-            <h4>CAMPO DE FUTBOL</h4>
-            <p>Horario:</p>
             {rowsCAMPODEFUTBOL.map((row) => (
                 <div key={row.id}>
                     <p>{row.dia} - {row.horario}</p>
