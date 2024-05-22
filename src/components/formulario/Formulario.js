@@ -9,6 +9,7 @@ import SolicitudPoli from "./SolicitudPoli";
 import PreciosPoli from "./PreciosPoli";
 import CarruselFutbol from "./CarruselFutbol";
 import CarruselPoli from "./CarruselPoli";
+import CarruselPiscina from "./CarruselPiscina";
 
 const POLIDEPORTIVO = './POLIDEPORTIVO.jpg';
 const CAMPODEFUTBOL = './CAMPODEFUTBOL.jpg';
@@ -75,7 +76,7 @@ const Formulario = () => {
                     <div className="container-info
                     ">
                         <h5 className="flex-center">PISCINA MUNICIPAL</h5>
-                        <img src={PISCINAMUNICIPAL} alt="Piscina Municipal" width="100%" height="auto"></img>
+                        <CarruselPiscina />
                         <div className="flex-space-around">
                             <a href="https://maps.app.goo.gl/Rcr4KEzBX8LygNrc9"><p>Localización</p></a>
                             <a onClick={handleHorarioPiscina} className="link"><p>Horario</p></a>
