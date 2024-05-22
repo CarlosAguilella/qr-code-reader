@@ -5,6 +5,7 @@ import FormCreate from './components/forms/form-create/FormCreate';
 import FormCard from './components/forms/form-card/FormCard';
 import CompraProducto from './components/forms/compra-producto/CompraProducto';
 import './index.css';
+import Formulario from './components/formulario/Formulario';
 
 function App() {
   const [valueSelected, setValueSelected] = useState('table');
@@ -24,7 +25,8 @@ function App() {
         </>
       )} */}
       {/* <FormCard/> */}
-      <CompraProducto />
+      {/* <CompraProducto /> */}
+      <Formulario />
     </div>
   );
 }

@@ -63,7 +63,7 @@ const PdfCreator = ({ descCorta, descCortaM, descLarga, descLargaM, dataCompra, 
                                             {Object.entries(dataCompra).map(([key, value], index) => (
                                                 <React.Fragment key={index}>
                                                     <Grid item xs={6}>
-                                                        {key === "Tarjeta (Les Alqueries en forma)" ? (
+                                                        {key === "Tarjeta" ? (
                                                             <p className="compra-info1" style={{ color: '#a3a5a7' }}>
                                                                 <span>Tarjeta</span>
                                                                 <span className='compra-desc'> (Les Alqueries en forma)</span>
@@ -86,7 +86,7 @@ const PdfCreator = ({ descCorta, descCortaM, descLarga, descLargaM, dataCompra, 
                                             {Object.entries(dataDirigido).map(([key, value], index) => (
                                                 <React.Fragment key={index}>
                                                     <Grid item xs={6}>
-                                                        {key === "Tarjeta (Les Alqueries en forma)" ? (
+                                                        {key === "Tarjeta" ? (
                                                             <p className="compra-info1" style={{ color: '#a3a5a7' }}>
                                                                 <span>Tarjeta</span>
                                                                 <span className='compra-desc'> (Les Alqueries en forma)</span>
@@ -117,9 +117,11 @@ const PdfCreator = ({ descCorta, descCortaM, descLarga, descLargaM, dataCompra, 
                                                         <p className="compra-info1">{key}</p>
                                                     </Grid>
                                                     <Grid item xs={6}>
-                                                        <div className="compra-info2">
-                                                            {value}
-                                                        </div>
+                                                        {index === 3 ? (
+                                                            <p className="compra-info3">{value}</p>
+                                                        ) : (
+                                                            <p className="compra-info2">{value}</p>
+                                                        )}
                                                     </Grid>
                                                 </React.Fragment>
                                             ))}

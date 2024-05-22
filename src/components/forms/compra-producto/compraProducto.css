@@ -277,18 +277,25 @@
 .pdf-producto .compra-data3 {
     width: 265px;
     margin-bottom: 35px;
+    border: 1px solid #d1d2d4;
 }
 
 .pdf-producto .compra-data3 .compra-info1 {
     padding: 0.5em 0em 0.5em 1.5em;
     margin: 0;
-    font-size: 0.5em;
     border: 1px solid #d1d2d4;
+    font-size: 0.5em;
     background-color: #d1d2d4;
 }
 
 .pdf-producto .compra-data3 .compra-info2 {
-    border: 1px solid #d1d2d4;
+    margin: 0;
+    padding: 0.5em 0em 0.5em 1em;
+    border-bottom: 1px solid #d1d2d4;
+    font-size: 0.5em;
+}
+
+.pdf-producto .compra-data3 .compra-info3 {
     margin: 0;
     padding: 0.5em 0em 0.5em 1em;
     font-size: 0.5em;

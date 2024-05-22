@@ -28,7 +28,7 @@ const CompraProducto = () => {
         "Nombre": "Laura",
         "Apellidos": "García Pérez",
         "NIF/NIE": "16254901V",
-        "Tarjeta (Les Alqueries en forma)": "U8PKFX8L2WKR3"
+        "Tarjeta": "U8PKFX8L2WKR3"
     };
 
     const dataDirigido = {
@@ -36,7 +36,7 @@ const CompraProducto = () => {
         "Apellidos": "Gómez García",
         "NIF/NIE": "56879614M",
         "Parentesco": "Hijo",
-        "Tarjeta (Les Alqueries en forma)": "-"
+        "Tarjeta": "-"
     };
 
     const dataCompraInfo = {
@@ -139,7 +139,7 @@ const CompraProducto = () => {
                                         {Object.entries(dataCompra).map(([key, value], index) => (
                                             <React.Fragment key={index}>
                                                 <Grid item xs={6}>
-                                                    {key === "Tarjeta (Les Alqueries en forma)" ? (
+                                                    {key === "Tarjeta" ? (
                                                         <p className="compra-info1" style={{ color: 'gray' }}>
                                                             <span>Tarjeta</span>
                                                             <span className="compra-desc" > (Les Alqueries en forma)</span>
@@ -162,7 +162,7 @@ const CompraProducto = () => {
                                         {Object.entries(dataDirigido).map(([key, value], index) => (
                                             <React.Fragment key={index}>
                                                 <Grid item xs={6}>
-                                                    {key === "Tarjeta (Les Alqueries en forma)" ? (
+                                                    {key === "Tarjeta" ? (
                                                         <p className="compra-info1" style={{ color: 'gray' }}>
                                                             <span>Tarjeta</span>
                                                             <span className="compra-desc"> (Les Alqueries en forma)</span>
