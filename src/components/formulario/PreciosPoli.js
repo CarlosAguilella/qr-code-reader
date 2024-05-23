@@ -8,7 +8,7 @@ const PreciosPoli = ({ open, onClose }) => {
     return (
         <>
             <div className="price-table">
-                <Grid container spacing={0}>
+                <Grid container spacing={4}>
                     <Grid item xs={12}>
                         <div className="price-header">
                             <Grid container spacing={4}>
@@ -85,7 +85,7 @@ const PreciosPoli = ({ open, onClose }) => {
                         </div>
                     </Grid>
                 </Grid>
-                <Grid container spacing={0} style={{ marginTop: '2em' }}>
+                <Grid container spacing={4} style={{ marginTop: '2em' }}>
                     <Grid item xs={12}>
                         <div className="price-header">
                             <Grid container spacing={4}>
