@@ -1,4 +1,6 @@
 import React from "react";
+import { Grid } from "@mui/material";
+import "./facilitiesForm.css";
 
 const HorarioPolideportivo = ({ open, onClose }) => {
     if (!open) return null;
@@ -14,17 +16,29 @@ const HorarioPolideportivo = ({ open, onClose }) => {
     ];
 
     return (
-        <>
-            <h1 className="flex-center">Horario</h1>
-            <div className='horario-container'>
+        <div className="price-table">
+            <Grid container spacing={2}>
+                <Grid item xs={6}>
+                    <h3 className="price-header flex-center">Día</h3>
+                </Grid>
+                <Grid item xs={6}>
+                    <h3 className="price-header flex-center">Horario</h3>
+                </Grid>
                 {rowsPOLIDEPORTIVO.map((row) => (
-                    <div key={row.id}>
-                        <p>{row.dia} - {row.horario}</p>
-                    </div>
+                    <>
+                        <Grid item xs={6}>
+                            <div className="info-price flex-center">{row.dia}</div>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <div className="info-price flex-center">{row.horario}</div>
+                        </Grid>
+                    </>
                 ))}
+            </Grid>
+            <div className="flex-center">
                 <button onClick={onClose}>Cerrar</button>
             </div>
-        </>
+        </div>
     );
 }
 

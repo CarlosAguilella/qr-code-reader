@@ -54,20 +54,6 @@
     margin: 0.5em 0;
 }
 
-@media (max-width: 768px) {
-    .facilities-form-container .container-info {
-        padding: 1em;
-    }
-
-    .facilities-form-container img {
-        width: 80px;
-    }
-
-    .facilities-form-container button {
-        padding: 0.5em;
-    }
-}
-
 .horario-container {
     display: flex;
     flex-direction: column;
@@ -76,15 +62,8 @@
 }
 
 .price-table {
-    margin: 2em 5em;
-}
-
-.price-table .price-header {
-    padding: 0 2em;
-}
-
-.price-table .info-price {
-    padding: 0 2em;
+    width: 80%;
+    margin: 3em auto;
 }
 
 .price-table .price-header h3 {
@@ -116,5 +95,5 @@
     width: 80%;
     margin: 2em auto; 
     color: black;
-    font-size: 1em;
+    font-size: 1.1em;
 }

@@ -7,19 +7,18 @@ const PreciosPoli = ({ open, onClose }) => {
 
     return (
         <>
-            <h1 className="flex-center">Precio</h1>
             <div className="price-table">
                 <Grid container spacing={0}>
                     <Grid item xs={12}>
                         <div className="price-header">
-                            <Grid container spacing={6}>
-                                <Grid item xs={8}>
+                            <Grid container spacing={4}>
+                                <Grid item xs={6} md={8}>
                                     <h3>Utilización Pabellón Polideportivo, incluidos vestuarios y duchas</h3>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item xs={3} md={2}>
                                     <h3>Con luz</h3>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item xs={3} md={2}>
                                     <h3>Sin luz</h3>
                                 </Grid>
                             </Grid>
@@ -27,14 +26,14 @@ const PreciosPoli = ({ open, onClose }) => {
                     </Grid>
                     <Grid item xs={12}>
                         <div className="info-price">
-                            <Grid container spacing={6}>
-                                <Grid item xs={8}>
+                            <Grid container spacing={4}>
+                                <Grid item xs={6} md={8}>
                                     <div>Una hora Pista baloncesto</div>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item xs={3} md={2}>
                                     <div>40,00€</div>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item xs={3} md={2}>
                                     <div>30,00€</div>
                                 </Grid>
                             </Grid>
@@ -42,14 +41,14 @@ const PreciosPoli = ({ open, onClose }) => {
                     </Grid>
                     <Grid item xs={12}>
                         <div className="info-price">
-                            <Grid container spacing={6}>
-                                <Grid item xs={8}>
+                            <Grid container spacing={4}>
+                                <Grid item xs={6} md={8}>
                                     <div>Una hora Pista balonmano</div>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item xs={3} md={2}>
                                     <div>40,00€</div>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item xs={3} md={2}>
                                     <div>30,00€</div>
                                 </Grid>
                             </Grid>
@@ -57,14 +56,14 @@ const PreciosPoli = ({ open, onClose }) => {
                     </Grid>
                     <Grid item xs={12}>
                         <div className="info-price">
-                            <Grid container spacing={6}>
-                                <Grid item xs={8}>
+                            <Grid container spacing={4}>
+                                <Grid item xs={6} md={8}>
                                     <div>Una hora Gimnasia</div>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item xs={3} md={2}>
                                     <div>40,00€</div>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item xs={3} md={2}>
                                     <div>30,00€</div>
                                 </Grid>
                             </Grid>
@@ -72,14 +71,14 @@ const PreciosPoli = ({ open, onClose }) => {
                     </Grid>
                     <Grid item xs={12}>
                         <div className="info-price">
-                            <Grid container spacing={6}>
-                                <Grid item xs={8}>
+                            <Grid container spacing={4}>
+                                <Grid item xs={6} md={8}>
                                     <div>Una hora Actividades Deportivas Especiales</div>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item xs={3} md={2}>
                                     <div>18,00€</div>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item xs={3} md={2}>
                                     <div>12,00€</div>
                                 </Grid>
                             </Grid>
@@ -89,14 +88,14 @@ const PreciosPoli = ({ open, onClose }) => {
                 <Grid container spacing={0} style={{ marginTop: '2em' }}>
                     <Grid item xs={12}>
                         <div className="price-header">
-                            <Grid container spacing={6}>
-                                <Grid item xs={8}>
+                            <Grid container spacing={4}>
+                                <Grid item xs={6} md={8}>
                                     <h3>Utilización Pistas Polideportivas al aire libre, no incluye vestuarios ni duchas</h3>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item xs={3} md={2}>
                                     <h3>Con luz</h3>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item xs={3} md={2}>
                                     <h3>Sin luz</h3>
                                 </Grid>
                             </Grid>
@@ -104,14 +103,14 @@ const PreciosPoli = ({ open, onClose }) => {
                     </Grid>
                     <Grid item xs={12}>
                         <div className="info-price">
-                            <Grid container spacing={6}>
-                                <Grid item xs={8}>
+                            <Grid container spacing={4}>
+                                <Grid item xs={6} md={8}>
                                     <div>Una hora Pista de Paddle</div>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item xs={3} md={2}>
                                     <div>6,00€</div>
                                 </Grid>
-                                <Grid item xs={2}>
+                                <Grid item xs={3} md={2}>
                                     <div>6,00€</div>
                                 </Grid>
                             </Grid>
@@ -119,30 +118,30 @@ const PreciosPoli = ({ open, onClose }) => {
                     </Grid>
                     <Grid item xs={12}>
                         <div className="info-price">
-                            <Grid container spacing={6}>
-                                <Grid item xs={8}>
+                            <Grid container spacing={4}>
+                                <Grid item xs={6} md={8}>
                                     <div>Una hora Pista Futbol, Balonmano o Baloncesto</div>
                                 </Grid>
-                                <Grid item xs={2}>
-                                    <div>------------</div>
+                                <Grid item xs={3} md={2}>
+                                    <div>------</div>
                                 </Grid>
-                                <Grid item xs={2}>
-                                    <div>------------</div>
+                                <Grid item xs={3} md={2}>
+                                    <div>------</div>
                                 </Grid>
                             </Grid>
                         </div>
                     </Grid>
                     <Grid item xs={12}>
                         <div className="info-price">
-                            <Grid container spacing={6}>
-                                <Grid item xs={8}>
+                            <Grid container spacing={4}>
+                                <Grid item xs={6} md={8}>
                                     <div>Una hora resto de pistas</div>
                                 </Grid>
-                                <Grid item xs={2}>
-                                    <div>------------</div>
+                                <Grid item xs={3} md={2}>
+                                    <div>------</div>
                                 </Grid>
-                                <Grid item xs={2}>
-                                    <div>------------</div>
+                                <Grid item xs={3} md={2}>
+                                    <div>------</div>
                                 </Grid>
                             </Grid>
                         </div>
