@@ -18,19 +18,21 @@ const HorarioPolideportivo = ({ open, onClose }) => {
     return (
         <div className="price-table">
             <Grid container spacing={2}>
-                <Grid item xs={6}>
-                    <h3 className="price-header flex-center">Día</h3>
+                <Grid item xs={5}>
+                    <h3 className="price-header flex-end">Día</h3>
                 </Grid>
-                <Grid item xs={6}>
-                    <h3 className="price-header flex-center">Horario</h3>
+                <Grid item xs={2} />
+                <Grid item xs={5}>
+                    <h3 className="price-header flex-start">Horario</h3>
                 </Grid>
                 {rowsPOLIDEPORTIVO.map((row) => (
                     <>
-                        <Grid item xs={6}>
-                            <div className="info-price flex-center">{row.dia}</div>
+                        <Grid item xs={5}>
+                            <div className="info-price flex-end">{row.dia}</div>
                         </Grid>
-                        <Grid item xs={6}>
-                            <div className="info-price flex-center">{row.horario}</div>
+                        <Grid item xs={2} />
+                        <Grid item xs={5}>
+                            <div className="info-price flex-start">{row.horario}</div>
                         </Grid>
                     </>
                 ))}

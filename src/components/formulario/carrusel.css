@@ -6,6 +6,14 @@
     width: 100%; 
     height: auto;
   }
+
+  @media (min-width: 900px) {
+    .carrusel-img {
+      width: auto; 
+      height: 400px;
+      margin: auto;
+    }
+  }
   
   .slick-prev,
   .slick-next {
