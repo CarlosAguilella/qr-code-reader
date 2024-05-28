@@ -21,7 +21,6 @@
     line-height: 0;
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
     z-index: 1;
     cursor: pointer;
     border: none; 

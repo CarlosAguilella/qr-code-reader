@@ -8,7 +8,7 @@ const CarruselPiscina = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
@@ -23,13 +23,13 @@ const CarruselPiscina = () => {
           <img src={'./PISCINAMUNICIPAL.jpg'} alt="PISCINA" className="carrusel-img" />
         </div>
         <div>
-        <img src={'./PISCINAMUNICIPAL.jpg'} alt="PISCINA" className="carrusel-img" />
+          <img src={'./PISCINAMUNICIPAL.jpg'} alt="PISCINA" className="carrusel-img" />
         </div>
         <div>
-        <img src={'./PISCINAMUNICIPAL.jpg'} alt="PISCINA" className="carrusel-img" />
+          <img src={'./PISCINAMUNICIPAL.jpg'} alt="PISCINA" className="carrusel-img" />
         </div>
         <div>
-        <img src={'./PISCINAMUNICIPAL.jpg'} alt="PISCINA" className="carrusel-img" />
+          <img src={'./PISCINAMUNICIPAL.jpg'} alt="PISCINA" className="carrusel-img" />
         </div>
       </Slider>
     </div>

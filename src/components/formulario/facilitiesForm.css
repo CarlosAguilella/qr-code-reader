@@ -37,12 +37,10 @@
 
 .facilities-form-container button:hover {
     background-color: #4b1f73;
-    transform: translateY(-2px);
 }
 
 .facilities-form-container button:active {
     background-color: #3a1757;
-    transform: translateY(0);
 }
 
 .facilities-form-container img {
