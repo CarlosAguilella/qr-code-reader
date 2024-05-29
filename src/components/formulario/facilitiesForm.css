@@ -72,6 +72,13 @@
     font-size: 1em;
 }
 
+.title-facilities-form {
+    width: 80%;
+    margin: 2em auto; 
+    color: black;
+    font-size: 1.1em;
+}
+
 .facilities-form {
     width: 80%;
     margin: 3em auto;
@@ -87,11 +94,4 @@
     border-right: none;
     border-left: none;
     border-bottom: 1px solid black;
-}
-
-.title-facilities-form {
-    width: 80%;
-    margin: 2em auto; 
-    color: black;
-    font-size: 1.1em;
 }
