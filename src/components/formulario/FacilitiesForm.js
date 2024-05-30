@@ -138,10 +138,10 @@ const Formulario = () => {
                         <PreciosPoli open={openDialogPrecios} onClose={() => setOpenDialogPrecios(false)} />
                         <FormularioPoli open={openDialogForm} onClose={() => setOpenDialogForm(false)} />
                         <SolicitudPoli open={openDialogForm} onClose={() => setOpenDialogForm(false)} />
-                    </div >
-                </Grid >
-            </Grid >
-        </div >
+                    </div>
+                </Grid>
+            </Grid>
+        </div>
     );
 }
 
